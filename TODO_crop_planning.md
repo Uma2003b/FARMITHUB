@@ -1,3 +1,0 @@
-- [x] Create static data for crop planning with at least 10 scenarios
-- [x] Modify crop_planning_blueprint.py to use static data instead of AI
-- [ ] Test the API functionality
