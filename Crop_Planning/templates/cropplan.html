@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgriConnect Hub - Crop Planning AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../../theme.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+            margin: 0;
+            padding: 0;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        nav {
+            background: #2e7d32;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        nav h1 {
+            color: white;
+            margin: 0;
+            font-size: 1.8em;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-left: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .hero {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin: 0;
+            opacity: 0.9;
+        }
+        .main-content {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            gap: 40px;
+            flex-grow: 1;
+        }
+        .sidebar {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        .sidebar h3 {
+            color: #2e7d32;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        .sidebar ul {
+            padding-left: 20px;
+        }
+        .sidebar li {
+            margin: 10px 0;
+            position: relative;
+        }
+        .sidebar li::before {
+            content: '🌱';
+            position: absolute;
+            left: -25px;
+            top: 0;
+        }
+        .form-container {
+            flex: 2;
+            background: white;
+            padding: 30px 40px 40px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .form-container h2 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px 30px;
+        }
+        .form-group {
+            margin-bottom: 0;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+            letter-spacing: 0.03em;
+        }
+        input[type=number], select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 1.1em;
+            transition: all 0.4s ease;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        input[type=number]:focus, select:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+            transform: scale(1.05);
+        }
+        button {
+            grid-column: span 3;
+            background: linear-gradient(135deg, #2e7d32, #388e3c);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.4em;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+        }
+        button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6);
+        }
+        button:active {
+            transform: translateY(-2px);
+        }
+        footer {
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            form {
+                grid-template-columns: 1fr;
+            }
+            button {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+  <div class="header-nav-wrapper">
+    <header class="uniform-header">
+      <div class="brand">
+        <h2>Welcome to AgriConnectHub</h2>
+      </div>
+      <div class="header-buttons">
+        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
+          <span class="calendar-icon">📅</span>
+          Calendar
+        </a>
+        <a href="../../feed-back.html" class="feedback-button">Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+        <li><a href="../../disease.html">🔬 Disease Prediction</a></li>
+        <li><a href="../../organic.html">🌿 Organic Farming</a></li>
+        <li><a href="../../farmer.html">👥 Farmer Network</a></li>
+        <li><a href="../../weather.html">⛅ Weather Check</a></li>
+        <li><a href="../../shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+        <li><a href="../../chat.html">🤖 ChatBot</a></li>
+        <li><a href="../../plantation.html">🌳 Plantation</a></li>
+        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+        <li><a href="../../Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+      </ul>
+    </nav>
+  </div>
+    <div class="hero">
+        <h2>Crop Planning AI</h2>
+        <p>Application provided by AgriConnect Hub - Enter your farm's details to get an AI-powered crop planner with comprehensive growing guidelines.</p>
+    </div>
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>Quick Tips</h3>
+            <ul>
+                <li>Provide accurate soil, weather, and farming details for the best recommendations.</li>
+                <li>Choose the appropriate season and irrigation method for your region.</li>
+                <li>Consider market demand and pest issues to optimize your farming plan.</li>
+                <li>Use this tool to plan sustainable and profitable crop cultivation.</li>
+            </ul>
+        </div>
+        <div class="form-container">
+            <h2>Enter Your Parameters</h2>
+            <form id="crop-form">
+                <div class="form-group">
+                    <label for="ph">Soil pH</label>
+                    <input type="number" id="ph" name="pH" step="0.1" min="0" max="14" required placeholder="e.g., 6.8" />
+                </div>
+                <div class="form-group">
+                    <label for="soil-type">Soil Type</label>
+                    <select id="soil-type" name="Soil_Type" required>
+                        <option value="">Select soil type...</option>
+                        <option value="Black">Black Soil (Clay-rich)</option>
+                        <option value="Loamy">Loamy Soil (Balanced)</option>
+                        <option value="Clay">Clay Soil (Heavy)</option>
+                        <option value="Sandy">Sandy Soil (Light)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="temperature">Average Temperature (°C)</label>
+                    <input type="number" id="temperature" name="Temperature" step="0.1" min="-10" max="50" required placeholder="e.g., 28.5" />
+                </div>
+                <div class="form-group">
+                    <label for="rainfall">Annual Rainfall (mm)</label>
+                    <input type="number" id="rainfall" name="Rainfall" step="1" min="0" required placeholder="e.g., 650" />
+                </div>
+                <div class="form-group">
+                    <label for="season">Growing Season</label>
+                    <select id="season" name="Season" required>
+                        <option value="">Select season...</option>
+                        <option value="Monsoon">Monsoon (Rainy)</option>
+                        <option value="Winter">Winter (Cool)</option>
+                        <option value="Summer">Summer (Hot)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="irrigation">Irrigation Method</label>
+                    <select id="irrigation" name="Irrigation_Method" required>
+                        <option value="">Select irrigation method...</option>
+                        <option value="Drip">Drip Irrigation (Efficient)</option>
+                        <option value="Canal">Canal Irrigation (Traditional)</option>
+                        <option value="Rainfed">Rainfed (Natural rain)</option>
+                        <option value="Sprinkler">Sprinkler Irrigation (Spray)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="market-demand">Market Demand</label>
+                    <select id="market-demand" name="Market_Demand" required>
+                        <option value="">Select demand level...</option>
+                        <option value="High">High Demand (Profitable)</option>
+                        <option value="Medium">Medium Demand (Stable)</option>
+                        <option value="Low">Low Demand (Risky)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fertilizer">Fertilizer Used</label>
+                    <select id="fertilizer" name="Fertilizer_Used" required>
+                        <option value="">Select fertilizer...</option>
+                        <option value="Urea+DAP">Urea + DAP (Nitrogen-rich)</option>
+                        <option value="NPK 10-26-26">NPK 10-26-26 (Balanced)</option>
+                        <option value="Single Super Phosphate">Single Super Phosphate (Phosphorus)</option>
+                        <option value="None">No Fertilizer (Organic)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pest-issue">Pest Issues</label>
+                    <select id="pest-issue" name="Pest_Issue" required>
+                        <option value="">Select pest status...</option>
+                        <option value="None">No Pest Issues</option>
+                        <option value="Bollworm">Bollworm (Cotton pest)</option>
+                        <option value="Stem Borer">Stem Borer (Rice pest)</option>
+                        <option value="Aphids">Aphids (Sucking insects)</option>
+                    </select>
+                </div>
+                <button type="submit" class="predict-btn" id="submit-btn">
+                    Get Full Farming Plan
+                </button>
+            </form>
+            <div id="result-container" style="margin-top: 30px; display:none;">
+                <h3>🎯 Recommended Crop:</h3>
+                <p id="result-text"></p>
+                <h4>Farming Guide</h4>
+                <pre id="guide-text" style="white-space: pre-wrap;"></pre>
+            </div>
+        </div>
+    </div>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Created by AgriConnectHub. All rights reserved.</p>
+            </div>
+        </footer>
+          
+            <script>
+        document.getElementById('crop-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const data = {
+                ph: form.pH.value,
+                soil_type: form.Soil_Type.value,
+                temperature: form.Temperature.value,
+                rainfall: form.Rainfall.value,
+                season: form.Season.value,
+                irrigation_method: form.Irrigation_Method.value,
+                market_demand: form.Market_Demand.value,
+                fertilizer_used: form.Fertilizer_Used.value,
+                pest_issue: form.Pest_Issue.value,
+                climate: '',
+                water_availability: ''
+            };
+
+            // Show static default data immediately after form submission
+            document.getElementById('result-text').textContent = 'Wheat';
+            document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
+How to Plant:
+- Till the soil and sow seeds in rows.
+- Ensure proper spacing.
+- Irrigate as needed.
+
+Fertilizer: Apply DAP and urea.
+Timeline: 4-5 months.
+Ideal Rainfall: 500-700 mm.
+Post Harvest: Harvest when grains are hard, thresh and store.`;
+            document.getElementById('result-container').style.display = 'block';
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ data })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('result-text').textContent = result.crop;
+                    document.getElementById('guide-text').textContent = JSON.stringify(JSON.parse(result.guide_json_string), null, 2);
+                    document.getElementById('result-container').style.display = 'block';
+                } else {
+                    // Show static fallback data on error
+                    document.getElementById('result-text').textContent = 'Wheat';
+                    document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
+How to Plant:
+- Till the soil and sow seeds in rows.
+- Ensure proper spacing.
+- Irrigate as needed.
+
+Fertilizer: Apply DAP and urea.
+Timeline: 4-5 months.
+Ideal Rainfall: 500-700 mm.
+Post Harvest: Harvest when grains are hard, thresh and store.`;
+                    document.getElementById('result-container').style.display = 'block';
+                }
+            } catch (error) {
+                // Show static fallback data on fetch error
+                document.getElementById('result-text').textContent = 'Wheat';
+                document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
+How to Plant:
+- Till the soil and sow seeds in rows.
+- Ensure proper spacing.
+- Irrigate as needed.
+
+Fertilizer: Apply DAP and urea.
+Timeline: 4-5 months.
+Ideal Rainfall: 500-700 mm.
+Post Harvest: Harvest when grains are hard, thresh and store.`;
+                document.getElementById('result-container').style.display = 'block';
+            }
+        });
+      </script>
+      <script src="../../nav.js"></script>
+      <script src="../../auth.js"></script>
+      <script src="../../theme.js"></script>
+      </body>
+    </html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <!-- Removed logo favicon as per user request -->
+  <!-- <link rel="icon" type="image/png" href="../images/logo.png"> -->
+  <meta charset="UTF-8" />
+  <title>రైతు ఫోరమ్</title>
+  <link rel="icon" type="image/png" href="/AgriConnectHub/images/logo.png">
+  <link rel="stylesheet" href="farmer.css" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: var(--bg-secondary, #f7f7f7);
+    color: var(--text-primary, #333);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+
+  h1, h2 {
+    color: var(--text-primary, #2c3e50);
+  }
+
+
+  form {
+    margin-bottom: 20px;
+    background: var(--bg-primary, white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--shadow-light, rgba(0, 0, 0, 0.1));
+  }
+
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    background: var(--bg-primary, white);
+    color: var(--text-primary, #333);
+  }
+
+
+  button {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  button:hover {
+    background-color: #27ae60;
+  }
+
+
+  .forum-post {
+    background: var(--bg-primary, white);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+
+
+  .forum-post strong {
+    color: #34495e;
+  }
+</style>
+
+
+</head>
+<body>
+  <div class="header-nav-wrapper">
+    <header class="uniform-header">
+      <div class="brand">
+        <h2>AgriConnectHub కు స్వాగతం</h2>
+      </div>
+      <div class="header-buttons">
+        <a href="../cropCalendar.html" class="calendar-button" title="పంట క్యాలెండర్">
+          <span class="calendar-icon">📅</span>
+          క్యాలెండర్
+        </a>
+        <a href="../feed-back.html" class="feedback-button">ఫీడ్‌బ్యాక్</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">లాగ్ అవుట్</a>
+        <select id="languageSelector" onchange="changeLanguage()">
+          <option value="te" selected>తెలుగు</option>
+          <option value="en">English</option>
+        </select>
+        <button class="theme-toggle" aria-label="డార్క్/లైట్ మోడ్ మార్చు">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">లైట్</span>
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 పంట సిఫార్సు</a></li>
+        <li><a href="/crop_yield/">📊 దిగుబడి అంచనా</a></li>
+        <li><a href="../disease_telugu.html">🔬 రోగాల గుర్తింపు</a></li>
+        <li><a href="../organic_telugu.html">🌿 ఆర్గానిక్ వ్యవసాయం</a></li>
+        <li><a href="../farmer_telugu.html">👥 రైతు నెట్‌వర్క్</a></li>
+        <li><a href="../weather_telugu.html">⛅ వాతావరణం</a></li>
+        <li><a href="../shopkeeper_telugu.html">🏪 షాప్కీపర్ లిస్టింగ్స్</a></li>
+        <li><a href="../chat_telugu.html">🤖 చాట్‌బాట్</a></li>
+        <li><a href="../plantation_telugu.html">🌳 విత్తన నిపుణులు</a></li>
+        <li><a href="/crop_planning/">📅 పంట ప్రణాళిక</a></li>
+        <li><a href="../Labour_Alerts/templates/labour_telugu.html">⚠ కార్మిక అలర్ట్స్</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <h1>రైతు ఫోరమ్</h1>
+
+
+  <form id="forumForm">
+    <input type="text" name="name" placeholder="మీ పేరు" required />
+    <textarea name="message" placeholder="మీ అనుభవాన్ని పంచుకోండి..." required></textarea>
+    <button type="submit">పోస్ట్ చేయండి</button>
+  </form>
+
+
+  <h2>ఇటీవలి పోస్టులు</h2>
+  <div id="forumPosts"></div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="forum.js"></script>
+  <script src="../nav.js"></script>
+  <script src="../auth.js"></script>
+  <script src="../theme.js"></script>
+  <link rel="stylesheet" href="toast.css" />
+  <script>
+    function changeLanguage() {
+      const selector = document.getElementById('languageSelector');
+      const selectedLang = selector.value;
+      if (selectedLang === 'en') {
+        window.location.href = 'forum.html';
+      } else if (selectedLang === 'te') {
+        window.location.href = 'forum_telugu.html';
+      }
+    }
+  </script>
+</body>
+</html>

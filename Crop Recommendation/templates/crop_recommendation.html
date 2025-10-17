@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgriConnectHub - Crop Recommendation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/main.css" />
+  <link rel="stylesheet" href="/theme.css" />
+  <style>
+    /* Additional styles for crop recommendation form */
+    .form-container {
+      background: white;
+      padding: 30px 40px 40px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: 40px auto;
+    }
+
+    .form-container h2 {
+      color: var(--primary-color, #2e7d32);
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2em;
+      letter-spacing: 1px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px 30px;
+    }
+
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    input[type=number] {
+      width: 100%;
+      padding: 14px 15px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-size: 1.1em;
+      transition: all 0.4s ease;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type=number]:focus {
+      outline: none;
+      border-color: var(--primary-color, #2e7d32);
+      box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+      transform: scale(1.05);
+    }
+
+    button {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      color: white;
+      border: none;
+      padding: 20px;
+      font-size: 1.4em;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+    }
+
+    button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6);
+    }
+
+    button:active {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #4caf50, #2e7d32);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .hero h2 {
+      font-size: 2.5em;
+      margin: 0 0 10px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    footer.site-footer {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header-nav-wrapper">
+    <header>
+      <div class="brand">
+        <h2>Welcome to AgriConnectHub</h2>
+      </div>
+      <div class="header-buttons">
+        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
+          <span class="calendar-icon">📅</span>
+          Calendar
+        </a>
+        <a href="../../feed-back.html" class="feedback-button">Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+        <li><a href="../../disease.html">🔬 Disease Prediction</a></li>
+        <li><a href="../../organic.html">🌿 Organic Farming</a></li>
+        <li><a href="../../farmer.html">👥 Farmer Network</a></li>
+        <li><a href="../../weather.html">⛅ Weather Check</a></li>
+        <li><a href="../../shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+        <li><a href="../../chat.html">🤖 ChatBot</a></li>
+        <li><a href="../../plantation.html">🌳 Plantation</a></li>
+        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+        <li><a href="../../Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <h2>Crop Recommendation System</h2>
+    <p>Get personalized crop suggestions based on your soil and environmental conditions</p>
+  </div>
+
+  <div class="form-container">
+    <h2>Enter Your Parameters</h2>
+    <form action="{{ url_for('crop_recommendation.predict') }}" method="POST">
+      <div class="form-group">
+        <label for="N">Nitrogen (N) - 0-140 kg/ha</label>
+        <input type="number" id="N" name="N" min="0" max="140" required />
+      </div>
+
+      <div class="form-group">
+        <label for="P">Phosphorus (P) - 5-145 kg/ha</label>
+        <input type="number" id="P" name="P" min="5" max="145" required />
+      </div>
+
+      <div class="form-group">
+        <label for="K">Potassium (K) - 5-205 kg/ha</label>
+        <input type="number" id="K" name="K" min="5" max="205" required />
+      </div>
+
+      <div class="form-group">
+        <label for="temperature">Temperature (°C) - 8-45</label>
+        <input type="number" id="temperature" name="temperature" step="0.1" min="8" max="45" required />
+      </div>
+
+      <div class="form-group">
+        <label for="humidity">Humidity (%) - 14-100</label>
+        <input type="number" id="humidity" name="humidity" step="0.1" min="14" max="100" required />
+      </div>
+
+      <div class="form-group">
+        <label for="ph">pH - 3.5-10.0</label>
+        <input type="number" id="ph" name="ph" step="0.01" min="3.5" max="10" required />
+      </div>
+
+      <div class="form-group full-width">
+        <label for="rainfall">Rainfall (mm) - 20-300</label>
+        <input type="number" id="rainfall" name="rainfall" step="0.1" min="20" max="300" required />
+      </div>
+
+      <button type="submit">Predict Crop</button>
+    </form>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>AgriConnectHub</h3>
+        <p>Empowering India's Farming Future</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="main.html">Dashboard</a></li>
+          <li><a href="feed-back.html">Feedback</a></li>
+          <li><a href="chat.html">AI Assistant</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="/crop_recommendation/">Crop Recommendation</a></li>
+          <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">Yield Prediction</a></li>
+          <li><a href="Disease prediction/template/index.html">Disease Detector</a></li>
+          <li><a href="Crop_Planning/templates/cropplan.html">Crop Planner</a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; opacity: 0.8">
+      &copy; 2025 AgriConnectHub
+    </p>
+  </footer>
+
+  <script src="/main.js"></script>
+  <script src="/nav.js"></script>
+  <script src="/theme.js"></script>
+  <script src="/auth.js"></script>
+</body>
+
+</html>

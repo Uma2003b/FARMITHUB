@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="weather.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>వాతావరణ తనిఖీ వ్యవస్థ</title>
+</head>
+<body>
+    <div class="header-nav-wrapper">
+      <header class="uniform-header">
+        <div class="brand">
+          <h2>AgriConnectHub కు స్వాగతం</h2>
+        </div>
+        <div class="header-buttons">
+          <a href="cropCalendar.html" class="calendar-button" title="పంట క్యాలెండర్">
+            <span class="calendar-icon">📅</span>
+            క్యాలెండర్
+          </a>
+          <a href="feed-back.html" class="feedback-button">ఫీడ్‌బ్యాక్</a>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">లాగ్ అవుట్</a>
+          <select id="languageSelector" onchange="changeLanguage()">
+            <option value="te" selected>తెలుగు</option>
+            <option value="en">English</option>
+          </select>
+          <button class="theme-toggle" aria-label="డార్క్/లైట్ మోడ్ మార్చు">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+            <span class="theme-text">లైట్</span>
+          </button>
+        </div>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="/crop_recommendation/">🌱 పంట సిఫార్సు</a></li>
+          <li><a href="/crop_yield/">📊 దిగుబడి అంచనా</a></li>
+          <li><a href="disease_telugu.html">🔬 రోగాల గుర్తింపు</a></li>
+          <li><a href="organic_telugu.html">🌿 ఆర్గానిక్ వ్యవసాయం</a></li>
+          <li><a href="farmer_telugu.html">👥 రైతు నెట్‌వర్క్</a></li>
+          <li><a href="weather_telugu.html">⛅ వాతావరణం</a></li>
+          <li><a href="shopkeeper_telugu.html">🏪 షాప్కీపర్ లిస్టింగ్స్</a></li>
+          <li><a href="chat_telugu.html">🤖 చాట్‌బాట్</a></li>
+          <li><a href="plantation_telugu.html">🌳 విత్తన నిపుణులు</a></li>
+          <li><a href="/crop_planning/">📅 పంట ప్రణాళిక</a></li>
+          <li><a href="./Labour_Alerts/templates/labour_telugu.html">⚠ కార్మిక అలర్ట్స్</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="box weather-box">
+      <div class="left general-data">
+        <div class="main">
+          <input type="text" id="cityInput" placeholder="నగరం నమ్మకం (డిఫాల్ట్‌గా, న్యూఢిల్లీ)" />
+          <br />
+          <button id="search">వెతకండి</button>
+        </div>
+        <div class="general">
+          <h3 id="city">నగరం</h3>
+          <h4 id="region">ప్రాంతం</h4>
+          <h5 id="country">దేశం</h5>
+          <br />
+          <br />
+          <h6 id="description">ఎక్కువగా ---</h6>
+          <p id="temperature">40</p>
+          <!-- image is added in "p" dynamically -->
+        </div>
+      </div>
+      <div class="right predictions-data">
+        <div class="hourly">
+          <div>
+            <p>గంటల వారపు అంచనా</p>
+          </div>
+          <div class="hour" id="hour">
+            <!-- cards are entered dynamically -->
+          </div>
+        </div>
+        <div class="daywise">
+          <div>
+            <p>10 రోజుల వారపు అంచనా</p>
+          </div>
+          <div class="day" id="day">
+            <!-- cards are entered dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
+      .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}
+      .footer-brand {display:flex;flex-direction:column;gap:.5rem;align-items: center;}
+      .footer-logo {width:48px;height:48px;border-radius:8px;object-fit:cover;background:#fff;padding:4px}
+      .site-footer h3,.site-footer h4{margin:0 0 .5rem 0}
+      .site-footer p {margin:0;opacity:0.9}
+      .site-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+      .site-footer a{color:#fff;text-decoration:none;opacity:0.9;width:max-content;background-color: none;}
+      .site-footer a:hover{opacity:1;text-decoration:underline}
+      .footer-links{display:flex;flex-direction:column;align-items: center;}
+    </style>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>AgriConnectHub</h3>
+          <p>భారత రైతుల భవిష్యత్తును శక్తివంతం చేయడం</p>
+        </div>
+        <div class="footer-links">
+          <h4>త్వరిత లింకులు</h4>
+          <ul>
+            <li><a href="index.html">హోమ్</a></li>
+            <li><a href="main.html">డాష్‌బోర్డ్</a></li>
+            <li><a href="feed-back.html">ఫీడ్‌బ్యాక్</a></li>
+            <li><a href="chat.html">AI అసిస్టెంట్</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>సాధనాలు</h4>
+          <ul>
+            <li><a href="/crop_recommendation/">పంట సిఫార్సు</a></li>
+            <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">దిగుబడి అంచనా</a></li>
+            <li><a href="Disease prediction/template/index.html">రోగాల గుర్తింపు</a></li>
+            <li><a href="Crop_Planning/templates/cropplan.html">పంట ప్రణాళిక</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8">
+        &copy; 2025 AgriConnectHub
+      </p>
+    </footer>
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    <script src="weather.js"></script>
+    <script>
+      function changeLanguage() {
+        const selector = document.getElementById('languageSelector');
+        const selectedLang = selector.value;
+        if (selectedLang === 'en') {
+          window.location.href = 'weather.html';
+        } else if (selectedLang === 'te') {
+          window.location.href = 'weather_telugu.html';
+        }
+      }
+    </script>
+</body>
+</html>

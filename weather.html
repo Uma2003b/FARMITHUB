@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="weather.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Weather Check System</title>
+</head>
+<body>
+    <div class="header-nav-wrapper">
+      <header class="uniform-header">
+        <div class="brand">
+          <h2>Welcome to AgriConnectHub</h2>
+        </div>
+        <div class="header-buttons">
+          <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
+            <span class="calendar-icon">📅</span>
+            Calendar
+          </a>
+          <a href="feed-back.html" class="feedback-button">Feedback</a>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+          <select id="languageSelector" onchange="changeLanguage()">
+            <option value="en" selected>English</option>
+            <option value="te">తెలుగు</option>
+          </select>
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+            <span class="theme-text">Light</span>
+          </button>
+        </div>
+        <script>
+          function changeLanguage() {
+            const selector = document.getElementById('languageSelector');
+            const selectedLang = selector.value;
+            if (selectedLang === 'en') {
+              window.location.href = 'weather.html';
+            } else if (selectedLang === 'te') {
+              window.location.href = 'weather_telugu.html';
+            }
+          }
+        </script>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+          <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+          <li><a href="disease.html">🔬 Disease Prediction</a></li>
+          <li><a href="organic.html">🌿 Organic Farming</a></li>
+          <li><a href="farmer.html">👥 Farmer Network</a></li>
+          <li><a href="weather.html">⛅ Weather Check</a></li>
+          <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+          <li><a href="chat.html">🤖 ChatBot</a></li>
+          <li><a href="plantation.html">🌳 Plantation</a></li>
+          <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+          <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="box weather-box">
+      <div class="left general-data">
+        <div class="main">
+          <input type="text" id="cityInput" placeholder="Enter a city (by default, New Delhi)" />
+          <br />
+          <button id="search">Search</button>
+        </div>
+        <div class="general">
+          <h3 id="city">City</h3>
+          <h4 id="region">Region</h4>
+          <h5 id="country">Country</h5>
+          <br />
+          <br />
+          <h6 id="description">mostly ---</h6>
+          <p id="temperature">40</p>
+          <!-- image is added in "p" dynamically -->
+        </div>
+      </div>
+      <div class="right predictions-data">
+        <div class="hourly">
+          <div>
+            <p>Hourly forecast</p>
+          </div>
+          <div class="hour" id="hour">
+            <!-- cards are entered dynamically -->
+          </div>
+        </div>
+        <div class="daywise">
+          <div>
+            <p>10 days forecast</p>
+          </div>
+          <div class="day" id="day">
+            <!-- cards are entered dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
+      .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}
+      .footer-brand {display:flex;flex-direction:column;gap:.5rem;align-items: center;}
+      .footer-logo {width:48px;height:48px;border-radius:8px;object-fit:cover;background:#fff;padding:4px}
+      .site-footer h3,.site-footer h4{margin:0 0 .5rem 0}
+      .site-footer p {margin:0;opacity:0.9}
+      .site-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+      .site-footer a{color:#fff;text-decoration:none;opacity:0.9;width:max-content;background-color: none;}
+      .site-footer a:hover{opacity:1;text-decoration:underline}
+      .footer-links{display:flex;flex-direction:column;align-items: center;}
+    </style>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>AgriConnectHub</h3>
+          <p>Empowering India's Farming Future</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="main.html">Dashboard</a></li>
+            <li><a href="feed-back.html">Feedback</a></li>
+            <li><a href="chat.html">AI Assistant</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+<li><a href="/crop_recommendation/">Crop Recommendation</a></li>
+            <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">Yield Prediction</a></li>
+            <li><a href="Disease prediction/template/index.html">Disease Detector</a></li>
+            <li><a href="Crop_Planning/templates/cropplan.html">Crop Planner</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8">
+        &copy; 2025 AgriConnectHub
+      </p>
+    </footer>
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    <script src="weather.js"></script>
+</body>
+</html>
+</create_file>

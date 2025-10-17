@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sugarcane FRP Prices - AgriConnectHub</title>
+    <link rel="stylesheet" href="{{ url_for('sugarcane_frp.static', filename='sugarcane_frp.css') }}">
+    <link rel="stylesheet" href="../../../theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+
+  <body>
+    <div class="header-nav-wrapper">
+      <header class="uniform-header">
+        <div class="brand">
+          <h2>Welcome to AgriConnectHub</h2>
+        </div>
+        <div class="header-buttons">
+          <a href="../../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
+            <span class="calendar-icon">📅</span> Calendar
+          </a>
+          <a href="../../../feed-back.html" class="feedback-button">Feedback</a>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+            <span class="theme-text">Light</span>
+          </button>
+        </div>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+          <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+          <li><a href="../../../disease.html">🔬 Disease Prediction</a></li>
+          <li><a href="../../../organic.html">🌿 Organic Farming</a></li>
+          <li><a href="../../../farmer.html">👥 Farmer Network</a></li>
+          <li><a href="../../../weather.html">⛅ Weather Check</a></li>
+          <li><a href="../../../shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+          <li><a href="../../../chat.html">🤖 ChatBot</a></li>
+          <li><a href="../../../plantation.html">🌳 Plantation</a></li>
+          <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+          <li><a href="/crop_price_tracker/">💰 Crop Price Tracker</a></li>
+          <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+          <li><a href="../../../Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="hero">
+      <h2>Sugarcane FRP Prices</h2>
+      <p>Year-wise details of Fair and Remunerative Price (FRP) for sugarcane seasons</p>
+    </div>
+    <div class="main-content">
+      <form method="POST" id="frpForm" class="form-row-horizontal" style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+        <div class="form-row" style="display: flex; flex-direction: column; flex: 1; min-width: 200px;">
+          <label for="season"><i class="fas fa-calendar-alt"></i> Select Sugar Season (Optional)</label>
+          <select name="season" id="season" style="padding: 0.4rem; border-radius: 6px; border: 1px solid #ccc;">
+            <option value="">-- All Seasons --</option>
+            {% for season in seasons %}
+            <option value="{{ season }}">{{ season }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-buttons" style="display: flex; flex-direction: column; gap: 0.75rem; min-width: 140px;">
+          <button type="submit" class="submit-button" style="background-color: #2e7d32; color: white; border: none; padding: 0.6rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            <i class="fas fa-search"></i> Filter
+          </button>
+          <button type="button" id="clearBtn" style="background-color: #2e7d32; color: white; border: none; padding: 0.6rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            <i class="fas fa-times"></i> Clear
+          </button>
+        </div>
+      </form>
+
+      {% if error %}
+      <div class="error"><strong>⚠ Error:</strong> {{ error }}</div>
+      {% endif %}
+
+      {% if result %}
+      <div class="results-container">
+        <h3>📊 FRP Details</h3>
+        <table class="frp-table">
+          <thead>
+            <tr>
+              <th>Sugar Season</th>
+              <th>FRP Fixed by Government (₹/quintal)</th>
+              <th>Increase over Previous Year (₹/quintal)</th>
+              <th>Basic Recovery Rate (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in result %}
+            <tr>
+              <td>{{ row['sugar_season'] }}</td>
+              <td>{{ row['frp_fixed_by_government'] }}</td>
+              <td>{{ row['increase_over_previous_year'] }}</td>
+              <td>{{ row['basic_recovery_rate'] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+    </div>
+
+    <script>
+      // Clear form
+      document.getElementById("clearBtn").addEventListener("click", function() {
+        document.getElementById("season").value = "";
+        document.getElementById("frpForm").submit();
+      });
+    </script>
+    <script src="../../../nav.js"></script>
+    <script src="../../../auth.js"></script>
+    <script src="../../../theme.js"></script>
+
+    <footer class="footer">
+      <p>&copy; 2025 AgriConnectHub. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

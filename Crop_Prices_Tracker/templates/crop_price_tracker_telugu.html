@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>పంట ధర ట్రాకర్ - AgriConnectHub</title>
+  <link rel="stylesheet" href="{{ url_for('crop_price_tracker.static', filename='styles.css') }}">
+  <link rel="stylesheet" href="../../theme.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="header-nav-wrapper">
+    <header class="uniform-header">
+      <div class="brand">
+        <h2>AgriConnectHub కు స్వాగతం</h2>
+      </div>
+      <div class="header-buttons">
+        <a href="../../../cropCalendar.html" class="calendar-button" title="పంట క్యాలెండర్">
+          <span class="calendar-icon">📅</span> క్యాలెండర్
+        </a>
+        <a href="../../../feed-back.html" class="feedback-button">ఫీడ్‌బ్యాక్</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">లాగ్ అవుట్</a>
+        <button class="theme-toggle" aria-label="డార్క్/లైట్ మోడ్ మార్చండి">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-mూన్ మూన్-ఐకాన్"></i>
+          <span class="theme-text">లైట్</span>
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 పంట సిఫార్సు</a></li>
+        <li><a href="/crop_yield/">📊 దిగుబడి అంచనా</a></li>
+        <li><a href="../../../disease_telugu.html">🔬 రోగాల అంచనా</a></li>
+        <li><a href="../../../organic_telugu.html">🌿 ఆర్గానిక్ వ్యవసాయం</a></li>
+        <li><a href="../../../farmer_telugu.html">👥 రైతు నెట్‌వర్క్</a></li>
+        <li><a href="../../../weather_telugu.html">⛅ వాతావరణం</a></li>
+        <li><a href="../../../shopkeeper_telugu.html">🏪 షాప్కీపర్ లిస్టింగ్స్</a></li>
+        <li><a href="../../../chat_telugu.html">🤖 చాట్‌బాట్</a></li>
+        <li><a href="../../../plantation_telugu.html">🌳 విత్తన నిపుణులు</a></li>
+        <li><a href="/crop_planning/">📅 పంట ప్రణాళిక</a></li>
+        <li><a href="../../../Labour_Alerts/templates/labour_telugu.html">⚠ కార్మిక అలర్ట్స్</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="page-header" style="max-width: 1200px; margin: 30px auto 20px auto; padding: 0 20px;">
+    <h1><i class="fas fa-chart-line"></i> పంట ధర ట్రాకర్</h1>
+    <p>భారతదేశంలోని మార్కెట్లలో రియల్-టైమ్ పంట ధరలను ట్రాక్ చేయండి</p>
+  </div>
+
+  <main class="form-container" style="max-width: 1200px; margin: 0 auto 40px auto; padding: 20px;">
+    <form method="POST" action="/crop_price_tracker/track_prices" id="priceForm" class="price-form" style="width: 100%; display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-end; justify-content: flex-start;">
+      <div class="form-row" style="flex: 1 1 20%; min-width: 180px;">
+        <label for="crop" class="form-label"><i class="fas fa-seedling"></i> పంటను ఎంచుకోండి</label>
+        <select name="crop" id="crop" required>
+          <option value="">-- పంట ఎంచుకోండి --</option>
+          {% for crop in crops %}
+          <option value="{{ crop }}" {% if crop == request.form.get('crop') %}selected{% endif %}>{{ crop }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-row" style="flex: 1 1 20%; min-width: 180px;">
+        <label for="state" class="form-label"><i class="fas fa-map-marker-alt"></i> రాష్ట్రం ఎంచుకోండి</label>
+        <select name="state" id="state" required {% if not request.form.get('state') %}disabled{% endif %}>
+          <option value="">-- రాష్ట్రం ఎంచుకోండి --</option>
+          {% if request.form.get('state') %}
+          <option value="{{ request.form.get('state') }}" selected>{{ request.form.get('state') }}</option>
+          {% endif %}
+        </select>
+      </div>
+
+      <div class="form-row" style="flex: 1 1 20%; min-width: 180px;">
+        <label for="market" class="form-label"><i class="fas fa-store"></i> మార్కెట్ ఎంచుకోండి</label>
+        <select name="market" id="market" required {% if not request.form.get('market') %}disabled{% endif %}>
+          <option value="">-- మార్కెట్ ఎంచుకోండి --</option>
+          {% if request.form.get('market') %}
+          <option value="{{ request.form.get('market') }}" selected>{{ request.form.get('market') }}</option>
+          {% endif %}
+        </select>
+      </div>
+
+      <div class="form-row" style="flex: 1 1 20%; min-width: 180px; display: flex; gap: 15px; margin-top: 0;">
+        <button type="submit" class="submit-button" id="submitBtn" disabled" style="flex: 1;">
+          <i class="fas fa-chart-line"></i> ధరలను ట్రాక్ చేయండి
+        </button>
+        <button type="reset" class="submit-button" id="resetBtn" style="background: #388e3c; flex: 1;">
+          <i class="fas fa-times"></i> క్లియర్ చేయండి
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <section class="form-container" style="max-width: 1200px; margin: 0 auto 40px auto; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+      <h3><i class="fas fa-list"></i> ధర ఫలితాలు</h3>
+      <div style="display: flex; gap: 10px;">
+        <button class="submit-button" style="padding: 8px 15px; font-size: 0.9em;">ధర ఆధారంగా సారించండి</button>
+        <button class="submit-button" style="padding: 8px 15px; font-size: 0.9em;">తేదీ ఆధారంగా సారించండి</button>
+      </div>
+    </div>
+
+    <table class="results-table" style="width: 100%; border-collapse: collapse;" aria-live="polite" aria-atomic="true">
+      <thead style="background: #2e7d32; color: white;">
+        <tr>
+          <th style="padding: 12px 15px; text-align: left;">తేదీ</th>
+          <th style="padding: 12px 15px; text-align: left;">మార్కెట్</th>
+          <th style="padding: 12px 15px; text-align: left;">రాష్ట్రం</th>
+          <th style="padding: 12px 15px; text-align: right;">ధర (₹/క్వింటాల్)</th>
+          <th style="padding: 12px 15px; text-align: center;">చర్యలు</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in result %}
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px 15px;">{{ row['arrival_date'] }}</td>
+          <td style="padding: 10px 15px;">{{ row['market'] }}</td>
+          <td style="padding: 10px 15px;">{{ row['state'] }}</td>
+          <td style="padding: 10px 15px; text-align: right; color: #388e3c; font-weight: 700;">₹{{ row['modal_price'] }}</td>
+          <td style="padding: 10px 15px; text-align: center;">
+            <button class="submit-button" style="background: transparent; box-shadow: none; color: #2e7d32; font-size: 1.2em; cursor: pointer;">
+              <i class="fas fa-star"></i>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <footer style="background: #2e7d32; color: white; text-align: center; padding: 20px 10px; font-size: 0.9em;">
+    © 2024 AgriTech Crop Price Tracker. Data.gov.in ఆధారంగా
+  </footer>
+
+  <script>
+    const cropSelect = document.getElementById("crop");
+    const stateSelect = document.getElementById("state");
+    const marketSelect = document.getElementById("market");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function updateSubmitButton() {
+      const isFormComplete =
+        cropSelect.value && stateSelect.value && marketSelect.value;
+      submitBtn.disabled = !isFormComplete;
+    }
+
+    cropSelect.addEventListener("change", function () {
+      const loadingText = "రాష్ట్రాలు లోడ్ అవుతున్నాయి...";
+      stateSelect.innerHTML = `<option value="">${loadingText}</option>`;
+      stateSelect.disabled = true;
+      stateSelect.classList.add("loading");
+
+      fetch("/crop_price_tracker/get_states?crop=" + this.value)
+        .then((res) => res.json())
+        .then((states) => {
+          stateSelect.innerHTML = '<option value="">-- రాష్ట్రం ఎంచుకోండి --</option>';
+          states.forEach((state) => {
+            stateSelect.innerHTML += `<option value="${state}">${state}</option>`;
+          });
+          stateSelect.disabled = false;
+          stateSelect.classList.remove("loading");
+
+          marketSelect.innerHTML = '<option value="">-- మార్కెట్ ఎంచుకోండి --</option>';
+          marketSelect.disabled = true;
+          updateSubmitButton();
+        })
+        .catch((error) => {
+          console.error("రాష్ట్రాలు లోడ్ లో లోపం:", error);
+          stateSelect.innerHTML = '<option value="">-- రాష్ట్రాలు లోడ్ లో లోపం --</option>';
+          stateSelect.classList.remove("loading");
+        });
+    });
+
+    stateSelect.addEventListener("change", function () {
+      const crop = cropSelect.value;
+      const state = this.value;
+
+      if (state) {
+        const loadingText = "మార్కెట్లు లోడ్ అవుతున్నాయి...";
+        marketSelect.innerHTML = `<option value="">${loadingText}</option>`;
+        marketSelect.disabled = true;
+        marketSelect.classList.add("loading");
+
+        fetch(`/crop_price_tracker/get_markets?crop=${crop}&state=${state}`)
+          .then((res) => res.json())
+          .then((markets) => {
+            marketSelect.innerHTML = '<option value="">-- మార్కెట్ ఎంచుకోండి --</option>';
+            markets.forEach((market) => {
+              marketSelect.innerHTML += `<option value="${market}">${market}</option>`;
+            });
+            marketSelect.disabled = false;
+            marketSelect.classList.remove("loading");
+            updateSubmitButton();
+          })
+          .catch((error) => {
+            console.error("మార్కెట్లు లోడ్ లో లోపం:", error);
+            marketSelect.innerHTML = '<option value="">-- మార్కెట్లు లోడ్ లో లోపం --</option>';
+            marketSelect.classList.remove("loading");
+          });
+      } else {
+        marketSelect.innerHTML = '<option value="">-- మార్కెట్ ఎంచుకోండి --</option>';
+        marketSelect.disabled = true;
+        updateSubmitButton();
+      }
+    });
+
+    marketSelect.addEventListener("change", updateSubmitButton);
+
+    document.getElementById("priceForm").addEventListener("submit", function () {
+      submitBtn.classList.add("loading");
+      submitBtn.textContent = "ధరలు పొందుతున్నాం...";
+    });
+
+    updateSubmitButton();
+  </script>
+
+  <script src="../../nav.js"></script>
+  <script src="../../auth.js"></script>
+  <script src="../../theme.js"></script>
+</body>
+</html>

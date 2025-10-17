@@ -1,0 +1,150 @@
+/* Styles for Sugarcane FRP based on Crop Price Tracker theme */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+  margin: 0;
+  padding: 0;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 1s ease-in;
+}
+
+.hero {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.hero h2 {
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin: 0;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 40px 20px;
+  flex-grow: 1;
+}
+
+.form-row-horizontal {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 6px;
+}
+
+select {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.submit-button, #clearBtn {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-button:hover, #clearBtn:hover {
+  background-color: #388e3c;
+}
+
+.error {
+  background: #ffdddd;
+  border-left: 6px solid #f44336;
+  padding: 10px 20px;
+  margin: 20px 0;
+  color: #a94442;
+  border-radius: 6px;
+}
+
+.results-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.frp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.frp-table th, .frp-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.frp-table th {
+  background-color: #2e7d32;
+  color: white;
+  font-weight: 600;
+}
+
+.frp-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.frp-table tr:hover {
+  background-color: #e8f5e8;
+}
+
+footer {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+  .form-row-horizontal {
+    flex-direction: column;
+  }
+  .frp-table {
+    font-size: 0.9em;
+  }
+}

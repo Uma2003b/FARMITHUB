@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>AgriTech – Organic Farming</title>
+    <link rel="stylesheet" href="organic.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/AgriTech/images/logo.png">
+    <link rel="stylesheet" href="theme.css" />
+  </head>
+
+  <body>
+    <div id="particles-js"></div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <div class="header-nav-wrapper">
+      <header class="uniform-header">
+        <div class="brand">
+          <h2>Welcome to AgriConnectHub</h2>
+        </div>
+        <div class="header-buttons">
+          <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
+            <span class="calendar-icon">📅</span>
+            Calendar
+          </a>
+          <a href="feed-back.html" class="feedback-button">Feedback</a>
+          <select id="language-select" onchange="changeLanguage()" style="margin-right: 10px; padding: 5px; border-radius: 5px;">
+            <option value="en" selected>English</option>
+            <option value="te">తెలుగు</option>
+          </select>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+            <span class="theme-text">Light</span>
+          </button>
+        </div>

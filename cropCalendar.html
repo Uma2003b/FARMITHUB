@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/png" href="/AgriConnectHub/images/logo.png">
+    <link rel="stylesheet" href="cropCalendar.css">
+    <link rel="stylesheet" href="theme.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+</head>
+<body>
+
+
+<div class="header-nav-wrapper">
+    <header class="uniform-header">
+      <div class="brand">
+        <h2>Welcome to AgriConnectHub</h2>
+      </div>
+      <div class="header-buttons">
+        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
+          <span class="calendar-icon">📅</span>
+          Calendar
+        </a>
+        <a href="feed-back.html" class="feedback-button">Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+        <button id="exportBtn" class="btn btn-secondary" aria-label="Export calendar" title="Export Calendar">
+            <i class="fas fa-download"></i> Export
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+        <li><a href="disease.html">🔬 Disease Prediction</a></li>
+        <li><a href="organic.html">🌿 Organic Farming</a></li>
+        <li><a href="farmer.html">👥 Farmer Network</a></li>
+        <li><a href="weather.html">⛅ Weather Check</a></li>
+        <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+        <li><a href="chat.html">🤖 ChatBot</a></li>
+        <li><a href="plantation.html">🌳 Plantation</a></li>
+        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+        <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+      </ul>
+    </nav>
+  </div>
+
+<main>
+    <div class="controls-container">
+        <div class="filter-container">
+            <label for="locationSelect" style="font-weight:bold; margin-right:10px;">Choose Location:</label>
+            <select id="locationSelect">
+                <option value="north">North India</option>
+                <option value="south">South India</option>
+                <option value="east">East India</option>
+                <option value="west">West India</option>
+            </select>
+            <label for="cropSelect" style="font-weight:bold; margin-right:10px;">Choose a Crop:</label>
+            <select id="cropSelect">
+                <option value="all">All Crops</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Rice">Rice</option>
+                <option value="Maize">Maize</option>
+                <option value="Barley">Barley</option>
+                <option value="Sugarcane">Sugarcane</option>
+                <option value="Cotton">Cotton</option>
+                <option value="Groundnut">Groundnut</option>
+                <option value="Soybean">Soybean</option>
+                <option value="Pulses">Pulses</option>
+                <option value="Mustard">Mustard</option>
+                <option value="Sunflower">Sunflower</option>
+                <option value="Jute">Jute</option>
+            </select>
+            <button id="resetBtn" class="reset-btn" title="Reset Filter">
+                <i class="fas fa-undo"></i> Reset
+            </button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="cropSearch" placeholder="Search crops..." aria-label="Search crops">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+
+    <div class="legend-container">
+        <h3>Legend</h3>
+        <div class="legend-items">
+            <div class="legend-item">
+                <span class="legend-emoji">🌱</span>
+                <span>Sowing Season</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-emoji">🟩</span>
+                <span>Growing Period</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-emoji">🌾</span>
+                <span>Harvesting Season</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="calendar" id="calendar"></div>
+
+    <!-- Modal for crop details -->
+    <div id="cropModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+    <script src="croCalendar.js"></script>
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    <style>
+      .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
+      .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}
+      .footer-brand {display:flex;flex-direction:column;gap:.5rem;align-items: center;}
+      .footer-logo {width:48px;height:48px;border-radius:8px;object-fit:cover;background:#fff;padding:4px}
+      .site-footer h3,.site-footer h4{margin:0 0 .5rem 0}
+      .site-footer p {margin:0;opacity:0.9}
+      .site-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+      .site-footer a{color:#fff;text-decoration:none;opacity:0.9;width:max-content;background-color: none;}
+      .site-footer a:hover{opacity:1;text-decoration:underline}
+      .footer-links{display:flex;flex-direction:column;align-items: center;}
+    </style>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>AgriConnectHub</h3>
+          <p>Empowering India's Farming Future</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="main.html">Dashboard</a></li>
+            <li><a href="feed-back.html">Feedback</a></li>
+            <li><a href="chat.html">AI Assistant</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="/crop_recommendation/">Crop Recommendation</a></li>
+            <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">Yield Prediction</a></li>
+            <li><a href="Disease prediction/template/index.html">Disease Detector</a></li>
+            <li><a href="Crop_Planning/templates/cropplan.html">Crop Planner</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8">
+        &copy; 2025 AgriConnectHub
+      </p>
+    </footer>
+</body>
+</html>

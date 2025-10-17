@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>District Wise Procurement Details - AgriConnectHub</title>
+    <link rel="stylesheet" href="{{ url_for('district_procurement.static', filename='district_procurement.css') }}">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/theme.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header-nav-wrapper">
+        <header class="uniform-header">
+            <div class="brand">
+                <h2>District Wise Procurement Details</h2>
+            </div>
+            <div class="header-buttons">
+                <a href="/main" class="back-button" title="Back to Dashboard">
+                    <span class="back-icon">←</span>
+                    Dashboard
+                </a>
+                <button class="theme-toggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                    <span class="theme-text">Light</span>
+                </button>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+                <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+                <li><a href="/disease.html">🔬 Disease Prediction</a></li>
+                <li><a href="/organic.html">🌿 Organic Farming</a></li>
+                <li><a href="/farmer.html">👥 Farmer Network</a></li>
+                <li><a href="/weather.html">⛅ Weather Check</a></li>
+                <li><a href="/shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+                <li><a href="/chat.html">🤖 ChatBot</a></li>
+                <li><a href="/plantation.html">🌳 Plantation</a></li>
+                <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+                <li><a href="/labour_alerts/">⚠ Labour Alerts</a></li>
+                <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+                <li><a href="/district_procurement/" class="active">📦 District Procurement</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <div class="section-title">
+            <h2>District Wise Procurement Details</h2>
+            <p>View procurement data from APMARKFED across districts, commodities, and seasons</p>
+        </div>
+
+        <div class="filters-section">
+            <form method="GET" class="filters-form">
+                <div class="filter-group">
+                    <label for="season">Season:</label>
+                    <select name="season" id="season">
+                        <option value="">All Seasons</option>
+                        {% for season in seasons %}
+                        <option value="{{ season }}" {% if season == selected_season %}selected{% endif %}>{{ season }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="district">District:</label>
+                    <select name="district" id="district">
+                        <option value="">All Districts</option>
+                        {% for district in districts %}
+                        <option value="{{ district }}" {% if district == selected_district %}selected{% endif %}>{{ district }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="commodity">Commodity:</label>
+                    <select name="commodity" id="commodity">
+                        <option value="">All Commodities</option>
+                        {% for commodity in commodities %}
+                        <option value="{{ commodity }}" {% if commodity == selected_commodity %}selected{% endif %}>{{ commodity }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-filter">Apply Filters</button>
+            </form>
+        </div>
+
+        <div class="data-section">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>District</th>
+                            <th>Commodity</th>
+                            <th>Season</th>
+                            <th>Quantity (MTs)</th>
+                            <th>No. of Farmers</th>
+                            <th>Amount (Rs)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                        <tr>
+                            <td>{{ record.district or 'N/A' }}</td>
+                            <td>{{ record.commodity or 'N/A' }}</td>
+                            <td>{{ record.season or 'N/A' }}</td>
+                            <td>{{ record.qty_mts_ or 'N/A' }}</td>
+                            <td>{{ record.no_of_farmers or 'N/A' }}</td>
+                            <td>{{ record.amount_rs_ or 'N/A' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if not records %}
+            <div class="no-data">
+                <p>No procurement data available for the selected filters.</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <script src="{{ url_for('district_procurement.static', filename='district_procurement.js') }}"></script>
+    <script src="/theme.js"></script>
+</body>
+</html>

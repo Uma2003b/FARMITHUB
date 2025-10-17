@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="te">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>కార్మిక షెడ్యూలింగ్ & అలర్ట్స్</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="icon" type="image/png" href="/AgriTech/images/logo.png">
+    <link rel="stylesheet" href="../../theme.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="header-nav-wrapper">
+      <header class="uniform-header">
+        <div class="brand">
+          <h2>AgriConnectHub కు స్వాగతం</h2>
+        </div>
+        <div class="header-buttons">
+          <a href="../../cropCalendar.html" class="calendar-button" title="పంట క్యాలెండర్">
+            <span class="calendar-icon">📅</span>
+            క్యాలెండర్
+          </a>
+          <a href="../../feed-back.html" class="feedback-button">ఫీడ్‌బ్యాక్</a>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">లాగ్ అవుట్</a>
+          <select id="languageSelector" onchange="changeLanguage()">
+            <option value="te" selected>తెలుగు</option>
+            <option value="en">English</option>
+          </select>
+          <button class="theme-toggle" aria-label="డార్క్/లైట్ మోడ్ మార్చు">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+            <span class="theme-text">లైట్</span>
+          </button>
+        </div>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="/crop_recommendation/">🌱 పంట సిఫార్సు</a></li>
+          <li><a href="/crop_yield/">📊 దిగుబడి అంచనా</a></li>
+          <li><a href="../../disease_telugu.html">🔬 రోగాల గుర్తింపు</a></li>
+          <li><a href="../../organic_telugu.html">🌿 ఆర్గానిక్ వ్యవసాయం</a></li>
+          <li><a href="../../farmer_telugu.html">👥 రైతు నెట్‌వర్క్</a></li>
+          <li><a href="../../weather_telugu.html">⛅ వాతావరణం</a></li>
+          <li><a href="../../shopkeeper_telugu.html">🏪 షాప్కీపర్ లిస్టింగ్స్</a></li>
+          <li><a href="../../chat_telugu.html">🤖 చాట్‌బాట్</a></li>
+          <li><a href="../../plantation_telugu.html">🌳 విత్తన నిపుణులు</a></li>
+          <li><a href="/crop_planning/">📅 పంట ప్రణాళిక</a></li>
+          <li><a href="./Labour_Alerts/templates/labour_telugu.html">⚠ కార్మిక అలర్ట్స్</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="tabs">
+        <div class="tab active" data-tab="schedule">
+          <i class="fas fa-calendar-alt"></i>
+          <span>కార్మిక షెడ్యూలింగ్</span>
+        </div>
+        <div class="tab" data-tab="alerts">
+          <i class="fas fa-bell"></i>
+          <span>అలర్ట్స్</span>
+        </div>
+      </div>
+
+      <div id="schedule" class="content active">
+        <div class="card form-card">
+          <div class="card-header">
+            <h2><i class="fas fa-plus-circle"></i> కార్మిక అవసరం పోస్ట్ చేయండి</h2>
+            <p>మీ కార్మిక అవసరాన్ని పోస్ట్ చేయడానికి వివరాలను నింపండి</p>
+          </div>
+
+          <form id="labourForm" class="enhanced-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="workType">
+                  <i class="fas fa-hammer"></i>
+                  పని రకం
+                </label>
+                <select id="workType" required>
+                  <option value="">పని రకాన్ని ఎంచుకోండి</option>
+                  <option value="Harvesting">🌾 దిగుబడి</option>
+                  <option value="Ploughing">🚜 గోతిపని</option>
+                  <option value="Weeding">🌱 పుల్లరింపు</option>
+                  <option value="Sowing">🌿 విత్తనం</option>
+                  <option value="Irrigation">💧 నీటిపారుదల</option>
+                  <option value="Fertilizing">🧪 ఎరువులు</option>
+                  <option value="Pest Control">🐛 పెస్ట్ కంట్రోల్</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="peopleCount">
+                  <i class="fas fa-users"></i>
+                  అవసరమైన వ్యక్తుల సంఖ్య
+                </label>
+                <input
+                  type="number"
+                  id="peopleCount"
+                  placeholder="ఉదా., 5"
+                  min="1"
+                  max="50"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">
+                  <i class="fas fa-calendar"></i>
+                  అవసరమైన తేదీ
+                </label>
+                <input type="date" id="date" required />
+              </div>
+
+              <div class="form-group">
+                <label for="duration">
+                  <i class="fas fa-clock"></i>
+                  వ్యవధి (రోజులు)
+                </label>
+                <input
+                  type="number"
+                  id="duration"
+                  placeholder="ఉదా., 3"
+                  min="1"
+                  max="30"
+                  value="1"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="village">
+                  <i class="fas fa-map-marker-alt"></i>
+                  గ్రామం పేరు
+                </label>
+                <input
+                  type="text"
+                  id="village"
+                  placeholder="గ్రామం పేరు నమోదు చేయండి"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="location">
+                  <i class="fas fa-map"></i>
+                  తాలూకా / జిల్లా
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  placeholder="తాలూకా/జిల్లా నమోదు చేయండి"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">
+                <i class="fas fa-home"></i>
+                పూర్తి చిరునామా (ఐచ్ఛికం)
+              </label>
+              <textarea
+                id="address"
+                rows="3"
+                placeholder="ఇంటి నంబర్, వీధి, ల్యాండ్‌మార్క్ మొదలైనవి..."
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="wage">
+                  <i class="fas fa-rupee-sign"></i>
+                  రోజుకు వేతనం (రూపాయలలో)
+                </label>
+                <input
+                  type="number"
+                  id="wage"
+                  placeholder="ఉదా., 300"
+                  min="100"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="contact">
+                  <i class="fas fa-phone"></i>
+                  సంప్రదింపు నంబర్
+                </label>
+                <input
+                  type="tel"
+                  id="contact"
+                  placeholder="ఉదా., 9876543210"
+                  pattern="[0-9]{10}"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="additionalInfo">
+                <i class="fas fa-info-circle"></i>
+                అదనపు సమాచారం
+              </label>
+              <textarea
+                id="additionalInfo"
+                rows="2"
+                placeholder="ఏవైనా నిర్దిష్ట అవసరాలు లేదా వివరాలు..."
+              ></textarea>
+            </div>
+
+            <button type="submit" id="postJobBtn" class="enhanced-btn">
+              <i class="fas fa-paper-plane"></i>
+              అవసరం పోస్ట్ చేయండి
+            </button>
+          </form>
+        </div>
+
+        <div class="section-header">
+          <h3><i class="fas fa-briefcase"></i> పోస్ట్ చేయబడిన ఉద్యోగాలు</h3>
+          <div class="job-stats">
+            <span class="stat-badge"
+              >సక్రియం: <span id="activeJobCount">0</span></span
+            >
+          </div>
+        </div>
+        <div id="postedJobs" class="cards-list enhanced-grid"></div>
+
+        <div id="noJobsMessage" class="no-content-message">
+          <i class="fas fa-briefcase"></i>
+          <h4>ఇంకా ఉద్యోగాలు పోస్ట్ చేయలేదు</h4>
+          <p>ప్రారంభించడానికి మీ మొదటి కార్మిక అవసరాన్ని పోస్ట్ చేయండి!</p>
+        </div>
+      </div>
+
+      <div id="alerts" class="content">
+        <div class="section-header">
+          <h2><i class="fas fa-exclamation-triangle"></i> ఉద్యోగ అలర్ట్స్</h2>
+          <div class="alert-stats">
+            <span class="stat-badge urgent"
+              >అత్యవసరం: <span id="urgentAlertCount">0</span></span
+            >
+            <span class="stat-badge normal"
+              >సాధారణం: <span id="normalAlertCount">0</span></span
+            >
+          </div>
+        </div>
+        <div id="dynamicJobAlerts" class="cards-list enhanced-grid"></div>
+
+        <div id="noAlertsMessage" class="no-content-message">
+          <i class="fas fa-bell-slash"></i>
+          <h4>సక్రియ అలర్ట్స్ లేవు</h4>
+          <p>
+            పోస్ట్ చేయబడిన ఉద్యోగాలు గడువు ముగిసినప్పుడు లేదా శ్రద్ధ అవసరమైనప్పుడు ఉద్యోగ అలర్ట్స్ ఇక్కడ కనిపిస్తాయి.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastContainer"></div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-content">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>ప్రాసెస్ అవుతోంది...</p>
+      </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+    <script src="../../nav.js"></script>
+    <script src="../../auth.js"></script>
+    <script src="../../theme.js"></script>
+    <script>
+      function changeLanguage() {
+        const selector = document.getElementById('languageSelector');
+        const selectedLang = selector.value;
+        if (selectedLang === 'en') {
+          window.location.href = 'labour.html';
+        } else if (selectedLang === 'te') {
+          window.location.href = 'labour_telugu.html';
+        }
+      }
+    </script>
+  </body>
+</html>
