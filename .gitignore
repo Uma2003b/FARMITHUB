@@ -2,7 +2,7 @@
 venv/
 
 # Ignore model or large files
-*.pkl
+
 *.h5
 *.dll
 *.exe
