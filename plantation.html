@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="icon" type="image/png" href="images/logo.png">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgriTech</title>
-    <link rel="icon" type="image/png" href="/AgriTech/images/logo.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-    <link rel="stylesheet" href="plantation.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+    <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
+    <title>Plantation Guidance - AgriConnectHub</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="plantation.css" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body>
@@ -64,6 +76,8 @@
           <li><a href="plantation.html">🌳 Plantation</a></li>
           <li><a href="/crop_planning/">📅 Crop Planning</a></li>
           <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+          <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+          <li><a href="/district_procurement/">📦 District Procurement</a></li>
         </ul>
       </nav>
     </div>
@@ -896,6 +910,61 @@
     <script src="nav.js"></script>
     <script src="auth.js"></script>
     <script src="theme.js"></script>
+    
+    <script>
+      // Check authentication on page load
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!window.authManager.isLoggedIn()) {
+          window.location.href = '/login';
+          return;
+        }
+
+        const currentUser = window.authManager.getCurrentUser();
+        if (currentUser) {
+          // Update header to show user name
+          const headerTitle = document.querySelector('header h2');
+          if (headerTitle) {
+            headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
+          }
+        }
+      });
+
+      // Logout confirmation function
+      function showLogoutConfirmation() {
+        Swal.fire({
+          title: 'Confirm Logout',
+          text: 'Are you sure you want to logout?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, logout',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const logoutResult = window.authManager.logout();
+            if (logoutResult.success) {
+              Swal.fire({
+                title: 'Logged Out!',
+                text: logoutResult.message,
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+              }).then(() => {
+                // Redirect to index.html after logout
+                window.location.href = '/';
+              });
+            } else {
+              Swal.fire({
+                title: 'Error!',
+                text: logoutResult.message,
+                icon: 'error'
+              });
+            }
+          }
+        });
+      }
+    </script>
     <style>
       .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
       .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}

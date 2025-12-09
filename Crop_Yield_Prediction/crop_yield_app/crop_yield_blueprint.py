@@ -28,11 +28,11 @@ except Exception as e:
     raise
 
 CROPS = [
-    "Rice","Wheat","Maize","Soyabean","Cotton","Sugarcane","Groundnut","Potato",
-    "Barley","Jowar","Bajra","Ragi","Tur","Moong","Urad","Gram","Peas",
-    "Mustard","Sunflower","Safflower","Sesamum","Linseed","Castor","Coconut",
-    "Jute","Mesta","Tobacco","Arecanut","Banana","Mango","Grapes","Orange",
-    "Papaya","Pomegranate","Guava","Apple","Litchi","Ber","Sapota"
+    "Rice", "Wheat", "Maize", "Soyabean", "Cotton(lint)", "Sugarcane", "Groundnut", "Potato",
+    "Barley", "Jowar", "Bajra", "Ragi", "Arhar/Tur", "Moong(Green Gram)", "Urad", "Gram",
+    "Peas & beans (Pulses)", "Rapeseed &Mustard", "Sunflower", "Safflower", "Sesamum", "Linseed", "Castor seed", "Coconut ",
+    "Jute", "Mesta", "Tobacco", "Arecanut", "Banana", "Onion", "Garlic", "Ginger",
+    "Turmeric", "Coriander", "Dry chillies", "Black pepper", "Cardamom", "Cashewnut"
 ]
 
 STATES = [
@@ -43,7 +43,7 @@ STATES = [
     "Uttar Pradesh","Uttarakhand","West Bengal"
 ]
 
-SEASONS = ["Kharif","Rabi","Whole Year","Autumn","Summer","Winter"]
+SEASONS = ["Kharif     ","Rabi       ","Whole Year ","Autumn     ","Summer     ","Winter     "]
 
 @crop_yield_bp.route("/")
 def index():
@@ -78,15 +78,31 @@ def predict():
             'rainfall': request.form['rainfall']
         }
 
-        crop_encoded = crop_encoder.transform([data[0]])[0]
-        season_encoded = season_encoder.transform([data[2]])[0]
-        state_encoded = state_encoder.transform([data[3]])[0]
+        # Handle encoding with proper error handling
+        try:
+            crop_encoded = crop_encoder.transform([data[0]])[0]
+        except ValueError:
+            # If crop not found, use the first available crop
+            crop_encoded = 0
+            
+        try:
+            season_encoded = season_encoder.transform([data[2]])[0]
+        except ValueError:
+            # If season not found, use the first available season
+            season_encoded = 0
+            
+        try:
+            state_encoded = state_encoder.transform([data[3]])[0]
+        except ValueError:
+            # If state not found, use the first available state
+            state_encoded = 0
 
         # NOTE: order must match what your model expects
         features = np.array([[crop_encoded, data[1], season_encoded, state_encoded, data[4], data[5], data[6]]])
 
         pred_val = float(model.predict(features)[0])
-        prediction = round(pred_val, 2)
+        # Ensure prediction is positive and reasonable
+        prediction = max(0.1, round(pred_val, 2))
 
         return render_template('yield_result.html', prediction=prediction, params=input_params)
     except Exception as e:

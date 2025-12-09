@@ -1,68 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plant Disease Detection - AI Powered Diagnosis</title>
-    <link rel="stylesheet" href="disease.css">
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  </head>
-  <body>
-    <div class="full-width-wrapper">
-      <div class="header-nav-wrapper">
-        <header class="uniform-header">
-          <div class="brand">
-            <h2>Welcome to AgriConnectHub</h2>
-          </div>
-          <div class="header-buttons">
-          <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
-            <span class="calendar-icon">📅</span>
-            Calendar
-          </a>
-          <a href="feed-back.html" class="feedback-button">Feedback</a>
-          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
-          <select id="languageSelector" onchange="changeLanguage()">
-            <option value="en" selected>English</option>
-            <option value="te">తెలుగు</option>
-          </select>
-          <button class="theme-toggle" aria-label="Toggle dark/light mode">
-            <i class="fas fa-sun sun-icon"></i>
-            <i class="fas fa-moon moon-icon"></i>
-            <span class="theme-text">Light</span>
-          </button>
-        </div>
-        <script>
-          function changeLanguage() {
-            const selector = document.getElementById('languageSelector');
-            const selectedLang = selector.value;
-            if (selectedLang === 'en') {
-              window.location.href = 'disease.html';
-            } else if (selectedLang === 'te') {
-              window.location.href = 'disease_telugu.html';
-            }
-          }
-        </script>
-        </header>
+<head>
+  <!-- Removed logo favicon as per user request -->
+  <!-- <link rel="icon" type="image/png" href="images/logo.png"> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
+  <title>AgriConnectHub Dashboard</title>
 
-        <nav>
-          <ul>
-            <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
-            <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
-            <li><a href="disease.html">🔬 Disease Prediction</a></li>
-            <li><a href="organic.html">🌿 Organic Farming</a></li>
-            <li><a href="farmer.html">👥 Farmer Network</a></li>
-            <li><a href="weather.html">⛅ Weather Check</a></li>
-            <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
-            <li><a href="chat.html">🤖 ChatBot</a></li>
-            <li><a href="plantation.html">🌳 Plantation</a></li>
-            <li><a href="/crop_planning/">📅 Crop Planning</a></li>
-            <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
-          </ul>
-        </nav>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Favicon -->
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="disease.css" />
+  <link rel="stylesheet" href="theme.css" />
+
+  <!-- Font Awesome -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Inline Styles (can move to CSS file later) -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: var(--bg-secondary, #0f4d0f);
+      color: var(--text-primary, #333);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      background: var(--bg-primary, #fff);
+      border-radius: 10px;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    /* Header within container */
+    .container header h1 {
+      color: var(--text-primary, #333) !important;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .container header p {
+      color: var(--text-secondary, #666) !important;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+
+    .loan-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .loan-card span {
+      display: block;
+      padding: 15px;
+      font-weight: 600;
+      background: rgba(76, 175, 80, 0.1);
+      color: var(--text-primary, #333) !important;
+      border-top: 1px solid rgba(76, 175, 80, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    /* Loan Guide section */
+    .loan-guide-section {
+      text-align: center;
+      margin-top: 50px;
+      background: var(--bg-primary, #fff) !important;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(76, 175, 80, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .loan-guide-section h2 {
+      color: var(--text-primary, #333) !important;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .loan-guide-section p {
+      color: var(--text-secondary, #666) !important;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-green {
+      display: inline-block;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      color: #fff !important;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn-green:hover {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+      color: #fff !important;
+      text-decoration: none;
+    }
+
+    select.language-select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-left: 15px;
+      border: 2px solid rgba(76, 175, 80, 0.3);
+      background: var(--bg-primary, #fff);
+      color: var(--text-primary, #333);
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    select.language-select:focus {
+      outline: none;
+      border-color: #4caf50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+
+    /* Dark mode specific styles */
+    [data-theme="dark"] .container {
+      background: #2d2d2d !important;
+      border: 1px solid #404040;
+    }
+
+    [data-theme="dark"] .loan-guide-section {
+      background: #2d2d2d !important;
+      border-color: #404040;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="dark"] .loan-guide-section h2 {
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .loan-guide-section p {
+      color: #cccccc !important;
+    }
+
+    [data-theme="dark"] .container header h1 {
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .container header p {
+      color: #cccccc !important;
+    }
+
+    [data-theme="dark"] .loan-card {
+      background: #3d3d3d !important;
+      border-color: #505050;
+    }
+
+    [data-theme="dark"] .loan-card span {
+      background: rgba(76, 175, 80, 0.2) !important;
+      color: #ffffff !important;
+      border-top-color: #505050;
+    }
+
+    [data-theme="dark"] select.language-select {
+      background: #3d3d3d !important;
+      border-color: #505050;
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] select.language-select option {
+      background: #3d3d3d !important;
+      color: #ffffff !important;
+    }
+
+    /* Ensure text is always visible during transitions */
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+    }
+
+    /* Force text color inheritance */
+    .loan-guide-section *:not(.btn-green) {
+      color: inherit !important;
+    }
+
+    .container *:not(.btn-green):not(select) {
+      color: inherit !important;
+    }
+
+    /* Auth message styles */
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    .auth-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      padding: 15px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 400px;
+    }
+
+    .auth-message-success {
+      background: linear-gradient(135deg, #4caf50, #45a049);
+    }
+
+    .auth-message-error {
+      background: linear-gradient(135deg, #f44336, #e53935);
+    }
+
+    .auth-message-info {
+      background: linear-gradient(135deg, #2196f3, #1976d2);
+    }
+
+    .auth-message-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .auth-message-content i {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+  <body>
+  <div class="header-nav-wrapper">
+    <header class="uniform-header">
+      <div class="brand">
+        <h2>Welcome to AgriConnectHub</h2>
       </div>
-    </div>
+      <div class="header-buttons">
+        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
+          <span class="calendar-icon">📅</span>
+          Calendar
+        </a>
+        <a href="feed-back.html" class="feedback-button">Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+        <li><a href="disease.html">🔬 Disease Prediction</a></li>
+        <li><a href="organic.html">🌿 Organic Farming</a></li>
+        <li><a href="farmer.html">👥 Farmer Network</a></li>
+        <li><a href="weather.html">⛅ Weather Check</a></li>
+        <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+        <li><a href="chat.html">🤖 ChatBot</a></li>
+        <li><a href="plantation.html">🌳 Plantation</a></li>
+        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+        <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+        <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+        <li><a href="/district_procurement/">📦 District Procurement</a></li>
+      </ul>
+    </nav>
+  </div>
+
+    <div class="full-width-wrapper">
     <div class="full-width-section">
       <div class="full-width-header">
         <h1>🔬 AI Disease Analysis</h1>
@@ -72,34 +326,48 @@
           ✅ AI Model Ready - Upload an image to begin analysis
         </div>
 
-          <div class="upload-container" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center;">
-            <div class="upload-zone" tabindex="0" role="button" aria-label="Upload or drop your plant image here" id="uploadArea" style="flex: 1 1 250px; border: 2px dashed #4caf50; border-radius: 8px; padding: 1rem; cursor: pointer; text-align: center;">
-              <div class="upload-icon" style="font-size: 3rem;">📸</div>
-              <div class="upload-text" style="font-size: 1rem;">
-                <strong>Drop your plant image here</strong><br />
-                or click to browse files<br />
-                <small style="opacity: 0.7;">Supports JPG, PNG, WebP formats</small>
+          <div class="upload-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+            <div class="upload-section">
+              <div class="upload-zone" tabindex="0" role="button" aria-label="Upload or drop your plant image here" id="uploadArea" style="border: 2px dashed #4caf50; border-radius: 8px; padding: 2rem; cursor: pointer; text-align: center; min-height: 300px; display: flex; flex-direction: column; justify-content: center;">
+                <div class="upload-icon" style="font-size: 3rem;">📸</div>
+                <div class="upload-text" style="font-size: 1rem;">
+                  <strong>Drop your plant image here</strong><br />
+                  or click to browse files<br />
+                  <small style="opacity: 0.7;">Supports JPG, PNG, WebP formats</small>
+                </div>
+              </div>
+              <input
+                type="file"
+                id="fileInput"
+                class="file-input"
+                accept="image/*"
+                aria-label="Upload plant image"
+                style="display: none;"
+              />
+
+
+            </div>
+            
+            <div class="preview-section" id="previewSection" style="background: var(--bg-primary, white); border-radius: 12px; padding: 1.5rem; border: 2px solid #e8f5e8; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 300px;">
+              <div id="placeholderText" style="text-align: center; color: #666; font-size: 1.2rem;">📷 Upload an image to get started</div>
+              <div id="previewContent" style="display: none; text-align: center;">
+                <h3 style="color: #2d5a27; margin-bottom: 1rem;">📷 Image Preview</h3>
+                <img id="largePreviewImg" style="max-width: 100%; max-height: 400px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" />
+                <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                  <span id="fileName"></span>
+                </div>
               </div>
             </div>
-            <input
-              type="file"
-              id="fileInput"
-              class="file-input"
-              accept="image/*"
-              aria-label="Upload plant image"
-              style="display: none;"
-            />
-            <div style="flex: 1 1 250px; text-align: center;">
-              <button class="btn" id="analyzeBtn" disabled aria-disabled="true" aria-label="Analyze Plant Health" style="padding: 0.75rem 1.5rem; font-size: 1.1rem; background-color: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer;">
-                🔍 Analyze Plant Health
-              </button>
-            </div>
+          </div>
+          
+          <div style="text-align: center; margin: 2rem 0;">
+            <button class="btn" id="analyzeBtn" disabled aria-disabled="true" aria-label="Analyze Plant Health" style="padding: 0.75rem 1.5rem; font-size: 1.1rem; background-color: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer;">
+              🔍 Analyze Plant Health
+            </button>
           </div>
 
           <div class="results-zone" aria-live="polite" aria-atomic="true" style="margin-top: 1rem;">
-            <div class="preview-container" id="previewContainer" aria-label="Image preview" style="text-align: center; min-height: 150px; border: 1px solid #ddd; border-radius: 6px; padding: 1rem;">
-              <div class="no-results" style="font-size: 1.2rem;">📷 Upload an image to get started</div>
-            </div>
+            <div class="preview-container" id="previewContainer" aria-label="Image preview" style="display: none;"></div>
 
             <div class="loading" id="loading" role="status" aria-live="assertive" aria-label="AI is analyzing your plant" style="display: none; text-align: center; margin-top: 1rem;">
               <div class="spinner" style="margin: 0 auto 0.5rem; width: 40px; height: 40px; border: 4px solid #ccc; border-top-color: #4caf50; border-radius: 50%; animation: spin 1s linear infinite;"></div>
@@ -414,15 +682,122 @@
       </div>
     </div>
 
-    <script src="disease.js"></script>
-    <script src="nav.js"></script>
-    <script src="auth.js"></script>
-    <script src="theme.js"></script>
+  <!-- JavaScript Files -->
+  <script src="main.js"></script>
+  <script src="theme.js"></script>
+  
+  <!-- Authentication Manager Script -->
+  <script src="theme.js"></script>
+  <script src="auth.js"></script>
+  <script src="disease.js"></script>
+  <script src="nav.js"></script>
+
+  <script>
+    // Check authentication on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.authManager.isLoggedIn()) {
+        window.location.href = '/login';
+        return;
+      }
+
+      const currentUser = window.authManager.getCurrentUser();
+      if (currentUser) {
+        // Update header to show user name
+        const headerTitle = document.querySelector('header h2');
+        if (headerTitle) {
+          headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
+        }
+      }
+    });
+
+    // Logout confirmation function
+    function showLogoutConfirmation() {
+      Swal.fire({
+        title: 'Confirm Logout',
+        text: 'Are you sure you want to logout?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, logout',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const logoutResult = window.authManager.logout();
+          if (logoutResult.success) {
+            Swal.fire({
+              title: 'Logged Out!',
+              text: logoutResult.message,
+              icon: 'success',
+              timer: 2000,
+              showConfirmButton: false
+            }).then(() => {
+              // Redirect to index.html after logout
+              window.location.href = '/';
+            });
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: logoutResult.message,
+              icon: 'error'
+            });
+          }
+        }
+      });
+    }
+
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add("visible");
+      } else {
+        scrollToTopBtn.classList.remove("visible");
+      }
+    });
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // Show crop recommendation section
+    function showCropRecommendation() {
+      document.getElementById('crop-recommendation').style.display = 'block';
+      document.getElementById('crop-recommendation').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
     <style>
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
+      
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+        
+        .disease-container {
+          padding: 0 15px;
+        }
+        
+        .analysis-card {
+          padding: 20px;
+        }
+        
+        .upload-zone {
+          padding: 30px 15px;
+        }
+        
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      
       .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
       .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}
       .footer-brand {display:flex;flex-direction:column;gap:.5rem;align-items: center;}

@@ -428,6 +428,17 @@ function handleFileSelect(file) {
 
     const reader = new FileReader();
     reader.onload = (e) => {
+      // Update large preview
+      const placeholderText = document.getElementById("placeholderText");
+      const previewContent = document.getElementById("previewContent");
+      const largePreviewImg = document.getElementById("largePreviewImg");
+      const fileName = document.getElementById("fileName");
+      
+      placeholderText.style.display = "none";
+      previewContent.style.display = "block";
+      largePreviewImg.src = e.target.result;
+      fileName.textContent = file.name;
+      
       previewContainer.innerHTML = `<img src="${e.target.result}" alt="Plant preview" class="preview-image">`;
       analyzeBtn.disabled = false;
       resultsDiv.innerHTML = "";

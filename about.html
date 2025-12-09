@@ -36,106 +36,113 @@
 </head>
 
 <body>
-  <div class="header-nav-wrapper">
-    <header class="uniform-header">
+  <nav class="navbar">
+    <div class="navbar-content">
       <div class="brand">
-        <h2>Welcome to AgriConnectHub</h2>
+        <a href="index.html" class="logo">AgriConnectHub</a>
       </div>
-      <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
-          <span class="calendar-icon">📅</span>
-          Calendar
-        </a>
-        <a href="feed-back.html" class="feedback-button">Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
-        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+      <div class="nav-buttons">
+        <button class="theme-toggle btn" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
           <span class="theme-text">Light</span>
         </button>
+        <a href="about.html" class="btn btn-secondary">About</a>
+        <a href="login.html" class="btn btn-secondary">Login</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
       </div>
-    </header>
-
-    <nav>
-      <ul>
-        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
-        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
-        <li><a href="disease.html">🔬 Disease Prediction</a></li>
-        <li><a href="organic.html">🌿 Organic Farming</a></li>
-        <li><a href="farmer.html">👥 Farmer Network</a></li>
-        <li><a href="weather.html">⛅ Weather Check</a></li>
-        <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
-        <li><a href="chat.html">🤖 ChatBot</a></li>
-        <li><a href="plantation.html">🌳 Plantation</a></li>
-        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
-        <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
-      </ul>
-    </nav>
-  </div>
+    </div>
+  </nav>
 
   <!-- Main content -->
   <main>
     <!-- Hero Section -->
-    <section class="hero-section advanced-hero">
-      <div class="hero-content">
-        <h1>AgriConnectHub AI</h1>
-        <p class="hero-subtitle">Cultivate Collaboration. Grow Your Success.</p>
-        <p>Seamlessly connect farmers, packinghouses, and marketing cooperatives with intelligent AI, enhancing efficiency and market responsiveness while preserving independence.</p>
-        <button class="btn btn-primary cta-btn">Schedule a Consultation</button>
-      </div>
-      <div class="hero-image">
-        <img src="images/ai-farming.svg" alt="AI Farming Illustration" />
+    <section style="background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/image.png'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 80vh; display: flex; align-items: center; justify-content: center; position: relative;">
+      <div style="text-align: center; max-width: 900px; padding: 2rem;">
+        <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
+          <div style="display: inline-block; background: rgba(22, 163, 74, 0.2); color: #4ade80; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(74, 222, 128, 0.3);">🤖 About AgriConnectHub AI</div>
+          <h1 style="color: white; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; font-family: 'Libertinus Serif', serif;">AgriConnectHub <span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">AI</span></h1>
+          <p style="color: #4ade80; font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem;">Cultivate Collaboration. Grow Your Success.</p>
+          <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; line-height: 1.7; margin-bottom: 2rem;">Seamlessly connect farmers, packinghouses, and marketing cooperatives with intelligent AI, enhancing efficiency and market responsiveness while preserving independence.</p>
+          <button style="background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1rem 2rem; border-radius: 12px; border: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(22, 163, 74, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(22, 163, 74, 0.4)';">📞 Schedule a Consultation</button>
+        </div>
       </div>
     </section>
 
     <!-- The Disconnected Supply Chain -->
-    <section class="problem-section" id="problem">
-      <h2>The Disconnected Supply Chain</h2>
-      <p>Traditional agricultural supply chains often suffer from information silos, leading to inefficiencies, missed opportunities, and reduced profitability for all stakeholders.</p>
-      <ul class="problem-list">
-        <li><strong>Information Silos</strong> – Lack of real-time data sharing between farmers, packinghouses, and cooperatives hinders efficient planning.</li>
-        <li><strong>Logistics Inefficiencies</strong> – Suboptimal transportation, scheduling, and inventory management lead to increased costs and waste.</li>
-        <li><strong>Missed Market Opportunities</strong> – Slow reactions to market demand and pricing fluctuations impact revenue for all parties.</li>
-      </ul>
+    <section style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 6rem 2rem; position: relative;" id="problem">
+      <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+        <div style="display: inline-block; background: rgba(239, 68, 68, 0.1); color: #dc2626; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(239, 68, 68, 0.2);">⚠️ Current Challenges</div>
+        <h2 style="font-family: 'Libertinus Serif', serif; font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, #1e293b, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;">The Disconnected Supply Chain</h2>
+        <p style="font-size: 1.2rem; color: #64748b; max-width: 800px; margin: 0 auto 3rem; line-height: 1.7;">Traditional agricultural supply chains often suffer from information silos, leading to inefficiencies, missed opportunities, and reduced profitability for all stakeholders.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+          <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #dc2626;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🚫</div>
+            <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 1rem;">Information Silos</h3>
+            <p style="color: #64748b; line-height: 1.6;">Lack of real-time data sharing between farmers, packinghouses, and cooperatives hinders efficient planning.</p>
+          </div>
+          <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #dc2626;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📦</div>
+            <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 1rem;">Logistics Inefficiencies</h3>
+            <p style="color: #64748b; line-height: 1.6;">Suboptimal transportation, scheduling, and inventory management lead to increased costs and waste.</p>
+          </div>
+          <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 4px solid #dc2626;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📉</div>
+            <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 1rem;">Missed Market Opportunities</h3>
+            <p style="color: #64748b; line-height: 1.6;">Slow reactions to market demand and pricing fluctuations impact revenue for all parties.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Our Agentic AI Solution -->
-    <section class="solution-section" id="solution">
-      <h2>Our Agentic AI Solution</h2>
-      <p>AgriConnect AI bridges these gaps with a powerful multi-agent system, fostering collaboration while ensuring each entity retains its crucial independence.</p>
-      <p>How AgriConnectHub AI Works: Our specialized AI agents work together, sharing insights and optimizing operations across the agricultural supply chain, all while respecting your autonomy.</p>
-      <div class="agents-grid">
-        <div class="agent-card">
-          <h3>Farm Production Agent</h3>
-          <p>Collects and securely shares real-time farm data (yield, harvest, quality) with controlled permissions.</p>
-        </div>
-        <div class="agent-card">
-          <h3>Packinghouse Operations Agent</h3>
-          <p>Optimizes processing, quality control, and inventory management based on incoming and outgoing flows.</p>
-        </div>
-        <div class="agent-card">
-          <h3>Logistics & Distribution Agent</h3>
-          <p>Plans optimal transportation routes and schedules for seamless produce movement.</p>
-        </div>
-        <div class="agent-card">
-          <h3>Collaboration & Communication Agent</h3>
-          <p>Facilitates secure and efficient communication channels between all connected entities.</p>
-        </div>
-        <div class="agent-card">
-          <h3>AgriConnect Orchestrator</h3>
-          <p>Coordinates the entire network, balancing supply, demand, and identifying system-wide efficiencies.</p>
-        </div>
-        <div class="agent-card">
-          <h3>Marketing Cooperative Agent</h3>
-          <p>Translates market demand and pricing into actionable insights for farmers and packinghouses.</p>
-        </div>
-        <div class="agent-card">
-          <h3>Financial & Compliance Agent</h3>
-          <p>Ensures transparent financial transactions and adherence to agricultural regulations.</p>
-        </div>
-        <div class="agent-card">
-          <h3>Learning & Optimization Agent</h3>
-          <p>Continuously analyzes network data to predict outcomes and suggest efficiency improvements.</p>
+    <section style="background: white; padding: 6rem 2rem;" id="solution">
+      <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+        <div style="display: inline-block; background: rgba(22, 163, 74, 0.1); color: #16a34a; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(22, 163, 74, 0.2);">🤖 AI Solution</div>
+        <h2 style="font-family: 'Libertinus Serif', serif; font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, #1e293b, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;">Our Agentic AI Solution</h2>
+        <p style="font-size: 1.2rem; color: #64748b; max-width: 800px; margin: 0 auto 1rem; line-height: 1.7;">AgriConnect AI bridges these gaps with a powerful multi-agent system, fostering collaboration while ensuring each entity retains its crucial independence.</p>
+        <p style="font-size: 1.1rem; color: #64748b; max-width: 900px; margin: 0 auto 4rem; line-height: 1.7;">How AgriConnectHub AI Works: Our specialized AI agents work together, sharing insights and optimizing operations across the agricultural supply chain, all while respecting your autonomy.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🌾</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">Farm Production Agent</h3>
+            <p style="color: #15803d; line-height: 1.6;">Collects and securely shares real-time farm data (yield, harvest, quality) with controlled permissions.</p>
+          </div>
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🏭</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">Packinghouse Operations Agent</h3>
+            <p style="color: #15803d; line-height: 1.6;">Optimizes processing, quality control, and inventory management based on incoming and outgoing flows.</p>
+          </div>
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🚛</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">Logistics & Distribution Agent</h3>
+            <p style="color: #15803d; line-height: 1.6;">Plans optimal transportation routes and schedules for seamless produce movement.</p>
+          </div>
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">💬</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">Collaboration & Communication Agent</h3>
+            <p style="color: #15803d; line-height: 1.6;">Facilitates secure and efficient communication channels between all connected entities.</p>
+          </div>
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">AgriConnect Orchestrator</h3>
+            <p style="color: #15803d; line-height: 1.6;">Coordinates the entire network, balancing supply, demand, and identifying system-wide efficiencies.</p>
+          </div>
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">Marketing Cooperative Agent</h3>
+            <p style="color: #15803d; line-height: 1.6;">Translates market demand and pricing into actionable insights for farmers and packinghouses.</p>
+          </div>
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">Financial & Compliance Agent</h3>
+            <p style="color: #15803d; line-height: 1.6;">Ensures transparent financial transactions and adherence to agricultural regulations.</p>
+          </div>
+          <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(22, 163, 74, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
+            <h3 style="color: #16a34a; font-weight: 600; margin-bottom: 1rem; font-size: 1.3rem;">Learning & Optimization Agent</h3>
+            <p style="color: #15803d; line-height: 1.6;">Continuously analyzes network data to predict outcomes and suggest efficiency improvements.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -167,10 +174,14 @@
     </section>
 
   <!-- Call to Action -->
-  <section class="cta-section" id="cta">
-    <h2>Ready to Connect & Grow?</h2>
-    <p>Join the future of agriculture. Discover how AgriConnect AI can transform your operations through intelligent collaboration.</p>
-    <button class="btn btn-primary cta-btn">Schedule a Consultation</button>
+  <section style="background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden;" id="cta">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat; animation: float 20s linear infinite;"></div>
+    <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+      <div style="font-size: 4rem; margin-bottom: 2rem;">🚀</div>
+      <h2 style="font-family: 'Libertinus Serif', serif; font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem;">Ready to Connect & <span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">Grow?</span></h2>
+      <p style="font-size: 1.25rem; margin-bottom: 3rem; opacity: 0.9; line-height: 1.7;">Join the future of agriculture. Discover how AgriConnect AI can transform your operations through intelligent collaboration.</p>
+      <button style="background: white; color: #16a34a; padding: 1.2rem 2.5rem; border-radius: 12px; border: none; font-weight: 600; font-size: 1.2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.2); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.2)';">📞 Schedule a Consultation</button>
+    </div>
   </section>
 </main>
 

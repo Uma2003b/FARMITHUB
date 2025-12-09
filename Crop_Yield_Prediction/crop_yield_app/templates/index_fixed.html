@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AgriConnectHub - Crop Yield Prediction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../main.css" />
     <link rel="stylesheet" href="../../theme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,49 +41,16 @@
             margin: 0;
             opacity: 0.9;
         }
-        .main-content {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            gap: 40px;
-            flex-grow: 1;
-        }
-        .sidebar {
-            flex: 1;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
-        .sidebar h3 {
-            color: #2e7d32;
-            margin-top: 0;
-            font-size: 1.5em;
-        }
-        .sidebar ul {
-            padding-left: 20px;
-        }
-        .sidebar li {
-            margin: 10px 0;
-            position: relative;
-        }
-        .sidebar li::before {
-            content: '🌾';
-            position: absolute;
-            left: -25px;
-            top: 0;
-        }
         .form-container {
-            flex: 2;
             background: white;
             padding: 30px 40px 40px 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 40px auto;
         }
         .form-container h2 {
-            color: #2e7d32;
+            color: var(--primary-color, #2e7d32);
             text-align: center;
             margin-bottom: 40px;
             font-size: 2.2em;
@@ -93,6 +63,9 @@
         }
         .form-group {
             margin-bottom: 0;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
         }
         label {
             display: block;
@@ -109,17 +82,17 @@
             box-sizing: border-box;
             font-size: 1.1em;
             transition: all 0.4s ease;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         input[type=number]:focus, select:focus {
             outline: none;
-            border-color: #2e7d32;
+            border-color: var(--primary-color, #2e7d32);
             box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
             transform: scale(1.05);
         }
         button {
-            grid-column: span 3;
-            background: linear-gradient(135deg, #2e7d32, #388e3c);
+            grid-column: span 2;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
             color: white;
             border: none;
             padding: 20px;
@@ -137,25 +110,10 @@
         button:active {
             transform: translateY(-2px);
         }
-        footer {
-            background: #2e7d32;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
+        footer.site-footer {
             margin-top: 40px;
         }
-        footer .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
-        }
         @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
             form {
                 grid-template-columns: 1fr;
             }
@@ -172,11 +130,11 @@
         <h2>Welcome to AgriConnectHub</h2>
       </div>
       <div class="header-buttons">
-        <a href="../../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
+        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
           <span class="calendar-icon">📅</span>
           Calendar
         </a>
-        <a href="../../../feed-back.html" class="feedback-button">Feedback</a>
+        <a href="../../feed-back.html" class="feedback-button">Feedback</a>
         <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
@@ -190,15 +148,17 @@
       <ul>
         <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
         <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
-        <li><a href="../../../disease.html">🔬 Disease Prediction</a></li>
-        <li><a href="../../../organic.html">🌿 Organic Farming</a></li>
-        <li><a href="../../../farmer.html">👥 Farmer Network</a></li>
-        <li><a href="../../../weather.html">⛅ Weather Check</a></li>
-        <li><a href="../../../shopkeeper.html">🏪 Shopkeeper Listings</a></li>
-        <li><a href="../../../chat.html">🤖 ChatBot</a></li>
-        <li><a href="../../../plantation.html">🌳 Plantation</a></li>
+        <li><a href="../../disease.html">🔬 Disease Prediction</a></li>
+        <li><a href="../../organic.html">🌿 Organic Farming</a></li>
+        <li><a href="../../farmer.html">👥 Farmer Network</a></li>
+        <li><a href="../../weather.html">⛅ Weather Check</a></li>
+        <li><a href="../../shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+        <li><a href="../../chat.html">🤖 ChatBot</a></li>
+        <li><a href="../../plantation.html">🌳 Plantation</a></li>
         <li><a href="/crop_planning/">📅 Crop Planning</a></li>
-        <li><a href="../../../Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+        <li><a href="../../Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+        <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+        <li><a href="/district_procurement/">📦 District Procurement</a></li>
       </ul>
     </nav>
   </div>
@@ -206,81 +166,113 @@
         <h2>Crop Yield Prediction System</h2>
         <p>Get accurate yield predictions based on your crop, location, and environmental factors</p>
     </div>
-    <div class="main-content">
-        <div class="sidebar">
-            <h3>Quick Tips</h3>
-            <ul>
-                <li>Choose the correct crop type for accurate predictions.</li>
-                <li>Ensure the state and season match your cultivation area.</li>
-                <li>Provide realistic values for area, production, rainfall, and year.</li>
-                <li>Use this tool to plan and optimize your farming activities.</li>
-            </ul>
-        </div>
-        <div class="form-container">
-            <h2>Enter Your Parameters</h2>
-            <form action="/crop_yield/predict" method="POST" id="yieldForm">
-                <div class="form-group">
-                    <label for="crop">Crop Type</label>
-                    <select id="crop" name="crop" required>
-                        <option value="" disabled selected>Select crop</option>
-                        {% for c in crops %}
-                        <option value="{{ c }}">{{ c }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+    <div class="form-container">
+        <h2>Enter Your Parameters</h2>
+        <form action="/crop_yield/predict" method="POST" id="yieldForm">
+            <div class="form-group">
+                <label for="crop">Crop Type</label>
+                <select id="crop" name="crop" required>
+                    <option value="" disabled selected>Select crop</option>
+                    {% for c in crops %}
+                    <option value="{{ c }}">{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="state">State</label>
-                    <select id="state" name="state" required>
-                        <option value="" disabled selected>Select state</option>
-                        {% for s in states %}
-                        <option value="{{ s }}">{{ s }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <select id="state" name="state" required>
+                    <option value="" disabled selected>Select state</option>
+                    {% for s in states %}
+                    <option value="{{ s }}">{{ s }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="season">Season</label>
-                    <select id="season" name="season" required>
-                        <option value="" disabled selected>Select season</option>
-                        {% for s in seasons %}
-                        <option value="{{ s }}">{{ s }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="season">Season</label>
+                <select id="season" name="season" required>
+                    <option value="" disabled selected>Select season</option>
+                    {% for s in seasons %}
+                    <option value="{{ s }}">{{ s.strip() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="area">Cultivation Area (hectares)</label>
-                    <input type="number" id="area" name="area" min="0.01" step="0.01" placeholder="e.g., 2.5" required />
-                </div>
+            <div class="form-group">
+                <label for="area">Cultivation Area (hectares)</label>
+                <input type="number" id="area" name="area" min="0.01" step="0.01" placeholder="e.g., 2.5" required />
+            </div>
 
-                <div class="form-group">
-                    <label for="production">Expected Production (tonnes)</label>
-                    <input type="number" id="production" name="production" min="0.01" step="0.01" placeholder="e.g., 10.5" required />
-                </div>
+            <div class="form-group">
+                <label for="production">Expected Production (tonnes)</label>
+                <input type="number" id="production" name="production" min="0.01" step="0.01" placeholder="e.g., 10.5" required />
+            </div>
 
-                <div class="form-group">
-                    <label for="rainfall">Annual Rainfall (mm)</label>
-                    <input type="number" id="rainfall" name="rainfall" min="0" step="1" placeholder="e.g., 1200" required />
-                </div>
+            <div class="form-group">
+                <label for="rainfall">Annual Rainfall (mm)</label>
+                <input type="number" id="rainfall" name="rainfall" min="0" step="1" placeholder="e.g., 1200" required />
+            </div>
 
-                <div class="form-group">
-                    <label for="year">Year</label>
-                    <input type="number" id="year" name="year" min="2020" max="2030" value="2024" required />
-                </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input type="number" id="year" name="year" min="2020" max="2030" value="2024" required />
+            </div>
 
-                <button type="submit">Predict Yield</button>
-            </form>
-        </div>
+            <button type="submit">Predict Yield</button>
+        </form>
     </div>
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Created by AgriConnectHub. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>AgriConnectHub</h3>
+                <p>Empowering India's Farming Future</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../main.html">Dashboard</a></li>
+                    <li><a href="../../../feed-back.html">Feedback</a></li>
+                    <li><a href="../../../chat.html">AI Assistant</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="/crop_recommendation/">Crop Recommendation</a></li>
+                    <li><a href="/crop_yield/">Yield Prediction</a></li>
+                    <li><a href="../../../disease.html">Disease Detector</a></li>
+                    <li><a href="../../../Crop_Planning/templates/cropplan.html">Crop Planner</a></li>
+                </ul>
+            </div>
         </div>
+        <p style="margin-top: 2rem; opacity: 0.8">
+            &copy; 2025 AgriConnectHub
+        </p>
     </footer>
 
-    <script src="../../nav.js"></script>
-    <script src="../../auth.js"></script>
+    <script src="../../main.js"></script>
     <script src="../../theme.js"></script>
+    <script src="../../auth.js"></script>
+
+    <script>
+      function showLogoutConfirmation() {
+        Swal.fire({
+          title: 'Confirm Logout',
+          text: 'Are you sure you want to logout?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, logout',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '../../index.html';
+          }
+        });
+      }
+    </script>
 </body>
 </html>

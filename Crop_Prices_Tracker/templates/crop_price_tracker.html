@@ -2,105 +2,236 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+    <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
     <title>Crop Price Tracker - AgriConnectHub</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../main.css" />
+    <link rel="stylesheet" href="../../theme.css" />
     <link rel="stylesheet" href="{{ url_for('crop_price_tracker.static', filename='styles.css') }}">
-    <link rel="stylesheet" href="../../theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body>
-    <div class="header-nav-wrapper">
-      <header class="uniform-header">
-        <div class="brand">
-          <h2>Welcome to AgriConnectHub</h2>
-        </div>
-        <div class="header-buttons">
-          <a href="../../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
-            <span class="calendar-icon">📅</span> Calendar
-          </a>
-          <a href="../../../feed-back.html" class="feedback-button">Feedback</a>
-          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
-          <button class="theme-toggle" aria-label="Toggle dark/light mode">
-            <i class="fas fa-sun sun-icon"></i>
-            <i class="fas fa-moon moon-icon"></i>
-            <span class="theme-text">Light</span>
-          </button>
-        </div>
-      </header>
+  <div class="header-nav-wrapper">
+    <header class="uniform-header">
+      <div class="brand">
+        <h2>Welcome to AgriConnectHub</h2>
+      </div>
+      <div class="header-buttons">
+        <a href="../../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
+          <span class="calendar-icon">📅</span>
+          Calendar
+        </a>
+        <a href="../../../feed-back.html" class="feedback-button">Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+      </div>
+    </header>
 
-      <nav>
-        <ul>
-          <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
-          <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
-          <li><a href="../../../disease.html">🔬 Disease Prediction</a></li>
-          <li><a href="../../../organic.html">🌿 Organic Farming</a></li>
-          <li><a href="../../../farmer.html">👥 Farmer Network</a></li>
-          <li><a href="../../../weather.html">⛅ Weather Check</a></li>
-          <li><a href="../../../shopkeeper.html">🏪 Shopkeeper Listings</a></li>
-          <li><a href="../../../chat.html">🤖 ChatBot</a></li>
-          <li><a href="../../../plantation.html">🌳 Plantation</a></li>
-          <li><a href="/crop_planning/">📅 Crop Planning</a></li>
-          <li><a href="../../../Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+        <li><a href="../../../disease.html">🔬 Disease Prediction</a></li>
+        <li><a href="../../../organic.html">🌿 Organic Farming</a></li>
+        <li><a href="../../../farmer.html">👥 Farmer Network</a></li>
+        <li><a href="../../../weather.html">⛅ Weather Check</a></li>
+        <li><a href="../../../shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+        <li><a href="../../../chat.html">🤖 ChatBot</a></li>
+        <li><a href="../../../plantation.html">🌳 Plantation</a></li>
+        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+        <li><a href="../../../Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+        <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+        <li><a href="/district_procurement/">📦 District Procurement</a></li>
+      </ul>
+    </nav>
+  </div>
     <div class="hero">
-      <h2>Crop Price Tracker</h2>
-      <p>Get up-to-date market prices for crops across India</p>
+      <div class="hero-content">
+        <div class="hero-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h2>Crop Price Tracker</h2>
+        <p>Get real-time market prices for crops across India with advanced analytics</p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Markets</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Crops</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">Live</span>
+            <span class="stat-label">Updates</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="main-content">
-      <form method="POST" id="priceForm" class="form-row-horizontal" style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
-        <div class="form-row" style="display: flex; flex-direction: column; flex: 1; min-width: 200px;">
-          <label for="crop"><i class="fas fa-seedling"></i> Select Crop</label>
-          <select name="crop" id="crop" required style="padding: 0.4rem; border-radius: 6px; border: 1px solid #ccc;">
-            <option value="">-- Choose Crop --</option>
-            {% for crop in crops %}
-            <option value="{{ crop }}">{{ crop }}</option>
-            {% endfor %}
-          </select>
+    
+    <style>
+      .hero {
+        padding: 0.5rem 1rem !important;
+        height: auto !important;
+        min-height: auto !important;
+      }
+      
+      .hero-content {
+        max-width: 300px !important;
+        margin: 0 auto;
+      }
+      
+      .hero h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.3rem !important;
+      }
+      
+      .hero p {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.8rem !important;
+      }
+      
+      .hero-stats {
+        gap: 0.8rem !important;
+        margin-top: 0.5rem !important;
+      }
+      
+      .hero-icon {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.3rem !important;
+      }
+    </style>
+    
+    <div class="main-container">
+      <div class="search-section">
+        <div class="search-header">
+          <h3><i class="fas fa-search"></i> Find Market Prices</h3>
+          <p>Select your crop, state, and market to get the latest pricing information</p>
         </div>
+        
+        <form method="POST" id="priceForm" class="price-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="crop" class="form-label">
+                <i class="fas fa-seedling"></i>
+                <span>Select Crop</span>
+              </label>
+              <div class="select-wrapper">
+                <select name="crop" id="crop" required class="form-select">
+                  <option value="">Choose your crop...</option>
+                  {% for crop in crops %}
+                  <option value="{{ crop }}">{{ crop }}</option>
+                  {% endfor %}
+                </select>
+                <i class="fas fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
 
-        <div class="form-row" style="display: flex; flex-direction: column; flex: 1; min-width: 200px;">
-          <label for="state"><i class="fas fa-map-marker-alt"></i> Select State</label>
-          <select name="state" id="state" required disabled style="padding: 0.4rem; border-radius: 6px; border: 1px solid #ccc;">
-            <option value="">-- First select a crop --</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="state" class="form-label">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Select State</span>
+              </label>
+              <div class="select-wrapper">
+                <select name="state" id="state" required disabled class="form-select">
+                  <option value="">First select a crop...</option>
+                </select>
+                <i class="fas fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
 
-        <div class="form-row" style="display: flex; flex-direction: column; flex: 1; min-width: 200px;">
-          <label for="market"><i class="fas fa-store"></i> Select Market</label>
-          <select name="market" id="market" required disabled style="padding: 0.4rem; border-radius: 6px; border: 1px solid #ccc;">
-            <option value="">-- First select a state --</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="market" class="form-label">
+                <i class="fas fa-store"></i>
+                <span>Select Market</span>
+              </label>
+              <div class="select-wrapper">
+                <select name="market" id="market" required disabled class="form-select">
+                  <option value="">First select a state...</option>
+                </select>
+                <i class="fas fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
+          </div>
 
-        <div class="form-buttons" style="display: flex; flex-direction: column; gap: 0.75rem; min-width: 140px;">
-          <button type="submit" class="submit-button" id="submitBtn" disabled style="background-color: #2e7d32; color: white; border: none; padding: 0.6rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
-            <i class="fas fa-chart-line"></i> Track Prices
-          </button>
-          <button type="button" id="clearBtn" style="background-color: #2e7d32; color: white; border: none; padding: 0.6rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
-            <i class="fas fa-times"></i> Clear
-          </button>
-        </div>
-      </form>
-
-      <div class="results-table-container" style="display:none;">
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+              <i class="fas fa-chart-line"></i>
+              <span>Track Prices</span>
+              <div class="btn-loader"></div>
+            </button>
+            <button type="button" class="btn btn-secondary" id="clearBtn">
+              <i class="fas fa-refresh"></i>
+              <span>Clear All</span>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
     {% if error %}
-    <div class="error"><strong>⚠ Error:</strong> {{ error }}</div>
-    {% endif %} {% if result %}
-    <div class="results-container">
-      <h3>📈 Latest Market Prices</h3>
+    <div class="alert alert-error">
+      <div class="alert-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <div class="alert-content">
+        <strong>Error</strong>
+        <p>{{ error }}</p>
+      </div>
+    </div>
+    {% endif %}
+    
+    {% if result %}
+    <div class="results-section">
+      <div class="results-header">
+        <h3><i class="fas fa-chart-bar"></i> Latest Market Prices</h3>
+        <div class="results-count">{{ result|length }} records found</div>
+      </div>
+      
       <div class="price-grid">
         {% for row in result %}
         <div class="price-card">
-          <div class="price-date">{{ row['arrival_date'] }}</div>
-          <div class="price-amount">₹{{ row['modal_price'] }} / quintal</div>
-          <div class="price-location">
-            {{ row['market'] }}, {{ row['state'] }}
+          <div class="price-card-header">
+            <div class="price-date">
+              <i class="fas fa-calendar-alt"></i>
+              {{ row['arrival_date'] }}
+            </div>
+            <div class="price-trend">
+              <i class="fas fa-arrow-up trend-up"></i>
+            </div>
+          </div>
+          
+          <div class="price-main">
+            <div class="price-amount">₹{{ row['modal_price'] }}</div>
+            <div class="price-unit">per quintal</div>
+          </div>
+          
+          <div class="price-details">
+            <div class="price-location">
+              <i class="fas fa-map-marker-alt"></i>
+              {{ row['market'] }}, {{ row['state'] }}
+            </div>
+            {% if row.get('min_price') and row.get('max_price') %}
+            <div class="price-range">
+              <span class="range-label">Range:</span>
+              <span class="range-values">₹{{ row['min_price'] }} - ₹{{ row['max_price'] }}</span>
+            </div>
+            {% endif %}
           </div>
         </div>
         {% endfor %}
@@ -190,19 +321,85 @@
 
       marketSelect.addEventListener("change", updateSubmitButton);
 
+      // Clear button functionality
+      document.getElementById('clearBtn').addEventListener('click', function() {
+        cropSelect.value = '';
+        stateSelect.innerHTML = '<option value="">First select a crop...</option>';
+        stateSelect.disabled = true;
+        marketSelect.innerHTML = '<option value="">First select a state...</option>';
+        marketSelect.disabled = true;
+        updateSubmitButton();
+      });
+
       // Form submission with loading state
-      document
-        .getElementById("priceForm")
-        .addEventListener("submit", function () {
-          submitBtn.classList.add("loading");
-          submitBtn.textContent = "Fetching Prices...";
-        });
+      document.getElementById("priceForm").addEventListener("submit", function () {
+        submitBtn.classList.add("loading");
+        const btnText = submitBtn.querySelector('span');
+        const btnIcon = submitBtn.querySelector('i');
+        btnText.textContent = "Fetching Prices...";
+        btnIcon.className = "fas fa-spinner fa-spin";
+      });
 
       updateSubmitButton();
     </script>
     <script src="../../nav.js"></script>
     <script src="../../auth.js"></script>
     <script src="../../theme.js"></script>
+    
+    <script>
+      // Check authentication on page load
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!window.authManager.isLoggedIn()) {
+          window.location.href = '/login';
+          return;
+        }
+
+        const currentUser = window.authManager.getCurrentUser();
+        if (currentUser) {
+          // Update header to show user name
+          const headerTitle = document.querySelector('header h2');
+          if (headerTitle) {
+            headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
+          }
+        }
+      });
+
+      // Logout confirmation function
+      function showLogoutConfirmation() {
+        Swal.fire({
+          title: 'Confirm Logout',
+          text: 'Are you sure you want to logout?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, logout',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const logoutResult = window.authManager.logout();
+            if (logoutResult.success) {
+              Swal.fire({
+                title: 'Logged Out!',
+                text: logoutResult.message,
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+              }).then(() => {
+                // Redirect to index.html after logout
+                window.location.href = '/';
+              });
+            } else {
+              Swal.fire({
+                title: 'Error!',
+                text: logoutResult.message,
+                icon: 'error'
+              });
+            }
+          }
+        });
+      }
+    </script>
 
     <footer class="footer">
       <p>&copy; 2025 AgriConnectHub. All rights reserved.</p>

@@ -175,13 +175,19 @@
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, var(--light-green) 0%, var(--bg-secondary) 100%);
+      background: linear-gradient(135deg, rgba(240, 253, 244, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%), url('images/image.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       padding: 4rem 2rem;
       text-align: center;
     }
 
     [data-theme="dark"] .hero {
-      background: linear-gradient(135deg, var(--light-green) 0%, var(--bg-secondary) 100%);
+      background: linear-gradient(135deg, rgba(26, 46, 26, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%), url('images/image.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
     .hero-content {
@@ -592,6 +598,18 @@
 
       .site-footer {
         padding: 2rem 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .cta-title {
+        font-size: 2rem;
+      }
+
+      .footer-title {
+        font-size: 2rem;
       }
 
       .footer-inner {
