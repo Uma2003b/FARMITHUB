@@ -20,7 +20,7 @@ from forum_loan_blueprint import forum_loan_bp
 from sugarcane_frp_blueprint import sugarcane_frp_bp
 from district_procurement_blueprint import district_procurement_bp
 
-application = Flask(__name__, static_folder='static', template_folder='.')
+application = Flask(__name__, static_folder='static', template_folder='templates')
 
 # Add default test user for login testing
 if not hasattr(application, 'users'):
