@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="te">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="description"
+    content="AgriConnectHub - వ్యవసాయాన్ని సాంకేతికతతో శక్తివంతం చేయడం. భారతదేశంలోని వ్యవసాయ వ్యవస్థలో రైతులు, కొనుగోలుదారులు మరియు సరఫరాదారులను కలపండి." />
+  <title>AgriConnectHub - సాంకేతికతతో వ్యవసాయంలో విప్లవం</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Libertinus+Serif:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+  
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="brand">
+        <a href="#" class="logo">AgriConnectHub</a>
+      </div>
+      <div class="nav-buttons">
+        <select id="languageSelector" class="language-select" onchange="changeLanguage()">
+          <option value="en">English</option>
+          <option value="te" selected>తెలుగు</option>
+        </select>
+        <button class="theme-toggle btn" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+        <a href="about.html" class="btn btn-secondary">గురించి</a>
+        <a href="login_telugu.html" class="btn btn-secondary">లాగిన్</a>
+        <a href="register_telugu.html" class="btn btn-primary">నమోదు</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" style="background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/image.png'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="text-align: center; max-width: 800px; padding: 2rem;">
+      <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
+        <h2 class="serif" style="color: white; font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;">సహకారాన్ని పెంచండి. <br><span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">మీ విజయాన్ని పెంచండి.</span></h2>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
+          AgriConnectHub AI. రైతులు, ప్యాకింగ్ హౌసులు మరియు మార్కెటింగ్ సహకార సంస్థలను తెలివైన AI తో సులభంగా కలపండి, సమర్థత మరియు మార్కెట్ స్పందనను పెంచుతూ స్వతంత్రతను కాపాడుతూ.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="register_telugu.html" style="background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4); transition: all 0.3s ease;">🚀 ప్రారంభించండి</a>
+          <a href="#features" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">📖 మరింత తెలుసుకోండి</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features loading">
+    <div class="features-container">
+      <h2 class="features-title serif">మా ప్లాట్‌ఫారమ్ లాభాలు</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3 class="feature-title serif">లాభదాయకత పెరుగుదల</h3>
+          <p class="feature-description">
+            ఉత్పత్తిని మెరుగుపరచండి, వ్యర్థాలను తగ్గించండి, మరియు మార్కెట్ అవకాశాలను ఉపయోగించండి.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3 class="feature-title serif">ఆపరేషనల్ సమర్థత</h3>
+          <p class="feature-description">
+            ప్రణాళిక, లాజిస్టిక్స్ మరియు కమ్యూనికేషన్‌ను సులభతరం చేయండి, సమయం మరియు వనరులను ఆదా చేయండి.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title serif">స్వతంత్రత పరిరక్షణ</h3>
+          <p class="feature-description">
+            మీ ఆపరేషన్లపై నియంత్రణను కోల్పోకుండా లోతైన సహకారం.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">♻️</div>
+          <h3 class="feature-title serif">వ్యర్థాలు & పాడుదల తగ్గింపు</h3>
+          <p class="feature-description">
+            మెరుగైన అంచనాలు మరియు లాజిస్టిక్స్ అధిక ఉత్పత్తి మరియు పాడుదలను తగ్గిస్తాయి.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3 class="feature-title serif">నమ్మకం & పారదర్శకత పెరుగుదల</h3>
+          <p class="feature-description">
+            భాగస్వాములతో బలమైన, నమ్మదగిన సంబంధాలు నిర్మించండి.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h3 class="feature-title serif">సుస్థిర వృద్ధి</h3>
+          <p class="feature-description">
+            మార్కెట్ మార్పులకు వేగంగా అనుకూలించండి మరియు భవిష్యత్తుకు సిద్ధమైన వ్యవసాయ వ్యాపారాన్ని నిర్మించండి.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-content">
+    </div>
+  </section>
+
+  <section class="middle-footer" aria-label="Middle Footer Section" style="text-align:center; padding: 2rem; background: #f0fdf4; color: #15803d; font-family: 'Poppins', sans-serif;">
+    <h2>కనెక్ట్ అవ్వడానికి మరియు పెరుగడానికి సిద్ధంగా ఉన్నారా?</h2>
+    <p>వ్యవసాయ భవిష్యత్తును అన్వేషించండి. AgriConnect AI మీ ఆపరేషన్లను తెలివైన సహకారంతో ఎలా మార్చగలదో తెలుసుకోండి.</p>
+    <div style="margin-top: 1rem; font-weight: 600;">© TechNoble Solutions అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.</div>
+  </section>
+
+  <button class="scroll-to-top" id="scrollToTop" title="పైకి వెళ్ళండి">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    function changeLanguage() {
+      const selector = document.getElementById('languageSelector');
+      const selectedLang = selector.value;
+      if (selectedLang === 'en') {
+        window.location.href = 'index.html';
+      } else if (selectedLang === 'te') {
+        window.location.href = 'index_telugu.html';
+      }
+    }
+
+    // Theme toggle functionality
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeText = document.querySelector('.theme-text');
+
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    themeText.textContent = currentTheme === 'dark' ? 'Dark' : 'Light';
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeText.textContent = newTheme === 'dark' ? 'Dark' : 'Light';
+    });
+
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add("visible");
+      } else {
+        scrollToTopBtn.classList.remove("visible");
+      }
+    });
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = "running";
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll("section").forEach((section) => {
+      observer.observe(section);
+    });
+
+    window.addEventListener("load", () => {
+      document.body.style.opacity = "1";
+    });
+  </script>
+</body>
+
+</html>

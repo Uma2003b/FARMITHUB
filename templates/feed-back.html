@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>AgriConnectHub - Share Your Thoughts</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="theme.css" />
+    
+    <style>
+        :root {
+            /* Light theme variables */
+            --bg-gradient: linear-gradient(135deg, #f0f9f0 0%, #e8f5e8 30%, #f8fff8 70%, #f0f9f0 100%);
+            --bg-primary: rgba(255, 255, 255, 0.9);
+            --bg-secondary: rgba(255, 255, 255, 0.95);
+            --text-primary: #2d5a2d;
+            --text-secondary: #5a7a5a;
+            --text-muted: #81c784;
+            --border-color: rgba(139, 195, 74, 0.2);
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --input-border: rgba(139, 195, 74, 0.2);
+            --shadow-primary: rgba(76, 175, 80, 0.1);
+            --shadow-secondary: rgba(0, 0, 0, 0.05);
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-border: rgba(139, 195, 74, 0.2);
+        }
+
+        .dark-theme {
+            /* Dark theme variables */
+            --bg-gradient: linear-gradient(135deg, #0a1a0a 0%, #1a2e1a 30%, #0f2e0f 70%, #0a1a0a 100%);
+            --bg-primary: rgba(40, 40, 40, 0.9);
+            --bg-secondary: rgba(30, 30, 30, 0.95);
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --text-muted: #66bb6a;
+            --border-color: rgba(102, 187, 106, 0.3);
+            --input-bg: rgba(50, 50, 50, 0.8);
+            --input-border: rgba(102, 187, 106, 0.3);
+            --shadow-primary: rgba(102, 187, 106, 0.2);
+            --shadow-secondary: rgba(0, 0, 0, 0.3);
+            --header-bg: rgba(30, 30, 30, 0.95);
+            --header-border: rgba(102, 187, 106, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(139, 195, 74, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .dark-theme::before {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(102, 187, 106, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.08) 0%, transparent 50%);
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: calc(100vh - 200px);
+        }
+
+        .feedback-container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--bg-primary);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 
+                0 25px 50px rgba(76, 175, 80, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0.5rem auto;
+        }
+
+        .feedback-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 35px 70px rgba(76, 175, 80, 0.2),
+                0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feedback-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2e7d32, #4caf50, #66bb6a, #81c784);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .feedback-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feedback-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .feedback-title {
+            background: linear-gradient(135deg, #1b5e20, #2e7d32, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .feedback-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            opacity: 0.85;
+            font-weight: 400;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .feedback-form {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .form-row {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dark-theme .form-group label {
+            color: #66bb6a;
+        }
+
+        .input-icon {
+            color: #66bb6a;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .required {
+            color: #ff7043;
+            font-weight: 600;
+        }
+
+        .optional {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: var(--input-bg);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+            font-style: italic;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #4caf50;
+            outline: none;
+            background: var(--bg-secondary);
+            box-shadow: 
+                0 0 0 4px rgba(76, 175, 80, 0.12),
+                0 8px 25px rgba(76, 175, 80, 0.15),
+                0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover {
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 120px;
+        }
+
+        .character-count {
+            text-align: right;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            opacity: 0.8;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #2e7d32, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 
+                0 10px 30px rgba(76, 175, 80, 0.3),
+                0 4px 15px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 40px rgba(76, 175, 80, 0.4),
+                0 8px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #1b5e20, #2e7d32, #4caf50);
+        }
+
+        .submit-button:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .thank-you-section {
+            text-align: center;
+            padding: 2rem;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .success-animation {
+            margin-bottom: 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #4caf50;
+            animation: successPulse 1.5s ease-out;
+            filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.3));
+        }
+
+        .thank-you-section h3 {
+            color: #2e7d32;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .dark-theme .thank-you-section h3 {
+            color: #66bb6a;
+        }
+
+        .thank-you-section p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .home-button,
+        .view-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .home-button {
+            background: linear-gradient(135deg, #66bb6a, #4caf50);
+            color: white;
+            box-shadow: 0 6px 16px rgba(102, 187, 106, 0.25);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-nav-wrapper">
+      <header class="uniform-header">
+        <div class="brand">
+          <h2>Welcome to AgriConnectHub</h2>
+        </div>
+        <div class="header-buttons">
+          <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
+            <span class="calendar-icon">📅</span>
+            Calendar
+          </a>
+          <a href="feed-back.html" class="feedback-button">Feedback</a>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
+            <span class="theme-text">Light</span>
+          </button>
+        </div>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+          <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+          <li><a href="disease.html">🔬 Disease Prediction</a></li>
+          <li><a href="organic.html">🌿 Organic Farming</a></li>
+          <li><a href="farmer.html">👥 Farmer Network</a></li>
+          <li><a href="weather.html">⛅ Weather Check</a></li>
+          <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+          <li><a href="chat.html">🤖 ChatBot</a></li>
+          <li><a href="plantation.html">🌳 Plantation</a></li>
+          <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+          <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+          <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+          <li><a href="/district_procurement/">📦 District Procurement</a></li>
+        </ul>
+      </nav>
+    </div>
+
+        <main>
+            <div class="feedback-container">
+                <div class="feedback-header">
+                    <div class="feedback-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h2 class="feedback-title">Share Your Experience</h2>
+                    <p class="feedback-subtitle">Your insights help us grow and serve you better</p>
+                </div>
+
+                <form id="feedbackForm" class="feedback-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">
+                                <i class="fas fa-user input-icon"></i>
+                                Name <span class="required">*</span>
+                            </label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope input-icon"></i>
+                                Email <span class="optional">(optional)</span>
+                            </label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="feedback">
+                                <i class="fas fa-message input-icon"></i>
+                                Your Feedback <span class="required">*</span>
+                            </label>
+                            <textarea id="feedback" name="feedback" rows="5" required
+                                placeholder="Share your thoughts, suggestions, or any experiences you'd like us to know about..."></textarea>
+                            <div class="character-count">
+                                <span id="charCount">0</span> characters
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Share Feedback</span>
+                    </button>
+                </form>
+
+                <div id="thankYouMessage" class="hidden thank-you-section">
+                    <div class="success-animation">
+                        <i class="fas fa-check-circle success-icon"></i>
+                    </div>
+                    <h3>Thank You for Your Feedback!</h3>
+                    <p>We truly appreciate you taking the time to share your thoughts with us. Your feedback helps us create better agricultural solutions for everyone.</p>
+                    <div class="action-buttons">
+                        <button id="viewFeedbacks" class="view-button" onclick="showAllFeedbacks()">
+                            <i class="fas fa-list"></i>
+                            View All Feedback
+                        </button>
+                    </div>
+                </div>
+
+                <div id="allFeedbacks" class="hidden feedback-list-section">
+                    <div class="section-header">
+                        <i class="fas fa-history"></i>
+                        <h3>All Feedback Submissions</h3>
+                    </div>
+                    <div id="feedbacksList" class="feedbacks-container"></div>
+
+                </div>
+            </div>
+
+        </main>
+
+
+
+    <style>
+      .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
+      .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}
+      .footer-brand {display:flex;flex-direction:column;gap:.5rem;align-items: center;}
+      .footer-logo {width:48px;height:48px;border-radius:8px;object-fit:cover;background:#fff;padding:4px}
+      .site-footer h3,.site-footer h4{margin:0 0 .5rem 0}
+      .site-footer p {margin:0;opacity:0.9}
+      .site-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+      .site-footer a{color:#fff;text-decoration:none;opacity:0.9;width:max-content;background-color: none;}
+      .site-footer a:hover{opacity:1;text-decoration:underline}
+      .footer-links{display:flex;flex-direction:column;align-items: center;}
+    </style>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>AgriConnectHub</h3>
+          <p>Empowering India's Farming Future</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="main.html">Dashboard</a></li>
+            <li><a href="feed-back.html">Feedback</a></li>
+            <li><a href="chat.html">AI Assistant</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="/crop_recommendation/">Crop Recommendation</a></li>
+            <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">Yield Prediction</a></li>
+            <li><a href="Disease prediction/template/index.html">Disease Detector</a></li>
+            <li><a href="Crop_Planning/templates/cropplan.html">Crop Planner</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8">
+        &copy; 2025 AgriConnectHub
+      </p>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            const themeText = document.querySelector('.theme-text');
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeText.textContent = 'Light';
+                // Store theme preference in memory
+                window.currentTheme = 'light';
+            } else {
+                body.classList.add('dark-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeText.textContent = 'Dark';
+                // Store theme preference in memory
+                window.currentTheme = 'dark';
+            }
+        }
+
+        // Load theme on page load
+        function loadTheme() {
+            const themeIcon = document.querySelector('.theme-icon');
+            const themeText = document.querySelector('.theme-text');
+            
+            if (window.currentTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeText.textContent = 'Dark';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load theme
+            loadTheme();
+            
+            const feedbackForm = document.getElementById('feedbackForm');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const allFeedbacksSection = document.getElementById('allFeedbacks');
+            const viewFeedbacksBtn = document.getElementById('viewFeedbacks');
+            const feedbacksList = document.getElementById('feedbacksList');
+            const feedbackTextarea = document.getElementById('feedback');
+            const charCountElement = document.getElementById('charCount');
+
+            // Character count
+            if (feedbackTextarea && charCountElement) {
+                feedbackTextarea.addEventListener('input', function() {
+                    const charCount = this.value.length;
+                    charCountElement.textContent = charCount;
+                    
+                    if (charCount > 500) {
+                        charCountElement.style.color = '#ff7043';
+                    } else if (charCount > 300) {
+                        charCountElement.style.color = '#ff9800';
+                    } else {
+                        charCountElement.style.color = '#81c784';
+                    }
+                });
+            }
+
+            // Form submission
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const feedbackText = document.getElementById('feedback').value.trim();
+                
+                if (!name || !feedbackText) {
+                    Swal.fire({
+                        title: 'Missing Information',
+                        text: 'Please fill in all required fields.',
+                        icon: 'warning',
+                        confirmButtonColor: '#4caf50'
+                    });
+                    return;
+                }
+                
+                const submitButton = this.querySelector('.submit-button');
+                const originalText = submitButton.innerHTML;
+                
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
+                submitButton.disabled = true;
+                
+                setTimeout(() => {
+                    const feedbackData = {
+                        name: name,
+                        email: email || 'Not provided',
+                        feedback: feedbackText,
+                        date: new Date().toLocaleString(),
+                        id: Date.now() 
+                    };
+
+                    // Save feedback in memory (using a global variable since localStorage is not available)
+                    if (!window.agritechFeedbacks) {
+                        window.agritechFeedbacks = [];
+                    }
+                    window.agritechFeedbacks.push(feedbackData);
+
+                    // Show success
+                    feedbackForm.classList.add('hidden');
+                    document.querySelector('.feedback-header').classList.add('hidden');
+                    thankYouMessage.classList.remove('hidden');
+                    feedbackForm.reset();
+                    
+                    if (charCountElement) {
+                        charCountElement.textContent = '0';
+                        charCountElement.style.color = '#81c784';
+                    }
+                    
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }, 1500);
+            });
+        });
+
+        function showAllFeedbacks() {
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const allFeedbacksSection = document.getElementById('allFeedbacks');
+            const feedbacksList = document.getElementById('feedbacksList');
+            
+            thankYouMessage.classList.add('hidden');
+            allFeedbacksSection.classList.remove('hidden');
+            
+            const allFeedbacks = window.agritechFeedbacks || [];
+            
+            if (allFeedbacks.length === 0) {
+                feedbacksList.innerHTML = `
+                    <div class="no-feedback">
+                        <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.6;"></i>
+                        <p style="font-size: 1rem; margin-bottom: 0.5rem;">No feedback submissions yet</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">Be the first to share your thoughts!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            allFeedbacks.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            feedbacksList.innerHTML = allFeedbacks.map((fb, index) => `
+                <div class="feedback-item">
+                    <h4><i class="fas fa-user-circle" style="color: #4caf50; margin-right: 8px;"></i>${escapeHtml(fb.name)}</h4>
+                    ${fb.email !== 'Not provided' ? `<p style="color: #81c784; font-size: 0.9rem; margin: 5px 0;"><i class="fas fa-envelope" style="margin-right: 8px;"></i>${escapeHtml(fb.email)}</p>` : ''}
+                    <p style="margin-top: 1rem;"><i class="fas fa-quote-left" style="color: #66bb6a; margin-right: 8px; opacity: 0.6;"></i>${escapeHtml(fb.feedback)}</p>
+                    <div class="feedback-meta">
+                        📝 Submission #${allFeedbacks.length - index} • ${formatDate(fb.date)}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 1) return 'Today';
+            if (diffDays === 2) return 'Yesterday';
+            if (diffDays <= 7) return `${diffDays - 1} days ago`;
+            return date.toLocaleDateString();
+        }
+
+        function showLogoutConfirmation() {
+            Swal.fire({
+                title: 'Confirm Logout',
+                text: 'Are you sure you want to logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ff7043',
+                cancelButtonColor: '#4caf50',
+                confirmButtonText: 'Yes, logout',
+                cancelButtonText: 'Cancel',
+                customClass: {
+                    popup: 'swal-custom'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'index.html';  
+                }
+            });
+        }
+    </script>
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

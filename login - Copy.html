@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - AgriConnectHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Libertinus+Serif:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 10; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.2);">
+    <div class="navbar-content">
+      <div class="brand">
+        <a href="index.html" class="logo" style="color: white;">AgriConnectHub</a>
+      </div>
+      <div class="nav-buttons">
+        <button class="theme-toggle btn" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+        <a href="about.html" class="btn btn-secondary">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <section style="background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/image.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; min-height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; display: flex; align-items: center; justify-content: center; z-index: 1;">
+    <div style="text-align: center; max-width: 600px; padding: 2rem; width: 100%;">
+      <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
+        <div style="display: inline-block; background: rgba(22, 163, 74, 0.2); color: #4ade80; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(74, 222, 128, 0.3);">🔐 Welcome Back</div>
+        <h2 style="color: white; font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; font-family: 'Libertinus Serif', serif;">Login to <span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">AgriConnectHub</span></h2>
+        <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-size: 1rem;">Access your agricultural dashboard</p>
+        
+        <form onsubmit="handleLogin(event)" style="text-align: left;">
+          <div style="position: relative; margin-bottom: 1.5rem;">
+            <i class="fas fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #4ade80; z-index: 2;"></i>
+            <input type="text" id="email" placeholder="Enter any email" style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; backdrop-filter: blur(5px); transition: all 0.3s ease;" onfocus="this.style.borderColor='#4ade80'; this.style.boxShadow='0 0 0 3px rgba(74, 222, 128, 0.2)';" onblur="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.boxShadow='none';" />
+          </div>
+          <div style="position: relative; margin-bottom: 2rem;">
+            <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #4ade80; z-index: 2;"></i>
+            <input type="text" id="password" placeholder="Enter any password" style="width: 100%; padding: 1rem 3rem 1rem 3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; backdrop-filter: blur(5px); transition: all 0.3s ease;" onfocus="this.style.borderColor='#4ade80'; this.style.boxShadow='0 0 0 3px rgba(74, 222, 128, 0.2)';" onblur="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.boxShadow='none';" />
+          </div>
+          <button type="submit" id="login-btn" style="width: 100%; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1rem; border-radius: 12px; border: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4); transition: all 0.3s ease; cursor: pointer; margin-bottom: 1.5rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 35px rgba(22, 163, 74, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(22, 163, 74, 0.4)';">🚀 Login</button>
+          <p style="text-align: center; color: rgba(255,255,255,0.8); margin: 0;">
+            Don't have an account?
+            <a href="register.html" style="color: #4ade80; text-decoration: none; font-weight: 600;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Register here</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="login.js"></script>
+  <script src="theme.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

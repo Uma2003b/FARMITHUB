@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Removed logo favicon as per user request -->
+  <!-- <link rel="icon" type="image/png" href="images/logo.png"> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
+  <title>AgriConnectHub Dashboard</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Favicon -->
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="disease.css" />
+  <link rel="stylesheet" href="theme.css" />
+
+  <!-- Font Awesome -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Inline Styles (can move to CSS file later) -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: var(--bg-secondary, #0f4d0f);
+      color: var(--text-primary, #333);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      background: var(--bg-primary, #fff);
+      border-radius: 10px;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    /* Header within container */
+    .container header h1 {
+      color: var(--text-primary, #333) !important;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .container header p {
+      color: var(--text-secondary, #666) !important;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+
+    .loan-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .loan-card span {
+      display: block;
+      padding: 15px;
+      font-weight: 600;
+      background: rgba(76, 175, 80, 0.1);
+      color: var(--text-primary, #333) !important;
+      border-top: 1px solid rgba(76, 175, 80, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    /* Loan Guide section */
+    .loan-guide-section {
+      text-align: center;
+      margin-top: 50px;
+      background: var(--bg-primary, #fff) !important;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(76, 175, 80, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .loan-guide-section h2 {
+      color: var(--text-primary, #333) !important;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .loan-guide-section p {
+      color: var(--text-secondary, #666) !important;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-green {
+      display: inline-block;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      color: #fff !important;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn-green:hover {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+      color: #fff !important;
+      text-decoration: none;
+    }
+
+    select.language-select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-left: 15px;
+      border: 2px solid rgba(76, 175, 80, 0.3);
+      background: var(--bg-primary, #fff);
+      color: var(--text-primary, #333);
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    select.language-select:focus {
+      outline: none;
+      border-color: #4caf50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+
+    /* Dark mode specific styles */
+    [data-theme="dark"] .container {
+      background: #2d2d2d !important;
+      border: 1px solid #404040;
+    }
+
+    [data-theme="dark"] .loan-guide-section {
+      background: #2d2d2d !important;
+      border-color: #404040;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="dark"] .loan-guide-section h2 {
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .loan-guide-section p {
+      color: #cccccc !important;
+    }
+
+    [data-theme="dark"] .container header h1 {
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] .container header p {
+      color: #cccccc !important;
+    }
+
+    [data-theme="dark"] .loan-card {
+      background: #3d3d3d !important;
+      border-color: #505050;
+    }
+
+    [data-theme="dark"] .loan-card span {
+      background: rgba(76, 175, 80, 0.2) !important;
+      color: #ffffff !important;
+      border-top-color: #505050;
+    }
+
+    [data-theme="dark"] select.language-select {
+      background: #3d3d3d !important;
+      border-color: #505050;
+      color: #ffffff !important;
+    }
+
+    [data-theme="dark"] select.language-select option {
+      background: #3d3d3d !important;
+      color: #ffffff !important;
+    }
+
+    /* Ensure text is always visible during transitions */
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+    }
+
+    /* Force text color inheritance */
+    .loan-guide-section *:not(.btn-green) {
+      color: inherit !important;
+    }
+
+    .container *:not(.btn-green):not(select) {
+      color: inherit !important;
+    }
+
+    /* Auth message styles */
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    .auth-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      padding: 15px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 400px;
+    }
+
+    .auth-message-success {
+      background: linear-gradient(135deg, #4caf50, #45a049);
+    }
+
+    .auth-message-error {
+      background: linear-gradient(135deg, #f44336, #e53935);
+    }
+
+    .auth-message-info {
+      background: linear-gradient(135deg, #2196f3, #1976d2);
+    }
+
+    .auth-message-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .auth-message-content i {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+  <body>
+  <div class="header-nav-wrapper">
+    <header class="uniform-header">
+      <div class="brand">
+        <h2>Welcome to AgriConnectHub</h2>
+      </div>
+      <div class="header-buttons">
+        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
+          <span class="calendar-icon">📅</span>
+          Calendar
+        </a>
+        <a href="feed-back.html" class="feedback-button">Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
+        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
+        <li><a href="disease.html">🔬 Disease Prediction</a></li>
+        <li><a href="organic.html">🌿 Organic Farming</a></li>
+        <li><a href="farmer.html">👥 Farmer Network</a></li>
+        <li><a href="weather.html">⛅ Weather Check</a></li>
+        <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
+        <li><a href="chat.html">🤖 ChatBot</a></li>
+        <li><a href="plantation.html">🌳 Plantation</a></li>
+        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
+        <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
+        <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
+        <li><a href="/district_procurement/">📦 District Procurement</a></li>
+      </ul>
+    </nav>
+  </div>
+
+    <div class="full-width-wrapper">
+    <div class="full-width-section">
+      <div class="full-width-header">
+        <h1>🔬 AI Disease Analysis</h1>
+      </div>
+      <div class="analysis-section" style="max-width:none; border-radius: 0; margin: 0; box-shadow: none; background: #f9f9f9; padding: 1rem 1.5rem;">
+        <div id="modelStatus" class="status-indicator status-success" style="text-align: center; font-weight: bold; margin-bottom: 1rem;">
+          ✅ AI Model Ready - Upload an image to begin analysis
+        </div>
+
+          <div class="upload-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+            <div class="upload-section">
+              <div class="upload-zone" tabindex="0" role="button" aria-label="Upload or drop your plant image here" id="uploadArea" style="border: 2px dashed #4caf50; border-radius: 8px; padding: 2rem; cursor: pointer; text-align: center; min-height: 300px; display: flex; flex-direction: column; justify-content: center;">
+                <div class="upload-icon" style="font-size: 3rem;">📸</div>
+                <div class="upload-text" style="font-size: 1rem;">
+                  <strong>Drop your plant image here</strong><br />
+                  or click to browse files<br />
+                  <small style="opacity: 0.7;">Supports JPG, PNG, WebP formats</small>
+                </div>
+              </div>
+              <input
+                type="file"
+                id="fileInput"
+                class="file-input"
+                accept="image/*"
+                aria-label="Upload plant image"
+                style="display: none;"
+              />
+
+
+            </div>
+            
+            <div class="preview-section" id="previewSection" style="background: var(--bg-primary, white); border-radius: 12px; padding: 1.5rem; border: 2px solid #e8f5e8; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 300px;">
+              <div id="placeholderText" style="text-align: center; color: #666; font-size: 1.2rem;">📷 Upload an image to get started</div>
+              <div id="previewContent" style="display: none; text-align: center;">
+                <h3 style="color: #2d5a27; margin-bottom: 1rem;">📷 Image Preview</h3>
+                <img id="largePreviewImg" style="max-width: 100%; max-height: 400px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" />
+                <div style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                  <span id="fileName"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin: 2rem 0;">
+            <button class="btn" id="analyzeBtn" disabled aria-disabled="true" aria-label="Analyze Plant Health" style="padding: 0.75rem 1.5rem; font-size: 1.1rem; background-color: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer;">
+              🔍 Analyze Plant Health
+            </button>
+          </div>
+
+          <div class="results-zone" aria-live="polite" aria-atomic="true" style="margin-top: 1rem;">
+            <div class="preview-container" id="previewContainer" aria-label="Image preview" style="display: none;"></div>
+
+            <div class="loading" id="loading" role="status" aria-live="assertive" aria-label="AI is analyzing your plant" style="display: none; text-align: center; margin-top: 1rem;">
+              <div class="spinner" style="margin: 0 auto 0.5rem; width: 40px; height: 40px; border: 4px solid #ccc; border-top-color: #4caf50; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+              <p>🧠 AI is analyzing your plant...</p>
+            </div>
+
+            <div id="results" aria-label="Analysis results" style="margin-top: 1rem;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="features-section" style="max-width: 900px; margin: 2rem auto 1rem; padding: 0 1rem;">
+        <h2
+          style="
+            text-align: center;
+            color: #2d5a27;
+            font-size: 2rem;
+            margin-bottom: 20px;
+          "
+        >
+          ✨ Key Features
+        </h2>
+        <div class="features-grid" role="list" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+          <div class="feature-card" role="listitem" tabindex="0" onclick="openModal('accuracyModal')" onkeypress="if(event.key==='Enter'){openModal('accuracyModal')}" style="flex: 1 1 200px; background: #e8f5e9; border-radius: 8px; padding: 1rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="feature-icon" aria-hidden="true" style="font-size: 2rem;">🤖</div>
+            <h3>Machine Learning Precision</h3>
+            <p>
+              Cutting-edge AI algorithms trained on vast agricultural datasets
+              for unmatched accuracy
+            </p>
+          </div>
+          <div class="feature-card" role="listitem" tabindex="0" onclick="openModal('speedModal')" onkeypress="if(event.key==='Enter'){openModal('speedModal')}" style="flex: 1 1 200px; background: #e8f5e9; border-radius: 8px; padding: 1rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="feature-icon" aria-hidden="true" style="font-size: 2rem;">🚀</div>
+            <h3>Lightning-Fast Results</h3>
+            <p>Advanced processing delivers instant diagnosis and actionable
+            insights in under 3 seconds</p>
+          </div>
+          <div class="feature-card" role="listitem" tabindex="0" onclick="openModal('treatmentModal')" onkeypress="if(event.key==='Enter'){openModal('treatmentModal')}" style="flex: 1 1 200px; background: #e8f5e9; border-radius: 8px; padding: 1rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="feature-icon" aria-hidden="true" style="font-size: 2rem;">🩺</div>
+            <h3>Expert Treatment Plans</h3>
+            <p>Personalized remedy strategies combining traditional wisdom
+            and modern agricultural science</p>
+          </div>
+          <div class="feature-card" role="listitem" tabindex="0" onclick="openModal('plantsModal')" onkeypress="if(event.key==='Enter'){openModal('plantsModal')}" style="flex: 1 1 200px; background: #e8f5e9; border-radius: 8px; padding: 1rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="feature-icon" aria-hidden="true" style="font-size: 2rem;">🌍</div>
+            <h3>Global Crop Support</h3>
+            <p>Comprehensive coverage of worldwide crops, from staple grains
+            to specialty vegetables</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="accuracyModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('accuracyModal')">&times;</span>
+        <h2>🎯 High Accuracy Detection</h2>
+        <div class="modal-section">
+          <h3>Advanced AI Technology</h3>
+          <p>
+            Our system uses state-of-the-art deep learning models trained on
+            extensive datasets containing thousands of plant images. The AI has
+            been specifically trained to recognize subtle visual patterns that
+            indicate various plant diseases.
+          </p>
+        </div>
+        <div class="modal-section">
+          <h3>Model Performance</h3>
+          <ul style="margin-left: 20px; color: #555">
+            <li><strong>95%+ Accuracy</strong> on common plant diseases</li>
+            <li><strong>Real-time Analysis</strong> with confidence scoring</li>
+            <li><strong>Continuous Learning</strong> from new data</li>
+            <li>
+              <strong>Multi-class Detection</strong> for comprehensive diagnosis
+            </li>
+          </ul>
+        </div>
+        <div class="modal-section">
+          <h3>What Makes It Accurate?</h3>
+          <p>
+            • <strong>Image Preprocessing:</strong> Advanced algorithms enhance
+            image quality<br />
+            • <strong>Feature Extraction:</strong> Identifies key disease
+            indicators<br />
+            • <strong>Pattern Recognition:</strong> Compares against extensive
+            disease database<br />
+            • <strong>Confidence Scoring:</strong> Provides reliability metrics
+            for each prediction
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="speedModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('speedModal')">&times;</span>
+        <h2>⚡ Instant Results</h2>
+        <div class="modal-section">
+          <h3>Lightning-Fast Analysis</h3>
+          <p>
+            Our optimized AI model processes your plant images in real-time,
+            delivering comprehensive health analysis within 2-5 seconds of
+            upload.
+          </p>
+        </div>
+        <div class="modal-section">
+          <h3>Image Analysis Process</h3>
+          <div
+            style="
+              background: #f8fff8;
+              padding: 15px;
+              border-radius: 8px;
+              margin: 10px 0;
+            "
+          >
+            <p>
+              <strong>Step 1:</strong> Image upload and preprocessing (0.5s)<br />
+              <strong>Step 2:</strong> AI model inference and analysis (1-2s)<br />
+              <strong>Step 3:</strong> Results formatting and display (0.5s)<br />
+              <strong>Total Time:</strong> 2-3 seconds average
+            </p>
+          </div>
+        </div>
+        <div class="modal-section">
+          <h3>What You Get Instantly</h3>
+          <ul style="margin-left: 20px; color: #555">
+            <li>Disease identification with confidence levels</li>
+            <li>Severity assessment (Low/Medium/High)</li>
+            <li>Detailed disease description</li>
+            <li>Immediate treatment recommendations</li>
+            <li>Prevention tips and care advice</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="treatmentModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('treatmentModal')">&times;</span>
+        <h2>💊 Treatment Recommendations</h2>
+        <div class="modal-section">
+          <h3>Comprehensive Treatment Plans</h3>
+          <p>
+            Each diagnosis comes with detailed, actionable treatment
+            recommendations based on the latest agricultural and horticultural
+            research.
+          </p>
+        </div>
+        <div class="modal-section">
+          <h3>General Plant Care Principles</h3>
+          <div class="plant-item">
+            <h4>🚰 Proper Watering</h4>
+            <p>
+              Water at soil level to avoid wetting leaves. Ensure good drainage
+              to prevent root rot and fungal diseases.
+            </p>
+          </div>
+          <div class="plant-item">
+            <h4>🌬️ Air Circulation</h4>
+            <p>
+              Maintain adequate spacing between plants for proper airflow and
+              disease prevention. Prune dense foliage when necessary.
+            </p>
+          </div>
+          <div class="plant-item">
+            <h4>🧹 Garden Hygiene</h4>
+            <p>
+              Remove dead or diseased plant material promptly. Sanitize tools
+              between plants to prevent disease spread.
+            </p>
+          </div>
+          <div class="plant-item">
+            <h4>🌱 Preventive Care</h4>
+            <p>
+              Use disease-resistant varieties, implement crop rotation, maintain
+              balanced fertilization, and monitor plants regularly.
+            </p>
+          </div>
+          <div class="plant-item">
+            <h4>🌞 Environmental Control</h4>
+            <p>
+              Ensure proper sunlight exposure, maintain optimal soil pH, and
+              avoid overcrowding plants.
+            </p>
+          </div>
+          <div class="plant-item">
+            <h4>🔄 Integrated Pest Management</h4>
+            <p>
+              Combine biological, cultural, and chemical controls for
+              sustainable disease management.
+            </p>
+          </div>
+        </div>
+        <div class="modal-section">
+          <h3>Treatment Categories</h3>
+          <p>
+            <strong>Organic Solutions:</strong> Natural fungicides, neem oil,
+            beneficial insects, companion planting<br />
+            <strong>Chemical Treatments:</strong> Targeted pesticides and
+            fungicides when necessary (follow label instructions)<br />
+            <strong>Cultural Controls:</strong> Environmental modifications,
+            watering practices, and care routines<br />
+            <strong>Biological Controls:</strong> Beneficial microorganisms,
+            predatory insects, and natural antagonists
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="plantsModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('plantsModal')">&times;</span>
+        <h2>🌿 Supported Plant Types</h2>
+        <div class="modal-section">
+          <h3>Comprehensive Plant Database</h3>
+          <p>
+            Our AI system has been trained to identify diseases across a wide
+            variety of plant species, with particular expertise in common crops
+            and garden plants.
+          </p>
+        </div>
+        <div class="modal-section">
+          <h3>Supported Plants & Common Diseases</h3>
+          <div class="plant-list">
+            <div class="plant-item">
+              <h4>🍅 Tomatoes</h4>
+              <p>
+                Early blight, late blight, bacterial spot, leaf mold, mosaic
+                virus, septoria leaf spot
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🥔 Potatoes</h4>
+              <p>
+                Late blight, early blight, black scurf, common scab, bacterial
+                soft rot
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🌽 Corn</h4>
+              <p>
+                Northern leaf blight, gray leaf spot, southern rust, common rust
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🍎 Apple Trees</h4>
+              <p>
+                Apple scab, fire blight, cedar apple rust, powdery mildew, black
+                rot
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🍇 Grapes</h4>
+              <p>
+                Downy mildew, powdery mildew, black rot, anthracnose, botrytis
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🥒 Cucumbers</h4>
+              <p>
+                Bacterial wilt, downy mildew, powdery mildew, anthracnose,
+                cucumber mosaic
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🌶️ Peppers</h4>
+              <p>
+                Bacterial spot, phytophthora blight, tobacco mosaic virus,
+                pepper mild mottle
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🥬 Leafy Greens</h4>
+              <p>Downy mildew, bacterial leaf spot, white rust, clubroot</p>
+            </div>
+            <div class="plant-item">
+              <h4>🌻 Sunflowers</h4>
+              <p>
+                Sclerotinia head rot, downy mildew, rust, bacterial head rot
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🥕 Carrots</h4>
+              <p>
+                Alternaria leaf blight, cercospora leaf spot, bacterial blight
+              </p>
+            </div>
+            <div class="plant-item">
+              <h4>🫘 Beans</h4>
+              <p>Common bacterial blight, anthracnose, rust, white mold</p>
+            </div>
+            <div class="plant-item">
+              <h4>🍓 Strawberries</h4>
+              <p>Gray mold, leaf spot, powdery mildew, verticillium wilt</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <h3>Detection Capabilities</h3>
+          <p>
+            <strong>Disease Types:</strong> Fungal infections, bacterial
+            diseases, viral infections, and pest-related damage<br />
+            <strong>Growth Stages:</strong> Seedling, vegetative, flowering, and
+            fruiting stages<br />
+            <strong>Symptoms:</strong> Leaf spots, wilting, discoloration,
+            abnormal growth patterns, fruit defects<br />
+            <strong>Severity Levels:</strong> Early detection for preventive
+            treatment and advanced stage diagnosis
+          </p>
+        </div>
+      </div>
+    </div>
+
+  <!-- JavaScript Files -->
+  <script src="main.js"></script>
+  <script src="theme.js"></script>
+  
+  <!-- Authentication Manager Script -->
+  <script src="theme.js"></script>
+  <script src="auth.js"></script>
+  <script src="disease.js"></script>
+  <script src="nav.js"></script>
+
+  <script>
+    // Check authentication on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.authManager.isLoggedIn()) {
+        window.location.href = '/login';
+        return;
+      }
+
+      const currentUser = window.authManager.getCurrentUser();
+      if (currentUser) {
+        // Update header to show user name
+        const headerTitle = document.querySelector('header h2');
+        if (headerTitle) {
+          headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
+        }
+      }
+    });
+
+    // Logout confirmation function
+    function showLogoutConfirmation() {
+      Swal.fire({
+        title: 'Confirm Logout',
+        text: 'Are you sure you want to logout?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, logout',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const logoutResult = window.authManager.logout();
+          if (logoutResult.success) {
+            Swal.fire({
+              title: 'Logged Out!',
+              text: logoutResult.message,
+              icon: 'success',
+              timer: 2000,
+              showConfirmButton: false
+            }).then(() => {
+              // Redirect to index.html after logout
+              window.location.href = '/';
+            });
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: logoutResult.message,
+              icon: 'error'
+            });
+          }
+        }
+      });
+    }
+
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add("visible");
+      } else {
+        scrollToTopBtn.classList.remove("visible");
+      }
+    });
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // Show crop recommendation section
+    function showCropRecommendation() {
+      document.getElementById('crop-recommendation').style.display = 'block';
+      document.getElementById('crop-recommendation').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+        
+        .disease-container {
+          padding: 0 15px;
+        }
+        
+        .analysis-card {
+          padding: 20px;
+        }
+        
+        .upload-zone {
+          padding: 30px 15px;
+        }
+        
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
+      .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}
+      .footer-brand {display:flex;flex-direction:column;gap:.5rem;align-items: center;}
+      .footer-logo {width:48px;height:48px;border-radius:8px;object-fit:cover;background:#fff;padding:4px}
+      .site-footer h3,.site-footer h4{margin:0 0 .5rem 0}
+      .site-footer p {margin:0;opacity:0.9}
+      .site-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+      .site-footer a{color:#fff;text-decoration:none;opacity:0.9;width:max-content;background-color: none;}
+      .site-footer a:hover{opacity:1;text-decoration:underline}
+      .footer-links{display:flex;flex-direction:column;align-items: center;}
+    </style>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>AgriConnectHub</h3>
+          <p>Empowering India's Farming Future</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="main.html">Dashboard</a></li>
+            <li><a href="feed-back.html">Feedback</a></li>
+            <li><a href="chat.html">AI Assistant</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="/crop_recommendation/">Crop Recommendation</a></li>
+            <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">Yield Prediction</a></li>
+            <li><a href="Disease prediction/template/index.html">Disease Detector</a></li>
+            <li><a href="Crop_Planning/templates/cropplan.html">Crop Planner</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8">
+        &copy; 2025 AgriConnectHub
+      </p>
+    </footer>
+  </body>
+</html>

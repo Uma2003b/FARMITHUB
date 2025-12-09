@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en"
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="description"
+    content="AgriConnectHub - Empowering Agriculture Through Technology. Connect farmers, buyers, and suppliers in India's agricultural ecosystem." />
+  <title>AgriConnectHub - Revolutionizing Agriculture with Technology</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Libertinus+Serif:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+  
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="brand">
+        <a href="#" class="logo">AgriConnectHub</a>
+      </div>
+      <div class="nav-buttons">
+        <select id="languageSelector" class="language-select" onchange="changeLanguage()">
+          <option value="en" selected>English</option>
+          <option value="te">తెలుగు</option>
+        </select>
+        <button class="theme-toggle btn" aria-label="Toggle dark/light mode">
+          <i class="fas fa-sun sun-icon"></i>
+          <i class="fas fa-moon moon-icon"></i>
+          <span class="theme-text">Light</span>
+        </button>
+        <a href="about.html" class="btn btn-secondary">About</a>
+        <a href="login.html" class="btn btn-secondary">Login</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
+    </div>
+  </nav>
+  <script>
+    function changeLanguage() {
+      const selector = document.getElementById('languageSelector');
+      const selectedLang = selector.value;
+      if (selectedLang === 'en') {
+        window.location.href = 'index.html';
+      } else if (selectedLang === 'te') {
+        window.location.href = 'index_telugu.html';
+      }
+    }
+  </script>
+
+  <section class="hero" style="background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/hero.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="text-align: center; max-width: 800px; padding: 2rem;">
+      <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
+        <h2 class="serif" style="color: white; font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;">Cultivate Collaboration. <br><span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">Grow Your Success.</span></h2>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
+          AgriConnectHub AI. Seamlessly connect farmers, packinghouses, and marketing cooperatives with intelligent AI, enhancing efficiency and market responsiveness while preserving independence.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="register.html" style="background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4); transition: all 0.3s ease;">🚀 Get Started</a>
+          <a href="#features" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">📖 Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features loading" id="features" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 6rem 2rem; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='20' cy='20' r='2' fill='%2316a34a' opacity='0.1'/><circle cx='80' cy='40' r='1.5' fill='%2322c55e' opacity='0.1'/><circle cx='40' cy='80' r='1' fill='%234ade80' opacity='0.1'/></svg>&quot;) repeat; animation: float 20s linear infinite;"></div>
+    <div class="features-container" style="position: relative; z-index: 2;">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <div style="display: inline-block; background: rgba(22, 163, 74, 0.1); color: #16a34a; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; border: 1px solid rgba(22, 163, 74, 0.2);">✨ Platform Benefits</div>
+        <h2 class="features-title serif" style="font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, #1e293b, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;">Transform Your Agricultural Operations</h2>
+        <p style="font-size: 1.2rem; color: #64748b; max-width: 600px; margin: 0 auto; line-height: 1.7;">Discover how our AI-powered platform revolutionizes farming through intelligent collaboration</p>
+      </div>
+      <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+        <div style="background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(22, 163, 74, 0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #16a34a, #22c55e);"></div>
+          <div style="font-size: 4rem; margin-bottom: 1.5rem; position: relative;">💰<div style="position: absolute; top: 50%; left: 50%; width: 80px; height: 80px; background: radial-gradient(circle, rgba(22, 163, 74, 0.1) 0%, transparent 70%); border-radius: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.4s ease;"></div></div>
+          <h3 style="font-family: 'Libertinus Serif', serif; font-size: 1.6rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem;">Increased Profitability</h3>
+          <p style="color: #64748b; line-height: 1.7; margin-bottom: 1.5rem;">Optimize production, reduce waste, and capitalize on market opportunities for higher returns.</p>
+          <div style="color: #16a34a; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div style="background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(22, 163, 74, 0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #16a34a, #22c55e);"></div>
+          <div style="font-size: 4rem; margin-bottom: 1.5rem;">⚙️</div>
+          <h3 style="font-family: 'Libertinus Serif', serif; font-size: 1.6rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem;">Operational Efficiency</h3>
+          <p style="color: #64748b; line-height: 1.7; margin-bottom: 1.5rem;">Streamline planning, logistics, and communication, saving time and resources across the chain.</p>
+          <div style="color: #16a34a; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div style="background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(22, 163, 74, 0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #16a34a, #22c55e);"></div>
+          <div style="font-size: 4rem; margin-bottom: 1.5rem;">🛡️</div>
+          <h3 style="font-family: 'Libertinus Serif', serif; font-size: 1.6rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem;">Preserved Independence</h3>
+          <p style="color: #64748b; line-height: 1.7; margin-bottom: 1.5rem;">Collaborate deeply without sacrificing control over your operations or proprietary data.</p>
+          <div style="color: #16a34a; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div style="background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(22, 163, 74, 0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #16a34a, #22c55e);"></div>
+          <div style="font-size: 4rem; margin-bottom: 1.5rem;">♻️</div>
+          <h3 style="font-family: 'Libertinus Serif', serif; font-size: 1.6rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem;">Reduced Waste & Spoilage</h3>
+          <p style="color: #64748b; line-height: 1.7; margin-bottom: 1.5rem;">Better forecasting and logistics minimize overproduction and spoilage throughout the supply chain.</p>
+          <div style="color: #16a34a; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div style="background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(22, 163, 74, 0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #16a34a, #22c55e);"></div>
+          <div style="font-size: 4rem; margin-bottom: 1.5rem;">🤝</div>
+          <h3 style="font-family: 'Libertinus Serif', serif; font-size: 1.6rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem;">Increased Trust & Transparency</h3>
+          <p style="color: #64748b; line-height: 1.7; margin-bottom: 1.5rem;">Build stronger, more reliable relationships with partners based on shared, accurate data.</p>
+          <div style="color: #16a34a; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div style="background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(22, 163, 74, 0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(22, 163, 74, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #16a34a, #22c55e);"></div>
+          <div style="font-size: 4rem; margin-bottom: 1.5rem;">🌱</div>
+          <h3 style="font-family: 'Libertinus Serif', serif; font-size: 1.6rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem;">Sustainable Growth</h3>
+          <p style="color: #64748b; line-height: 1.7; margin-bottom: 1.5rem;">Adapt more quickly to market changes and build a resilient, future-ready agricultural business.</p>
+          <div style="color: #16a34a; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;"><i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Removed scrolling side of images section as requested -->
+
+  <section class="cta">
+    <div class="cta-content">
+    </div>
+  </section>
+
+  <!-- Middle Footer Section -->
+  <section class="middle-footer" aria-label="Middle Footer Section" style="text-align:center; padding: 2rem; background: #f0fdf4; color: #15803d; font-family: 'Poppins', sans-serif;">
+    <h2>Ready to Connect & Grow?</h2>
+    <p>Join the future of agriculture. Discover how AgriConnect AI can transform your operations through intelligent collaboration.</p>
+    <div style="margin-top: 1rem; font-weight: 600;">© TechNoble Solutions All rights reserved.</div>
+  </section>
+
+  <button class="scroll-to-top" id="scrollToTop" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeText = document.querySelector('.theme-text');
+
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    themeText.textContent = currentTheme === 'dark' ? 'Dark' : 'Light';
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeText.textContent = newTheme === 'dark' ? 'Dark' : 'Light';
+    });
+
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add("visible");
+      } else {
+        scrollToTopBtn.classList.remove("visible");
+      }
+    });
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = "running";
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll("section").forEach((section) => {
+      observer.observe(section);
+    });
+
+    window.addEventListener("load", () => {
+      document.body.style.opacity = "1";
+    });
+  </script>
+</body>
+
+</html>

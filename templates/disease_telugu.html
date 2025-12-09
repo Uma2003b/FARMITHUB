@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="te">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>పంట రోగాల గుర్తింపు - AI ఆధారిత నిర్ధారణ</title>
+    <link rel="stylesheet" href="disease.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="full-width-wrapper">
+      <div class="header-nav-wrapper">
+        <header class="uniform-header">
+          <div class="brand">
+            <h2>AgriConnectHub కు స్వాగతం</h2>
+          </div>
+          <div class="header-buttons">
+            <a href="cropCalendar.html" class="calendar-button" title="పంట క్యాలెండర్">
+              <span class="calendar-icon">📅</span>
+              క్యాలెండర్
+            </a>
+            <a href="feed-back.html" class="feedback-button">ఫీడ్‌బ్యాక్</a>
+            <a href="#" class="logout-button" onclick="showLogoutConfirmation()">లాగ్ అవుట్</a>
+            <select id="languageSelector" onchange="changeLanguage()">
+              <option value="te" selected>తెలుగు</option>
+              <option value="en">English</option>
+            </select>
+            <button class="theme-toggle" aria-label="డార్క్/లైట్ మోడ్ మార్చు">
+              <i class="fas fa-sun sun-icon"></i>
+              <i class="fas fa-moon moon-icon"></i>
+              <span class="theme-text">లైట్</span>
+            </button>
+          </div>
+        </header>
+
+        <nav>
+          <ul>
+            <li><a href="/crop_recommendation/">🌱 పంట సిఫార్సు</a></li>
+            <li><a href="/crop_yield/">📊 దిగుబడి అంచనా</a></li>
+            <li><a href="disease_telugu.html">🔬 రోగాల గుర్తింపు</a></li>
+            <li><a href="organic_telugu.html">🌿 ఆర్గానిక్ వ్యవసాయం</a></li>
+            <li><a href="farmer_telugu.html">👥 రైతు నెట్‌వర్క్</a></li>
+            <li><a href="weather_telugu.html">⛅ వాతావరణం</a></li>
+            <li><a href="shopkeeper_telugu.html">🏪 షాప్కీపర్ లిస్టింగ్స్</a></li>
+            <li><a href="chat_telugu.html">🤖 చాట్‌బాట్</a></li>
+            <li><a href="plantation_telugu.html">🌳 విత్తన నిపుణులు</a></li>
+            <li><a href="/crop_planning/">📅 పంట ప్రణాళిక</a></li>
+            <li><a href="./Labour_Alerts/templates/labour_telugu.html">⚠ కార్మిక అలర్ట్స్</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="full-width-section">
+      <div class="full-width-header">
+        <h1>🔬 AI రోగ విశ్లేషణ</h1>
+      </div>
+      <div class="analysis-section" style="max-width:none; border-radius: 0; margin: 0; box-shadow: none; background: #f9f9f9; padding: 1rem 1.5rem;">
+        <div id="modelStatus" class="status-indicator status-success" style="text-align: center; font-weight: bold; margin-bottom: 1rem;">
+          ✅ AI మోడల్ సిద్ధంగా ఉంది - విశ్లేషణ ప్రారంభించడానికి చిత్రం అప్లోడ్ చేయండి
+        </div>
+
+        <div class="upload-container" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center;">
+          <div class="upload-zone" tabindex="0" role="button" aria-label="మీ మొక్క చిత్రం ఇక్కడ అప్లోడ్ చేయండి లేదా డ్రాప్ చేయండి" id="uploadArea" style="flex: 1 1 250px; border: 2px dashed #4caf50; border-radius: 8px; padding: 1rem; cursor: pointer; text-align: center;">
+            <div class="upload-icon" style="font-size: 3rem;">📸</div>
+            <div class="upload-text" style="font-size: 1rem;">
+              <strong>మీ మొక్క చిత్రం ఇక్కడ డ్రాప్ చేయండి</strong><br />
+              లేదా ఫైళ్లను బ్రౌజ్ చేయడానికి క్లిక్ చేయండి<br />
+              <small style="opacity: 0.7;">JPG, PNG, WebP ఫార్మాట్లను మద్దతు ఇస్తుంది</small>
+            </div>
+          </div>
+          <input
+            type="file"
+            id="fileInput"
+            class="file-input"
+            accept="image/*"
+            aria-label="మొక్క చిత్రం అప్లోడ్ చేయండి"
+            style="display: none;"
+          />
+          <div style="flex: 1 1 250px; text-align: center;">
+            <button class="btn" id="analyzeBtn" disabled aria-disabled="true" aria-label="మొక్క ఆరోగ్యాన్ని విశ్లేషించండి" style="padding: 0.75rem 1.5rem; font-size: 1.1rem; background-color: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer;">
+              🔍 మొక్క ఆరోగ్యాన్ని విశ్లేషించండి
+            </button>
+          </div>
+        </div>
+
+        <div class="results-zone" aria-live="polite" aria-atomic="true" style="margin-top: 1rem;">
+          <div class="preview-container" id="previewContainer" aria-label="చిత్ర ప్రివ్యూ" style="text-align: center; min-height: 150px; border: 1px solid #ddd; border-radius: 6px; padding: 1rem;">
+            <div class="no-results" style="font-size: 1.2rem;">📷 ప్రారంభించడానికి చిత్రం అప్లోడ్ చేయండి</div>
+          </div>
+
+          <div class="loading" id="loading" role="status" aria-live="assertive" aria-label="AI మీ మొక్కను విశ్లేషిస్తోంది" style="display: none; text-align: center; margin-top: 1rem;">
+            <div class="spinner" style="margin: 0 auto 0.5rem; width: 40px; height: 40px; border: 4px solid #ccc; border-top-color: #4caf50; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+            <p>🧠 AI మీ మొక్కను విశ్లేషిస్తోంది...</p>
+          </div>
+
+          <div id="results" aria-label="విశ్లేషణ ఫలితాలు" style="margin-top: 1rem;"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="disease.js"></script>
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .site-footer {background: linear-gradient(135deg,#2e7d32,#66bb6a); color:#fff; margin-top:auto; padding: 2rem 1.25rem;}
+      .site-footer .footer-inner {max-width:1200px;margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; align-items:flex-start;}
+      .footer-brand {display:flex;flex-direction:column;gap:.5rem;align-items: center;}
+      .footer-logo {width:48px;height:48px;border-radius:8px;object-fit:cover;background:#fff;padding:4px}
+      .site-footer h3,.site-footer h4{margin:0 0 .5rem 0}
+      .site-footer p {margin:0;opacity:0.9}
+      .site-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+      .site-footer a{color:#fff;text-decoration:none;opacity:0.9;width:max-content;background-color: none;}
+      .site-footer a:hover{opacity:1;text-decoration:underline}
+      .footer-links{display:flex;flex-direction:column;align-items: center;}
+    </style>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>AgriConnectHub</h3>
+          <p>భారత రైతుల భవిష్యత్తును శక్తివంతం చేయడం</p>
+        </div>
+        <div class="footer-links">
+          <h4>త్వరిత లింకులు</h4>
+          <ul>
+            <li><a href="index.html">హోమ్</a></li>
+            <li><a href="main.html">డాష్‌బోర్డ్</a></li>
+            <li><a href="feed-back.html">ఫీడ్‌బ్యాక్</a></li>
+            <li><a href="chat.html">AI అసిస్టెంట్</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>సాధనాలు</h4>
+          <ul>
+            <li><a href="/crop_recommendation/">పంట సిఫార్సు</a></li>
+            <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">దిగుబడి అంచనా</a></li>
+            <li><a href="Disease prediction/template/index.html">రోగాల గుర్తింపు</a></li>
+            <li><a href="Crop_Planning/templates/cropplan.html">పంట ప్రణాళిక</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8">&copy; 2025 AgriConnectHub</p>
+    </footer>
+
+    <script>
+      function changeLanguage() {
+        const selector = document.getElementById('languageSelector');
+        const selectedLang = selector.value;
+        if (selectedLang === 'en') {
+          window.location.href = 'disease.html';
+        } else if (selectedLang === 'te') {
+          window.location.href = 'disease_telugu.html';
+        }
+      }
+    </script>
+  </body>
+</html>
