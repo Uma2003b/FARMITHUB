@@ -1,42 +1,51 @@
-from flask import Flask, render_template, send_from_directory, redirect, request, jsonify, Blueprint, send_file, abort
-import os
-import re
+from flask import Flask, render_template, send_from_directory, jsonify, request, abort, Blueprint
 import requests
-import sys
-from functools import wraps
-from io import BytesIO
-from datetime import datetime
-import joblib
-import numpy as np
+import os
 
-sys.path.append(os.path.join(os.getcwd(), 'Crop_Yield_Prediction', 'crop_yield_app'))
+class MultiTemplateFinder(Flask):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.jinja_loader.searchpath.extend([
+            os.path.join(self.root_path, 'Crop Recommendation', 'templates'),
+            os.path.join(self.root_path, 'Crop_Planning', 'templates'),
+            os.path.join(self.root_path, 'Crop_Prices_Tracker', 'templates'),
+            os.path.join(self.root_path, 'Crop_Yield_Prediction', 'crop_yield_app', 'templates'),
+            os.path.join(self.root_path, 'Labour_Alerts', 'templates'),
+            os.path.join(self.root_path, 'Forum'),
+            os.path.join(self.root_path, 'Sugarcane_FRP', 'templates'),
+            os.path.join(self.root_path, 'District_Procurement', 'templates'),
+        ])
 
-from crop_recommendation_blueprint import crop_recommendation_bp
-from crop_price_tracker_blueprint import crop_price_tracker_bp
-from Crop_Yield_Prediction.crop_yield_app.crop_yield_blueprint import crop_yield_bp
-from labour_alerts_blueprint import labour_alerts_bp
-from Crop_Planning.crop_planning_blueprint import crop_planning_bp
-from forum_loan_blueprint import forum_loan_bp
-from sugarcane_frp_blueprint import sugarcane_frp_bp
-from district_procurement_blueprint import district_procurement_bp
+application = MultiTemplateFinder(__name__, static_folder='static', template_folder='templates')
 
-application = Flask(__name__, static_folder='static', template_folder='templates')
+# Create Blueprint for crop recommendation
+crop_recommendation_bp = Blueprint('crop_recommendation', __name__)
 
-# Add default test user for login testing
-if not hasattr(application, 'users'):
-    application.users = {}
-application.users['test@example.com'] = {'password': 'test123', 'role': 'user', 'fullname': 'Test User'}
+# Crop Price Tracker Data
+API_URL = "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
+API_PARAMS = {"api-key": "579b464db66ec23bdd000001c43ef34767ce496343897dfb1893102b", "format": "json", "limit": 2000}
 
+def load_crop_data():
+    try:
+        response = requests.get(API_URL, params=API_PARAMS, timeout=10)
+        response.raise_for_status()
+        return response.json().get("records", [])
+    except:
+        return []
 
+CROP_DATA = load_crop_data()
 
-application.register_blueprint(crop_price_tracker_bp, url_prefix='/crop_price_tracker')
-application.register_blueprint(crop_yield_bp, url_prefix='/crop_yield')
-application.register_blueprint(labour_alerts_bp, url_prefix='/labour_alerts')
-application.register_blueprint(crop_planning_bp, url_prefix='/crop_planning')
-application.register_blueprint(forum_loan_bp, url_prefix='/forum_loan')
-application.register_blueprint(crop_recommendation_bp, url_prefix='/crop_recommendation')
-application.register_blueprint(sugarcane_frp_bp, url_prefix='/sugarcane_frp')
-application.register_blueprint(district_procurement_bp, url_prefix='/district_procurement')
+# Load Crop Recommendation ML Model
+try:
+    import joblib
+    import numpy as np
+    crop_model = joblib.load(os.path.join('Crop Recommendation', 'model', 'rf_model.pkl'))
+    crop_label_encoder = joblib.load(os.path.join('Crop Recommendation', 'model', 'label_encoder.pkl'))
+    print("Crop recommendation model loaded successfully")
+except Exception as e:
+    crop_model = None
+    crop_label_encoder = None
+    print(f"Could not load crop recommendation model: {e}")
 
 @application.route('/')
 def home():
@@ -180,32 +189,236 @@ def plantation_telugu():
     return render_template('plantation_telugu.html')
 
 @application.route('/Crop_Planning/templates/cropplan.html')
+@application.route('/crop_planning/')
 def cropplan():
-    return render_template('Crop_Planning/templates/cropplan.html')
+    return render_template('cropplan.html')
 
 @application.route('/Labour_Alerts/templates/labour.html')
+@application.route('/labour_alerts/')
 def labour():
-    return render_template('Labour_Alerts/templates/labour.html')
+    return render_template('labour.html')
 
 @application.route('/Labour_Alerts/templates/labour_telugu.html')
 def labour_telugu():
-    return render_template('Labour_Alerts/templates/labour_telugu.html')
+    return render_template('labour_telugu.html')
 
 @application.route('/Forum/forum.html')
+@application.route('/forum_loan/')
 def forum():
-    return render_template('Forum/forum.html')
+    return render_template('forum.html')
 
 @application.route('/Forum/forum_telugu.html')
 def forum_telugu():
-    return render_template('Forum/forum_telugu.html')
+    return render_template('forum_telugu.html')
+
+@crop_recommendation_bp.route('/')
+def index():
+    return render_template('crop_recommendation.html')
+
+@crop_recommendation_bp.route('/')
+def home():
+    return render_template('crop_recommendation.html')
+
+@crop_recommendation_bp.route('/predict', methods=['POST'])
+def predict():
+    if not crop_model or not crop_label_encoder:
+        return render_template('result.html', crop=None, params=None, error='ML model not loaded')
+    
+    try:
+        N = float(request.form['N'])
+        P = float(request.form['P'])
+        K = float(request.form['K'])
+        temperature = float(request.form['temperature'])
+        humidity = float(request.form['humidity'])
+        ph = float(request.form['ph'])
+        rainfall = float(request.form['rainfall'])
+        
+        input_data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
+        prediction = crop_model.predict(input_data)
+        crop = crop_label_encoder.inverse_transform(prediction)[0]
+        
+        params = {
+            'N': N, 'P': P, 'K': K,
+            'temperature': temperature,
+            'humidity': humidity,
+            'ph': ph,
+            'rainfall': rainfall,
+            'soil_type': None
+        }
+        
+        return render_template('result.html', crop=crop, params=params, error=None)
+    except Exception as e:
+        return render_template('result.html', crop=None, params=None, error=str(e))
+
+@crop_recommendation_bp.route('/download_report', methods=['POST'])
+def download_report():
+    return jsonify({'error': 'PDF download not available'}), 503
+
+application.register_blueprint(crop_recommendation_bp, url_prefix='/crop_recommendation')
+
+crop_yield_bp = Blueprint('crop_yield', __name__)
+
+@crop_yield_bp.route('/')
+def index():
+    return render_template('crop_yield.html')
+
+@crop_yield_bp.route('/predict', methods=['POST'])
+def predict():
+    return jsonify({'error': 'ML model not available. Please upgrade hosting plan.'}), 503
+
+application.register_blueprint(crop_yield_bp, url_prefix='/crop_yield')
+
+# Sugarcane FRP Blueprint
+sugarcane_frp_bp = Blueprint('sugarcane_frp', __name__, 
+                             static_folder=os.path.join('Sugarcane_FRP', 'static'),
+                             static_url_path='/static')
+
+SUGARCANE_API_URL = "https://api.data.gov.in/resource/6546457d-a621-4a61-b114-8b3ad0888142"
+SUGARCANE_API_PARAMS = {"api-key": "579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b", "format": "json", "limit": 10}
+
+def load_sugarcane_data():
+    try:
+        response = requests.get(SUGARCANE_API_URL, params=SUGARCANE_API_PARAMS, timeout=10)
+        response.raise_for_status()
+        return response.json().get("records", [])
+    except:
+        return []
+
+SUGARCANE_DATA = load_sugarcane_data()
+
+@sugarcane_frp_bp.route('/')
+@sugarcane_frp_bp.route('/sugarcane_frp', methods=['GET', 'POST'])
+def index():
+    seasons = sorted({record['sugar_season'] for record in SUGARCANE_DATA if record.get('sugar_season')})
+    result = SUGARCANE_DATA
+    error = None
+    
+    if request.method == 'POST':
+        season = request.form.get('season', '').strip()
+        if season:
+            result = [r for r in SUGARCANE_DATA if r.get('sugar_season', '') == season]
+            if not result:
+                error = "No data found for the selected season."
+    
+    result = sorted(result, key=lambda x: x.get('sugar_season', ''))
+    return render_template('sugarcane_frp.html', seasons=seasons, result=result, error=error)
+
+application.register_blueprint(sugarcane_frp_bp, url_prefix='/sugarcane_frp')
+
+# District Procurement Blueprint
+district_procurement_bp = Blueprint('district_procurement', __name__,
+                                   static_folder=os.path.join('District_Procurement', 'static'),
+                                   static_url_path='/static')
+
+DISTRICT_API_URL = "https://api.data.gov.in/resource/3938e80b-28ce-42d8-b9e8-b8fa0a802172"
+DISTRICT_API_KEY = "579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b"
+
+@district_procurement_bp.route('/')
+def index():
+    season = request.args.get('season', '')
+    district = request.args.get('district', '')
+    commodity = request.args.get('commodity', '')
+    
+    params = {'api-key': DISTRICT_API_KEY, 'format': 'json', 'limit': 1000}
+    if season:
+        params['filters[season]'] = season
+    if district:
+        params['filters[district]'] = district
+    if commodity:
+        params['filters[commodity]'] = commodity
+    
+    try:
+        response = requests.get(DISTRICT_API_URL, params=params, timeout=10)
+        data = response.json()
+        records = data.get('records', [])
+    except:
+        records = []
+    
+    seasons = sorted(set(record.get('season', '') for record in records if record.get('season')))
+    districts = sorted(set(record.get('district', '') for record in records if record.get('district')))
+    commodities = sorted(set(record.get('commodity', '') for record in records if record.get('commodity')))
+    
+    return render_template('district_procurement.html', records=records, seasons=seasons, 
+                         districts=districts, commodities=commodities, 
+                         selected_season=season, selected_district=district, selected_commodity=commodity)
+
+@district_procurement_bp.route('/api/data')
+def api_data():
+    season = request.args.get('season', '')
+    district = request.args.get('district', '')
+    commodity = request.args.get('commodity', '')
+    
+    params = {'api-key': DISTRICT_API_KEY, 'format': 'json', 'limit': 1000}
+    if season:
+        params['filters[season]'] = season
+    if district:
+        params['filters[district]'] = district
+    if commodity:
+        params['filters[commodity]'] = commodity
+    
+    try:
+        response = requests.get(DISTRICT_API_URL, params=params, timeout=10)
+        data = response.json()
+        return jsonify(data.get('records', []))
+    except:
+        return jsonify([])
+
+application.register_blueprint(district_procurement_bp, url_prefix='/district_procurement')
+
+crop_price_tracker_bp = Blueprint('crop_price_tracker', __name__, 
+                                     static_folder=os.path.join('Crop_Prices_Tracker', 'static'),
+                                     static_url_path='/static')
+
+@crop_price_tracker_bp.route('/')
+@crop_price_tracker_bp.route('/crop_price_tracker', methods=['GET', 'POST'])
+def index():
+    try:
+        crops = sorted({record['commodity'] for record in CROP_DATA if record.get('commodity')})
+        result = []
+        error = None
+
+        if request.method == 'POST':
+            crop = request.form.get('crop', '').strip()
+            state = request.form.get('state', '').strip()
+            market = request.form.get('market', '').strip()
+
+            if crop and state and market:
+                result = [r for r in CROP_DATA if r.get('commodity', '').lower() == crop.lower() and r.get('state', '').lower() == state.lower() and r.get('market', '').lower() == market.lower()]
+                if not result:
+                    error = "No data found for the given crop, state, and market."
+            else:
+                error = "All fields are required."
+
+        return render_template('crop_price_tracker.html', crops=crops, result=result, error=error)
+    except Exception as e:
+        return f"Error: {str(e)}", 500
+
+@crop_price_tracker_bp.route('/get_states')
+def get_states():
+    crop = request.args.get('crop', '').strip().lower()
+    if not crop:
+        return jsonify([])
+    states = sorted({r['state'] for r in CROP_DATA if r.get('commodity', '').lower() == crop})
+    return jsonify(states)
+
+@crop_price_tracker_bp.route('/get_markets')
+def get_markets():
+    crop = request.args.get('crop', '').strip().lower()
+    state = request.args.get('state', '').strip().lower()
+    if not crop or not state:
+        return jsonify([])
+    markets = sorted({r['market'] for r in CROP_DATA if r.get('commodity', '').lower() == crop and r.get('state', '').lower() == state})
+    return jsonify(markets)
+
+application.register_blueprint(crop_price_tracker_bp, url_prefix='/crop_price_tracker')
 
 @application.route('/Crop_Prices_Tracker/templates/crop_price_tracker.html')
-def crop_price_tracker():
-    return render_template('Crop_Prices_Tracker/templates/crop_price_tracker.html')
+def crop_price_tracker_direct():
+    return render_template('crop_price_tracker.html', crops=sorted({record['commodity'] for record in CROP_DATA if record.get('commodity')}), result=[], error=None)
 
 @application.route('/Crop_Prices_Tracker/templates/crop_price_tracker_telugu.html')
 def crop_price_tracker_telugu():
-    return render_template('Crop_Prices_Tracker/templates/crop_price_tracker_telugu.html')
+    return render_template('crop_price_tracker_telugu.html')
 
 @application.route('/cropCalendar.html')
 def crop_calendar():
@@ -215,71 +428,5 @@ def crop_calendar():
 def feedback():
     return render_template('feed-back.html')
 
-# Sample data for crop states and markets
-crop_states = {
-    'Wheat': ['Punjab', 'Haryana', 'Uttar Pradesh'],
-    'Rice': ['West Bengal', 'Tamil Nadu', 'Andhra Pradesh'],
-    'Maize': ['Karnataka', 'Maharashtra', 'Telangana']
-}
-
-state_markets = {
-    'Punjab': ['Amritsar', 'Ludhiana', 'Jalandhar'],
-    'Haryana': ['Karnal', 'Panipat', 'Ambala'],
-    'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Varanasi'],
-    'West Bengal': ['Kolkata', 'Siliguri', 'Durgapur'],
-    'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai'],
-    'Andhra Pradesh': ['Vijayawada', 'Visakhapatnam', 'Guntur'],
-    'Karnataka': ['Bangalore', 'Mysore', 'Hubli'],
-    'Maharashtra': ['Mumbai', 'Pune', 'Nagpur'],
-    'Telangana': ['Hyderabad', 'Warangal', 'Nizamabad']
-}
-
-@application.route('/crop_price_tracker/get_states')
-def get_states():
-    crop = request.args.get('crop')
-    states = crop_states.get(crop, [])
-    return jsonify(states)
-
-@application.route('/crop_price_tracker/get_markets')
-def get_markets():
-    state = request.args.get('state')
-    markets = state_markets.get(state, [])
-    return jsonify(markets)
-
-@application.route('/crop_price_tracker/track_prices', methods=['POST'])
-def track_prices():
-    # This route will be deprecated in favor of AJAX get_prices endpoint
-    crop = request.form.get('crop')
-    state = request.form.get('state')
-    market = request.form.get('market')
-
-    # Mock sample price results
-    sample_results = [
-        {'arrival_date': '2024-06-01', 'market': market, 'state': state, 'modal_price': 1500},
-        {'arrival_date': '2024-06-02', 'market': market, 'state': state, 'modal_price': 1520},
-        {'arrival_date': '2024-06-03', 'market': market, 'state': state, 'modal_price': 1490},
-    ]
-
-    return render_template('Crop_Prices_Tracker/templates/crop_price_tracker.html', crops=crop_states.keys(), result=sample_results)
-
-@application.route('/crop_price_tracker/get_prices')
-def get_prices():
-    crop = request.args.get('crop')
-    state = request.args.get('state')
-    market = request.args.get('market')
-
-    # Validate inputs
-    if not crop or not state or not market:
-        return jsonify({'error': 'Missing required parameters'}), 400
-
-    # Mock sample price results
-    sample_results = [
-        {'arrival_date': '2024-06-01', 'market': market, 'state': state, 'modal_price': 1500},
-        {'arrival_date': '2024-06-02', 'market': market, 'state': state, 'modal_price': 1520},
-        {'arrival_date': '2024-06-03', 'market': market, 'state': state, 'modal_price': 1490},
-    ]
-
-    return jsonify(sample_results)
-
 if __name__ == '__main__':
-    application.run(debug=True, port=5000)
+    application.run(debug=True)
