@@ -129,12 +129,7 @@
     </div>
   </section>
 
-  <!-- Middle Footer Section -->
-  <section class="middle-footer" aria-label="Middle Footer Section" style="text-align:center; padding: 2rem; background: #f0fdf4; color: #15803d; font-family: 'Poppins', sans-serif;">
-    <h2>Ready to Connect & Grow?</h2>
-    <p>Join the future of agriculture. Discover how AgriConnect AI can transform your operations through intelligent collaboration.</p>
-    <div style="margin-top: 1rem; font-weight: 600;">© TechNoble Solutions All rights reserved.</div>
-  </section>
+  <!-- Shared Footer will be loaded by JavaScript -->
 
   <button class="scroll-to-top" id="scrollToTop" title="Back to top">
     <i class="fas fa-arrow-up"></i>
@@ -197,6 +192,47 @@
 
     window.addEventListener("load", () => {
       document.body.style.opacity = "1";
+    });
+  </script>
+        <script>
+    // Shared Footer Loader
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create footer if it doesn't exist
+      if (!document.querySelector('.site-footer')) {
+        const footerHTML = `
+          <style>
+            .site-footer {
+              background: linear-gradient(135deg, #2e7d32, #66bb6a);
+              color: #fff;
+              margin-top: auto;
+              padding: 1.5rem;
+              text-align: center;
+              font-size: 0.9rem;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .site-footer p {
+              margin: 0;
+              text-align: center;
+            }
+            .site-footer a {
+              color: #fff;
+              text-decoration: none;
+            }
+            .site-footer a:hover {
+              text-decoration: underline;
+            }
+          </style>
+          <footer class="site-footer">
+            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+          </footer>
+        `;
+        
+        // Insert footer before closing body tag
+        document.body.insertAdjacentHTML('beforeend', footerHTML);
+      }
     });
   </script>
 </body>

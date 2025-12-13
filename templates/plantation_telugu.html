@@ -539,32 +539,47 @@
         align-items: center;
       }
     </style>
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <h3>AgriConnectHub</h3>
-          <p>భారత రైతుల భవిష్యత్తును శక్తివంతం చేయడం</p>
-        </div>
-        <div class="footer-links">
-          <h4>త్వరిత లింకులు</h4>
-          <ul>
-            <li><a href="index.html">హోమ్</a></li>
-            <li><a href="main.html">డాష్‌బోర్డ్</a></li>
-            <li><a href="feed-back.html">ఫీడ్‌బ్యాక్</a></li>
-            <li><a href="chat_telugu.html">AI అసిస్టెంట్</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>సాధనాలు</h4>
-          <ul>
-            <li><a href="/crop_recommendation/">పంట సిఫార్సు</a></li>
-            <li><a href="Crop Yield Prediction/crop_yield_app/templates/index.html">దిగుబడి అంచనా</a></li>
-            <li><a href="Disease prediction/template/index.html">రోగాల గుర్తింపు</a></li>
-            <li><a href="Crop_Planning/templates/cropplan.html">పంట ప్రణాళిక</a></li>
-          </ul>
-        </div>
-      </div>
-      <p style="margin-top: 2rem; opacity: 0.8">&copy; 2025 AgriConnectHub</p>
-    </footer>
-  </body>
+    
+            <script>
+    // Shared Footer Loader
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create footer if it doesn't exist
+      if (!document.querySelector('.site-footer')) {
+        const footerHTML = `
+          <style>
+            .site-footer {
+              background: linear-gradient(135deg, #2e7d32, #66bb6a);
+              color: #fff;
+              margin-top: auto;
+              padding: 1.5rem;
+              text-align: center;
+              font-size: 0.9rem;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .site-footer p {
+              margin: 0;
+              text-align: center;
+            }
+            .site-footer a {
+              color: #fff;
+              text-decoration: none;
+            }
+            .site-footer a:hover {
+              text-decoration: underline;
+            }
+          </style>
+          <footer class="site-footer">
+            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+          </footer>
+        `;
+        
+        // Insert footer before closing body tag
+        document.body.insertAdjacentHTML('beforeend', footerHTML);
+      }
+    });
+  </script>^</body>
 </html>
+

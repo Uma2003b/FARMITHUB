@@ -308,21 +308,12 @@ crop_yield_bp = Blueprint('crop_yield', __name__)
 
 @crop_yield_bp.route('/')
 def index():
-    # Complete dropdown options from dataset
+    # Complete dropdown options from dataset (always use full lists)
     crops = ['Arecanut', 'Arhar/Tur', 'Bajra', 'Banana', 'Barley', 'Black pepper', 'Cardamom', 'Cashewnut', 'Castor seed', 'Coconut', 'Coriander', 'Cotton(lint)', 'Dry chillies', 'Garlic', 'Ginger', 'Gram', 'Groundnut', 'Horse-gram', 'Jowar', 'Jute', 'Khesari', 'Linseed', 'Maize', 'Masoor', 'Mesta', 'Moong(Green Gram)', 'Niger seed', 'Onion', 'Other Cereals', 'Other Kharif pulses', 'Other Rabi pulses', 'Peas & beans (Pulses)', 'Potato', 'Ragi', 'Rapeseed &Mustard', 'Rice', 'Safflower', 'Sannhamp', 'Sesamum', 'Small millets', 'Soyabean', 'Sugarcane', 'Sunflower', 'Sweet potato', 'Tapioca', 'Tobacco', 'Turmeric', 'Urad', 'Wheat', 'other oilseeds']
     
     seasons = ['Autumn', 'Kharif', 'Rabi', 'Summer', 'Whole Year', 'Winter']
     
     states = ['Andhra Pradesh', 'Assam', 'Goa', 'Karnataka', 'Kerala', 'Meghalaya', 'Puducherry', 'Tamil Nadu', 'West Bengal']
-    
-    # If encoders are available, use their classes instead
-    if crop_encoder and season_encoder and state_encoder:
-        try:
-            crops = list(crop_encoder.classes_)
-            seasons = list(season_encoder.classes_)
-            states = list(state_encoder.classes_)
-        except:
-            pass  # Use default lists above
     return render_template('index_fixed.html', crops=crops, seasons=seasons, states=states)
 
 @crop_yield_bp.route('/predict', methods=['POST'])
@@ -419,31 +410,16 @@ def predict():
 @crop_yield_bp.route('/api/crops')
 def get_crops():
     crops = ['Arecanut', 'Arhar/Tur', 'Bajra', 'Banana', 'Barley', 'Black pepper', 'Cardamom', 'Cashewnut', 'Castor seed', 'Coconut', 'Coriander', 'Cotton(lint)', 'Dry chillies', 'Garlic', 'Ginger', 'Gram', 'Groundnut', 'Horse-gram', 'Jowar', 'Jute', 'Khesari', 'Linseed', 'Maize', 'Masoor', 'Mesta', 'Moong(Green Gram)', 'Niger seed', 'Onion', 'Other Cereals', 'Other Kharif pulses', 'Other Rabi pulses', 'Peas & beans (Pulses)', 'Potato', 'Ragi', 'Rapeseed &Mustard', 'Rice', 'Safflower', 'Sannhamp', 'Sesamum', 'Small millets', 'Soyabean', 'Sugarcane', 'Sunflower', 'Sweet potato', 'Tapioca', 'Tobacco', 'Turmeric', 'Urad', 'Wheat', 'other oilseeds']
-    if crop_encoder:
-        try:
-            return jsonify(list(crop_encoder.classes_))
-        except:
-            pass
     return jsonify(crops)
 
 @crop_yield_bp.route('/api/seasons')
 def get_seasons():
     seasons = ['Autumn', 'Kharif', 'Rabi', 'Summer', 'Whole Year', 'Winter']
-    if season_encoder:
-        try:
-            return jsonify(list(season_encoder.classes_))
-        except:
-            pass
     return jsonify(seasons)
 
 @crop_yield_bp.route('/api/states')
 def get_states():
     states = ['Andhra Pradesh', 'Assam', 'Goa', 'Karnataka', 'Kerala', 'Meghalaya', 'Puducherry', 'Tamil Nadu', 'West Bengal']
-    if state_encoder:
-        try:
-            return jsonify(list(state_encoder.classes_))
-        except:
-            pass
     return jsonify(states)
 
 application.register_blueprint(crop_yield_bp, url_prefix='/crop_yield')
