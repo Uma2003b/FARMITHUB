@@ -298,23 +298,7 @@
       </div>
     </header>
 
-    <nav>
-      <ul>
-        <li><a href="/crop_recommendation/">🌱 Crop Recommendation</a></li>
-        <li><a href="/crop_yield/">📊 Yield Prediction</a></li>
-        <li><a href="disease.html">🔬 Disease Prediction</a></li>
-        <li><a href="organic.html">🌿 Organic Farming</a></li>
-        <li><a href="farmer.html">👥 Farmer Network</a></li>
-        <li><a href="weather.html">⛅ Weather Check</a></li>
-        <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
-        <li><a href="chat.html">🤖 ChatBot</a></li>
-        <li><a href="plantation.html">🌳 Plantation</a></li>
-        <li><a href="/crop_planning/">📅 Crop Planning</a></li>
-        <li><a href="./Labour_Alerts/templates/labour.html">⚠ Labour Alerts</a></li>
-        <li><a href="/sugarcane_frp/">🍯 Sugarcane FRP</a></li>
-        <li><a href="/district_procurement/">📦 District Procurement</a></li>
-      </ul>
-    </nav>
+    
   </div>
 
   <main>
@@ -326,205 +310,212 @@
       </p>
     </div>
 
-    <!-- Grid Section (Cards) -->
-    <section class="grid-container">
+    <!-- Simple List Interface -->
+    <section class="apps-list">
+      <style>
+        .apps-list {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 15px;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+        .app-item {
+          display: flex;
+          align-items: center;
+          background: linear-gradient(135deg, #fff, #f8f9fa);
+          padding: 20px;
+          border-radius: 12px;
+          text-decoration: none;
+          color: #333;
+          border: 1px solid #e0e0e0;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+        }
+        .app-item::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(135deg, #4caf50, #66bb6a);
+          transform: scaleY(0);
+          transition: transform 0.3s ease;
+        }
+        .app-item:hover {
+          background: linear-gradient(135deg, #f0f8f0, #e8f5e8);
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+          text-decoration: none;
+          color: #333;
+        }
+        .app-item:hover::before {
+          transform: scaleY(1);
+        }
+        .app-icon {
+          font-size: 2.5em;
+          margin-right: 15px;
+          filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+        .app-content h3 {
+          margin: 0 0 5px 0;
+          font-size: 1.3em;
+          color: #2e7d32;
+          font-weight: 600;
+        }
+        .app-content p {
+          margin: 0;
+          font-size: 0.95em;
+          color: #666;
+          line-height: 1.4;
+        }
+        [data-theme="dark"] .app-item {
+          background: linear-gradient(135deg, #3d3d3d, #2d2d2d);
+          color: #fff;
+          border-color: #505050;
+        }
+        [data-theme="dark"] .app-item:hover {
+          background: linear-gradient(135deg, #4d4d4d, #3d3d3d);
+          color: #fff;
+        }
+        [data-theme="dark"] .app-content h3 {
+          color: #66bb6a;
+        }
+        [data-theme="dark"] .app-content p {
+          color: #ccc;
+        }
+        @media (max-width: 768px) {
+          .apps-list {
+            grid-template-columns: 1fr;
+            padding: 10px;
+          }
+          .app-item {
+            padding: 15px;
+          }
+        }
+      </style>
 
-
-      <a href="/crop_yield/" class="grid-item">
-        <img src="images/yield.avif" alt="Yield Prediction" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Yield Prediction</h3>
-          <p>
-            Predict the expected yield for different crops using advanced
-            machine learning models and historical data.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">ML Analytics</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="disease.html" class="grid-item">
-        <img src="images/disease.avif" alt="Disease Prediction" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Disease Prediction</h3>
-          <p>
-            Detect plant diseases early and get preventive measures and
-            treatment advice to protect your crops.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Early Detection</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="organic.html" class="grid-item">
-        <img src="images/organic.jpg" alt="Organic Farming Guide" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Organic Farming Guide</h3>
-          <p>
-            Learn sustainable organic practices—from soil preparation to
-            eco-friendly pest control and certification processes.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Sustainable</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="weather.html" class="grid-item">
-        <img src="images/weather.webp" alt="Weather check" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Weather Check</h3>
-          <p>
-            Check current weather of your place and weather for upcoming hours and days to plan your farming practices.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Real-time</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="farmer.html" class="grid-item">
-        <img src="images/farmer.avif" alt="Farmer Connection" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Farmer Connection</h3>
-          <p>
-            Connect with fellow farmers, share experiences, and access
-            resources to improve your farming practices.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Community</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="shopkeeper.html" class="grid-item">
-        <img src="images/shopkeeper.avif" alt="Shopkeeper Listings" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Shopkeeper Listings</h3>
-          <p>
-            Discover local shopkeepers offering quality agricultural products
-            and services tailored to your needs.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Local Network</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="chat.html" class="grid-item">
-        <img src="images/Community.jpg" alt="Community Chat" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>AI ChatBot</h3>
-          <p>
-            Get instant answers to your farming questions with our intelligent
-            chatbot. Cultivating Knowledge, Harvesting Growth.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">24/7 Support</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="plantation.html" class="grid-item">
-        <img src="images/Plantation.avif" alt="Plantation Guidance" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Plantation Guidance</h3>
-          <p>
-            Receive expert advice on plantation techniques, crop selection,
-            and sustainable farming methods.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Expert Tips</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="Crop_Planning/templates/cropplan.html" class="grid-item">
-        <img src="images/Cropplan.jpg" alt="Crop Planning" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Crop Planning</h3>
-          <p>
-            Plan your season with confidence and unlock your farm's true
-            potential for a more profitable and sustainable future.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Strategic</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="Labour_Alerts/templates/labour.html" class="grid-item">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStjJBgIGmDDh6NzJSUF8AmM_TuDO_MEPiOIA&s"
-          alt="Schedule Labour & Alerts" loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Labour Scheduling & Alerts</h3>
-          <p>
-            Receive real-world updates related to weather, jobs, government
-            subsidies and more to optimize your operations.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Real-time</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="Forum/forum.html" class="grid-item">
-      <img src="https://cdn-icons-png.flaticon.com/512/3063/3063826.png"
-     alt="Farmer Forum"
-     loading="lazy"
-     style="width:100%; height:200px; object-fit:cover; border-radius:8px;" />
-     
-    <div class="grid-item-content">
-     <h3>Farmer Forum</h3>
-     <p>
-      Connect with other farmers, share advice, and discuss tips for improving yields and efficiency.
-     </p>
-     <div class="grid-item-footer">
-      <span class="feature-badge">Community</span>
-      <span class="arrow-icon">→</span>
-    </div>
-  </div>
-</a>
-
-      <a href="/crop_recommendation/" class="grid-item">
-        <img src="images/crop.avif" alt="Crop Recommendation" loading="lazy" />
-        <div class="grid-item-content">
+      <a href="/crop_recommendation/" class="app-item">
+        <div class="app-icon">🌱</div>
+        <div class="app-content">
           <h3>Crop Recommendation</h3>
-          <p>
-            Get personalized crop suggestions based on your soil and environmental conditions using AI-powered analysis.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">AI Powered</span>
-            <span class="arrow-icon">→</span>
-          </div>
+          <p>AI-powered crop suggestions for your soil</p>
         </div>
       </a>
 
-      <a href="/crop_price_tracker/crop_price_tracker" class="grid-item">
-        <img src="https://d3nn873nee648n.cloudfront.net/900x600/10734/14-SP305920.jpg" alt="Crop Price Tracker"
-          loading="lazy" />
-        <div class="grid-item-content">
-          <h3>Crop Price Tracker</h3>
-          <p>
-            Track real-time mandi prices for crops across states and markets
-            to make informed selling decisions.
-          </p>
-          <div class="grid-item-footer">
-            <span class="feature-badge">Market Data</span>
-            <span class="arrow-icon">→</span>
-          </div>
+      <a href="/crop_yield/" class="app-item">
+        <div class="app-icon">📊</div>
+        <div class="app-content">
+          <h3>Yield Prediction</h3>
+          <p>Predict crop yield with ML models</p>
+        </div>
+      </a>
+
+      <a href="disease.html" class="app-item">
+        <div class="app-icon">🔬</div>
+        <div class="app-content">
+          <h3>Disease Detection</h3>
+          <p>Early plant disease identification</p>
+        </div>
+      </a>
+
+      <a href="weather.html" class="app-item">
+        <div class="app-icon">⛅</div>
+        <div class="app-content">
+          <h3>Weather Check</h3>
+          <p>Real-time weather for farming</p>
+        </div>
+      </a>
+
+      <a href="/crop_planning/" class="app-item">
+        <div class="app-icon">📅</div>
+        <div class="app-content">
+          <h3>Crop Planning</h3>
+          <p>Strategic seasonal farm planning</p>
+        </div>
+      </a>
+
+      <a href="/crop_price_tracker/crop_price_tracker" class="app-item">
+        <div class="app-icon">💰</div>
+        <div class="app-content">
+          <h3>Price Tracker</h3>
+          <p>Live mandi prices & market rates</p>
+        </div>
+      </a>
+
+      <a href="organic.html" class="app-item">
+        <div class="app-icon">🌿</div>
+        <div class="app-content">
+          <h3>Organic Farming</h3>
+          <p>Sustainable farming practices</p>
+        </div>
+      </a>
+
+      <a href="farmer.html" class="app-item">
+        <div class="app-icon">👥</div>
+        <div class="app-content">
+          <h3>Farmer Network</h3>
+          <p>Connect with fellow farmers</p>
+        </div>
+      </a>
+
+      <a href="shopkeeper.html" class="app-item">
+        <div class="app-icon">🏪</div>
+        <div class="app-content">
+          <h3>Shop Listings</h3>
+          <p>Find agricultural suppliers</p>
+        </div>
+      </a>
+
+      <a href="chat.html" class="app-item">
+        <div class="app-icon">🤖</div>
+        <div class="app-content">
+          <h3>AI Assistant</h3>
+          <p>24/7 farming chatbot support</p>
+        </div>
+      </a>
+
+      <a href="plantation.html" class="app-item">
+        <div class="app-icon">🌳</div>
+        <div class="app-content">
+          <h3>Plantation Guide</h3>
+          <p>Expert planting techniques</p>
+        </div>
+      </a>
+
+      <a href="./Labour_Alerts/templates/labour.html" class="app-item">
+        <div class="app-icon">⚠️</div>
+        <div class="app-content">
+          <h3>Labour Alerts</h3>
+          <p>Weather & subsidy updates</p>
+        </div>
+      </a>
+
+      <a href="/sugarcane_frp/" class="app-item">
+        <div class="app-icon">🍯</div>
+        <div class="app-content">
+          <h3>Sugarcane FRP</h3>
+          <p>Fair price information</p>
+        </div>
+      </a>
+
+      <a href="/district_procurement/" class="app-item">
+        <div class="app-icon">📦</div>
+        <div class="app-content">
+          <h3>Procurement</h3>
+          <p>Government buying centers</p>
+        </div>
+      </a>
+
+      <a href="Forum/forum.html" class="app-item">
+        <div class="app-icon">💬</div>
+        <div class="app-content">
+          <h3>Farmer Forum</h3>
+          <p>Community discussions</p>
         </div>
       </a>
     </section>
