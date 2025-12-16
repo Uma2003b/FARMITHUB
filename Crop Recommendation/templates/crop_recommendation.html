@@ -191,8 +191,15 @@
   <script src="/main.js"></script>
   <script src="/nav.js"></script>
   <script src="/theme.js"></script>
-  <script src="/auth.js"></script>
-      <script>
+  <script>
+    function showLogoutConfirmation() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = '/';
+      }
+    }
+  </script>
+  <script>
     // Shared Footer Loader
     document.addEventListener('DOMContentLoaded', function() {
       // Create footer if it doesn't exist

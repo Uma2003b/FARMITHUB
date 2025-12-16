@@ -639,6 +639,263 @@
       to { opacity: 1; }
     }
 
+    /* Benefits Section */
+    .benefits {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f8fafc 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefits-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .benefits-intro {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .intro-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 25px rgba(22, 163, 74, 0.3);
+    }
+
+    .intro-title {
+      font-family: 'Libertinus Serif', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .intro-text {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .benefits-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .benefit-item {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+      position: relative;
+    }
+
+    .benefit-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(22, 163, 74, 0.15);
+      border-color: rgba(22, 163, 74, 0.2);
+    }
+
+    .benefit-visual {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .benefit-icon {
+      font-size: 3rem;
+    }
+
+    .benefit-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    .benefit-content h3 {
+      font-family: 'Libertinus Serif', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .benefit-content p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .benefit-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .success-stories {
+      margin-bottom: 4rem;
+    }
+
+    .story-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .story-header h3 {
+      font-family: 'Libertinus Serif', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .story-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--primary-green);
+      transition: all 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(22, 163, 74, 0.15);
+    }
+
+    .story-quote {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .story-author {
+      font-weight: 600;
+      color: var(--primary-green);
+      font-size: 0.9rem;
+    }
+
+    .action-section {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    .action-content h3 {
+      font-family: 'Libertinus Serif', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .action-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .primary-action, .secondary-action {
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .primary-action {
+      background: white;
+      color: var(--primary-green);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .primary-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    }
+
+    .secondary-action {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid white;
+    }
+
+    .secondary-action:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Google Translate Customization */
+    .goog-te-banner-frame {
+      display: none !important;
+    }
+    
+    .goog-te-ftab {
+      display: none !important;
+    }
+    
+    body {
+      top: 0px !important;
+    }
+    
+    #google_translate_element {
+      position: absolute;
+      left: -9999px;
+      visibility: hidden;
+    }
+    
+    .goog-te-combo {
+      visibility: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+    
+    .skiptranslate {
+      display: none !important;
+    }
+    
+    iframe.goog-te-menu-frame {
+      display: none !important;
+    }
+
     /* Smooth transitions for all elements */
     * {
       transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;

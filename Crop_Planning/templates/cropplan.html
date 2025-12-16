@@ -368,7 +368,6 @@
                 water_availability: ''
             };
 
-            // Show static default data immediately after form submission
             document.getElementById('result-text').textContent = 'Wheat';
             document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
 How to Plant:
@@ -398,7 +397,6 @@ Post Harvest: Harvest when grains are hard, thresh and store.`;
                     document.getElementById('guide-text').textContent = JSON.stringify(JSON.parse(result.guide_json_string), null, 2);
                     document.getElementById('result-container').style.display = 'block';
                 } else {
-                    // Show static fallback data on error
                     document.getElementById('result-text').textContent = 'Wheat';
                     document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
 How to Plant:
@@ -413,7 +411,6 @@ Post Harvest: Harvest when grains are hard, thresh and store.`;
                     document.getElementById('result-container').style.display = 'block';
                 }
             } catch (error) {
-                // Show static fallback data on fetch error
                 document.getElementById('result-text').textContent = 'Wheat';
                 document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
 How to Plant:
@@ -430,28 +427,9 @@ Post Harvest: Harvest when grains are hard, thresh and store.`;
         });
       </script>
       <script src="../../nav.js"></script>
-      <script src="../../auth.js"></script>
       <script src="../../theme.js"></script>
       
       <script>
-        // Check authentication on page load
-        document.addEventListener('DOMContentLoaded', () => {
-          if (!window.authManager.isLoggedIn()) {
-            window.location.href = '/login';
-            return;
-          }
-
-          const currentUser = window.authManager.getCurrentUser();
-          if (currentUser) {
-            // Update header to show user name
-            const headerTitle = document.querySelector('header h2');
-            if (headerTitle) {
-              headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
-            }
-          }
-        });
-
-        // Logout confirmation function
         function showLogoutConfirmation() {
           Swal.fire({
             title: 'Confirm Logout',
@@ -464,25 +442,8 @@ Post Harvest: Harvest when grains are hard, thresh and store.`;
             cancelButtonText: 'Cancel'
           }).then((result) => {
             if (result.isConfirmed) {
-              const logoutResult = window.authManager.logout();
-              if (logoutResult.success) {
-                Swal.fire({
-                  title: 'Logged Out!',
-                  text: logoutResult.message,
-                  icon: 'success',
-                  timer: 2000,
-                  showConfirmButton: false
-                }).then(() => {
-                  // Redirect to index.html after logout
-                  window.location.href = '/';
-                });
-              } else {
-                Swal.fire({
-                  title: 'Error!',
-                  text: logoutResult.message,
-                  icon: 'error'
-                });
-              }
+              localStorage.removeItem('currentUser');
+              window.location.href = '/';
             }
           });
         }

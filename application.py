@@ -89,14 +89,6 @@ def login():
 def login_html():
     return render_template('login.html')
 
-@application.route('/register')
-def register():
-    return render_template('register.html')
-
-@application.route('/register.html')
-def register_html():
-    return render_template('register.html')
-
 @application.route('/main')
 def main():
     return render_template('main.html')
@@ -112,10 +104,6 @@ def index_telugu():
 @application.route('/login_telugu.html')
 def login_telugu():
     return render_template('login_telugu.html')
-
-@application.route('/register_telugu.html')
-def register_telugu():
-    return render_template('register_telugu.html')
 
 @application.route('/main_telugu.html')
 def main_telugu():

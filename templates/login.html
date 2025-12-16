@@ -8,97 +8,156 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Libertinus+Serif:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="login.css" />
-  <link rel="stylesheet" href="theme.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="style.css" rel="stylesheet" />
+  <script src="global-translate.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .login-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 450px;
+      padding: 3rem 2rem;
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .login-logo {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .login-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+    .login-subtitle {
+      font-size: 0.95rem;
+      color: #6b7280;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #1f2937;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    }
+    .login-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+      margin-top: 1rem;
+    }
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4);
+    }
+    .login-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+    .login-footer a {
+      color: #16a34a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 10; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.2);">
-    <div class="navbar-content">
-      <div class="brand">
-        <a href="index.html" class="logo" style="color: white;">AgriConnectHub</a>
-      </div>
-      <div class="nav-buttons">
-        <button class="theme-toggle btn" aria-label="Toggle dark/light mode">
-          <i class="fas fa-sun sun-icon"></i>
-          <i class="fas fa-moon moon-icon"></i>
-          <span class="theme-text">Light</span>
-        </button>
-        <a href="about.html" class="btn btn-secondary">About</a>
-      </div>
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-logo">🌾</div>
+      <h1 class="login-title">AgriConnectHub</h1>
+      <p class="login-subtitle">Login to your account</p>
     </div>
-  </nav>
 
-  <section style="background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/image.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; min-height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; display: flex; align-items: center; justify-content: center; z-index: 1;">
-    <div style="text-align: center; max-width: 600px; padding: 2rem; width: 100%;">
-      <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
-        <div style="display: inline-block; background: rgba(22, 163, 74, 0.2); color: #4ade80; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(74, 222, 128, 0.3);">🔐 Welcome Back</div>
-        <h2 style="color: white; font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; font-family: 'Libertinus Serif', serif;">Login to <span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">AgriConnectHub</span></h2>
-        <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-size: 1rem;">Access your agricultural dashboard</p>
-        
-        <form onsubmit="handleLogin(event)" style="text-align: left;">
-          <div style="position: relative; margin-bottom: 1.5rem;">
-            <i class="fas fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #4ade80; z-index: 2;"></i>
-            <input type="text" id="email" placeholder="Enter any email" style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; backdrop-filter: blur(5px); transition: all 0.3s ease;" onfocus="this.style.borderColor='#4ade80'; this.style.boxShadow='0 0 0 3px rgba(74, 222, 128, 0.2)';" onblur="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.boxShadow='none';" />
-          </div>
-          <div style="position: relative; margin-bottom: 2rem;">
-            <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #4ade80; z-index: 2;"></i>
-            <input type="text" id="password" placeholder="Enter any password" style="width: 100%; padding: 1rem 3rem 1rem 3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; backdrop-filter: blur(5px); transition: all 0.3s ease;" onfocus="this.style.borderColor='#4ade80'; this.style.boxShadow='0 0 0 3px rgba(74, 222, 128, 0.2)';" onblur="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.boxShadow='none';" />
-          </div>
-          <button type="submit" id="login-btn" style="width: 100%; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1rem; border-radius: 12px; border: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4); transition: all 0.3s ease; cursor: pointer; margin-bottom: 1.5rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 35px rgba(22, 163, 74, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(22, 163, 74, 0.4)';">🚀 Login</button>
-          <p style="text-align: center; color: rgba(255,255,255,0.8); margin: 0;">
-            Don't have an account?
-            <a href="register.html" style="color: #4ade80; text-decoration: none; font-weight: 600;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Register here</a>
-          </p>
-        </form>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required />
       </div>
-    </div>
-  </section>
 
-  <script src="login.js"></script>
-  <script src="theme.js"></script>
-  <script src="auth.js"></script>
-          <script>
-    // Shared Footer Loader
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create footer if it doesn't exist
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-          </footer>
-        `;
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+      </div>
+
+      <button type="submit" class="login-btn">🚀 Login</button>
+
+      <div class="login-footer">
+        <a href="index.html">← Back to Home</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (email && password) {
+        const userData = {
+          email: email,
+          fullname: email.split('@')[0] || 'User',
+          isLoggedIn: true,
+          sessionToken: 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+          loginTime: new Date().toISOString()
+        };
         
-        // Insert footer before closing body tag
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+        sessionStorage.setItem('sessionActive', 'true');
+        window.location.href = '/main';
+      } else {
+        alert('Please enter both email and password');
       }
-    });
-  </script>^</body>
+    }
+  </script>
+</body>
 </html>
-

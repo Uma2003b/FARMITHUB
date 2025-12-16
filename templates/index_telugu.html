@@ -5,102 +5,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="description"
-    content="AgriConnectHub - వ్యవసాయాన్ని సాంకేతికతతో శక్తివంతం చేయడం. భారతదేశంలోని వ్యవసాయ వ్యవస్థలో రైతులు, కొనుగోలుదారులు మరియు సరఫరాదారులను కలపండి." />
-  <title>AgriConnectHub - సాంకేతికతతో వ్యవసాయంలో విప్లవం</title>
+    content="అగ్రికనెక్ట్‌హబ్ - సాంకేతికత ద్వారా వ్యవసాయాన్ని శక్తివంతం చేయడం. భారతదేశ వ్యవసాయ వ్యవస్థలో రైతులు, కొనుగోలుదారులు మరియు సరఫరాదారులను కనెక్ట్ చేయండి." />
+  <title>అగ్రికనెక్ట్‌హబ్ - సాంకేతికతతో వ్యవసాయాన్ని విప్లవాత్మకంగా మార్చడం</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Libertinus+Serif:wght@400;600&display=swap"
     rel="stylesheet" />
   <link href="style.css" rel="stylesheet" />
-  
 </head>
 
 <body>
   <nav class="navbar">
     <div class="navbar-content">
       <div class="brand">
-        <a href="#" class="logo">AgriConnectHub</a>
+        <a href="#" class="logo">అగ్రికనెక్ట్‌హబ్</a>
       </div>
       <div class="nav-buttons">
         <select id="languageSelector" class="language-select" onchange="changeLanguage()">
           <option value="en">English</option>
           <option value="te" selected>తెలుగు</option>
         </select>
-        <button class="theme-toggle btn" aria-label="Toggle dark/light mode">
+        <button class="theme-toggle btn" aria-label="డార్క్/లైట్ మోడ్ టోగుల్ చేయండి">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
-          <span class="theme-text">Light</span>
+          <span class="theme-text">లైట్</span>
         </button>
         <a href="about.html" class="btn btn-secondary">గురించి</a>
-        <a href="login_telugu.html" class="btn btn-secondary">లాగిన్</a>
-        <a href="register_telugu.html" class="btn btn-primary">నమోదు</a>
+        <a href="login.html" class="btn btn-secondary">లాగిన్</a>
+        <a href="register.html" class="btn btn-primary">రిజిస్టర్</a>
       </div>
     </div>
   </nav>
 
-  <section class="hero" style="background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/image.png'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+  <script>
+    // Check for saved language preference on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('selectedLanguage') || 'te';
+      const selector = document.getElementById('languageSelector');
+      selector.value = savedLang;
+      
+      // If saved language is English and we're on Telugu page, redirect
+      if (savedLang === 'en' && window.location.href.includes('telugu')) {
+        window.location.href = 'index.html';
+      }
+    });
+
+    function changeLanguage() {
+      const selector = document.getElementById('languageSelector');
+      const selectedLang = selector.value;
+      
+      // Save language preference
+      localStorage.setItem('selectedLanguage', selectedLang);
+      
+      if (selectedLang === 'en') {
+        window.location.href = 'index.html';
+      } else {
+        window.location.href = 'index_telugu.html';
+      }
+    }
+
+    function navigateWithLang(page) {
+      event.preventDefault();
+      const savedLang = localStorage.getItem('selectedLanguage') || 'te';
+      
+      if (savedLang === 'te') {
+        // Navigate to Telugu version of the page
+        const teluguPage = page.replace('.html', '_telugu.html');
+        window.location.href = teluguPage;
+      } else {
+        window.location.href = page;
+      }
+    }
+  </script>
+
+  <section class="hero" style="background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/hero.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem;">
     <div class="hero-content" style="text-align: center; max-width: 800px; padding: 2rem;">
       <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; border: 1px solid rgba(255,255,255,0.2);">
-        <h2 class="serif" style="color: white; font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;">సహకారాన్ని పెంచండి. <br><span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">మీ విజయాన్ని పెంచండి.</span></h2>
+        <h2 class="serif" style="color: white; font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;">సహకారాన్ని పెంపొందించండి. <br><span style="color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);">మీ విజయాన్ని పెంచండి.</span></h2>
         <p style="color: rgba(255,255,255,0.9); font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
-          AgriConnectHub AI. రైతులు, ప్యాకింగ్ హౌసులు మరియు మార్కెటింగ్ సహకార సంస్థలను తెలివైన AI తో సులభంగా కలపండి, సమర్థత మరియు మార్కెట్ స్పందనను పెంచుతూ స్వతంత్రతను కాపాడుతూ.
+          అగ్రికనెక్ట్‌హబ్ AI. రైతులు, ప్యాకింగ్‌హౌస్‌లు మరియు మార్కెటింగ్ సహకార సంస్థలను తెలివైన AI తో సజావుగా కనెక్ట్ చేస్తుంది, స్వాతంత్ర్యాన్ని కాపాడుతూ సామర్థ్యం మరియు మార్కెట్ ప్రతిస్పందనను మెరుగుపరుస్తుంది.
         </p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="register_telugu.html" style="background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4); transition: all 0.3s ease;">🚀 ప్రారంభించండి</a>
+          <a href="register.html" style="background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4); transition: all 0.3s ease;">🚀 ప్రారంభించండి</a>
           <a href="#features" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">📖 మరింత తెలుసుకోండి</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="features loading">
-    <div class="features-container">
-      <h2 class="features-title serif">మా ప్లాట్‌ఫారమ్ లాభాలు</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">💰</div>
-          <h3 class="feature-title serif">లాభదాయకత పెరుగుదల</h3>
-          <p class="feature-description">
-            ఉత్పత్తిని మెరుగుపరచండి, వ్యర్థాలను తగ్గించండి, మరియు మార్కెట్ అవకాశాలను ఉపయోగించండి.
-          </p>
+  <section class="benefits" id="features">
+    <div class="benefits-container">
+      <div class="benefits-intro">
+        <div class="intro-badge">🌱 మీ విజయ కథ ఇక్కడ మొదలవుతుంది</div>
+        <h2 class="intro-title">వ్యవసాయం నుండి సంపద వరకు</h2>
+        <p class="intro-text">అగ్రికనెక్ట్‌హబ్ వ్యవసాయాన్ని లాభదాయకంగా, సరళంగా మరియు ఒత్తిడి లేకుండా ఎలా చేస్తుందో కనుగొనండి</p>
+      </div>
+
+      <div class="benefits-showcase">
+        <div class="benefit-item" data-benefit="profit">
+          <div class="benefit-visual">
+            <div class="benefit-icon">💰</div>
+            <div class="benefit-number">+40%</div>
+          </div>
+          <div class="benefit-content">
+            <h3>మీ లాభాలను పెంచండి</h3>
+            <p>స్మార్ట్ ధర హెచ్చరికలు మరియు మార్కెట్ అంతర్దృష్టులు గరిష్ట లాభం కోసం సరైన సమయంలో అమ్మడానికి మీకు సహాయపడతాయి.</p>
+            <div class="benefit-tag">నిరూపిత ఫలితాలు</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚙️</div>
-          <h3 class="feature-title serif">ఆపరేషనల్ సమర్థత</h3>
-          <p class="feature-description">
-            ప్రణాళిక, లాజిస్టిక్స్ మరియు కమ్యూనికేషన్‌ను సులభతరం చేయండి, సమయం మరియు వనరులను ఆదా చేయండి.
-          </p>
+
+        <div class="benefit-item" data-benefit="time">
+          <div class="benefit-visual">
+            <div class="benefit-icon">⏰</div>
+            <div class="benefit-number">5 నిమిషాలు</div>
+          </div>
+          <div class="benefit-content">
+            <h3>రోజువారీ సమయం ఆదా చేయండి</h3>
+            <p>పంట ప్రణాళిక, వాతావరణ ట్రాకింగ్ మరియు మార్కెట్ అప్‌డేట్‌లను ఆటోమేట్ చేయండి. అత్యంత ముఖ్యమైన వాటిపై దృష్టి పెట్టండి.</p>
+            <div class="benefit-tag">సమయం ఆదా</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3 class="feature-title serif">స్వతంత్రత పరిరక్షణ</h3>
-          <p class="feature-description">
-            మీ ఆపరేషన్లపై నియంత్రణను కోల్పోకుండా లోతైన సహకారం.
-          </p>
+
+        <div class="benefit-item" data-benefit="network">
+          <div class="benefit-visual">
+            <div class="benefit-icon">🌍</div>
+            <div class="benefit-number">కనెక్ట్</div>
+          </div>
+          <div class="benefit-content">
+            <h3>మీ పరిధిని విస్తరించండి</h3>
+            <p>భారతదేశం అంతటా ధృవీకరించబడిన కొనుగోలుదారులు, సరఫరాదారులు మరియు తోటి రైతులతో తక్షణమే కనెక్ట్ అవ్వండి.</p>
+            <div class="benefit-tag">విశ్వసనీయ నెట్‌వర్క్</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">♻️</div>
-          <h3 class="feature-title serif">వ్యర్థాలు & పాడుదల తగ్గింపు</h3>
-          <p class="feature-description">
-            మెరుగైన అంచనాలు మరియు లాజిస్టిక్స్ అధిక ఉత్పత్తి మరియు పాడుదలను తగ్గిస్తాయి.
-          </p>
+
+        <div class="benefit-item" data-benefit="simple">
+          <div class="benefit-visual">
+            <div class="benefit-icon">🎯</div>
+            <div class="benefit-number">సులభం</div>
+          </div>
+          <div class="benefit-content">
+            <h3>సరళమైన మరియు సురక్షితమైన</h3>
+            <p>సంక్లిష్టమైన సెటప్ లేదు. ఏ ఫోన్‌లోనైనా పని చేస్తుంది. మీ డేటా ప్రైవేట్‌గా మరియు రక్షితంగా ఉంటుంది.</p>
+            <div class="benefit-tag">వినియోగదారు స్నేహపూర్వక</div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🤝</div>
-          <h3 class="feature-title serif">నమ్మకం & పారదర్శకత పెరుగుదల</h3>
-          <p class="feature-description">
-            భాగస్వాములతో బలమైన, నమ్మదగిన సంబంధాలు నిర్మించండి.
-          </p>
+      </div>
+
+      <div class="success-stories">
+        <div class="story-header">
+          <h3>🎆 భారతీయ రైతుల కోసం నిర్మించబడింది</h3>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌱</div>
-          <h3 class="feature-title serif">సుస్థిర వృద్ధి</h3>
-          <p class="feature-description">
-            మార్కెట్ మార్పులకు వేగంగా అనుకూలించండి మరియు భవిష్యత్తుకు సిద్ధమైన వ్యవసాయ వ్యాపారాన్ని నిర్మించండి.
-          </p>
+        <div class="stories-grid">
+          <div class="story-card">
+            <div class="story-quote">"స్మార్ట్ ధర హెచ్చరికలు ఉత్తమ మార్కెట్ రేట్లకు అమ్మడానికి నాకు సహాయపడతాయి."</div>
+            <div class="story-author">- టమాటో రైతుల కోసం</div>
+          </div>
+          <div class="story-card">
+            <div class="story-quote">"మీ మొత్తం పంట కోసం విశ్వసనీయ కొనుగోలుదారులను సులభంగా కనుగొనండి."</div>
+            <div class="story-author">- గోధుమ రైతుల కోసం</div>
+          </div>
+          <div class="story-card">
+            <div class="story-quote">"వాతావరణ హెచ్చరికలు అనుకోని మార్పుల నుండి మీ పంటలను రక్షిస్తాయి."</div>
+            <div class="story-author">- అన్ని రైతుల కోసం</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-section">
+        <div class="action-content">
+          <h3>🚀 మీ వ్యవసాయాన్ని మార్చడానికి సిద్ధంగా ఉన్నారా?</h3>
+          <p>వ్యవసాయ భవిష్యత్తును అనుభవించే మొదటి వారిలో ఉండండి. ఇది ఉచితం, ఇది సరళం, ఇది పని చేస్తుంది.</p>
+          <div class="action-buttons">
+            <a href="register.html" class="primary-action">ఇప్పుడే ఉచితంగా ప్రారంభించండి</a>
+            <a href="#demo" class="secondary-action">2-నిమిషాల డెమో చూడండి</a>
+          </div>
         </div>
       </div>
     </div>
@@ -111,27 +191,11 @@
     </div>
   </section>
 
-  <section class="middle-footer" aria-label="Middle Footer Section" style="text-align:center; padding: 2rem; background: #f0fdf4; color: #15803d; font-family: 'Poppins', sans-serif;">
-    <h2>కనెక్ట్ అవ్వడానికి మరియు పెరుగడానికి సిద్ధంగా ఉన్నారా?</h2>
-    <p>వ్యవసాయ భవిష్యత్తును అన్వేషించండి. AgriConnect AI మీ ఆపరేషన్లను తెలివైన సహకారంతో ఎలా మార్చగలదో తెలుసుకోండి.</p>
-    <div style="margin-top: 1rem; font-weight: 600;">© TechNoble Solutions అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.</div>
-  </section>
-
-  <button class="scroll-to-top" id="scrollToTop" title="పైకి వెళ్ళండి">
+  <button class="scroll-to-top" id="scrollToTop" title="టాప్‌కు తిరిగి వెళ్లండి">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <script>
-    function changeLanguage() {
-      const selector = document.getElementById('languageSelector');
-      const selectedLang = selector.value;
-      if (selectedLang === 'en') {
-        window.location.href = 'index.html';
-      } else if (selectedLang === 'te') {
-        window.location.href = 'index_telugu.html';
-      }
-    }
-
     // Theme toggle functionality
     const themeToggle = document.querySelector('.theme-toggle');
     const themeText = document.querySelector('.theme-text');
@@ -139,7 +203,7 @@
     // Check for saved theme preference
     const currentTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);
-    themeText.textContent = currentTheme === 'dark' ? 'Dark' : 'Light';
+    themeText.textContent = currentTheme === 'dark' ? 'డార్క్' : 'లైట్';
 
     themeToggle.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -147,7 +211,7 @@
       
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
-      themeText.textContent = newTheme === 'dark' ? 'Dark' : 'Light';
+      themeText.textContent = newTheme === 'dark' ? 'డార్క్' : 'లైట్';
     });
 
     // Scroll to top functionality
@@ -190,7 +254,8 @@
       document.body.style.opacity = "1";
     });
   </script>
-          <script>
+
+  <script>
     // Shared Footer Loader
     document.addEventListener('DOMContentLoaded', function() {
       // Create footer if it doesn't exist
@@ -222,7 +287,7 @@
             }
           </style>
           <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+            <p>&copy; 2025 Rural-IT-Hub. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి. technoble.solutions ద్వారా శక్తివంతం చేయబడింది. ఇమెయిల్: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
           </footer>
         `;
         
@@ -230,7 +295,7 @@
         document.body.insertAdjacentHTML('beforeend', footerHTML);
       }
     });
-  </script>^</body>
+  </script>
+</body>
 
 </html>
-

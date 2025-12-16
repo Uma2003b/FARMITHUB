@@ -1,0 +1,6 @@
+- [ ] Delete register-related files: templates/register.html, templates/register_telugu.html, register.js, register.css
+- [ ] Remove register routes from application.py
+- [ ] Remove register routes from application_updated.py
+- [ ] Remove register links from templates/index_telugu.html
+- [ ] Remove register links from templates/login.html and templates/login_telugu.html
+- [ ] Remove register buttons from templates/about.html and templates/about_telugu.html

@@ -116,7 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchNewsUpdates() {
-    fetch('/labour_alerts/news')
+    // Get current language from localStorage or default to 'en'
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+
+    fetch(`/labour_alerts/news?lang=${currentLang}`)
         .then(response => response.json())
         .then(data => {
             if (data && Array.isArray(data.results)) {

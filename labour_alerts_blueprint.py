@@ -16,13 +16,25 @@ cache_duration = 300  # 5 minutes
 @labour_alerts_bp.route('/news')
 def get_news():
     try:
-        # Check cache first
+        # Get language parameter from request
+        lang = request.args.get('lang', 'hi')  # Default to Hindi if not specified
+
+        # Map language codes to news API language codes
+        lang_map = {
+            'en': 'en',
+            'te': 'te',  # Telugu
+            'hi': 'hi'   # Hindi
+        }
+        api_lang = lang_map.get(lang, 'hi')
+
+        # Check cache first (include language in cache key)
+        cache_key = f'news_data_{api_lang}'
         current_time = time.time()
-        if 'news_data' in api_cache and (current_time - api_cache['timestamp']) < cache_duration:
-            return jsonify(api_cache['news_data'])
+        if cache_key in api_cache and (current_time - api_cache[cache_key]['timestamp']) < cache_duration:
+            return jsonify(api_cache[cache_key]['data'])
 
         api_key = 'pub_9a1996b402894fa081be406a87c64f36'
-        api_url = f'https://newsdata.io/api/1/latest?apikey={api_key}&qInMeta=farming&language=hi&country=in'
+        api_url = f'https://newsdata.io/api/1/latest?apikey={api_key}&qInMeta=farming&language={api_lang}&country=in'
 
         # Add retry logic with exponential backoff
         for attempt in range(MAX_RETRIES):
@@ -30,9 +42,11 @@ def get_news():
                 response = requests.get(api_url, timeout=API_TIMEOUT)
                 response.raise_for_status()
 
-                # Cache the response
-                api_cache['news_data'] = response.json()
-                api_cache['timestamp'] = current_time
+                # Cache the response with language-specific key
+                api_cache[cache_key] = {
+                    'data': response.json(),
+                    'timestamp': current_time
+                }
 
                 return jsonify(response.json())
 

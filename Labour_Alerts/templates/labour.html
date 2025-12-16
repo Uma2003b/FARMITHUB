@@ -43,30 +43,13 @@
           </a>
           <a href="../../feed-back.html" class="feedback-button">Feedback</a>
           <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
-          <select id="languageSelector" onchange="changeLanguage()">
-            <option value="en" selected>English</option>
-            <option value="te">తెలుగు</option>
-          </select>
           <button class="theme-toggle" aria-label="Toggle dark/light mode">
             <i class="fas fa-sun sun-icon"></i>
             <i class="fas fa-moon moon-icon"></i>
             <span class="theme-text">Light</span>
           </button>
         </div>
-        <script>
-          function changeLanguage() {
-            const selector = document.getElementById('languageSelector');
-            const selectedLang = selector.value;
-            if (selectedLang === 'en') {
-              window.location.href = 'labour.html';
-            } else if (selectedLang === 'te') {
-              window.location.href = 'labour_telugu.html';
-            }
-          }
-        </script>
       </header>
-
-      
     </div>
 
     <div class="container">
@@ -268,6 +251,8 @@
         </div>
         <div id="dynamicJobAlerts" class="cards-list enhanced-grid"></div>
 
+        <div id="newsList" class="cards-list enhanced-grid"></div>
+
         <div id="noAlertsMessage" class="no-content-message">
           <i class="fas fa-bell-slash"></i>
           <h4>No active alerts</h4>
@@ -290,103 +275,60 @@
 
     <script src="../static/script.js"></script>
     <script src="../../nav.js"></script>
-    <script src="../../auth.js"></script>
     <script src="../../theme.js"></script>
     
     <script>
-      // Check authentication on page load
-      document.addEventListener('DOMContentLoaded', () => {
-        if (!window.authManager.isLoggedIn()) {
-          window.location.href = '/login';
-          return;
-        }
-
-        const currentUser = window.authManager.getCurrentUser();
-        if (currentUser) {
-          // Update header to show user name
-          const headerTitle = document.querySelector('header h2');
-          if (headerTitle) {
-            headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
-          }
-        }
-      });
-
-      // Logout confirmation function
       function showLogoutConfirmation() {
         Swal.fire({
           title: 'Confirm Logout',
           text: 'Are you sure you want to logout?',
           icon: 'warning',
           showCancelButton: true,
-          confirmButtonColor: '#d33',
-          cancelButtonColor: '#3085d6',
-          confirmButtonText: 'Yes, logout',
-          cancelButtonText: 'Cancel'
+          confirmButtonText: 'Yes, logout'
         }).then((result) => {
           if (result.isConfirmed) {
-            const logoutResult = window.authManager.logout();
-            if (logoutResult.success) {
-              Swal.fire({
-                title: 'Logged Out!',
-                text: logoutResult.message,
-                icon: 'success',
-                timer: 2000,
-                showConfirmButton: false
-              }).then(() => {
-                // Redirect to index.html after logout
-                window.location.href = '/';
-              });
-            } else {
-              Swal.fire({
-                title: 'Error!',
-                text: logoutResult.message,
-                icon: 'error'
-              });
-            }
+            localStorage.removeItem('currentUser');
+            window.location.href = '/';
           }
         });
       }
     </script>
-        <script>
-    // Shared Footer Loader
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create footer if it doesn't exist
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-          </footer>
-        `;
-        
-        // Insert footer before closing body tag
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-      }
-    });
-  </script>
-</body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!document.querySelector('.site-footer')) {
+          const footerHTML = `
+            <style>
+              .site-footer {
+                background: linear-gradient(135deg, #2e7d32, #66bb6a);
+                color: #fff;
+                margin-top: auto;
+                padding: 1.5rem;
+                text-align: center;
+                font-size: 0.9rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+              .site-footer p {
+                margin: 0;
+                text-align: center;
+              }
+              .site-footer a {
+                color: #fff;
+                text-decoration: none;
+              }
+              .site-footer a:hover {
+                text-decoration: underline;
+              }
+            </style>
+            <footer class="site-footer">
+              <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+            </footer>
+          `;
+          document.body.insertAdjacentHTML('beforeend', footerHTML);
+        }
+      });
+    </script>
+  </body>
 </html>

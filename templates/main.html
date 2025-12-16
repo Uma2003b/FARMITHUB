@@ -1,295 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Removed logo favicon as per user request -->
-  <!-- <link rel="icon" type="image/png" href="images/logo.png"> -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
   <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
   <title>AgriConnectHub Dashboard</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Favicon -->
-
-
-  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="theme.css" />
-
-  <!-- Font Awesome -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    rel="stylesheet"
-  />
-
-  <!-- SweetAlert2 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-  <!-- Inline Styles (can move to CSS file later) -->
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: var(--bg-secondary, #0f4d0f);
-      color: var(--text-primary, #333);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-      background: var(--bg-primary, #fff);
-      border-radius: 10px;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    /* Header within container */
-    .container header h1 {
-      color: var(--text-primary, #333) !important;
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .container header p {
-      color: var(--text-secondary, #666) !important;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-
-    .loan-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .loan-card span {
-      display: block;
-      padding: 15px;
-      font-weight: 600;
-      background: rgba(76, 175, 80, 0.1);
-      color: var(--text-primary, #333) !important;
-      border-top: 1px solid rgba(76, 175, 80, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    /* Loan Guide section */
-    .loan-guide-section {
-      text-align: center;
-      margin-top: 50px;
-      background: var(--bg-primary, #fff) !important;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(76, 175, 80, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .loan-guide-section h2 {
-      color: var(--text-primary, #333) !important;
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .loan-guide-section p {
-      color: var(--text-secondary, #666) !important;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn-green {
-      display: inline-block;
-      background: linear-gradient(135deg, #2e7d32, #4caf50);
-      color: #fff !important;
-      padding: 12px 24px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
-    }
-
-    .btn-green:hover {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
-      color: #fff !important;
-      text-decoration: none;
-    }
-
-    select.language-select {
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-left: 15px;
-      border: 2px solid rgba(76, 175, 80, 0.3);
-      background: var(--bg-primary, #fff);
-      color: var(--text-primary, #333);
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    select.language-select:focus {
-      outline: none;
-      border-color: #4caf50;
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-    }
-
-    /* Dark mode specific styles */
-    [data-theme="dark"] .container {
-      background: #2d2d2d !important;
-      border: 1px solid #404040;
-    }
-
-    [data-theme="dark"] .loan-guide-section {
-      background: #2d2d2d !important;
-      border-color: #404040;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    [data-theme="dark"] .loan-guide-section h2 {
-      color: #ffffff !important;
-    }
-
-    [data-theme="dark"] .loan-guide-section p {
-      color: #cccccc !important;
-    }
-
-    [data-theme="dark"] .container header h1 {
-      color: #ffffff !important;
-    }
-
-    [data-theme="dark"] .container header p {
-      color: #cccccc !important;
-    }
-
-    [data-theme="dark"] .loan-card {
-      background: #3d3d3d !important;
-      border-color: #505050;
-    }
-
-    [data-theme="dark"] .loan-card span {
-      background: rgba(76, 175, 80, 0.2) !important;
-      color: #ffffff !important;
-      border-top-color: #505050;
-    }
-
-    [data-theme="dark"] select.language-select {
-      background: #3d3d3d !important;
-      border-color: #505050;
-      color: #ffffff !important;
-    }
-
-    [data-theme="dark"] select.language-select option {
-      background: #3d3d3d !important;
-      color: #ffffff !important;
-    }
-
-    /* Ensure text is always visible during transitions */
-    * {
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-    }
-
-    /* Force text color inheritance */
-    .loan-guide-section *:not(.btn-green) {
-      color: inherit !important;
-    }
-
-    .container *:not(.btn-green):not(select) {
-      color: inherit !important;
-    }
-
-    /* Auth message styles */
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slideOutRight {
-      from {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-    }
-
-    .auth-message {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 10000;
-      padding: 15px 20px;
-      border-radius: 8px;
-      color: white;
-      font-weight: 500;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      max-width: 400px;
-    }
-
-    .auth-message-success {
-      background: linear-gradient(135deg, #4caf50, #45a049);
-    }
-
-    .auth-message-error {
-      background: linear-gradient(135deg, #f44336, #e53935);
-    }
-
-    .auth-message-info {
-      background: linear-gradient(135deg, #2196f3, #1976d2);
-    }
-
-    .auth-message-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .auth-message-content i {
-      font-size: 1.2rem;
-    }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg-secondary, #0f4d0f); color: var(--text-primary, #333); }
+    @media (max-width: 768px) { main { margin-left: 0 !important; } .sidebar { position: fixed; left: -280px; z-index: 1000; } }
+    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%) !important; box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25) !important; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15) !important; color: white !important; padding: 0.6rem 1.2rem !important; border-radius: 8px !important; border: 1px solid rgba(255,255,255,0.2) !important; transition: all 0.3s !important; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25) !important; transform: translateY(-2px) !important; }
+    .brand h2 { color: white !important; margin: 0 !important; font-size: 1.6rem !important; }
   </style>
 </head>
-
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <div class="brand">
-        <h2>Welcome to AgriConnectHub</h2>
-      </div>
+      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
       <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
-          <span class="calendar-icon">📅</span>
-          Calendar
-        </a>
-        <a href="feed-back.html" class="feedback-button">Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+        <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
@@ -297,382 +37,82 @@
         </button>
       </div>
     </header>
-
-    
   </div>
 
-  <main>
-    <div class="section-title">
-      <h2>Comprehensive Agricultural Solutions</h2>
-      <p>
-        Explore our cutting-edge tools designed to revolutionize your farming
-        experience with AI-powered insights and community collaboration.
-      </p>
-    </div>
+  <div style="display: flex; min-height: calc(100vh - 80px);">
+    <aside class="sidebar" style="width: 280px; background: linear-gradient(135deg, #1b5e20, #2e7d32); padding: 2rem 0; position: fixed; height: calc(100vh - 80px); overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1);">
+      <nav style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0 1rem;">
+        <a href="/crop_recommendation/" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">🌱</span> Crop Recommendation</a>
+        <a href="/crop_yield/" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">📊</span> Yield Prediction</a>
+        <a href="disease.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">🔬</span> Disease Detection</a>
+        <a href="weather.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">⛅</span> Weather Check</a>
+        <a href="/crop_planning/" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">📅</span> Crop Planning</a>
+        <a href="/crop_price_tracker/crop_price_tracker" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">💰</span> Price Tracker</a>
+        <a href="organic.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">🌿</span> Organic Farming</a>
+        <a href="farmer.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">👥</span> Farmer Network</a>
+        <a href="shopkeeper.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">🏪</span> Shop Listings</a>
+        <a href="chat.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">🤖</span> AI Assistant</a>
+        <a href="plantation.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">🌳</span> Plantation Guide</a>
+        <a href="./Labour_Alerts/templates/labour.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">⚠️</span> Labour Alerts</a>
+        <a href="Forum/forum.html" style="padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500;"><span style="font-size: 1.3rem;">💬</span> Farmer Forum</a>
+      </nav>
+    </aside>
 
-    <!-- Simple List Interface -->
-    <section class="apps-list">
-      <style>
-        .apps-list {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 15px;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-        .app-item {
-          display: flex;
-          align-items: center;
-          background: linear-gradient(135deg, #fff, #f8f9fa);
-          padding: 20px;
-          border-radius: 12px;
-          text-decoration: none;
-          color: #333;
-          border: 1px solid #e0e0e0;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
-          overflow: hidden;
-        }
-        .app-item::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 4px;
-          height: 100%;
-          background: linear-gradient(135deg, #4caf50, #66bb6a);
-          transform: scaleY(0);
-          transition: transform 0.3s ease;
-        }
-        .app-item:hover {
-          background: linear-gradient(135deg, #f0f8f0, #e8f5e8);
-          transform: translateY(-5px) scale(1.02);
-          box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
-          text-decoration: none;
-          color: #333;
-        }
-        .app-item:hover::before {
-          transform: scaleY(1);
-        }
-        .app-icon {
-          font-size: 2.5em;
-          margin-right: 15px;
-          filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-        }
-        .app-content h3 {
-          margin: 0 0 5px 0;
-          font-size: 1.3em;
-          color: #2e7d32;
-          font-weight: 600;
-        }
-        .app-content p {
-          margin: 0;
-          font-size: 0.95em;
-          color: #666;
-          line-height: 1.4;
-        }
-        [data-theme="dark"] .app-item {
-          background: linear-gradient(135deg, #3d3d3d, #2d2d2d);
-          color: #fff;
-          border-color: #505050;
-        }
-        [data-theme="dark"] .app-item:hover {
-          background: linear-gradient(135deg, #4d4d4d, #3d3d3d);
-          color: #fff;
-        }
-        [data-theme="dark"] .app-content h3 {
-          color: #66bb6a;
-        }
-        [data-theme="dark"] .app-content p {
-          color: #ccc;
-        }
-        @media (max-width: 768px) {
-          .apps-list {
-            grid-template-columns: 1fr;
-            padding: 10px;
-          }
-          .app-item {
-            padding: 15px;
-          }
-        }
-      </style>
-
-      <a href="/crop_recommendation/" class="app-item">
-        <div class="app-icon">🌱</div>
-        <div class="app-content">
-          <h3>Crop Recommendation</h3>
-          <p>AI-powered crop suggestions for your soil</p>
-        </div>
-      </a>
-
-      <a href="/crop_yield/" class="app-item">
-        <div class="app-icon">📊</div>
-        <div class="app-content">
-          <h3>Yield Prediction</h3>
-          <p>Predict crop yield with ML models</p>
-        </div>
-      </a>
-
-      <a href="disease.html" class="app-item">
-        <div class="app-icon">🔬</div>
-        <div class="app-content">
-          <h3>Disease Detection</h3>
-          <p>Early plant disease identification</p>
-        </div>
-      </a>
-
-      <a href="weather.html" class="app-item">
-        <div class="app-icon">⛅</div>
-        <div class="app-content">
-          <h3>Weather Check</h3>
-          <p>Real-time weather for farming</p>
-        </div>
-      </a>
-
-      <a href="/crop_planning/" class="app-item">
-        <div class="app-icon">📅</div>
-        <div class="app-content">
-          <h3>Crop Planning</h3>
-          <p>Strategic seasonal farm planning</p>
-        </div>
-      </a>
-
-      <a href="/crop_price_tracker/crop_price_tracker" class="app-item">
-        <div class="app-icon">💰</div>
-        <div class="app-content">
-          <h3>Price Tracker</h3>
-          <p>Live mandi prices & market rates</p>
-        </div>
-      </a>
-
-      <a href="organic.html" class="app-item">
-        <div class="app-icon">🌿</div>
-        <div class="app-content">
-          <h3>Organic Farming</h3>
-          <p>Sustainable farming practices</p>
-        </div>
-      </a>
-
-      <a href="farmer.html" class="app-item">
-        <div class="app-icon">👥</div>
-        <div class="app-content">
-          <h3>Farmer Network</h3>
-          <p>Connect with fellow farmers</p>
-        </div>
-      </a>
-
-      <a href="shopkeeper.html" class="app-item">
-        <div class="app-icon">🏪</div>
-        <div class="app-content">
-          <h3>Shop Listings</h3>
-          <p>Find agricultural suppliers</p>
-        </div>
-      </a>
-
-      <a href="chat.html" class="app-item">
-        <div class="app-icon">🤖</div>
-        <div class="app-content">
-          <h3>AI Assistant</h3>
-          <p>24/7 farming chatbot support</p>
-        </div>
-      </a>
-
-      <a href="plantation.html" class="app-item">
-        <div class="app-icon">🌳</div>
-        <div class="app-content">
-          <h3>Plantation Guide</h3>
-          <p>Expert planting techniques</p>
-        </div>
-      </a>
-
-      <a href="./Labour_Alerts/templates/labour.html" class="app-item">
-        <div class="app-icon">⚠️</div>
-        <div class="app-content">
-          <h3>Labour Alerts</h3>
-          <p>Weather & subsidy updates</p>
-        </div>
-      </a>
-
-      <a href="/sugarcane_frp/" class="app-item">
-        <div class="app-icon">🍯</div>
-        <div class="app-content">
-          <h3>Sugarcane FRP</h3>
-          <p>Fair price information</p>
-        </div>
-      </a>
-
-      <a href="/district_procurement/" class="app-item">
-        <div class="app-icon">📦</div>
-        <div class="app-content">
-          <h3>Procurement</h3>
-          <p>Government buying centers</p>
-        </div>
-      </a>
-
-      <a href="Forum/forum.html" class="app-item">
-        <div class="app-icon">💬</div>
-        <div class="app-content">
-          <h3>Farmer Forum</h3>
-          <p>Community discussions</p>
-        </div>
-      </a>
-    </section>
-
-<!-- Crop Recommendation Section Removed to use individual Flask app route /crop_recommendation/ instead -->
-<!--
-    <section id="crop-recommendation" class="crop-rec-section" style="display: none;">
-      <div class="container">
-        <h2>Crop Recommendation</h2>
-        <p>Get personalized crop suggestions based on your soil and environmental conditions</p>
-        <div class="crop-form-container">
-          <form id="crop-form">
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="N">Nitrogen (N) - 0-140 kg/ha</label>
-                <input type="number" id="N" name="N" min="0" max="140" required />
-              </div>
-              <div class="form-group">
-                <label for="P">Phosphorus (P) - 5-145 kg/ha</label>
-                <input type="number" id="P" name="P" min="5" max="145" required />
-              </div>
-              <div class="form-group">
-                <label for="K">Potassium (K) - 5-205 kg/ha</label>
-                <input type="number" id="K" name="K" min="5" max="205" required />
-              </div>
-              <div class="form-group">
-                <label for="temperature">Temperature (°C) - 8-45</label>
-                <input type="number" id="temperature" name="temperature" step="0.1" min="8" max="45" required />
-              </div>
-              <div class="form-group">
-                <label for="humidity">Humidity (%) - 14-100</label>
-                <input type="number" id="humidity" name="humidity" step="0.1" min="14" max="100" required />
-              </div>
-              <div class="form-group">
-                <label for="ph">pH - 3.5-10.0</label>
-                <input type="number" id="ph" name="ph" step="0.01" min="3.5" max="10" required />
-              </div>
-              <div class="form-group full-width">
-                <label for="rainfall">Rainfall (mm) - 20-300</label>
-                <input type="number" id="rainfall" name="rainfall" step="0.1" min="20" max="300" required />
-              </div>
-            </div>
-            <button type="submit" class="btn-green">Predict Crop</button>
-          </form>
-        </div>
-        <div id="result-container" style="display: none;">
-          <h3>Recommended Crop: <span id="recommended-crop"></span></h3>
-          <div id="params-summary"></div>
-          <button id="download-btn" class="btn-green">Download Report</button>
-        </div>
+    <main style="margin-left: 280px; flex: 1; padding: 2rem;">
+      <div style="background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 3rem; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 10px 35px rgba(22, 163, 74, 0.3); text-align: center;">
+        <h2 style="margin: 0 0 1rem 0; font-size: 2.8rem; font-weight: 700;">🚀 Empower Your Farm, Transform Your Future</h2>
+        <p style="margin: 0; font-size: 1.15rem; opacity: 0.95; line-height: 1.6;">Unlock the power of AI-driven agriculture with intelligent tools that maximize yields, minimize risks, and connect you to thriving markets</p>
       </div>
-    </section>
--->
-  </main>
+      <h3 style="color: #1f2937; margin: 2rem 0 1.5rem 0; font-size: 1.4rem; font-weight: 600;">✨ Discover Our Smart Solutions</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <a href="/crop_recommendation/" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🌱</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Crop Recommendation</h3><p style="margin: 0; font-size: 0.9rem;">AI-powered crop suggestions</p></a>
+        <a href="/crop_yield/" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">📊</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Yield Prediction</h3><p style="margin: 0; font-size: 0.9rem;">Predict crop yield</p></a>
+        <a href="disease.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🔬</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Disease Detection</h3><p style="margin: 0; font-size: 0.9rem;">Plant disease identification</p></a>
+        <a href="weather.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">⛅</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Weather Check</h3><p style="margin: 0; font-size: 0.9rem;">Real-time weather updates</p></a>
+        <a href="/crop_planning/" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">📅</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Crop Planning</h3><p style="margin: 0; font-size: 0.9rem;">Farm planning tools</p></a>
+        <a href="/crop_price_tracker/crop_price_tracker" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">💰</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Price Tracker</h3><p style="margin: 0; font-size: 0.9rem;">Live market prices</p></a>
+        <a href="organic.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🌿</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Organic Farming</h3><p style="margin: 0; font-size: 0.9rem;">Sustainable practices</p></a>
+        <a href="farmer.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">👥</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Farmer Network</h3><p style="margin: 0; font-size: 0.9rem;">Connect with farmers</p></a>
+        <a href="shopkeeper.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🏪</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Shop Listings</h3><p style="margin: 0; font-size: 0.9rem;">Find suppliers</p></a>
+        <a href="chat.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🤖</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">AI Assistant</h3><p style="margin: 0; font-size: 0.9rem;">24/7 chatbot support</p></a>
+        <a href="plantation.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🌳</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Plantation Guide</h3><p style="margin: 0; font-size: 0.9rem;">Planting techniques</p></a>
+        <a href="./Labour_Alerts/templates/labour.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">⚠️</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Labour Alerts</h3><p style="margin: 0; font-size: 0.9rem;">Weather & subsidy updates</p></a>
+        <a href="Forum/forum.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">💬</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Farmer Forum</h3><p style="margin: 0; font-size: 0.9rem;">Community discussions</p></a>
+      </div>
+    </main>
+  </div>
 
-  <!-- Shared Footer will be loaded by JavaScript -->
+  <button class="scroll-to-top" id="scrollToTop" title="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: #16a34a; color: white; border: none; font-size: 1.5rem; cursor: pointer; z-index: 998;"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- JavaScript Files -->
   <script src="main.js"></script>
   <script src="theme.js"></script>
-  <script src="auth.js"></script>
-          <script>
-    // Shared Footer Loader
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create footer if it doesn't exist
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-          </footer>
-        `;
-        
-        // Insert footer before closing body tag
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-      }
-    });
-  </script>
 
   <script>
-    // Check authentication on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!window.authManager.isLoggedIn()) {
-        window.location.href = '/login';
-        return;
-      }
+    if (!localStorage.getItem('currentUser')) {
+      window.location.href = '/login.html';
+    }
 
-      const currentUser = window.authManager.getCurrentUser();
-      if (currentUser) {
-        // Update header to show user name
-        const headerTitle = document.querySelector('header h2');
-        if (headerTitle) {
-          headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
-        }
-      }
-    });
-
-    // Logout confirmation function
     function showLogoutConfirmation() {
       Swal.fire({
         title: 'Confirm Logout',
         text: 'Are you sure you want to logout?',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, logout',
-        cancelButtonText: 'Cancel'
+        confirmButtonText: 'Yes, logout'
       }).then((result) => {
         if (result.isConfirmed) {
-          const logoutResult = window.authManager.logout();
-          if (logoutResult.success) {
-            Swal.fire({
-              title: 'Logged Out!',
-              text: logoutResult.message,
-              icon: 'success',
-              timer: 2000,
-              showConfirmButton: false
-            }).then(() => {
-              // Redirect to index.html after logout
-              window.location.href = '/';
-            });
-          } else {
-            Swal.fire({
-              title: 'Error!',
-              text: logoutResult.message,
-              icon: 'error'
-            });
-          }
+          localStorage.removeItem('currentUser');
+          sessionStorage.removeItem('sessionActive');
+          window.location.href = '/login.html';
         }
       });
     }
-  </script>
 
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function() {
+      window.history.pushState(null, null, window.location.href);
+      showLogoutConfirmation();
+    };
+  </script>
 </body>
 </html>
