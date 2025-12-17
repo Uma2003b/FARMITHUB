@@ -2,196 +2,361 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
-  <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
-  <title>AgriConnectHub Dashboard</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Farmer Marketplace - Buy and Sell Agricultural Products" />
+  <title>Farmer Marketplace - AgriConnectHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="main.css" />
-  <link rel="stylesheet" href="farmer.css" />
-  <link rel="stylesheet" href="theme.css" />
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: var(--bg-secondary, #0f4d0f);
-      color: var(--text-primary, #333);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
-    .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; background: #f9fafb; color: #333; }
+    
+    .header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header .logo { color: white; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
     .header-buttons { display: flex; gap: 1rem; align-items: center; }
-    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
-    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
-    .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
-    .site-footer p { margin: 0; text-align: center; }
-    .site-footer a { color: #fff; text-decoration: none; }
-    .site-footer a:hover { text-decoration: underline; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.3); }
+    
+    .hero { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 2rem; text-align: center; }
+    .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .hero p { font-size: 1rem; opacity: 0.95; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    
+    .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #e5e7eb; }
+    .tab-btn { background: none; border: none; padding: 1rem 1.5rem; font-size: 1rem; font-weight: 600; color: #999; cursor: pointer; transition: all 0.3s; border-bottom: 3px solid transparent; }
+    .tab-btn.active { color: #16a34a; border-bottom-color: #16a34a; }
+    .tab-btn:hover { color: #16a34a; }
+    
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    
+    .marketplace-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+    
+    .form-section { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: fit-content; }
+    .form-section h2 { color: #16a34a; font-size: 1.3rem; margin-bottom: 1.5rem; }
+    
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; color: #1f2937; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 0.95rem; transition: all 0.3s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); }
+    
+    .btn-submit { width: 100%; padding: 1rem; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3); }
+    
+    .products-section { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .products-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .products-header h2 { color: #16a34a; font-size: 1.3rem; }
+    .filter-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .filter-bar input { flex: 1; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; }
+    
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    .product-card { background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 10px; overflow: hidden; transition: all 0.3s; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-color: #16a34a; }
+    
+    .product-header { background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 1rem; }
+    .product-name { font-weight: 700; color: #16a34a; font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .product-seller { font-size: 0.85rem; color: #666; }
+    
+    .product-body { padding: 1rem; }
+    .product-quantity { color: #666; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .product-price { font-size: 1.5rem; font-weight: 700; color: #16a34a; margin-bottom: 1rem; }
+    .product-contact { display: flex; gap: 0.5rem; align-items: center; color: #666; font-size: 0.9rem; }
+    
+    .btn-contact { width: 100%; padding: 0.8rem; background: #16a34a; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem; transition: all 0.3s; }
+    .btn-contact:hover { background: #22c55e; }
+    
+    .empty-state { text-align: center; padding: 3rem 1rem; color: #999; }
+    .empty-state i { font-size: 3rem; margin-bottom: 1rem; }
+    
+    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; font-size: 0.9rem; }
+    .footer a { color: white; text-decoration: none; }
+    
+    @media (max-width: 768px) {
+      .marketplace-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero h1 { font-size: 1.5rem; }
+      .tabs { flex-wrap: wrap; }
+    }
+    
+    @media (max-width: 480px) {
+      .header { padding: 0.8rem 1rem; }
+      .header .logo { font-size: 1.2rem; }
+      .header-buttons a { display: none; }
+      .header-buttons a:first-child, .header-buttons a:last-child { display: inline-block; }
+      .container { padding: 1rem; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <div class="header-nav-wrapper">
-    <header class="uniform-header">
-      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
-      <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-        <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
-        <button class="theme-toggle" aria-label="Toggle dark/light mode">
-          <i class="fas fa-sun sun-icon"></i>
-          <i class="fas fa-moon moon-icon"></i>
-          <span class="theme-text">Light</span>
-        </button>
-      </div>
-    </header>
+  <header class="header">
+    <a href="#" class="logo">🌾 AgriConnectHub</a>
+    <div class="header-buttons">
+      <a href="cropCalendar.html">📅 Calendar</a>
+      <a href="feed-back.html">💬 Feedback</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>🛒 Farmer Marketplace</h1>
+    <p>Buy and sell agricultural products directly with farmers</p>
   </div>
 
   <div class="container">
-    <nav class="nav-tabs">
-      <button class="tab-button active" data-section="sell">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('sell')">
         <i class="fas fa-store"></i> Sell Products
       </button>
-      <button class="tab-button" data-section="buy">
+      <button class="tab-btn" onclick="switchTab('buy')">
         <i class="fas fa-shopping-cart"></i> Buy Products
       </button>
-    </nav>
+    </div>
 
-    <main>
-      <section id="sell-section" class="section active">
-        <div class="section-grid">
-          <div class="form-card">
-            <h3><i class="fas fa-plus-circle"></i> List Your Product</h3>
-            <form id="product-form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="seller-name">Your Name</label>
-                  <input type="text" id="seller-name" required />
-                </div>
-                <div class="form-group">
-                  <label for="seller-contact">Contact Number</label>
-                  <input type="tel" id="seller-contact" required />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="product-name">Product Name</label>
-                <input type="text" id="product-name" placeholder="e.g., Organic Tomatoes" required/>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="product-quantity">Quantity Available</label>
-                  <input type="text" id="product-quantity" placeholder="e.g., 500 kg" required/>
-                </div>
-                <div class="form-group">
-                  <label for="product-price">Price per Unit</label>
-                  <input type="text" id="product-price" placeholder="e.g., ₹50/kg" required/>
-                </div>
-              </div>
-
-              <button type="submit" class="submit-button">
-                <i class="fas fa-plus"></i> Add Product
-              </button>
-            </form>
-          </div>
-
-          <div class="listings-container">
-            <div class="listings-header">
-              <h3>Your Products</h3>
-              <span class="listings-count" id="product-count">0 Products</span>
+    <!-- SELL TAB -->
+    <div id="sell" class="tab-content active">
+      <div class="marketplace-grid">
+        <div class="form-section">
+          <h2>📦 List Your Product</h2>
+          <form id="sellForm">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" id="sellerName" required />
             </div>
-            <div id="product-display">
-              <div class="empty-state">
-                <i class="fas fa-box-open"></i>
-                <p>No products listed yet. Add your first product!</p>
-              </div>
+            <div class="form-group">
+              <label>Contact Number</label>
+              <input type="tel" id="sellerPhone" required />
+            </div>
+            <div class="form-group">
+              <label>Product Name</label>
+              <input type="text" id="productName" placeholder="e.g., Organic Tomatoes" required />
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="productCategory" required>
+                <option value="">Select category...</option>
+                <option value="Vegetables">🥬 Vegetables</option>
+                <option value="Fruits">🍎 Fruits</option>
+                <option value="Grains">🌾 Grains</option>
+                <option value="Pulses">🫘 Pulses</option>
+                <option value="Dairy">🥛 Dairy</option>
+                <option value="Seeds">🌱 Seeds</option>
+                <option value="Tools">🔧 Tools & Equipment</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Quantity Available</label>
+              <input type="text" id="productQty" placeholder="e.g., 500 kg" required />
+            </div>
+            <div class="form-group">
+              <label>Price per Unit</label>
+              <input type="text" id="productPrice" placeholder="e.g., ₹50/kg" required />
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="productDesc" rows="3" placeholder="Describe your product..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-plus"></i> List Product
+            </button>
+          </form>
+        </div>
+
+        <div class="products-section">
+          <div class="products-header">
+            <h2>📋 Your Listings</h2>
+            <span id="sellCount" style="background: #f0fdf4; color: #16a34a; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">0 Products</span>
+          </div>
+          <div id="sellProducts" class="product-grid">
+            <div class="empty-state">
+              <i class="fas fa-inbox"></i>
+              <p>No products listed yet</p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section id="buy-section" class="section">
-        <div class="section-grid">
-          <div class="form-card">
-            <h3><i class="fas fa-search"></i> Request to Buy</h3>
-            <form id="buy-form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="buyer-name">Your Name</label>
-                  <input type="text" id="buyer-name" required />
-                </div>
-                <div class="form-group">
-                  <label for="buyer-contact">Contact Number</label>
-                  <input type="tel" id="buyer-contact" required />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="buy-product-name">Product Looking For</label>
-                <input type="text" id="buy-product-name" placeholder="e.g., Fresh Wheat" required/>
-              </div>
-
-              <div class="form-group">
-                <label for="buy-product-quantity">Quantity Needed</label>
-                <input type="text" id="buy-product-quantity" placeholder="e.g., 1000 kg" required/>
-              </div>
-
-              <button type="submit" class="submit-button">
-                <i class="fas fa-paper-plane"></i> Send Request
-              </button>
-            </form>
-          </div>
-
-          <div class="listings-container">
-            <div class="listings-header">
-              <h3>Buy Requests</h3>
-              <span class="listings-count" id="request-count">0 Requests</span>
+    <!-- BUY TAB -->
+    <div id="buy" class="tab-content">
+      <div class="marketplace-grid">
+        <div class="form-section">
+          <h2>🔍 Find Products</h2>
+          <form id="buyForm">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" id="buyerName" required />
             </div>
-            <div id="buy-request-display">
-              <div class="empty-state">
-                <i class="fas fa-clipboard-list"></i>
-                <p>No buy requests yet. Submit your first request!</p>
-              </div>
+            <div class="form-group">
+              <label>Contact Number</label>
+              <input type="tel" id="buyerPhone" required />
+            </div>
+            <div class="form-group">
+              <label>Looking For</label>
+              <input type="text" id="searchProduct" placeholder="e.g., Fresh Wheat" />
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="buyCategory">
+                <option value="">All Categories</option>
+                <option value="Vegetables">🥬 Vegetables</option>
+                <option value="Fruits">🍎 Fruits</option>
+                <option value="Grains">🌾 Grains</option>
+                <option value="Pulses">🫘 Pulses</option>
+                <option value="Dairy">🥛 Dairy</option>
+                <option value="Seeds">🌱 Seeds</option>
+                <option value="Tools">🔧 Tools & Equipment</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Quantity Needed</label>
+              <input type="text" id="buyQty" placeholder="e.g., 1000 kg" />
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-search"></i> Search Products
+            </button>
+          </form>
+        </div>
+
+        <div class="products-section">
+          <div class="products-header">
+            <h2>🛍️ Available Products</h2>
+            <span id="buyCount" style="background: #f0fdf4; color: #16a34a; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">0 Products</span>
+          </div>
+          <div id="buyProducts" class="product-grid">
+            <div class="empty-state">
+              <i class="fas fa-shopping-bag"></i>
+              <p>No products available yet</p>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   </div>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  <footer class="footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
   </footer>
 
   <script>
-    function showLogoutConfirmation() {
+    let sellProducts = JSON.parse(localStorage.getItem('sellProducts')) || [];
+    let buyProducts = JSON.parse(localStorage.getItem('buyProducts')) || [];
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    document.getElementById('sellForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const product = {
+        id: Date.now(),
+        name: document.getElementById('productName').value,
+        seller: document.getElementById('sellerName').value,
+        phone: document.getElementById('sellerPhone').value,
+        category: document.getElementById('productCategory').value,
+        qty: document.getElementById('productQty').value,
+        price: document.getElementById('productPrice').value,
+        desc: document.getElementById('productDesc').value
+      };
+      sellProducts.push(product);
+      buyProducts.push(product);
+      localStorage.setItem('sellProducts', JSON.stringify(sellProducts));
+      localStorage.setItem('buyProducts', JSON.stringify(buyProducts));
+      document.getElementById('sellForm').reset();
+      displayProducts();
+      Swal.fire('Success!', 'Product listed successfully', 'success');
+    });
+
+    document.getElementById('buyForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      displayProducts();
+    });
+
+    function displayProducts() {
+      const sellDiv = document.getElementById('sellProducts');
+      const buyDiv = document.getElementById('buyProducts');
+      
+      if (sellProducts.length === 0) {
+        sellDiv.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No products listed yet</p></div>';
+      } else {
+        sellDiv.innerHTML = sellProducts.map(p => `
+          <div class="product-card">
+            <div class="product-header">
+              <div class="product-name">${p.name}</div>
+              <div class="product-seller">👨‍🌾 ${p.seller}</div>
+            </div>
+            <div class="product-body">
+              <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
+              <div class="product-quantity">📦 ${p.qty}</div>
+              <div class="product-price">${p.price}</div>
+              <div class="product-contact">
+                <i class="fas fa-phone"></i> ${p.phone}
+              </div>
+              <button class="btn-contact" onclick="contactSeller('${p.seller}', '${p.phone}')">Contact Seller</button>
+            </div>
+          </div>
+        `).join('');
+      }
+      document.getElementById('sellCount').textContent = `${sellProducts.length} Products`;
+
+      const search = document.getElementById('searchProduct').value.toLowerCase();
+      const category = document.getElementById('buyCategory').value;
+      const filtered = buyProducts.filter(p => 
+        (!search || p.name.toLowerCase().includes(search)) &&
+        (!category || p.category === category)
+      );
+
+      if (filtered.length === 0) {
+        buyDiv.innerHTML = '<div class="empty-state"><i class="fas fa-shopping-bag"></i><p>No products found</p></div>';
+      } else {
+        buyDiv.innerHTML = filtered.map(p => `
+          <div class="product-card">
+            <div class="product-header">
+              <div class="product-name">${p.name}</div>
+              <div class="product-seller">👨‍🌾 ${p.seller}</div>
+            </div>
+            <div class="product-body">
+              <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
+              <div class="product-quantity">📦 ${p.qty}</div>
+              <div class="product-price">${p.price}</div>
+              <div class="product-contact">
+                <i class="fas fa-phone"></i> ${p.phone}
+              </div>
+              <button class="btn-contact" onclick="contactSeller('${p.seller}', '${p.phone}')">Contact Seller</button>
+            </div>
+          </div>
+        `).join('');
+      }
+      document.getElementById('buyCount').textContent = `${filtered.length} Products`;
+    }
+
+    function contactSeller(name, phone) {
       Swal.fire({
-        title: 'Confirm Logout',
-        text: 'Are you sure you want to logout?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, logout'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          localStorage.removeItem('currentUser');
-          sessionStorage.removeItem('sessionActive');
-          window.location.href = '/login.html';
-        }
+        title: `Contact ${name}`,
+        text: `Phone: ${phone}`,
+        icon: 'info',
+        confirmButtonText: 'Copy Number'
+      }).then(() => {
+        navigator.clipboard.writeText(phone);
+        Swal.fire('Copied!', 'Phone number copied to clipboard', 'success');
       });
     }
+
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = '/login.html';
+      }
+    }
+
+    displayProducts();
   </script>
-  <script src="main.js"></script>
-  <script src="theme.js"></script>
-  <script src="farmer.js"></script>
-  <script src="nav.js"></script>
 </body>
 </html>
