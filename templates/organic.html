@@ -2,349 +2,294 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
-  <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
-  <title>AgriConnectHub Dashboard</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Organic Farming Guide - Learn sustainable farming practices" />
+  <title>Organic Farming Guide - AgriConnectHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="main.css" />
-  <link rel="stylesheet" href="organic.css" />
-  <link rel="stylesheet" href="theme.css" />
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: var(--bg-secondary, #0f4d0f);
-      color: var(--text-primary, #333);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
-    .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; background: #f9fafb; color: #333; }
+    
+    .header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header .logo { color: white; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
     .header-buttons { display: flex; gap: 1rem; align-items: center; }
-    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
-    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
-    .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
-    .site-footer p { margin: 0; text-align: center; }
-    .site-footer a { color: #fff; text-decoration: none; }
-    .site-footer a:hover { text-decoration: underline; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.3); }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    
+    .hero { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 3rem 2rem; border-radius: 12px; text-align: center; margin-bottom: 2rem; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.1rem; opacity: 0.95; }
+    
+    .section { background: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .section h2 { color: #16a34a; font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #16a34a; padding-bottom: 0.5rem; }
+    
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .benefit-card { background: #f0fdf4; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #16a34a; }
+    .benefit-card h3 { color: #16a34a; margin-bottom: 0.8rem; font-size: 1.1rem; }
+    .benefit-card p { color: #666; line-height: 1.6; }
+    
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .step-card { background: #f9fafb; padding: 1.5rem; border-radius: 10px; border: 2px solid #e5e7eb; }
+    .step-card h3 { color: #16a34a; margin-bottom: 1rem; font-size: 1.2rem; }
+    .step-card ul { padding-left: 1.5rem; }
+    .step-card li { margin: 0.5rem 0; color: #666; line-height: 1.5; }
+    
+    .tips-box { background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #16a34a; margin: 1.5rem 0; }
+    .tips-box h4 { color: #16a34a; margin-bottom: 1rem; }
+    .tips-box ul { padding-left: 1.5rem; }
+    .tips-box li { margin: 0.5rem 0; color: #555; }
+    
+    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; font-size: 0.9rem; }
+    .footer a { color: white; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    
+    @media (max-width: 768px) {
+      .header { padding: 0.8rem 1rem; }
+      .header .logo { font-size: 1.2rem; }
+      .hero { padding: 2rem 1.5rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .container { padding: 1rem; }
+      .section { padding: 1.5rem; }
+    }
   </style>
 </head>
-
 <body>
-  <div class="header-nav-wrapper">
-    <header class="uniform-header">
-      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
-      <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-        <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
-        <button class="theme-toggle" aria-label="Toggle dark/light mode">
-          <i class="fas fa-sun sun-icon"></i>
-          <i class="fas fa-moon moon-icon"></i>
-          <span class="theme-text">Light</span>
-        </button>
-      </div>
-    </header>
-  </div>
+  <header class="header">
+    <a href="#" class="logo">🌾 AgriConnectHub</a>
+    <div class="header-buttons">
+      <a href="cropCalendar.html">📅 Calendar</a>
+      <a href="feed-back.html">💬 Feedback</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </header>
 
-  <div id="particles-js"></div>
-
-  <div class="scroll-indicator">
-    <div class="scroll-progress" id="scrollProgress"></div>
-  </div>
-
-  <div class="main-wrapper">
-    <div class="page-hero">
-      <h1>🌿 Organic Farming Excellence</h1>
-      <p>
-        Discover sustainable agricultural practices that enhance soil health,
-        preserve ecosystems, and produce premium quality crops through
-        time-tested organic methods.
-      </p>
+  <div class="container">
+    <div class="hero">
+      <h1>🌿 Organic Farming Guide</h1>
+      <p>Learn sustainable practices to grow healthy crops while protecting your soil and environment</p>
     </div>
 
-    <main>
-      <section id="principles" class="animate-in">
-        <h2>🌿 Principles of Organic Farming</h2>
+    <div class="section">
+      <h2>Why Go Organic?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <h3>💰 Higher Profits</h3>
+          <p>Organic crops fetch 20-40% premium prices in markets. Reduced input costs mean better margins.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>🌱 Healthy Soil</h3>
+          <p>Build soil fertility naturally. Organic matter improves water retention and nutrient availability for years.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>🌍 Environment</h3>
+          <p>No chemical runoff. Protect groundwater, support biodiversity, and reduce carbon footprint.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>👨‍🌾 Better Health</h3>
+          <p>No pesticide exposure for you and your family. Produce chemical-free food for consumers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Getting Started with Organic Farming</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <h3>1️⃣ Soil Testing</h3>
+          <ul>
+            <li>Test soil pH, nutrients, and organic matter</li>
+            <li>Identify deficiencies before planting</li>
+            <li>Plan amendments accordingly</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>2️⃣ Build Soil Health</h3>
+          <ul>
+            <li>Add compost (5-10 tonnes/hectare)</li>
+            <li>Use farmyard manure and vermicompost</li>
+            <li>Plant cover crops in off-season</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>3️⃣ Crop Rotation</h3>
+          <ul>
+            <li>Rotate crops every season</li>
+            <li>Include legumes to fix nitrogen</li>
+            <li>Break pest and disease cycles</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>4️⃣ Natural Pest Control</h3>
+          <ul>
+            <li>Use neem oil spray for insects</li>
+            <li>Plant companion crops</li>
+            <li>Encourage beneficial insects</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>5️⃣ Water Management</h3>
+          <ul>
+            <li>Mulch to retain moisture</li>
+            <li>Use drip irrigation efficiently</li>
+            <li>Harvest rainwater</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>6️⃣ Record Keeping</h3>
+          <ul>
+            <li>Document all practices</li>
+            <li>Track inputs and outputs</li>
+            <li>Prepare for certification</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Natural Fertilizers & Pest Control</h2>
+      <div class="tips-box">
+        <h4>🌾 Organic Fertilizers</h4>
         <ul>
-          <li>
-            <strong>Ecology</strong>: Work harmoniously with living systems
-            and natural nutrient cycles
-          </li>
-          <li>
-            <strong>Health</strong>: Sustain soil vitality, ecosystem balance,
-            climate stability, and human well‑being
-          </li>
-          <li>
-            <strong>Fairness</strong>: Foster equitable relationships between
-            people and the environment
-          </li>
-          <li>
-            <strong>Care</strong>: Practice responsible farming to protect
-            future generations
-          </li>
+          <li><strong>Compost:</strong> Mix kitchen waste, crop residue, and manure. Ready in 3-4 months.</li>
+          <li><strong>Vermicompost:</strong> Use earthworms to convert waste. Rich in nutrients and microbes.</li>
+          <li><strong>Farmyard Manure:</strong> Traditional and effective. Apply 5-10 tonnes per hectare.</li>
+          <li><strong>Green Manure:</strong> Grow legumes and plow them back into soil for nitrogen.</li>
+          <li><strong>Biofertilizers:</strong> Azospirillum and Phosphobacteria improve nutrient availability.</li>
         </ul>
-      </section>
+      </div>
+      <div class="tips-box">
+        <h4>🛡️ Natural Pest Control</h4>
+        <ul>
+          <li><strong>Neem Oil:</strong> Mix 5% neem oil with water. Spray on affected plants every 7-10 days.</li>
+          <li><strong>Garlic Spray:</strong> Blend garlic with water. Repels aphids and mites.</li>
+          <li><strong>Companion Planting:</strong> Grow marigold, basil near vegetables to repel pests.</li>
+          <li><strong>Beneficial Insects:</strong> Ladybugs and lacewings eat harmful pests naturally.</li>
+          <li><strong>Crop Rotation:</strong> Change crop location yearly to break pest cycles.</li>
+        </ul>
+      </div>
+    </div>
 
-      <section id="step-by-step" class="animate-in">
-        <h2>✅ Complete Organic Farming Process</h2>
-
-        <div class="crop-grid">
-          <div class="crop-item">
-            <h3>1. 🔍 Site Assessment & Soil Preparation</h3>
-            <ul>
-              <li>Analyze plot characteristics: drainage patterns, soil depth, erosion risk factors</li>
-              <li>Comprehensive soil testing for pH levels, essential nutrients, organic matter content</li>
-              <li>Enhance fertility using green manure, quality compost, and farmyard manure</li>
-              <li>Minimize tillage operations to preserve soil structure and beneficial organisms</li>
-            </ul>
-          </div>
-
-          <div class="crop-item">
-            <h3>2. 🔄 Strategic Crop Planning & Rotation</h3>
-            <ul>
-              <li>Select diverse crop varieties based on local microclimate and soil characteristics</li>
-              <li>Design comprehensive rotation cycles (3–8 years) to break pest cycles</li>
-              <li>Integrate nitrogen-fixing legumes to naturally replenish soil nutrients</li>
-              <li>Align crop selection with market demands and premium opportunities</li>
-            </ul>
-          </div>
-
-          <div class="crop-item">
-            <h3>3. 💧 Soil & Nutrient Management</h3>
-            <ul>
-              <li>Deploy cover crops like clover and mustard for erosion control</li>
-              <li>Enrich soil biology with premium vermicompost and biofertilizers</li>
-              <li>Implement conservation agriculture for sustainable soil health</li>
-              <li>Build efficient rainwater harvesting systems and structures</li>
-            </ul>
-          </div>
-
-          <div class="crop-item">
-            <h3>4. 🛡️ Integrated Pest Management (IPM)</h3>
-            <ul>
-              <li>Monitor pest populations systematically and establish action thresholds</li>
-              <li>Apply cultural controls: crop hygiene, strategic trap crops, organic mulching</li>
-              <li>Release beneficial insects and implement biological control methods</li>
-              <li>Use botanical sprays from neem, garlic, and other natural sources</li>
-            </ul>
-          </div>
-
-          <div class="crop-item">
-            <h3>5. 💧 Efficient Water Management</h3>
-            <ul>
-              <li>Construct rainwater harvesting bunds, trenches, and retention structures</li>
-              <li>Install precision drip irrigation systems for optimal water efficiency</li>
-              <li>Maintain soil moisture using organic mulches and ground covers</li>
-              <li>Prevent waterlogging issues and manage soil salinity effectively</li>
-            </ul>
-          </div>
-
-          <div class="crop-item">
-            <h3>6. 📋 Documentation & Certification</h3>
-            <ul>
-              <li>Develop comprehensive Organic System Plan (OSP) with detailed methods</li>
-              <li>Maintain meticulous records of inputs, operations, harvests, and transitions</li>
-              <li>Explore affordable Participatory Guarantee Systems (PGS) certification</li>
-              <li>Establish buffer zones and implement contamination prevention measures</li>
-            </ul>
-          </div>
-
-          <div class="crop-item">
-            <h3>7. 📈 Marketing & Value Addition</h3>
-            <ul>
-              <li>Target premium market segments: cooperatives, organic stores, export markets</li>
-              <li>Differentiate products through transparency, farm visits, and authentic storytelling</li>
-              <li>Explore value-added processing like cold-pressed oils to increase profit margins</li>
-              <li>Build direct consumer relationships and establish brand recognition</li>
-            </ul>
-          </div>
+    <div class="section">
+      <h2>Organic Crops & Best Practices</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <h3>🍚 Rice (SRI Method)</h3>
+          <ul>
+            <li>Transplant young seedlings (8-12 days)</li>
+            <li>Wide spacing for better growth</li>
+            <li>Intermittent wetting saves water</li>
+            <li>Higher yield with less water</li>
+          </ul>
         </div>
-      </section>
-
-      <section id="crop-details" class="animate-in">
-        <h2>🌾 Crop-Specific Organic Best Practices</h2>
-
-        <div class="crop-grid">
-          <div class="crop-item">
-            <h3>🍚 Rice (SRI Method)</h3>
-            <p>
-              Transplant young seedlings at 8–12 days with optimized wide spacing. Use intermittent wetting techniques to dramatically reduce water consumption while enhancing robust root development and grain quality.
-            </p>
-          </div>
-
-          <div class="crop-item">
-            <h3>🌾 Millets</h3>
-            <p>
-              Cultivate these hardy, drought-resistant, low-input crops. Strategically intercrop with nitrogen-fixing legumes to naturally improve soil fertility and create sustainable farming ecosystems.
-            </p>
-          </div>
-
-          <div class="crop-item">
-            <h3>🫘 Guar (Cluster Bean)</h3>
-            <p>
-              Grow this exceptional heat-tolerant crop using farmyard manure (25 tonnes per hectare) combined with beneficial biofertilizers at sowing. Requires minimal post-establishment care.
-            </p>
-          </div>
-
-          <div class="crop-item">
-            <h3>🧵 Organic Cotton</h3>
-            <p>
-              Integrate natural pest-repellent companion plants and apply targeted biofertilizers. Success story from Chhindwara, Madhya Pradesh demonstrates restored soil health and improved profitability.
-            </p>
-          </div>
-
-          <div class="crop-item">
-            <h3>🌱 Multi-Crop Systems</h3>
-            <p>
-              Adopt traditional intercropping systems like 'Barahnaja' (featuring 12+ complementary species) to dramatically boost biodiversity, enhance ecosystem resilience, and optimize land use efficiency.
-            </p>
-          </div>
+        <div class="step-card">
+          <h3>🌾 Wheat</h3>
+          <ul>
+            <li>Sow in November-December</li>
+            <li>Use farmyard manure + biofertilizers</li>
+            <li>Minimal pest issues in winter</li>
+            <li>Harvest in March-April</li>
+          </ul>
         </div>
-      </section>
-
-      <section id="case-study" class="animate-in">
-        <h2>📈 Success Story: Organic Wheat Transformation in Punjab</h2>
-        <p>
-          <strong>Sucha Singh Pabla's remarkable journey:</strong>
-          Successfully transitioned 27 acres to certified organic wheat production, achieving exceptional results that demonstrate the commercial viability and environmental benefits of organic agriculture.
-        </p>
-
-        <div class="crop-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 2rem;">
-          <div class="crop-item" style="border-left-color: #ff9800">
-            <h3>💰 Economic Impact</h3>
-            <p>
-              Premium market price of ₹3,500 per quintal with approximately 50% improved profit margins compared to conventional farming methods.
-            </p>
-          </div>
-          <div class="crop-item" style="border-left-color: #4caf50">
-            <h3>🌱 Environmental Benefits</h3>
-            <p>
-              Significantly healthier soil microbiome, improved air quality, elimination of stubble burning practices, and enhanced ecosystem biodiversity.
-            </p>
-          </div>
-          <div class="crop-item" style="border-left-color: #2196f3">
-            <h3>📉 Cost Optimization</h3>
-            <p>
-              Substantial reduction in input costs through elimination of synthetic fertilizers and pesticides, replaced with sustainable organic alternatives.
-            </p>
-          </div>
+        <div class="step-card">
+          <h3>🫘 Pulses (Dal)</h3>
+          <ul>
+            <li>Excellent for soil nitrogen</li>
+            <li>Low input requirements</li>
+            <li>High market demand</li>
+            <li>Rotate with cereals</li>
+          </ul>
         </div>
-      </section>
-
-      <section id="learning-media" class="animate-in">
-        <h2>🎥 & 🎮 Interactive Learning Resources</h2>
-        <div style="display: grid; gap: 2rem; margin-top: 1.5rem">
-          <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 15px; border-left: 4px solid #2196f3;">
-            <h3 style="background: none; border: none; padding: 0; margin-bottom: 1rem; color: #1976d2;">
-              🎥 Educational Video Content
-            </h3>
-            <p>
-              <strong>Organic Farming – Why & How"</strong> - Comprehensive video series covering fundamental principles, practical implementation strategies, and real-world success stories from organic farming pioneers.
-            </p>
-          </div>
-          <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 15px; border-left: 4px solid #ff9800;">
-            <h3 style="background: none; border: none; padding: 0; margin-bottom: 1rem; color: #f57c00;">
-              🎮 Interactive Simulation
-            </h3>
-            <p>
-              <strong>\"Cornucopia\"</strong> - Advanced interactive simulation platform where you can explore complex soil-water-crop dynamics, experiment with different organic practices, and observe their long-term impacts on farm ecosystems.
-            </p>
-          </div>
+        <div class="step-card">
+          <h3>🥬 Vegetables</h3>
+          <ul>
+            <li>Use rich compost-based soil</li>
+            <li>Frequent watering needed</li>
+            <li>Companion planting essential</li>
+            <li>Premium prices for organic</li>
+          </ul>
         </div>
-      </section>
-    </main>
+        <div class="step-card">
+          <h3>🧵 Cotton</h3>
+          <ul>
+            <li>High demand for organic</li>
+            <li>Needs good drainage</li>
+            <li>Companion crops help</li>
+            <li>Better soil health long-term</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>🌱 Millets</h3>
+          <ul>
+            <li>Drought resistant</li>
+            <li>Low input costs</li>
+            <li>Nutritious and healthy</li>
+            <li>Growing market demand</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Transition to Organic Farming</h2>
+      <div class="tips-box">
+        <h4>📋 3-Year Transition Plan</h4>
+        <ul>
+          <li><strong>Year 1:</strong> Stop using synthetic chemicals. Start composting. Build soil with organic matter.</li>
+          <li><strong>Year 2:</strong> Implement crop rotation. Use biofertilizers. Monitor soil improvement.</li>
+          <li><strong>Year 3:</strong> Apply for organic certification. Document all practices. Achieve premium prices.</li>
+        </ul>
+      </div>
+      <div class="tips-box">
+        <h4>💡 Quick Tips for Success</h4>
+        <ul>
+          <li>Start small - convert 1-2 acres first to learn</li>
+          <li>Join organic farmer groups for support and knowledge sharing</li>
+          <li>Keep detailed records of all activities and inputs</li>
+          <li>Connect with organic markets before certification</li>
+          <li>Be patient - soil health improves over time</li>
+          <li>Use local resources - compost, manure, natural pest control</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Market Opportunities</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <h3>🏪 Local Markets</h3>
+          <p>Sell directly to consumers at farmers markets. Build loyal customer base. Get 30-50% premium.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>🏢 Cooperatives</h3>
+          <p>Join organic farmer groups. Bulk sales to retailers. Better prices through collective bargaining.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>🌐 Online Platforms</h3>
+          <p>Sell through e-commerce platforms. Reach urban consumers. Direct delivery options available.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>📦 Export Markets</h3>
+          <p>Certified organic products fetch international prices. Higher margins for quality produce.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  <footer class="footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
   </footer>
 
-  <script src="main.js"></script>
-  <script src="theme.js"></script>
-  <script src="auth.js"></script>
-  <script src="organic.js"></script>
-  <script src="nav.js"></script>
-
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!window.authManager.isLoggedIn()) {
-        window.location.href = '/login';
-        return;
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = '/login.html';
       }
-
-      const currentUser = window.authManager.getCurrentUser();
-      if (currentUser) {
-        const headerTitle = document.querySelector('header h2');
-        if (headerTitle) {
-          headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
-        }
-      }
-    });
-
-    function showLogoutConfirmation() {
-      Swal.fire({
-        title: 'Confirm Logout',
-        text: 'Are you sure you want to logout?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, logout',
-        cancelButtonText: 'Cancel'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          const logoutResult = window.authManager.logout();
-          if (logoutResult.success) {
-            Swal.fire({
-              title: 'Logged Out!',
-              text: logoutResult.message,
-              icon: 'success',
-              timer: 2000,
-              showConfirmButton: false
-            }).then(() => {
-              window.location.href = '/';
-            });
-          } else {
-            Swal.fire({
-              title: 'Error!',
-              text: logoutResult.message,
-              icon: 'error'
-            });
-          }
-        }
-      });
-    }
-
-    const scrollToTopBtn = document.getElementById("scrollToTop");
-
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 300) {
-        scrollToTopBtn?.classList.add("visible");
-      } else {
-        scrollToTopBtn?.classList.remove("visible");
-      }
-    });
-
-    scrollToTopBtn?.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    });
-
-    function showCropRecommendation() {
-      document.getElementById('crop-recommendation').style.display = 'block';
-      document.getElementById('crop-recommendation').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
