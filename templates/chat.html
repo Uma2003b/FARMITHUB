@@ -1,145 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
-    <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://generativelanguage.googleapis.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://generativelanguage.googleapis.com;"/>
-    <title>AI ChatBot - AgriConnectHub</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Chatbot - Farming Assistant" />
+  <title>AI Assistant - AgriConnectHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: 'Open Sans', sans-serif; background: #f9fafb; }
+    body { display: flex; flex-direction: column; }
     
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    .header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header .logo { color: white; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+    .header-buttons { display: flex; gap: 1rem; align-items: center; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.3); }
     
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="theme.css" />
-    <link rel="stylesheet" href="chat.css" />
+    .container { flex: 1; display: flex; flex-direction: column; max-width: 900px; margin: 0 auto; width: 100%; padding: 1rem; }
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    .chat-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; margin-bottom: 1.5rem; }
+    .chat-header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .chat-header p { opacity: 0.95; }
     
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-      .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
-      .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
-      .header-buttons { display: flex; gap: 1rem; align-items: center; }
-      .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
-      .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
-      .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
-      .site-footer p { margin: 0; text-align: center; }
-      .site-footer a { color: #fff; text-decoration: none; }
-      .site-footer a:hover { text-decoration: underline; }
-      .chat-header h2 { color: var(--light-green); }
-      .logo h1 { color: var(--light-green); }
-    </style>
-  </head>
-  <body>
-    <div class="header-nav-wrapper">
-      <header class="uniform-header">
-        <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
-        <div class="header-buttons">
-          <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-          <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
-          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
-          <button class="theme-toggle" aria-label="Toggle dark/light mode">
-            <i class="fas fa-sun sun-icon"></i>
-            <i class="fas fa-moon moon-icon"></i>
-            <span class="theme-text">Light</span>
-          </button>
-        </div>
-      </header>
+    .chat-box { flex: 1; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; overflow: hidden; }
+    
+    .messages { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    
+    .message { display: flex; gap: 0.8rem; animation: slideIn 0.3s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .bot-message { justify-content: flex-start; }
+    .bot-message .content { background: #f0fdf4; color: #1f2937; padding: 1rem; border-radius: 10px; max-width: 80%; border-left: 4px solid #16a34a; }
+    
+    .user-message { justify-content: flex-end; }
+    .user-message .content { background: #16a34a; color: white; padding: 1rem; border-radius: 10px; max-width: 80%; }
+    
+    .message-icon { font-size: 1.5rem; }
+    .bot-message .message-icon { color: #16a34a; }
+    .user-message .message-icon { color: white; }
+    
+    .suggestions { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .suggestion-btn { background: #f0fdf4; border: 2px solid #16a34a; color: #16a34a; padding: 0.8rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .suggestion-btn:hover { background: #16a34a; color: white; }
+    
+    .input-area { padding: 1.5rem; border-top: 1px solid #e5e7eb; display: flex; gap: 1rem; }
+    .input-area input { flex: 1; padding: 0.9rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; transition: all 0.3s; }
+    .input-area input:focus { outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); }
+    .input-area button { padding: 0.9rem 1.5rem; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .input-area button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3); }
+    
+    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1rem; text-align: center; font-size: 0.9rem; }
+    .footer a { color: white; text-decoration: none; }
+    
+    @media (max-width: 768px) {
+      .header { padding: 0.8rem 1rem; }
+      .header .logo { font-size: 1.2rem; }
+      .container { padding: 0.8rem; }
+      .messages { padding: 1rem; }
+      .bot-message .content, .user-message .content { max-width: 100%; }
+      .suggestions { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">🌾 AgriConnectHub</a>
+    <div class="header-buttons">
+      <a href="cropCalendar.html">📅 Calendar</a>
+      <a href="feed-back.html">💬 Feedback</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="chat-header">
+      <h1>🤖 AI Farming Assistant</h1>
+      <p>Ask about crops, farming techniques, weather, and more!</p>
     </div>
 
-    <main>
-      <div id="chat-container">
-        <div class="chat-header">
-          <i class="fas fa-robot"></i>
-          <h2>Ask me anything about agriculture, crops, or farming techniques</h2>
-        </div>
-
-        <div id="chat-window">
-          <div class="welcome-message">
-            <h3><i class="fas fa-leaf"></i> Welcome to AgriConnectHub Assistant!</h3>
-            <p>I'm powered by Google Gemini AI to help with all your farming questions.</p>
-
-            <div class="suggestions">
-              <div class="suggestion">Best crops for this season?</div>
-              <div class="suggestion">Organic pest control methods</div>
-              <div class="suggestion">Water conservation techniques</div>
-              <div class="suggestion">Soil health improvement</div>
-            </div>
+    <div class="chat-box">
+      <div class="messages" id="messages">
+        <div class="message bot-message">
+          <i class="fas fa-robot message-icon"></i>
+          <div class="content">
+            <strong>Welcome! 👋</strong><br>
+            I'm your AI farming assistant. Ask me anything about:
+            <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+              <li>Crop recommendations</li>
+              <li>Farming techniques</li>
+              <li>Pest & disease control</li>
+              <li>Weather & irrigation</li>
+              <li>AgriConnectHub features</li>
+            </ul>
           </div>
         </div>
-
-        <form id="chat-form">
-          <div class="input-container">
-            <input type="text" id="chat-input" placeholder="Ask about crops, weather, fertilizers..." aria-label="Chat input" autofocus required/>
-          </div>
-          <button type="submit" id="send-button">
-            <i class="fas fa-paper-plane"></i> Send
-          </button>
-        </form>
       </div>
-    </main>
 
-    <footer class="site-footer">
-      <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-    </footer>
+      <div class="suggestions" id="suggestions">
+        <button class="suggestion-btn" onclick="sendMessage('How do I use crop recommendation?')">📱 How to use crop recommendation?</button>
+        <button class="suggestion-btn" onclick="sendMessage('Best crops for monsoon season')">🌾 Best crops for monsoon?</button>
+        <button class="suggestion-btn" onclick="sendMessage('How to control pests naturally')">🐛 Natural pest control</button>
+        <button class="suggestion-btn" onclick="sendMessage('Water conservation techniques')">💧 Water conservation</button>
+        <button class="suggestion-btn" onclick="sendMessage('How to improve soil health')">🌱 Improve soil health</button>
+        <button class="suggestion-btn" onclick="sendMessage('Organic farming benefits')">🌿 Organic farming</button>
+      </div>
 
-    <script src="chat.js"></script>
-    <script src="nav.js"></script>
-    <script src="auth.js"></script>
-    <script src="theme.js"></script>
-    
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        if (!window.authManager.isLoggedIn()) {
-          window.location.href = '/login';
-          return;
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Ask your question..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  </footer>
+
+  <script>
+    const knowledgeBase = {
+      // Platform Features
+      'crop recommendation': 'Crop Recommendation uses AI to suggest the best crops based on your soil pH, temperature, humidity, rainfall, and nutrient levels. Go to Farming Tools > Crop Recommendation, enter your parameters, and get personalized suggestions.',
+      'yield prediction': 'Yield Prediction helps estimate your crop production. It analyzes soil conditions, weather patterns, and farming practices to forecast your harvest. Use it for better planning and resource allocation.',
+      'price tracker': 'Price Tracker shows real-time market prices for crops across India. Select your crop, state, and market to see current prices, helping you decide the best time to sell.',
+      'farmer network': 'Farmer Network is our e-commerce marketplace where you can buy and sell agricultural products directly with other farmers. List your products or search for what you need.',
+      'disease detection': 'Disease Detection helps identify plant diseases from images. Upload a photo of affected leaves to get diagnosis and treatment recommendations.',
+      'weather check': 'Weather Check provides real-time weather updates and alerts for your region, helping you plan irrigation and protect crops from adverse conditions.',
+      'organic farming': 'Organic Farming guide teaches sustainable practices like natural pest control, composting, crop rotation, and soil health improvement without chemicals.',
+      'plantation guide': 'Plantation Guide provides step-by-step instructions for proper planting techniques, seed treatment, spacing, depth, and post-planting care for various crops.',
+      
+      // Farming Techniques
+      'crop rotation': 'Crop rotation involves growing different crops in sequence on the same land. Benefits: breaks pest cycles, improves soil fertility, reduces disease, and increases yields. Rotate legumes with cereals.',
+      'soil health': 'Improve soil health by: adding compost (5-10 tonnes/hectare), using farmyard manure, planting cover crops, avoiding excessive tilling, and regular soil testing. Healthy soil = healthy crops.',
+      'irrigation': 'Irrigation methods: Drip (efficient, saves 40-60% water), Sprinkler (good for vegetables), Flood (traditional), Furrow (for rows). Choose based on crop and soil type.',
+      'pest control': 'Natural pest control: Neem oil spray, companion planting (marigold, basil), beneficial insects (ladybugs), crop rotation, and proper farm hygiene. Avoid chemical pesticides.',
+      'fertilizer': 'Organic fertilizers: Compost, vermicompost, farmyard manure, green manure (legumes), biofertilizers (Azospirillum, Phosphobacteria). Apply at right time for best results.',
+      'water conservation': 'Save water by: mulching, drip irrigation, rainwater harvesting, choosing drought-resistant crops, and proper soil preparation. Every drop counts!',
+      'organic farming': 'Organic farming avoids synthetic chemicals. Use natural fertilizers, biological pest control, crop rotation, and cover crops. Higher prices, better health, sustainable.',
+      'seed treatment': 'Treat seeds before sowing: Soak in water (12 hrs), apply fungicide if needed, use biofertilizers, dry properly, store in cool place. Improves germination.',
+      
+      // Seasonal Crops
+      'monsoon crops': 'Best monsoon crops: Rice, Maize, Pulses (Moong, Urad), Vegetables (Okra, Brinjal), Cotton. Requires good drainage and moderate rainfall.',
+      'winter crops': 'Winter crops: Wheat, Pulses (Gram, Lentil), Vegetables (Cabbage, Cauliflower), Mustard. Sow Oct-Nov, harvest Mar-Apr.',
+      'summer crops': 'Summer crops: Groundnut, Sesame, Vegetables (Tomato, Cucumber), Watermelon. Needs irrigation and heat-resistant varieties.',
+      
+      // Pest & Disease
+      'aphids': 'Aphids control: Spray neem oil (5%), use garlic spray, plant companion crops (marigold), encourage ladybugs. Check plants regularly.',
+      'stem borer': 'Stem borer control: Crop rotation, remove affected plants, use pheromone traps, apply neem oil, plant resistant varieties.',
+      'powdery mildew': 'Powdery mildew: Spray sulfur solution or baking soda (1 tbsp per liter), improve air circulation, avoid overhead watering, remove infected leaves.',
+      
+      // Market & Pricing
+      'market prices': 'Check Price Tracker for live market rates. Prices vary by location, season, and quality. Sell when prices are high, buy when low.',
+      'selling crops': 'Sell through: Farmer Network marketplace, local markets, cooperatives, or directly to buyers. Organic crops fetch 20-40% premium prices.',
+      
+      // General
+      'hello': 'Hello! 👋 I\'m your AI farming assistant. How can I help you today? Ask about crops, farming techniques, or AgriConnectHub features.',
+      'help': 'I can help with: Crop recommendations, farming techniques, pest control, irrigation, soil health, organic farming, and AgriConnectHub features. What would you like to know?',
+      'thank you': 'You\'re welcome! 😊 Feel free to ask more questions anytime. Happy farming!',
+    };
+
+    function findAnswer(question) {
+      const q = question.toLowerCase();
+      
+      for (const [key, answer] of Object.entries(knowledgeBase)) {
+        if (q.includes(key)) {
+          return answer;
         }
-
-        const currentUser = window.authManager.getCurrentUser();
-        if (currentUser) {
-          const headerTitle = document.querySelector('header h2');
-          if (headerTitle) {
-            headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
-          }
-        }
-      });
-
-      function showLogoutConfirmation() {
-        Swal.fire({
-          title: 'Confirm Logout',
-          text: 'Are you sure you want to logout?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#d33',
-          cancelButtonColor: '#3085d6',
-          confirmButtonText: 'Yes, logout',
-          cancelButtonText: 'Cancel'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const logoutResult = window.authManager.logout();
-            if (logoutResult.success) {
-              Swal.fire({
-                title: 'Logged Out!',
-                text: logoutResult.message,
-                icon: 'success',
-                timer: 2000,
-                showConfirmButton: false
-              }).then(() => {
-                window.location.href = '/';
-              });
-            } else {
-              Swal.fire({
-                title: 'Error!',
-                text: logoutResult.message,
-                icon: 'error'
-              });
-            }
-          }
-        });
       }
-    </script>
-  </body>
+      
+      return 'I\'m not sure about that. Try asking about: crop recommendations, farming techniques, pest control, irrigation, soil health, organic farming, or AgriConnectHub features. 🌾';
+    }
+
+    function sendMessage(text = null) {
+      const input = document.getElementById('userInput');
+      const message = text || input.value.trim();
+      
+      if (!message) return;
+      
+      // Add user message
+      addMessage(message, 'user');
+      input.value = '';
+      
+      // Get bot response
+      setTimeout(() => {
+        const response = findAnswer(message);
+        addMessage(response, 'bot');
+      }, 500);
+    }
+
+    function addMessage(text, sender) {
+      const messagesDiv = document.getElementById('messages');
+      const messageEl = document.createElement('div');
+      messageEl.className = `message ${sender}-message`;
+      
+      const icon = sender === 'bot' ? '🤖' : '👤';
+      messageEl.innerHTML = `
+        <i class="fas fa-${sender === 'bot' ? 'robot' : 'user'} message-icon"></i>
+        <div class="content">${text}</div>
+      `;
+      
+      messagesDiv.appendChild(messageEl);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      
+      if (sender === 'bot') {
+        document.getElementById('suggestions').style.display = 'grid';
+      }
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = '/login.html';
+      }
+    }
+  </script>
+</body>
 </html>
