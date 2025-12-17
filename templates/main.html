@@ -14,79 +14,136 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg-secondary, #0f4d0f); color: var(--text-primary, #333); }
-    @media (max-width: 768px) { main { margin-left: 0 !important; } .sidebar { position: fixed; left: -280px; z-index: 1000; } }
-    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%) !important; box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25) !important; padding: 1.2rem 2rem !important; height: auto !important; }
-    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15) !important; color: white !important; padding: 0.8rem 1.5rem !important; border-radius: 8px !important; border: 1px solid rgba(255,255,255,0.2) !important; transition: all 0.3s !important; font-size: 1.05rem !important; }
-    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25) !important; transform: translateY(-2px) !important; }
-    .brand h2 { color: white !important; margin: 0 !important; font-size: 2rem !important; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: var(--bg-secondary, #0f4d0f); color: var(--text-primary, #333); }
+    
+    .header-nav-wrapper { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; }
+    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; width: 100%; height: 70px; }
+    .brand h2 { color: white; margin: 0; font-size: 1.5rem; white-space: nowrap; }
+    .header-buttons { display: flex; gap: 0.8rem; align-items: center; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; font-size: 0.9rem; text-decoration: none; cursor: pointer; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .theme-toggle { background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem; }
+    .sun-icon { display: inline; }
+    .moon-icon { display: none; }
+    [data-theme="dark"] .sun-icon { display: none; }
+    [data-theme="dark"] .moon-icon { display: inline; }
+    
+    main { margin-top: 70px; margin-left: 0; flex: 1; padding: 1.5rem; }
+    .sidebar { width: 320px; background: linear-gradient(135deg, #1b5e20, #2e7d32); padding: 1.5rem 0; position: fixed; top: 70px; left: -320px; height: calc(100vh - 70px); overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1); z-index: 1000; transition: left 0.3s ease; }
+    .sidebar.open { left: 0; }
+    .sidebar nav { display: flex; flex-direction: column; gap: 0.3rem; padding: 0 1rem; }
+    .sidebar a { padding: 1rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 0.8rem; font-weight: 500; font-size: 0.95rem; transition: all 0.3s; margin: 0.2rem 0.5rem; }
+    .sidebar a:hover { background: rgba(255,255,255,0.1); }
+    .brand a { cursor: pointer; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333; transition: all 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .card h3 { color: #16a34a; margin: 0 0 0.5rem 0; font-size: 1.1rem; }
+    .card p { margin: 0; font-size: 0.9rem; color: #666; }
+    main h2 { border-bottom: 2px solid #16a34a; padding-bottom: 0.5rem; }
+    
+    .menu-toggle { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; padding: 0.5rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
+    
+    @media (max-width: 768px) {
+      .uniform-header { height: 60px; padding: 0.8rem 1rem; }
+      .brand h2 { font-size: 1.2rem; }
+      .header-buttons { gap: 0.5rem; }
+      .header-buttons a, .header-buttons button { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+      .sidebar { width: 280px; left: -280px; top: 60px; height: calc(100vh - 60px); }
+      main { margin-left: 0; margin-top: 60px; padding: 1rem; }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .brand h2 { font-size: 1rem; }
+      .header-buttons a { display: none; }
+      .header-buttons a:nth-child(1), .header-buttons a:nth-child(3) { display: block; }
+      .sidebar { width: 250px; left: -250px; }
+      .grid { grid-template-columns: 1fr; gap: 1rem; }
+      .card { padding: 1.2rem; }
+      .card-icon { font-size: 2rem; }
+      .card h3 { font-size: 1rem; }
+      .card p { font-size: 0.85rem; }
+      main { padding: 0.8rem; }
+    }
   </style>
 </head>
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
+      <button class="menu-toggle" id="btn">☰</button>
+      <div class="brand"><h2><a href="/main" style="color: white; text-decoration: none;">🌾 AgriConnectHub</a></h2></div>
       <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-        <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
+        <a href="cropCalendar.html" title="Crop Calendar">📅 Calendar</a>
+        <a href="feed-back.html" title="Feedback">💬 Feedback</a>
+        <a href="#" onclick="showLogoutConfirmation()" title="Logout">🚪 Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
-          <span class="theme-text">Light</span>
         </button>
       </div>
     </header>
   </div>
 
-  <div style="display: flex; min-height: calc(100vh - 80px);">
-    <aside class="sidebar" style="width: 320px; background: linear-gradient(135deg, #1b5e20, #2e7d32); padding: 2rem 0; position: fixed; height: calc(100vh - 80px); overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1);">
-      <nav style="display: flex; flex-direction: column; gap: 0.5rem; padding: 0 1.2rem;">
-        <a href="/crop_recommendation/" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">🌱</span> Crop Recommendation</a>
-        <a href="/crop_yield/" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">📊</span> Yield Prediction</a>
-        <a href="disease.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">🔬</span> Disease Detection</a>
-        <a href="weather.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">⛅</span> Weather Check</a>
-        <a href="/crop_planning/" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">📅</span> Crop Planning</a>
-        <a href="/crop_price_tracker/crop_price_tracker" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">💰</span> Price Tracker</a>
-        <a href="organic.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">🌿</span> Organic Farming</a>
-        <a href="farmer.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">👥</span> Farmer Network</a>
-        <a href="shopkeeper.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">🏪</span> Shop Listings</a>
-        <a href="chat.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">🤖</span> AI Assistant</a>
-        <a href="plantation.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">🌳</span> Plantation Guide</a>
-        <a href="./Labour_Alerts/templates/labour.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">⚠️</span> Labour Alerts</a>
-        <a href="Forum/forum.html" style="padding: 1.2rem; color: white; text-decoration: none; border-radius: 10px; display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1.05rem;"><span style="font-size: 1.5rem;">💬</span> Farmer Forum</a>
-      </nav>
-    </aside>
+  <aside class="sidebar" id="nav">
+    <nav>
+      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 0.5rem;">🌾 Farming Tools</div>
+      <a href="/crop_recommendation/"><span>🌱</span> Crop Recommendation</a>
+      <a href="/crop_yield/"><span>📊</span> Yield Prediction</a>
+      <a href="disease.html"><span>🔬</span> Disease Detection</a>
+      <a href="weather.html"><span>⛅</span> Weather Check</a>
+      <a href="/crop_planning/"><span>📅</span> Crop Planning</a>
+      <a href="organic.html"><span>🌿</span> Organic Farming</a>
+      <a href="plantation.html"><span>🌳</span> Plantation Guide</a>
+      
+      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 1rem;">💼 Market & Trade</div>
+      <a href="/crop_price_tracker/crop_price_tracker"><span>💰</span> Price Tracker</a>
+      <a href="farmer.html"><span>👥</span> Farmer Network</a>
+      <a href="shopkeeper.html"><span>🏪</span> Shop Listings</a>
+      
+      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 1rem;">📢 Community</div>
+      <a href="chat.html"><span>🤖</span> AI Assistant</a>
+      <a href="Forum/forum.html"><span>💬</span> Farmer Forum</a>
+      <a href="./Labour_Alerts/templates/labour.html"><span>⚠️</span> Labour Alerts</a>
+    </nav>
+  </aside>
 
-    <main style="margin-left: 320px; flex: 1; padding: 2rem;">
-      <h3 style="color: #1f2937; margin: 2rem 0 1.5rem 0; font-size: 1.4rem; font-weight: 600;">✨ Discover Our Smart Solutions</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-        <a href="/crop_recommendation/" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🌱</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Crop Recommendation</h3><p style="margin: 0; font-size: 0.9rem;">AI-powered crop suggestions</p></a>
-        <a href="/crop_yield/" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">📊</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Yield Prediction</h3><p style="margin: 0; font-size: 0.9rem;">Predict crop yield</p></a>
-        <a href="disease.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🔬</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Disease Detection</h3><p style="margin: 0; font-size: 0.9rem;">Plant disease identification</p></a>
-        <a href="weather.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">⛅</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Weather Check</h3><p style="margin: 0; font-size: 0.9rem;">Real-time weather updates</p></a>
-        <a href="/crop_planning/" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">📅</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Crop Planning</h3><p style="margin: 0; font-size: 0.9rem;">Farm planning tools</p></a>
-        <a href="/crop_price_tracker/crop_price_tracker" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">💰</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Price Tracker</h3><p style="margin: 0; font-size: 0.9rem;">Live market prices</p></a>
-        <a href="organic.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🌿</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Organic Farming</h3><p style="margin: 0; font-size: 0.9rem;">Sustainable practices</p></a>
-        <a href="farmer.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">👥</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Farmer Network</h3><p style="margin: 0; font-size: 0.9rem;">Connect with farmers</p></a>
-        <a href="shopkeeper.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🏪</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Shop Listings</h3><p style="margin: 0; font-size: 0.9rem;">Find suppliers</p></a>
-        <a href="chat.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🤖</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">AI Assistant</h3><p style="margin: 0; font-size: 0.9rem;">24/7 chatbot support</p></a>
-        <a href="plantation.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🌳</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Plantation Guide</h3><p style="margin: 0; font-size: 0.9rem;">Planting techniques</p></a>
-        <a href="./Labour_Alerts/templates/labour.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">⚠️</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Labour Alerts</h3><p style="margin: 0; font-size: 0.9rem;">Weather & subsidy updates</p></a>
-        <a href="Forum/forum.html" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333;"><div style="font-size: 2.5rem; margin-bottom: 0.8rem;">💬</div><h3 style="color: #16a34a; margin: 0 0 0.5rem 0;">Farmer Forum</h3><p style="margin: 0; font-size: 0.9rem;">Community discussions</p></a>
-      </div>
-    </main>
-  </div>
+  <main>
+    <h2 style="color: #16a34a; margin: 0 0 1rem 0; font-size: 1.3rem; font-weight: 600;">🌾 Farming Tools</h2>
+    <div class="grid">
+      <a href="/crop_recommendation/" class="card"><div class="card-icon">🌱</div><h3>Crop Recommendation</h3><p>AI-powered crop suggestions</p></a>
+      <a href="/crop_yield/" class="card"><div class="card-icon">📊</div><h3>Yield Prediction</h3><p>Predict crop yield</p></a>
+      <a href="disease.html" class="card"><div class="card-icon">🔬</div><h3>Disease Detection</h3><p>Plant disease identification</p></a>
+      <a href="weather.html" class="card"><div class="card-icon">⛅</div><h3>Weather Check</h3><p>Real-time weather updates</p></a>
+      <a href="/crop_planning/" class="card"><div class="card-icon">📅</div><h3>Crop Planning</h3><p>Farm planning tools</p></a>
+      <a href="organic.html" class="card"><div class="card-icon">🌿</div><h3>Organic Farming</h3><p>Sustainable practices</p></a>
+      <a href="plantation.html" class="card"><div class="card-icon">🌳</div><h3>Plantation Guide</h3><p>Planting techniques</p></a>
+    </div>
 
-  <button class="scroll-to-top" id="scrollToTop" title="Back to top" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: #16a34a; color: white; border: none; font-size: 1.5rem; cursor: pointer; z-index: 998;"><i class="fas fa-arrow-up"></i></button>
+    <h2 style="color: #16a34a; margin: 2rem 0 1rem 0; font-size: 1.3rem; font-weight: 600;">💼 Market & Trade</h2>
+    <div class="grid">
+      <a href="/crop_price_tracker/crop_price_tracker" class="card"><div class="card-icon">💰</div><h3>Price Tracker</h3><p>Live market prices</p></a>
+      <a href="farmer.html" class="card"><div class="card-icon">👥</div><h3>Farmer Network</h3><p>Connect with farmers</p></a>
+      <a href="shopkeeper.html" class="card"><div class="card-icon">🏪</div><h3>Shop Listings</h3><p>Find suppliers</p></a>
+    </div>
 
-  <script src="main.js"></script>
-  <script src="theme.js"></script>
+    <h2 style="color: #16a34a; margin: 2rem 0 1rem 0; font-size: 1.3rem; font-weight: 600;">📢 Community</h2>
+    <div class="grid">
+      <a href="chat.html" class="card"><div class="card-icon">🤖</div><h3>AI Assistant</h3><p>24/7 chatbot support</p></a>
+      <a href="Forum/forum.html" class="card"><div class="card-icon">💬</div><h3>Farmer Forum</h3><p>Community discussions</p></a>
+      <a href="./Labour_Alerts/templates/labour.html" class="card"><div class="card-icon">⚠️</div><h3>Labour Alerts</h3><p>Weather & subsidy updates</p></a>
+    </div>
+  </main>
 
   <script>
-    if (!localStorage.getItem('currentUser')) {
-      window.location.href = '/login.html';
-    }
+    if (!localStorage.getItem('currentUser')) window.location.href = '/login.html';
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('btn').onclick = () => document.getElementById('nav').classList.toggle('open');
+      document.getElementById('nav').querySelectorAll('a').forEach(a => a.onclick = () => document.getElementById('nav').classList.remove('open'));
+    });
 
     function showLogoutConfirmation() {
       Swal.fire({
