@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; overflow: hidden; font-family: 'Open Sans', sans-serif; }
+    html, body { height: 100%; font-family: 'Open Sans', sans-serif; }
     body { display: flex; flex-direction: column; background: #f9fafb; }
     
     .navbar { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; }
@@ -26,31 +26,38 @@
     [data-theme="dark"] .sun-icon { display: none; }
     [data-theme="dark"] .moon-icon { display: inline; }
     
-    .container { flex: 1; display: flex; overflow: hidden; }
-    .content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+    .container { flex: 1; display: flex; overflow-y: auto; }
+    .content { flex: 1; display: flex; flex-direction: column; }
     
-    .hero { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; flex-shrink: 0; }
-    .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; line-height: 1.2; }
-    .hero p { font-size: 0.95rem; margin-bottom: 1.5rem; opacity: 0.95; }
-    .hero a { background: white; color: #16a34a; padding: 0.7rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; }
+    .hero { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 3rem 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; font-weight: 700; }
+    .hero p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; }
+    .hero a { background: white; color: #16a34a; padding: 0.8rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; }
     .hero a:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     
-    .features { padding: 2rem; flex: 1; overflow-y: auto; }
-    .features h2 { font-size: 1.5rem; color: #1f2937; margin-bottom: 1.5rem; text-align: center; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
-    .card { background: white; padding: 1.2rem; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s; text-decoration: none; color: #333; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
-    .card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-    .card h3 { color: #16a34a; font-size: 0.9rem; margin-bottom: 0.3rem; }
-    .card p { font-size: 0.75rem; color: #666; }
+    .features { padding: 3rem 2rem; background: white; }
+    .features h2 { font-size: 1.8rem; color: #1f2937; margin-bottom: 2.5rem; text-align: center; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; }
+    .card { background: #f3f4f6; padding: 1.5rem; border-radius: 12px; text-align: center; transition: all 0.3s; text-decoration: none; color: #333; border: 1px solid #e5e7eb; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); background: white; }
+    .card-icon { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+    .card h3 { color: #16a34a; font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600; }
+    .card p { font-size: 0.85rem; color: #666; line-height: 1.4; }
     
-    .cta { background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 1.5rem; text-align: center; flex-shrink: 0; }
-    .cta h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .cta p { font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.95; }
-    .cta a { background: white; color: #16a34a; padding: 0.6rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s; }
+    .benefits { padding: 3rem 2rem; background: #f9fafb; }
+    .benefits h2 { font-size: 1.8rem; color: #1f2937; margin-bottom: 2rem; text-align: center; font-weight: 700; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .benefit-card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .benefit-card h3 { color: #16a34a; font-size: 1.1rem; margin-bottom: 0.8rem; }
+    .benefit-card p { color: #666; font-size: 0.95rem; line-height: 1.5; }
+    
+    .cta { background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 3rem 2rem; text-align: center; }
+    .cta h2 { font-size: 1.8rem; margin-bottom: 1rem; font-weight: 700; }
+    .cta p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; }
+    .cta a { background: white; color: #16a34a; padding: 0.8rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s; font-size: 1rem; }
     .cta a:hover { transform: translateY(-2px); }
     
-    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1rem; text-align: center; font-size: 0.8rem; flex-shrink: 0; }
+    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; font-size: 0.9rem; }
     .footer a { color: white; text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
     
@@ -59,39 +66,50 @@
       .navbar .logo { font-size: 1.2rem; }
       .nav-buttons { gap: 0.5rem; }
       .nav-buttons select, .nav-buttons button, .nav-buttons a { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
-      .hero { padding: 1.5rem; }
-      .hero h1 { font-size: 1.5rem; }
-      .hero p { font-size: 0.85rem; }
-      .features { padding: 1.5rem; }
-      .features h2 { font-size: 1.2rem; margin-bottom: 1rem; }
-      .grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.8rem; }
-      .card { padding: 1rem; }
-      .card-icon { font-size: 1.5rem; }
-      .card h3 { font-size: 0.8rem; }
-      .card p { font-size: 0.7rem; }
-      .cta { padding: 1rem; }
-      .cta h2 { font-size: 1.1rem; }
-      .cta p { font-size: 0.8rem; }
+      .hero { padding: 2rem 1.5rem; }
+      .hero h1 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+      .hero p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+      .hero a { padding: 0.7rem 2rem; font-size: 0.95rem; }
+      .features { padding: 2rem 1.5rem; }
+      .features h2 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
+      .card { padding: 1.2rem; }
+      .card-icon { font-size: 2rem; }
+      .card h3 { font-size: 0.9rem; }
+      .card p { font-size: 0.8rem; }
+      .benefits { padding: 2rem 1.5rem; }
+      .benefits h2 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+      .benefits-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .cta { padding: 2rem 1.5rem; }
+      .cta h2 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+      .cta p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+      .cta a { padding: 0.7rem 2rem; font-size: 0.95rem; }
     }
     
     @media (max-width: 480px) {
-      .navbar { padding: 0.6rem 0.8rem; }
+      .navbar { padding: 0.6rem 1rem; }
       .navbar .logo { font-size: 1rem; }
       .nav-buttons a:nth-child(2), .nav-buttons a:nth-child(3) { display: none; }
-      .hero { padding: 1rem; }
-      .hero h1 { font-size: 1.3rem; }
-      .hero p { font-size: 0.8rem; margin-bottom: 1rem; }
-      .features { padding: 1rem; }
-      .features h2 { font-size: 1rem; margin-bottom: 0.8rem; }
-      .grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
-      .card { padding: 0.8rem; }
-      .card-icon { font-size: 1.3rem; margin-bottom: 0.3rem; }
-      .card h3 { font-size: 0.7rem; }
-      .card p { font-size: 0.6rem; }
-      .cta { padding: 0.8rem; }
-      .cta h2 { font-size: 1rem; margin-bottom: 0.3rem; }
-      .cta p { font-size: 0.75rem; margin-bottom: 0.8rem; }
-      .cta a { padding: 0.5rem 1.5rem; font-size: 0.85rem; }
+      .hero { padding: 1.5rem 1rem; }
+      .hero h1 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+      .hero p { font-size: 0.9rem; margin-bottom: 1.2rem; }
+      .hero a { padding: 0.6rem 1.8rem; font-size: 0.9rem; }
+      .features { padding: 1.5rem 1rem; }
+      .features h2 { font-size: 1.2rem; margin-bottom: 1.2rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .card { padding: 1rem; }
+      .card-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+      .card h3 { font-size: 0.85rem; }
+      .card p { font-size: 0.75rem; }
+      .benefits { padding: 1.5rem 1rem; }
+      .benefits h2 { font-size: 1.2rem; margin-bottom: 1.2rem; }
+      .benefit-card { padding: 1.2rem; }
+      .benefit-card h3 { font-size: 1rem; margin-bottom: 0.6rem; }
+      .benefit-card p { font-size: 0.9rem; }
+      .cta { padding: 1.5rem 1rem; }
+      .cta h2 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+      .cta p { font-size: 0.9rem; margin-bottom: 1.2rem; }
+      .cta a { padding: 0.6rem 1.8rem; font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -123,18 +141,40 @@
       <section class="features">
         <h2>Our App Features</h2>
         <div class="grid">
-          <a href="#" class="card"><div class="card-icon">🌱</div><h3>Crop Recommendations</h3><p>AI-powered suggestions</p></a>
-          <a href="#" class="card"><div class="card-icon">📊</div><h3>Yield Predictions</h3><p>Predict crop yield</p></a>
-          <a href="#" class="card"><div class="card-icon">💰</div><h3>Market Prices</h3><p>Live market rates</p></a>
-          <a href="#" class="card"><div class="card-icon">🤝</div><h3>Buyer Network</h3><p>Verified buyers</p></a>
-          <a href="#" class="card"><div class="card-icon">🌤️</div><h3>Weather Alerts</h3><p>Real-time updates</p></a>
-          <a href="#" class="card"><div class="card-icon">⚡</div><h3>Free Platform</h3><p>No fees</p></a>
+          <a href="#" class="card"><span class="card-icon">🌱</span><h3>Crop Recommendations</h3><p>AI-powered suggestions</p></a>
+          <a href="#" class="card"><span class="card-icon">📊</span><h3>Yield Predictions</h3><p>Predict crop yield</p></a>
+          <a href="#" class="card"><span class="card-icon">💰</span><h3>Market Prices</h3><p>Live market rates</p></a>
+          <a href="#" class="card"><span class="card-icon">🤝</span><h3>Buyer Network</h3><p>Verified buyers</p></a>
+          <a href="#" class="card"><span class="card-icon">🌤️</span><h3>Weather Alerts</h3><p>Real-time updates</p></a>
+          <a href="#" class="card"><span class="card-icon">⚡</span><h3>Free Platform</h3><p>No fees</p></a>
+        </div>
+      </section>
+
+      <section class="benefits">
+        <h2>Why Choose AgriConnectHub?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <h3>📱 Easy to Use</h3>
+            <p>Simple and intuitive interface designed for farmers of all ages</p>
+          </div>
+          <div class="benefit-card">
+            <h3>🔒 Secure & Safe</h3>
+            <p>Your data is protected with industry-standard security</p>
+          </div>
+          <div class="benefit-card">
+            <h3>💡 Smart Solutions</h3>
+            <p>AI-powered insights to help you make better farming decisions</p>
+          </div>
+          <div class="benefit-card">
+            <h3>🌍 Wide Network</h3>
+            <p>Connect with thousands of farmers and buyers across India</p>
+          </div>
         </div>
       </section>
 
       <section class="cta">
         <h2>Ready to Get Started?</h2>
-        <p>Join thousands of farmers using AgriConnectHub</p>
+        <p>Join thousands of farmers already using AgriConnectHub</p>
         <a href="login.html">Login to Your Account</a>
       </section>
 
