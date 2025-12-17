@@ -6,43 +6,39 @@
     <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
     <title>Labour Scheduling & Alerts - AgriConnectHub</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../../style.css" />
     <link rel="stylesheet" href="../../main.css" />
     <link rel="stylesheet" href="../../theme.css" />
     <link rel="stylesheet" href="../static/style.css" />
     
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     
-    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
+      .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+      .header-buttons { display: flex; gap: 1rem; align-items: center; }
+      .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
+      .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+      .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
+      .site-footer p { margin: 0; text-align: center; }
+      .site-footer a { color: #fff; text-decoration: none; }
+      .site-footer a:hover { text-decoration: underline; }
+    </style>
   </head>
 
   <body>
     <div class="header-nav-wrapper">
       <header class="uniform-header">
-        <div class="brand">
-          <h2>Welcome to AgriConnectHub</h2>
-        </div>
+        <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
         <div class="header-buttons">
-          <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
-            <span class="calendar-icon">📅</span>
-            Calendar
-          </a>
-          <a href="../../feed-back.html" class="feedback-button">Feedback</a>
-          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+          <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+          <a href="../../feed-back.html" class="feedback-button">💬 Feedback</a>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
           <button class="theme-toggle" aria-label="Toggle dark/light mode">
             <i class="fas fa-sun sun-icon"></i>
             <i class="fas fa-moon moon-icon"></i>
@@ -95,14 +91,7 @@
                   <i class="fas fa-users"></i>
                   Number of People Required
                 </label>
-                <input
-                  type="number"
-                  id="peopleCount"
-                  placeholder="e.g., 5"
-                  min="1"
-                  max="50"
-                  required
-                />
+                <input type="number" id="peopleCount" placeholder="e.g., 5" min="1" max="50" required/>
               </div>
             </div>
 
@@ -120,14 +109,7 @@
                   <i class="fas fa-clock"></i>
                   Duration (Days)
                 </label>
-                <input
-                  type="number"
-                  id="duration"
-                  placeholder="e.g., 3"
-                  min="1"
-                  max="30"
-                  value="1"
-                />
+                <input type="number" id="duration" placeholder="e.g., 3" min="1" max="30" value="1"/>
               </div>
             </div>
 
@@ -137,12 +119,7 @@
                   <i class="fas fa-map-marker-alt"></i>
                   Village Name
                 </label>
-                <input
-                  type="text"
-                  id="village"
-                  placeholder="Enter village name"
-                  required
-                />
+                <input type="text" id="village" placeholder="Enter village name" required/>
               </div>
 
               <div class="form-group">
@@ -150,12 +127,7 @@
                   <i class="fas fa-map"></i>
                   Taluka / District
                 </label>
-                <input
-                  type="text"
-                  id="location"
-                  placeholder="Enter Taluka/District"
-                  required
-                />
+                <input type="text" id="location" placeholder="Enter Taluka/District" required/>
               </div>
             </div>
 
@@ -164,11 +136,7 @@
                 <i class="fas fa-home"></i>
                 Full Address (Optional)
               </label>
-              <textarea
-                id="address"
-                rows="3"
-                placeholder="House no, street, landmark, etc."
-              ></textarea>
+              <textarea id="address" rows="3" placeholder="House no, street, landmark, etc."></textarea>
             </div>
 
             <div class="form-row">
@@ -177,13 +145,7 @@
                   <i class="fas fa-rupee-sign"></i>
                   Wage per Day (in Rs.)
                 </label>
-                <input
-                  type="number"
-                  id="wage"
-                  placeholder="e.g., 300"
-                  min="100"
-                  required
-                />
+                <input type="number" id="wage" placeholder="e.g., 300" min="100" required/>
               </div>
 
               <div class="form-group">
@@ -191,13 +153,7 @@
                   <i class="fas fa-phone"></i>
                   Contact Number
                 </label>
-                <input
-                  type="tel"
-                  id="contact"
-                  placeholder="e.g., 9876543210"
-                  pattern="[0-9]{10}"
-                  required
-                />
+                <input type="tel" id="contact" placeholder="e.g., 9876543210" pattern="[0-9]{10}" required/>
               </div>
             </div>
 
@@ -206,11 +162,7 @@
                 <i class="fas fa-info-circle"></i>
                 Additional Information
               </label>
-              <textarea
-                id="additionalInfo"
-                rows="2"
-                placeholder="Any specific requirements or details..."
-              ></textarea>
+              <textarea id="additionalInfo" rows="2" placeholder="Any specific requirements or details..."></textarea>
             </div>
 
             <button type="submit" id="postJobBtn" class="enhanced-btn">
@@ -223,9 +175,7 @@
         <div class="section-header">
           <h3><i class="fas fa-briefcase"></i> Posted Jobs</h3>
           <div class="job-stats">
-            <span class="stat-badge"
-              >Active: <span id="activeJobCount">0</span></span
-            >
+            <span class="stat-badge">Active: <span id="activeJobCount">0</span></span>
           </div>
         </div>
         <div id="postedJobs" class="cards-list enhanced-grid"></div>
@@ -241,12 +191,8 @@
         <div class="section-header">
           <h2><i class="fas fa-exclamation-triangle"></i> Job Alerts</h2>
           <div class="alert-stats">
-            <span class="stat-badge urgent"
-              >Urgent: <span id="urgentAlertCount">0</span></span
-            >
-            <span class="stat-badge normal"
-              >Normal: <span id="normalAlertCount">0</span></span
-            >
+            <span class="stat-badge urgent">Urgent: <span id="urgentAlertCount">0</span></span>
+            <span class="stat-badge normal">Normal: <span id="normalAlertCount">0</span></span>
           </div>
         </div>
         <div id="dynamicJobAlerts" class="cards-list enhanced-grid"></div>
@@ -256,10 +202,7 @@
         <div id="noAlertsMessage" class="no-content-message">
           <i class="fas fa-bell-slash"></i>
           <h4>No active alerts</h4>
-          <p>
-            Job alerts will appear here when posted jobs are expiring or need
-            attention.
-          </p>
+          <p>Job alerts will appear here when posted jobs are expiring or need attention.</p>
         </div>
       </div>
     </div>
@@ -272,6 +215,10 @@
         <p>Processing...</p>
       </div>
     </div>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+    </footer>
 
     <script src="../static/script.js"></script>
     <script src="../../nav.js"></script>
@@ -292,43 +239,6 @@
           }
         });
       }
-    </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        if (!document.querySelector('.site-footer')) {
-          const footerHTML = `
-            <style>
-              .site-footer {
-                background: linear-gradient(135deg, #2e7d32, #66bb6a);
-                color: #fff;
-                margin-top: auto;
-                padding: 1.5rem;
-                text-align: center;
-                font-size: 0.9rem;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
-              .site-footer p {
-                margin: 0;
-                text-align: center;
-              }
-              .site-footer a {
-                color: #fff;
-                text-decoration: none;
-              }
-              .site-footer a:hover {
-                text-decoration: underline;
-              }
-            </style>
-            <footer class="site-footer">
-              <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-            </footer>
-          `;
-          document.body.insertAdjacentHTML('beforeend', footerHTML);
-        }
-      });
     </script>
   </body>
 </html>

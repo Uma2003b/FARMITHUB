@@ -1,264 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Removed logo favicon as per user request -->
-  <!-- <link rel="icon" type="image/png" href="images/logo.png"> -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
   <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
   <title>AgriConnectHub Dashboard</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-  <!-- Favicon -->
-
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="weather.css" />
   <link rel="stylesheet" href="theme.css" />
   
-  <style>
-    .weather-hero {
-      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 50%, #1b5e20 100%);
-      padding: 1rem;
-      text-align: center;
-      color: white;
-      margin-bottom: 2rem;
-    }
-    
-    .weather-title {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .weather-subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .weather-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem 2rem;
-    }
-    
-    .search-section {
-      margin-bottom: 2rem;
-    }
-    
-    .search-card {
-      background: white;
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 1px solid rgba(76, 175, 80, 0.2);
-    }
-    
-    .search-input-group {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    
-    .search-icon {
-      color: #4caf50;
-      font-size: 1.2rem;
-    }
-    
-    .search-input {
-      flex: 1;
-      padding: 1rem 1.5rem;
-      border: 2px solid #e9ecef;
-      border-radius: 50px;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-    
-    .search-input:focus {
-      border-color: #4caf50;
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-    }
-    
-    .search-btn {
-      background: linear-gradient(135deg, #4caf50, #2e7d32);
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .search-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-    }
-    
-    .weather-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-    }
-    
-    .current-weather-card {
-      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
-      color: white;
-      border-radius: 25px;
-      padding: 2rem;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    }
-    
-    .current-weather-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-    }
-    
-    .city-name {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin: 0;
-    }
-    
-    .location-details {
-      opacity: 0.8;
-      margin: 0.5rem 0 0 0;
-    }
-    
-    .weather-icon-large {
-      font-size: 4rem;
-    }
-    
-    .temperature-display {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    
-    .temp-value {
-      font-size: 4rem;
-      font-weight: 300;
-      display: block;
-    }
-    
-    .weather-description {
-      opacity: 0.9;
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
-    }
-    
-    .weather-details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    
-    .detail-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 1rem;
-      background: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-    }
-    
-    .detail-item i {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      opacity: 0.8;
-    }
-    
-    .forecast-section {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    
-    .hourly-forecast, .daily-forecast {
-      background: white;
-      border-radius: 20px;
-      padding: 1.5rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    
-    .forecast-header {
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid #f8f9fa;
-    }
-    
-    .forecast-header h3 {
-      color: #2d3436;
-      font-weight: 600;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .hourly-scroll {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-    }
-    
-    .daily-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    
-    @media (max-width: 768px) {
-      .weather-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .weather-title {
-        font-size: 2rem;
-      }
-      
-      .search-input-group {
-        flex-direction: column;
-      }
-      
-      .weather-details-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
-  <!-- Font Awesome -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    rel="stylesheet"
-  />
-
-  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <!-- Inline Styles (can move to CSS file later) -->
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -267,252 +27,57 @@
       color: var(--text-primary, #333);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
+    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
+    .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+    .header-buttons { display: flex; gap: 1rem; align-items: center; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
+    .site-footer p { margin: 0; text-align: center; }
+    .site-footer a { color: #fff; text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-      background: var(--bg-primary, #fff);
-      border-radius: 10px;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    /* Header within container */
-    .container header h1 {
-      color: var(--text-primary, #333) !important;
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .container header p {
-      color: var(--text-secondary, #666) !important;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-
-    .loan-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .loan-card span {
-      display: block;
-      padding: 15px;
-      font-weight: 600;
-      background: rgba(76, 175, 80, 0.1);
-      color: var(--text-primary, #333) !important;
-      border-top: 1px solid rgba(76, 175, 80, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    /* Loan Guide section */
-    .loan-guide-section {
-      text-align: center;
-      margin-top: 50px;
-      background: var(--bg-primary, #fff) !important;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(76, 175, 80, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .loan-guide-section h2 {
-      color: var(--text-primary, #333) !important;
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .loan-guide-section p {
-      color: var(--text-secondary, #666) !important;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn-green {
-      display: inline-block;
-      background: linear-gradient(135deg, #2e7d32, #4caf50);
-      color: #fff !important;
-      padding: 12px 24px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
-    }
-
-    .btn-green:hover {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
-      color: #fff !important;
-      text-decoration: none;
-    }
-
-    select.language-select {
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-left: 15px;
-      border: 2px solid rgba(76, 175, 80, 0.3);
-      background: var(--bg-primary, #fff);
-      color: var(--text-primary, #333);
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    select.language-select:focus {
-      outline: none;
-      border-color: #4caf50;
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-    }
-
-    /* Dark mode specific styles */
-    [data-theme="dark"] .container {
-      background: #2d2d2d !important;
-      border: 1px solid #404040;
-    }
-
-    [data-theme="dark"] .loan-guide-section {
-      background: #2d2d2d !important;
-      border-color: #404040;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    [data-theme="dark"] .loan-guide-section h2 {
-      color: #ffffff !important;
-    }
-
-    [data-theme="dark"] .loan-guide-section p {
-      color: #cccccc !important;
-    }
-
-    [data-theme="dark"] .container header h1 {
-      color: #ffffff !important;
-    }
-
-    [data-theme="dark"] .container header p {
-      color: #cccccc !important;
-    }
-
-    [data-theme="dark"] .loan-card {
-      background: #3d3d3d !important;
-      border-color: #505050;
-    }
-
-    [data-theme="dark"] .loan-card span {
-      background: rgba(76, 175, 80, 0.2) !important;
-      color: #ffffff !important;
-      border-top-color: #505050;
-    }
-
-    [data-theme="dark"] select.language-select {
-      background: #3d3d3d !important;
-      border-color: #505050;
-      color: #ffffff !important;
-    }
-
-    [data-theme="dark"] select.language-select option {
-      background: #3d3d3d !important;
-      color: #ffffff !important;
-    }
-
-    /* Ensure text is always visible during transitions */
-    * {
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-    }
-
-    /* Force text color inheritance */
-    .loan-guide-section *:not(.btn-green) {
-      color: inherit !important;
-    }
-
-    .container *:not(.btn-green):not(select) {
-      color: inherit !important;
-    }
-
-    /* Auth message styles */
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slideOutRight {
-      from {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-    }
-
-    .auth-message {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 10000;
-      padding: 15px 20px;
-      border-radius: 8px;
-      color: white;
-      font-weight: 500;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      max-width: 400px;
-    }
-
-    .auth-message-success {
-      background: linear-gradient(135deg, #4caf50, #45a049);
-    }
-
-    .auth-message-error {
-      background: linear-gradient(135deg, #f44336, #e53935);
-    }
-
-    .auth-message-info {
-      background: linear-gradient(135deg, #2196f3, #1976d2);
-    }
-
-    .auth-message-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .auth-message-content i {
-      font-size: 1.2rem;
-    }
+    .weather-hero { background: linear-gradient(135deg, #4caf50 0%, #2e7d32 50%, #1b5e20 100%); padding: 1rem; text-align: center; color: white; margin-bottom: 2rem; }
+    .weather-title { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .weather-subtitle { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+    .weather-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem 2rem; }
+    .search-section { margin-bottom: 2rem; }
+    .search-card { background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(76, 175, 80, 0.2); }
+    .search-input-group { display: flex; align-items: center; gap: 1rem; max-width: 500px; margin: 0 auto; }
+    .search-icon { color: #4caf50; font-size: 1.2rem; }
+    .search-input { flex: 1; padding: 1rem 1.5rem; border: 2px solid #e9ecef; border-radius: 50px; font-size: 1rem; outline: none; transition: all 0.3s ease; }
+    .search-input:focus { border-color: #4caf50; box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1); }
+    .search-btn { background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; border: none; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; }
+    .search-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); }
+    .weather-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+    .current-weather-card { background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: white; border-radius: 25px; padding: 2rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    .current-weather-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
+    .city-name { font-size: 1.8rem; font-weight: 700; margin: 0; }
+    .location-details { opacity: 0.8; margin: 0.5rem 0 0 0; }
+    .weather-icon-large { font-size: 4rem; }
+    .temperature-display { text-align: center; margin-bottom: 2rem; }
+    .temp-value { font-size: 4rem; font-weight: 300; display: block; }
+    .weather-description { opacity: 0.9; font-size: 1.1rem; margin-top: 0.5rem; }
+    .weather-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .detail-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px); }
+    .detail-item i { font-size: 1.2rem; margin-bottom: 0.5rem; opacity: 0.8; }
+    .forecast-section { display: flex; flex-direction: column; gap: 2rem; }
+    .hourly-forecast, .daily-forecast { background: white; border-radius: 20px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .forecast-header { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px solid #f8f9fa; }
+    .forecast-header h3 { color: #2d3436; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 0.5rem; }
+    .hourly-scroll { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; }
+    .daily-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    @media (max-width: 768px) { .weather-grid { grid-template-columns: 1fr; } .weather-title { font-size: 2rem; } .search-input-group { flex-direction: column; } .weather-details-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <div class="brand">
-        <h2>Welcome to AgriConnectHub</h2>
-      </div>
+      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
       <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar">
-          <span class="calendar-icon">📅</span>
-          Calendar
-        </a>
-        <a href="feed-back.html" class="feedback-button">Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+        <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
@@ -520,140 +85,94 @@
         </button>
       </div>
     </header>
-
-    
   </div>
 
-    <div class="weather-hero">
-      <div class="weather-hero-content">
-        <h1 class="weather-title">🌤️ Weather Insights</h1>
-        <p class="weather-subtitle">Get accurate weather forecasts for better farming decisions</p>
+  <div class="weather-hero">
+    <div class="weather-hero-content">
+      <h1 class="weather-title">🌤️ Weather Insights</h1>
+      <p class="weather-subtitle">Get accurate weather forecasts for better farming decisions</p>
+    </div>
+  </div>
+
+  <div class="weather-container">
+    <div class="search-section">
+      <div class="search-card">
+        <div class="search-input-group">
+          <i class="fas fa-map-marker-alt search-icon"></i>
+          <input type="text" id="cityInput" placeholder="Enter city name..." class="search-input" />
+          <button id="search" class="search-btn">
+            <i class="fas fa-search"></i>
+            Search
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="weather-container">
-      <div class="search-section">
-        <div class="search-card">
-          <div class="search-input-group">
-            <i class="fas fa-map-marker-alt search-icon"></i>
-            <input type="text" id="cityInput" placeholder="Enter city name..." class="search-input" />
-            <button id="search" class="search-btn">
-              <i class="fas fa-search"></i>
-              Search
-            </button>
+    <div class="weather-grid">
+      <div class="current-weather-card">
+        <div class="current-weather-header">
+          <div class="location-info">
+            <h2 id="city" class="city-name">City</h2>
+            <p class="location-details">
+              <span id="region">Region</span>, <span id="country">Country</span>
+            </p>
           </div>
+          <div class="weather-icon-large" id="weatherIconLarge">☀️</div>
         </div>
-      </div>
-
-      <div class="weather-grid">
-        <div class="current-weather-card">
-          <div class="current-weather-header">
-            <div class="location-info">
-              <h2 id="city" class="city-name">City</h2>
-              <p class="location-details">
-                <span id="region">Region</span>, <span id="country">Country</span>
-              </p>
-            </div>
-            <div class="weather-icon-large" id="weatherIconLarge">
-              ☀️
-            </div>
-          </div>
-          
-          <div class="temperature-display">
-            <span id="temperature" class="temp-value">--°</span>
-            <div class="weather-description">
-              <p id="description">Loading weather...</p>
-            </div>
-          </div>
-          
-          <div class="weather-details-grid">
-            <div class="detail-item">
-              <i class="fas fa-eye"></i>
-              <span>Visibility</span>
-              <span id="visibility">-- km</span>
-            </div>
-            <div class="detail-item">
-              <i class="fas fa-tint"></i>
-              <span>Humidity</span>
-              <span id="humidity">--%</span>
-            </div>
-            <div class="detail-item">
-              <i class="fas fa-wind"></i>
-              <span>Wind</span>
-              <span id="windSpeed">-- km/h</span>
-            </div>
-            <div class="detail-item">
-              <i class="fas fa-thermometer-half"></i>
-              <span>Feels like</span>
-              <span id="feelsLike">--°</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="forecast-section">
-          <div class="hourly-forecast">
-            <div class="forecast-header">
-              <h3><i class="fas fa-clock"></i> Hourly Forecast</h3>
-            </div>
-            <div class="hourly-scroll" id="hour">
-              <!-- Hourly cards populated dynamically -->
-            </div>
-          </div>
-
-          <div class="daily-forecast">
-            <div class="forecast-header">
-              <h3><i class="fas fa-calendar-alt"></i> 10-Day Forecast</h3>
-            </div>
-            <div class="daily-list" id="day">
-              <!-- Daily cards populated dynamically -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Shared Footer will be loaded by JavaScript -->
-  <!-- JavaScript Files -->
-          <script>
-    // Shared Footer Loader
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create footer if it doesn't exist
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-          </footer>
-        `;
         
-        // Insert footer before closing body tag
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-      }
-    });
-  </script>
+        <div class="temperature-display">
+          <span id="temperature" class="temp-value">--°</span>
+          <div class="weather-description">
+            <p id="description">Loading weather...</p>
+          </div>
+        </div>
+        
+        <div class="weather-details-grid">
+          <div class="detail-item">
+            <i class="fas fa-eye"></i>
+            <span>Visibility</span>
+            <span id="visibility">-- km</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-tint"></i>
+            <span>Humidity</span>
+            <span id="humidity">--%</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-wind"></i>
+            <span>Wind</span>
+            <span id="windSpeed">-- km/h</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-thermometer-half"></i>
+            <span>Feels like</span>
+            <span id="feelsLike">--°</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="forecast-section">
+        <div class="hourly-forecast">
+          <div class="forecast-header">
+            <h3><i class="fas fa-clock"></i> Hourly Forecast</h3>
+          </div>
+          <div class="hourly-scroll" id="hour"></div>
+        </div>
+
+        <div class="daily-forecast">
+          <div class="forecast-header">
+            <h3><i class="fas fa-calendar-alt"></i> 10-Day Forecast</h3>
+          </div>
+          <div class="daily-list" id="day"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  </footer>
+
   <script src="main.js"></script>
   <script src="theme.js"></script>
   <script src="weather.js"></script>
@@ -678,25 +197,6 @@
         }
       });
     }
-
-    // Scroll to top functionality
-    const scrollToTopBtn = document.getElementById("scrollToTop");
-
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 300) {
-        scrollToTopBtn?.classList.add("visible");
-      } else {
-        scrollToTopBtn?.classList.remove("visible");
-      }
-    });
-
-    scrollToTopBtn?.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    });
   </script>
-
 </body>
 </html>

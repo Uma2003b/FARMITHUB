@@ -6,233 +6,59 @@
     <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
     <title>Crop Planning AI - AgriConnectHub</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../../style.css" />
     <link rel="stylesheet" href="../../main.css" />
     <link rel="stylesheet" href="../../theme.css" />
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     
-    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
-            margin: 0;
-            padding: 0;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            animation: fadeIn 1s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        nav {
-            background: #2e7d32;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        nav h1 {
-            color: white;
-            margin: 0;
-            font-size: 1.8em;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav li {
-            margin-left: 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-        nav a:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        .hero {
-            background: linear-gradient(135deg, #4caf50, #2e7d32);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .hero h2 {
-            font-size: 2.5em;
-            margin: 0 0 10px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .hero p {
-            font-size: 1.2em;
-            margin: 0;
-            opacity: 0.9;
-        }
-        .main-content {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            gap: 40px;
-            flex-grow: 1;
-        }
-        .sidebar {
-            flex: 1;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
-        .sidebar h3 {
-            color: #2e7d32;
-            margin-top: 0;
-            font-size: 1.5em;
-        }
-        .sidebar ul {
-            padding-left: 20px;
-        }
-        .sidebar li {
-            margin: 10px 0;
-            position: relative;
-        }
-        .sidebar li::before {
-            content: '🌱';
-            position: absolute;
-            left: -25px;
-            top: 0;
-        }
-        .form-container {
-            flex: 2;
-            background: white;
-            padding: 30px 40px 40px 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        .form-container h2 {
-            color: #2e7d32;
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.2em;
-            letter-spacing: 1px;
-        }
-        form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px 30px;
-        }
-        .form-group {
-            margin-bottom: 0;
-        }
-        label {
-            display: block;
-            font-weight: 600;
-            color: #444;
-            margin-bottom: 8px;
-            letter-spacing: 0.03em;
-        }
-        input[type=number], select {
-            width: 100%;
-            padding: 14px 15px;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            box-sizing: border-box;
-            font-size: 1.1em;
-            transition: all 0.4s ease;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-        input[type=number]:focus, select:focus {
-            outline: none;
-            border-color: #2e7d32;
-            box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
-            transform: scale(1.05);
-        }
-        button {
-            grid-column: span 3;
-            background: linear-gradient(135deg, #2e7d32, #388e3c);
-            color: white;
-            border: none;
-            padding: 20px;
-            font-size: 1.4em;
-            font-weight: 700;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
-        }
-        button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6);
-        }
-        button:active {
-            transform: translateY(-2px);
-        }
-        footer {
-            background: #2e7d32;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 40px;
-        }
-        footer .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
-        }
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            form {
-                grid-template-columns: 1fr;
-            }
-            button {
-                grid-column: span 1;
-            }
-        }
+        .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
+        .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+        .header-buttons { display: flex; gap: 1rem; align-items: center; }
+        .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
+        .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+        .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
+        .site-footer p { margin: 0; text-align: center; }
+        .site-footer a { color: #fff; text-decoration: none; }
+        .site-footer a:hover { text-decoration: underline; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #e8f5e8, #f1f8e9); margin: 0; padding: 0; color: #333; min-height: 100vh; display: flex; flex-direction: column; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .hero { background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; padding: 60px 20px; text-align: center; }
+        .hero h2 { font-size: 2.5em; margin: 0 0 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.2em; margin: 0; opacity: 0.9; }
+        .main-content { display: flex; max-width: 1200px; margin: 0 auto; padding: 40px 20px; gap: 40px; flex-grow: 1; }
+        .sidebar { flex: 1; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); height: fit-content; }
+        .sidebar h3 { color: #2e7d32; margin-top: 0; font-size: 1.5em; }
+        .sidebar ul { padding-left: 20px; }
+        .sidebar li { margin: 10px 0; position: relative; }
+        .sidebar li::before { content: '🌱'; position: absolute; left: -25px; top: 0; }
+        .form-container { flex: 2; background: white; padding: 30px 40px 40px 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .form-container h2 { color: #2e7d32; text-align: center; margin-bottom: 40px; font-size: 2.2em; letter-spacing: 1px; }
+        form { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px 30px; }
+        .form-group { margin-bottom: 0; }
+        label { display: block; font-weight: 600; color: #444; margin-bottom: 8px; letter-spacing: 0.03em; }
+        input[type=number], select { width: 100%; padding: 14px 15px; border: 2px solid #ccc; border-radius: 10px; box-sizing: border-box; font-size: 1.1em; transition: all 0.4s ease; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); }
+        input[type=number]:focus, select:focus { outline: none; border-color: #2e7d32; box-shadow: 0 0 10px rgba(46, 125, 50, 0.5); transform: scale(1.05); }
+        button { grid-column: span 3; background: linear-gradient(135deg, #2e7d32, #388e3c); color: white; border: none; padding: 20px; font-size: 1.4em; font-weight: 700; border-radius: 12px; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4); }
+        button:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6); }
+        button:active { transform: translateY(-2px); }
+        @media (max-width: 768px) { .main-content { flex-direction: column; } form { grid-template-columns: 1fr; } button { grid-column: span 1; } }
     </style>
 </head>
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <div class="brand">
-        <h2>Welcome to AgriConnectHub</h2>
-      </div>
+      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
       <div class="header-buttons">
-        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
-          <span class="calendar-icon">📅</span>
-          Calendar
-        </a>
-        <a href="../../feed-back.html" class="feedback-button">Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+        <a href="../../feed-back.html" class="feedback-button">💬 Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
@@ -240,8 +66,6 @@
         </button>
       </div>
     </header>
-
-    
   </div>
     <div class="hero">
         <h2>Crop Planning AI</h2>
@@ -330,9 +154,7 @@
                         <option value="Aphids">Aphids (Sucking insects)</option>
                     </select>
                 </div>
-                <button type="submit" class="predict-btn" id="submit-btn">
-                    Get Full Farming Plan
-                </button>
+                <button type="submit" class="predict-btn" id="submit-btn">Get Full Farming Plan</button>
             </form>
             <div id="result-container" style="margin-top: 30px; display:none;">
                 <h3>🎯 Recommended Crop:</h3>
@@ -343,13 +165,11 @@
         </div>
     </div>
 
-        <footer>
-            <div class="container">
-                <p>&copy; 2025 Created by AgriConnectHub. All rights reserved.</p>
-            </div>
-        </footer>
+    <footer class="site-footer">
+      <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+    </footer>
           
-            <script>
+    <script>
         document.getElementById('crop-form').addEventListener('submit', async function(event) {
             event.preventDefault();
 
@@ -369,16 +189,7 @@
             };
 
             document.getElementById('result-text').textContent = 'Wheat';
-            document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
-How to Plant:
-- Till the soil and sow seeds in rows.
-- Ensure proper spacing.
-- Irrigate as needed.
-
-Fertilizer: Apply DAP and urea.
-Timeline: 4-5 months.
-Ideal Rainfall: 500-700 mm.
-Post Harvest: Harvest when grains are hard, thresh and store.`;
+            document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide\nHow to Plant:\n- Till the soil and sow seeds in rows.\n- Ensure proper spacing.\n- Irrigate as needed.\n\nFertilizer: Apply DAP and urea.\nTimeline: 4-5 months.\nIdeal Rainfall: 500-700 mm.\nPost Harvest: Harvest when grains are hard, thresh and store.`;
             document.getElementById('result-container').style.display = 'block';
 
             try {
@@ -398,38 +209,20 @@ Post Harvest: Harvest when grains are hard, thresh and store.`;
                     document.getElementById('result-container').style.display = 'block';
                 } else {
                     document.getElementById('result-text').textContent = 'Wheat';
-                    document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
-How to Plant:
-- Till the soil and sow seeds in rows.
-- Ensure proper spacing.
-- Irrigate as needed.
-
-Fertilizer: Apply DAP and urea.
-Timeline: 4-5 months.
-Ideal Rainfall: 500-700 mm.
-Post Harvest: Harvest when grains are hard, thresh and store.`;
+                    document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide\nHow to Plant:\n- Till the soil and sow seeds in rows.\n- Ensure proper spacing.\n- Irrigate as needed.\n\nFertilizer: Apply DAP and urea.\nTimeline: 4-5 months.\nIdeal Rainfall: 500-700 mm.\nPost Harvest: Harvest when grains are hard, thresh and store.`;
                     document.getElementById('result-container').style.display = 'block';
                 }
             } catch (error) {
                 document.getElementById('result-text').textContent = 'Wheat';
-                document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide
-How to Plant:
-- Till the soil and sow seeds in rows.
-- Ensure proper spacing.
-- Irrigate as needed.
-
-Fertilizer: Apply DAP and urea.
-Timeline: 4-5 months.
-Ideal Rainfall: 500-700 mm.
-Post Harvest: Harvest when grains are hard, thresh and store.`;
+                document.getElementById('guide-text').textContent = `Title: Wheat Farming Guide\nHow to Plant:\n- Till the soil and sow seeds in rows.\n- Ensure proper spacing.\n- Irrigate as needed.\n\nFertilizer: Apply DAP and urea.\nTimeline: 4-5 months.\nIdeal Rainfall: 500-700 mm.\nPost Harvest: Harvest when grains are hard, thresh and store.`;
                 document.getElementById('result-container').style.display = 'block';
             }
         });
-      </script>
-      <script src="../../nav.js"></script>
-      <script src="../../theme.js"></script>
+    </script>
+    <script src="../../nav.js"></script>
+    <script src="../../theme.js"></script>
       
-      <script>
+    <script>
         function showLogoutConfirmation() {
           Swal.fire({
             title: 'Confirm Logout',
@@ -447,47 +240,6 @@ Post Harvest: Harvest when grains are hard, thresh and store.`;
             }
           });
         }
-      </script>
-            <script>
-    // Shared Footer Loader
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create footer if it doesn't exist
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-          </footer>
-        `;
-        
-        // Insert footer before closing body tag
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-      }
-    });
-  </script>
+    </script>
 </body>
-    </html>
+</html>

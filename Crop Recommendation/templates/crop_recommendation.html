@@ -10,124 +10,40 @@
   <link rel="stylesheet" href="/main.css" />
   <link rel="stylesheet" href="/theme.css" />
   <style>
-    /* Additional styles for crop recommendation form */
-    .form-container {
-      background: white;
-      padding: 30px 40px 40px 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      max-width: 700px;
-      margin: 40px auto;
-    }
-
-    .form-container h2 {
-      color: var(--primary-color, #2e7d32);
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2.2em;
-      letter-spacing: 1px;
-    }
-
-    form {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px 30px;
-    }
-
-    .form-group {
-      margin-bottom: 0;
-    }
-
-    .form-group.full-width {
-      grid-column: span 2;
-    }
-
-    label {
-      display: block;
-      font-weight: 600;
-      color: #444;
-      margin-bottom: 8px;
-      letter-spacing: 0.03em;
-    }
-
-    input[type=number] {
-      width: 100%;
-      padding: 14px 15px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      box-sizing: border-box;
-      font-size: 1.1em;
-      transition: all 0.4s ease;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    input[type=number]:focus {
-      outline: none;
-      border-color: var(--primary-color, #2e7d32);
-      box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
-      transform: scale(1.05);
-    }
-
-    button {
-      grid-column: span 2;
-      background: linear-gradient(135deg, #2e7d32, #4caf50);
-      color: white;
-      border: none;
-      padding: 20px;
-      font-size: 1.4em;
-      font-weight: 700;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
-    }
-
-    button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6);
-    }
-
-    button:active {
-      transform: translateY(-2px);
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #4caf50, #2e7d32);
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .hero h2 {
-      font-size: 2.5em;
-      margin: 0 0 10px 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero p {
-      font-size: 1.2em;
-      margin: 0;
-      opacity: 0.9;
-    }
-
-    
+    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
+    .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+    .header-buttons { display: flex; gap: 1rem; align-items: center; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
+    .site-footer p { margin: 0; text-align: center; }
+    .site-footer a { color: #fff; text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+    .form-container { background: white; padding: 30px 40px 40px 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); max-width: 700px; margin: 40px auto; }
+    .form-container h2 { color: var(--primary-color, #2e7d32); text-align: center; margin-bottom: 40px; font-size: 2.2em; letter-spacing: 1px; }
+    form { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px 30px; }
+    .form-group { margin-bottom: 0; }
+    .form-group.full-width { grid-column: span 2; }
+    label { display: block; font-weight: 600; color: #444; margin-bottom: 8px; letter-spacing: 0.03em; }
+    input[type=number] { width: 100%; padding: 14px 15px; border: 2px solid #ccc; border-radius: 10px; box-sizing: border-box; font-size: 1.1em; transition: all 0.4s ease; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+    input[type=number]:focus { outline: none; border-color: var(--primary-color, #2e7d32); box-shadow: 0 0 10px rgba(46, 125, 50, 0.5); transform: scale(1.05); }
+    button { grid-column: span 2; background: linear-gradient(135deg, #2e7d32, #4caf50); color: white; border: none; padding: 20px; font-size: 1.4em; font-weight: 700; border-radius: 12px; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4); }
+    button:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6); }
+    button:active { transform: translateY(-2px); }
+    .hero { background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; padding: 60px 20px; text-align: center; margin-bottom: 20px; }
+    .hero h2 { font-size: 2.5em; margin: 0 0 10px 0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+    .hero p { font-size: 1.2em; margin: 0; opacity: 0.9; }
   </style>
 </head>
 
 <body>
   <div class="header-nav-wrapper">
-    <header>
-      <div class="brand">
-        <h2>Welcome to AgriConnectHub</h2>
-      </div>
+    <header class="uniform-header">
+      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
       <div class="header-buttons">
-        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar">
-          <span class="calendar-icon">📅</span>
-          Calendar
-        </a>
-        <a href="../../feed-back.html" class="feedback-button">Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+        <a href="../../feed-back.html" class="feedback-button">💬 Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
@@ -135,8 +51,6 @@
         </button>
       </div>
     </header>
-
-    
   </div>
 
   <div class="hero">
@@ -186,7 +100,9 @@
     </form>
   </div>
 
-  
+  <footer class="site-footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  </footer>
 
   <script src="/main.js"></script>
   <script src="/nav.js"></script>
@@ -198,47 +114,6 @@
         window.location.href = '/';
       }
     }
-  </script>
-  <script>
-    // Shared Footer Loader
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create footer if it doesn't exist
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-          </footer>
-        `;
-        
-        // Insert footer before closing body tag
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-      }
-    });
   </script>
 </body>
 

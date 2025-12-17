@@ -6,134 +6,56 @@
   <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
   <title>Farmer Forum - AgriConnectHub</title>
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   
-  <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="../main.css" />
   <link rel="stylesheet" href="../theme.css" />
   <link rel="stylesheet" href="farmer.css" />
   
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   
-  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    background-color: var(--bg-secondary, #f7f7f7);
-    color: var(--text-primary, #333);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-
-  h1, h2 {
-    color: var(--text-primary, #2c3e50);
-  }
-
-
-  form {
-    margin-bottom: 20px;
-    background: var(--bg-primary, white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px var(--shadow-light, rgba(0, 0, 0, 0.1));
-  }
-
-
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-    background: var(--bg-primary, white);
-    color: var(--text-primary, #333);
-  }
-
-
-  button {
-    padding: 10px 20px;
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-
-  button:hover {
-    background-color: #27ae60;
-  }
-
-
-  .forum-post {
-    background: var(--bg-primary, white);
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-  }
-
-
-  .forum-post strong {
-    color: #34495e;
-  }
-</style>
-
-
+    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
+    .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+    .header-buttons { display: flex; gap: 1rem; align-items: center; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
+    .site-footer p { margin: 0; text-align: center; }
+    .site-footer a { color: #fff; text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+    body { font-family: Arial, sans-serif; margin: 30px; background-color: var(--bg-secondary, #f7f7f7); color: var(--text-primary, #333); transition: background-color 0.3s ease, color 0.3s ease; }
+    h1, h2 { color: var(--text-primary, #2c3e50); }
+    form { margin-bottom: 20px; background: var(--bg-primary, white); padding: 20px; border-radius: 8px; box-shadow: 0 0 10px var(--shadow-light, rgba(0, 0, 0, 0.1)); }
+    input[type="text"], textarea { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; resize: vertical; background: var(--bg-primary, white); color: var(--text-primary, #333); }
+    button { padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background-color: #27ae60; }
+    .forum-post { background: var(--bg-primary, white); margin-bottom: 10px; padding: 15px; border-radius: 6px; border: 1px solid #ddd; }
+    .forum-post strong { color: #34495e; }
+  </style>
 </head>
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <div class="brand">
-        <h2>Welcome to AgriConnectHub</h2>
-      </div>
+      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
       <div class="header-buttons">
-        <a href="../cropCalendar.html" class="calendar-button" title="Crop Calendar">
-          <span class="calendar-icon">📅</span>
-          Calendar
-        </a>
-        <a href="../feed-back.html" class="feedback-button">Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
-        <select id="languageSelector" onchange="changeLanguage()">
-          <option value="en" selected>English</option>
-          <option value="te">తెలుగు</option>
-        </select>
+        <a href="../cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+        <a href="../feed-back.html" class="feedback-button">💬 Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
           <span class="theme-text">Light</span>
         </button>
       </div>
-      <script>
-        function changeLanguage() {
-          const selector = document.getElementById('languageSelector');
-          const selectedLang = selector.value;
-          if (selectedLang === 'en') {
-            window.location.href = 'forum.html';
-          } else if (selectedLang === 'te') {
-            window.location.href = 'forum_telugu.html';
-          }
-        }
-      </script>
     </header>
-
-    
   </div>
 
   <h1>Farmer Forum</h1>
-
 
   <form id="forumForm">
     <input type="text" name="name" placeholder="Your Name" required />
@@ -141,12 +63,14 @@
     <button type="submit">Post</button>
   </form>
 
-
   <h2>Recent Posts</h2>
   <div id="forumPosts"></div>
 
-  <!-- Toast notification -->
   <div id="toast" class="toast"></div>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  </footer>
 
   <script src="forum.js"></script>
   <script src="../nav.js"></script>
@@ -155,7 +79,6 @@
   <link rel="stylesheet" href="toast.css" />
   
   <script>
-    // Check authentication on page load
     document.addEventListener('DOMContentLoaded', () => {
       if (!window.authManager.isLoggedIn()) {
         window.location.href = '/login';
@@ -164,7 +87,6 @@
 
       const currentUser = window.authManager.getCurrentUser();
       if (currentUser) {
-        // Update header to show user name
         const headerTitle = document.querySelector('header h2');
         if (headerTitle) {
           headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
@@ -172,7 +94,6 @@
       }
     });
 
-    // Logout confirmation function
     function showLogoutConfirmation() {
       Swal.fire({
         title: 'Confirm Logout',
@@ -194,7 +115,6 @@
               timer: 2000,
               showConfirmButton: false
             }).then(() => {
-              // Redirect to index.html after logout
               window.location.href = '/';
             });
           } else {
@@ -208,49 +128,5 @@
       });
     }
   </script>
-      <script>
-    // Shared Footer Loader
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create footer if it doesn't exist
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-          </footer>
-        `;
-        
-        // Insert footer before closing body tag
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-      }
-    });
-  </script>
 </body>
 </html>
-
-
-

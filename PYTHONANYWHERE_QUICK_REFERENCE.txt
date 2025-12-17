@@ -1,0 +1,112 @@
+================================================================================
+PYTHONANYWHERE DEPLOYMENT - QUICK REFERENCE
+================================================================================
+
+DOMAIN: agriconnectdashboard-RuralITHUB.pythonanywhere.com
+REPO: https://github.com/Uma2003b/FARMITHUB
+REPO PATH: /home/uma2003b/FARMITHUB
+
+================================================================================
+QUICK DEPLOYMENT (3 STEPS)
+================================================================================
+
+1. SSH into PythonAnywhere:
+   ssh uma2003b@ssh.pythonanywhere.com
+
+2. Pull latest changes:
+   cd /home/uma2003b/FARMITHUB && git pull origin main
+
+3. Reload web app:
+   touch /var/www/uma2003b_pythonanywhere_com_wsgi.py
+
+================================================================================
+AUTOMATED DEPLOYMENT
+================================================================================
+
+Run deployment script:
+   /home/uma2003b/deploy.sh
+
+Or use Python script:
+   python3 /home/uma2003b/pythonanywhere_deploy.py
+
+Check deployment log:
+   tail -f /home/uma2003b/deploy.log
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Check if changes were pulled:
+   cd /home/uma2003b/FARMITHUB && git log --oneline -5
+
+Verify file was updated:
+   ls -la /home/uma2003b/FARMITHUB/templates/main.html
+
+Check error log:
+   tail -50 /var/log/uma2003b_pythonanywhere_com.error.log
+
+Check access log:
+   tail -50 /var/log/uma2003b_pythonanywhere_com.access.log
+
+Force reload web app:
+   touch /var/www/uma2003b_pythonanywhere_com_wsgi.py
+
+================================================================================
+PYTHONANYWHERE WEB DASHBOARD SETTINGS
+================================================================================
+
+1. Go to: https://www.pythonanywhere.com/user/uma2003b/webapps/
+2. Click: agriconnectdashboard-RuralITHUB.pythonanywhere.com
+3. Verify settings:
+   - Source code: /home/uma2003b/FARMITHUB
+   - Working directory: /home/uma2003b/FARMITHUB
+   - WSGI configuration file: /var/www/uma2003b_pythonanywhere_com_wsgi.py
+   - Virtualenv: /home/uma2003b/.virtualenvs/agriconnect
+4. Click: Reload button
+
+================================================================================
+GIT COMMANDS
+================================================================================
+
+Check current branch:
+   git branch
+
+Check remote URL:
+   git remote -v
+
+View recent commits:
+   git log --oneline -10
+
+Check git status:
+   git status
+
+Manually sync with GitHub:
+   git fetch origin && git reset --hard origin/main
+
+================================================================================
+IMPORTANT FILES
+================================================================================
+
+Application entry point:
+   /home/uma2003b/FARMITHUB/application.py
+
+WSGI configuration:
+   /var/www/uma2003b_pythonanywhere_com_wsgi.py
+
+Error log:
+   /var/log/uma2003b_pythonanywhere_com.error.log
+
+Deployment log:
+   /home/uma2003b/deploy.log
+
+================================================================================
+DEPLOYMENT WORKFLOW
+================================================================================
+
+1. Make changes locally and commit to GitHub
+2. Push to GitHub: git push origin main
+3. SSH into PythonAnywhere
+4. Run: /home/uma2003b/deploy.sh
+5. Verify changes at: agriconnectdashboard-RuralITHUB.pythonanywhere.com
+
+================================================================================

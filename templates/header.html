@@ -1,0 +1,23 @@
+<style>
+  .header-nav-wrapper { position: sticky; top: 0; z-index: 999; }
+  .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
+  .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+  .header-buttons { display: flex; gap: 1rem; align-items: center; }
+  .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
+  .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+  .theme-toggle { background: rgba(255,255,255,0.15) !important; border: 1px solid rgba(255,255,255,0.2) !important; }
+  @media (max-width: 768px) { .uniform-header { flex-direction: column; height: auto; gap: 1rem; padding: 1rem; } .header-buttons { flex-wrap: wrap; justify-content: center; } }
+</style>
+<header class="uniform-header">
+  <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
+  <div class="header-buttons">
+    <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+    <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
+    <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
+    <button class="theme-toggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-sun sun-icon"></i>
+      <i class="fas fa-moon moon-icon"></i>
+      <span class="theme-text">Light</span>
+    </button>
+  </div>
+</header>
