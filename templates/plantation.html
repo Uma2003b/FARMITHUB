@@ -1,168 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
-    <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
-    <title>Plantation Guidance - AgriConnectHub</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Plantation Guide - Learn proper planting techniques" />
+  <title>Plantation Guide - AgriConnectHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; background: #f9fafb; color: #333; }
     
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    .header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header .logo { color: white; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+    .header-buttons { display: flex; gap: 1rem; align-items: center; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.3); }
     
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="theme.css" />
-    <link rel="stylesheet" href="plantation.css" />
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    .hero { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 3rem 2rem; border-radius: 12px; text-align: center; margin-bottom: 2rem; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.1rem; opacity: 0.95; }
     
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    .section { background: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .section h2 { color: #16a34a; font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #16a34a; padding-bottom: 0.5rem; }
+    .section h3 { color: #2e7d32; font-size: 1.3rem; margin: 1.5rem 0 0.8rem 0; }
+    
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+    .step-card { background: #f9fafb; padding: 1.5rem; border-radius: 10px; border: 2px solid #e5e7eb; }
+    .step-card h3 { color: #16a34a; margin-top: 0; font-size: 1.2rem; }
+    .step-card ul { padding-left: 1.5rem; }
+    .step-card li { margin: 0.5rem 0; color: #666; line-height: 1.5; }
+    
+    .tips-box { background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #16a34a; margin: 1.5rem 0; }
+    .tips-box h4 { color: #16a34a; margin-bottom: 1rem; }
+    .tips-box ul { padding-left: 1.5rem; }
+    .tips-box li { margin: 0.5rem 0; color: #555; }
+    
+    .crop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+    .crop-card { background: #f0fdf4; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #16a34a; }
+    .crop-card h4 { color: #16a34a; margin-bottom: 0.8rem; }
+    .crop-card p { color: #666; line-height: 1.6; }
+    
+    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; font-size: 0.9rem; }
+    .footer a { color: white; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    
+    @media (max-width: 768px) {
+      .header { padding: 0.8rem 1rem; }
+      .header .logo { font-size: 1.2rem; }
+      .hero { padding: 2rem 1.5rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .container { padding: 1rem; }
+      .section { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">🌾 AgriConnectHub</a>
+    <div class="header-buttons">
+      <a href="cropCalendar.html">📅 Calendar</a>
+      <a href="feed-back.html">💬 Feedback</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </header>
 
-    <style>
-      .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
-      .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
-      .header-buttons { display: flex; gap: 1rem; align-items: center; }
-      .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
-      .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
-      .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
-      .site-footer p { margin: 0; text-align: center; }
-      .site-footer a { color: #fff; text-decoration: none; }
-      .site-footer a:hover { text-decoration: underline; }
-    </style>
-  </head>
-
-  <body>
-    <div class="header-nav-wrapper">
-      <header class="uniform-header">
-        <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
-        <div class="header-buttons">
-          <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-          <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
-          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
-          <button class="theme-toggle" aria-label="Toggle dark/light mode">
-            <i class="fas fa-sun sun-icon"></i>
-            <i class="fas fa-moon moon-icon"></i>
-            <span class="theme-text">Light</span>
-          </button>
-        </div>
-      </header>
+  <div class="container">
+    <div class="hero">
+      <h1>🌳 Plantation Guide</h1>
+      <p>Master the art of proper planting techniques for maximum crop success</p>
     </div>
 
-    <div class="scroll-indicator" id="scrollIndicator"></div>
+    <div class="section">
+      <h2>Step-by-Step Planting Process</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <h3>1️⃣ Soil Preparation</h3>
+          <ul>
+            <li>Test soil pH and nutrients</li>
+            <li>Remove weeds and rocks</li>
+            <li>Add compost or manure</li>
+            <li>Till soil 6-8 inches deep</li>
+            <li>Create raised beds if needed</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>2️⃣ Seed Selection</h3>
+          <ul>
+            <li>Choose certified seeds</li>
+            <li>Check germination rate</li>
+            <li>Select disease-resistant varieties</li>
+            <li>Match crop to climate</li>
+            <li>Buy from trusted sources</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>3️⃣ Seed Treatment</h3>
+          <ul>
+            <li>Soak seeds in water (12 hrs)</li>
+            <li>Apply fungicide if needed</li>
+            <li>Use biofertilizers</li>
+            <li>Dry seeds before sowing</li>
+            <li>Store in cool place</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>4️⃣ Sowing Methods</h3>
+          <ul>
+            <li>Broadcasting - scatter seeds</li>
+            <li>Drilling - place in rows</li>
+            <li>Transplanting - seedlings</li>
+            <li>Dibbling - individual holes</li>
+            <li>Spacing - follow crop guide</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>5️⃣ Depth & Spacing</h3>
+          <ul>
+            <li>Sow at 2-3x seed depth</li>
+            <li>Row spacing: 30-60 cm</li>
+            <li>Plant spacing: 15-45 cm</li>
+            <li>Follow crop requirements</li>
+            <li>Maintain uniform distance</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>6️⃣ Initial Care</h3>
+          <ul>
+            <li>Water immediately after sowing</li>
+            <li>Keep soil moist (not wet)</li>
+            <li>Mulch to retain moisture</li>
+            <li>Protect from birds/pests</li>
+            <li>Monitor germination</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-    <main>
-      <section id="research-development">
-        <h2>Research and Development</h2>
-        <p>Selecting the right crops for cultivation is a critical step in agricultural planning. It involves analyzing various factors such as climate, soil characteristics, and market demand to ensure optimal yield and profitability.</p>
+    <div class="section">
+      <h2>Crop-Specific Planting Guide</h2>
+      <div class="crop-grid">
+        <div class="crop-card">
+          <h4>🍚 Rice</h4>
+          <p><strong>Depth:</strong> 2-3 cm | <strong>Spacing:</strong> 20x15 cm | <strong>Season:</strong> June-July | <strong>Days to harvest:</strong> 120-150</p>
+        </div>
+        <div class="crop-card">
+          <h4>🌾 Wheat</h4>
+          <p><strong>Depth:</strong> 5-7 cm | <strong>Spacing:</strong> 22 cm rows | <strong>Season:</strong> Oct-Nov | <strong>Days to harvest:</strong> 120-140</p>
+        </div>
+        <div class="crop-card">
+          <h4>🫘 Pulses</h4>
+          <p><strong>Depth:</strong> 5-8 cm | <strong>Spacing:</strong> 30x10 cm | <strong>Season:</strong> Oct-Nov | <strong>Days to harvest:</strong> 90-120</p>
+        </div>
+        <div class="crop-card">
+          <h4>🥬 Vegetables</h4>
+          <p><strong>Depth:</strong> 1-2 cm | <strong>Spacing:</strong> 30-45 cm | <strong>Season:</strong> Year-round | <strong>Days to harvest:</strong> 45-90</p>
+        </div>
+        <div class="crop-card">
+          <h4>🌽 Maize</h4>
+          <p><strong>Depth:</strong> 5 cm | <strong>Spacing:</strong> 60x20 cm | <strong>Season:</strong> June-July | <strong>Days to harvest:</strong> 100-120</p>
+        </div>
+        <div class="crop-card">
+          <h4>🧵 Cotton</h4>
+          <p><strong>Depth:</strong> 2-3 cm | <strong>Spacing:</strong> 90x60 cm | <strong>Season:</strong> May-June | <strong>Days to harvest:</strong> 160-180</p>
+        </div>
+      </div>
+    </div>
 
-        <h3>1. Assessing Climate Conditions</h3>
-        <p>Climate plays a pivotal role in determining which crops can thrive in a particular region. Key climatic factors to consider include:</p>
+    <div class="section">
+      <h2>Irrigation After Planting</h2>
+      <div class="tips-box">
+        <h4>💧 Watering Schedule</h4>
         <ul>
-          <li><strong>Temperature Ranges:</strong> Understanding the average temperatures helps in selecting crops that can withstand local heat or cold.</li>
-          <li><strong>Rainfall Patterns:</strong> Analyzing annual precipitation and its distribution is essential, especially for rain-fed agriculture.</li>
-          <li><strong>Growing Season Length:</strong> The duration between the last and first frost dates influences the types of crops that can be grown.</li>
+          <li><strong>First watering:</strong> Immediately after sowing (light spray)</li>
+          <li><strong>Germination phase:</strong> Keep soil moist for 7-10 days</li>
+          <li><strong>Seedling stage:</strong> Water every 2-3 days</li>
+          <li><strong>Growth stage:</strong> Water based on rainfall and soil moisture</li>
+          <li><strong>Flowering:</strong> Increase watering frequency</li>
+          <li><strong>Fruiting:</strong> Maintain consistent moisture</li>
         </ul>
-      </section>
+      </div>
+      <div class="tips-box">
+        <h4>🚰 Irrigation Methods</h4>
+        <ul>
+          <li><strong>Flood irrigation:</strong> Traditional, uses more water</li>
+          <li><strong>Drip irrigation:</strong> Efficient, saves 40-60% water</li>
+          <li><strong>Sprinkler:</strong> Good for vegetables and pulses</li>
+          <li><strong>Furrow:</strong> Suitable for row crops</li>
+          <li><strong>Rainfed:</strong> Rely on natural rainfall</li>
+        </ul>
+      </div>
+    </div>
 
-      <section id="soil-preparation">
-        <h2>Soil Preparation</h2>
-        <p>Proper soil preparation is essential for successful crop cultivation. It involves several key steps to ensure the soil is fertile, well-structured, and ready to support healthy plant growth.</p>
+    <div class="section">
+      <h2>Fertilization After Planting</h2>
+      <div class="tips-box">
+        <h4>🌱 Nutrient Management</h4>
+        <ul>
+          <li><strong>Basal dose:</strong> Apply at sowing time (compost + NPK)</li>
+          <li><strong>Top dressing:</strong> Apply nitrogen at 30-45 days</li>
+          <li><strong>Foliar spray:</strong> Micronutrients at critical stages</li>
+          <li><strong>Organic:</strong> Use vermicompost and biofertilizers</li>
+          <li><strong>Timing:</strong> Apply after rain or irrigation</li>
+        </ul>
+      </div>
+    </div>
 
-        <h3>1. Soil Testing and Analysis</h3>
-        <p>Begin by testing the soil to determine its pH level, nutrient content, and texture. This information helps in identifying necessary amendments to optimize soil fertility.</p>
+    <div class="section">
+      <h2>Common Planting Mistakes to Avoid</h2>
+      <div class="tips-box">
+        <h4>⚠️ Don't Make These Mistakes</h4>
+        <ul>
+          <li>❌ Sowing too deep - seeds won't germinate</li>
+          <li>❌ Overcrowding - poor air circulation, disease</li>
+          <li>❌ Poor soil preparation - weak plant growth</li>
+          <li>❌ Wrong season - crop failure</li>
+          <li>❌ Overwatering - root rot and fungal diseases</li>
+          <li>❌ Using old/low-quality seeds - poor germination</li>
+          <li>❌ Ignoring soil testing - nutrient deficiencies</li>
+          <li>❌ Planting in compacted soil - stunted growth</li>
+        </ul>
+      </div>
+    </div>
 
-        <h3>2. Clearing the Land</h3>
-        <p>Remove any existing vegetation, rocks, and debris from the field. This can be done manually or with the help of machinery, depending on the size of the land.</p>
-      </section>
+    <div class="section">
+      <h2>Post-Planting Care</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <h3>🌱 Germination (0-14 days)</h3>
+          <ul>
+            <li>Keep soil consistently moist</li>
+            <li>Protect from birds</li>
+            <li>Monitor for pests</li>
+            <li>Avoid heavy rain</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>📈 Growth (15-45 days)</h3>
+          <ul>
+            <li>Thin seedlings if needed</li>
+            <li>Remove weeds regularly</li>
+            <li>Apply first fertilizer dose</li>
+            <li>Watch for diseases</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <h3>🌿 Development (45+ days)</h3>
+          <ul>
+            <li>Continue weeding</li>
+            <li>Apply second fertilizer</li>
+            <li>Manage pests actively</li>
+            <li>Ensure adequate water</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-      <section id="seed-sowing">
-        <h2>Seed Sowing</h2>
-        <p>Proper seed sowing is crucial for successful crop cultivation. It involves selecting appropriate methods and ensuring optimal seed placement to promote healthy germination and growth.</p>
+    <div class="section">
+      <h2>Quick Tips for Success</h2>
+      <div class="tips-box">
+        <h4>💡 Pro Tips</h4>
+        <ul>
+          <li>✅ Always test soil before planting</li>
+          <li>✅ Use certified, high-quality seeds</li>
+          <li>✅ Follow recommended spacing for your crop</li>
+          <li>✅ Plant at the right time for your region</li>
+          <li>✅ Water immediately after sowing</li>
+          <li>✅ Keep detailed records of planting dates</li>
+          <li>✅ Monitor weather forecasts</li>
+          <li>✅ Start with small area to learn</li>
+          <li>✅ Join farmer groups for support</li>
+          <li>✅ Use organic methods when possible</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-        <h3>1. Choosing the Right Sowing Method</h3>
-        <p>Different crops and field conditions require specific sowing techniques.</p>
-      </section>
+  <footer class="footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  </footer>
 
-      <section id="irrigation-fertilization">
-        <h2>Irrigation and Fertilization</h2>
-        <p>Implementing efficient irrigation systems and applying suitable fertilizers are crucial for optimal crop growth and yield.</p>
-      </section>
-
-      <section id="pest-disease-management">
-        <h2>Pest and Disease Management</h2>
-        <p>Protecting crops from pests and diseases is crucial for ensuring healthy yields. Integrated Pest Management (IPM) offers a sustainable approach.</p>
-      </section>
-
-      <section id="harvesting">
-        <h2>Harvesting</h2>
-        <p>Harvesting crops at the optimal time is crucial to ensure maximum yield, quality, and shelf life.</p>
-      </section>
-
-      <section id="post-harvest">
-        <h2>Post-Harvest Handling</h2>
-        <p>Effective post-harvest handling is crucial to maintain the quality, safety, and shelf life of fruits and vegetables.</p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-    </footer>
-
-    <script src="plantation.js"></script>
-    <script src="nav.js"></script>
-    <script src="auth.js"></script>
-    <script src="theme.js"></script>
-    
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        if (!window.authManager.isLoggedIn()) {
-          window.location.href = '/login';
-          return;
-        }
-
-        const currentUser = window.authManager.getCurrentUser();
-        if (currentUser) {
-          const headerTitle = document.querySelector('header h2');
-          if (headerTitle) {
-            headerTitle.textContent = `Welcome to AgriConnectHub, ${currentUser.fullname}!`;
-          }
-        }
-      });
-
-      function showLogoutConfirmation() {
-        Swal.fire({
-          title: 'Confirm Logout',
-          text: 'Are you sure you want to logout?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#d33',
-          cancelButtonColor: '#3085d6',
-          confirmButtonText: 'Yes, logout',
-          cancelButtonText: 'Cancel'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const logoutResult = window.authManager.logout();
-            if (logoutResult.success) {
-              Swal.fire({
-                title: 'Logged Out!',
-                text: logoutResult.message,
-                icon: 'success',
-                timer: 2000,
-                showConfirmButton: false
-              }).then(() => {
-                window.location.href = '/';
-              });
-            } else {
-              Swal.fire({
-                title: 'Error!',
-                text: logoutResult.message,
-                icon: 'error'
-              });
-            }
-          }
-        });
+  <script>
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = '/login.html';
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
 </html>

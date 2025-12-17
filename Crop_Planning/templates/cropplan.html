@@ -33,12 +33,7 @@
         .hero h2 { font-size: 2.5em; margin: 0 0 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
         .hero p { font-size: 1.2em; margin: 0; opacity: 0.9; }
         .main-content { display: flex; max-width: 1200px; margin: 0 auto; padding: 40px 20px; gap: 40px; flex-grow: 1; }
-        .sidebar { flex: 1; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); height: fit-content; }
-        .sidebar h3 { color: #2e7d32; margin-top: 0; font-size: 1.5em; }
-        .sidebar ul { padding-left: 20px; }
-        .sidebar li { margin: 10px 0; position: relative; }
-        .sidebar li::before { content: '🌱'; position: absolute; left: -25px; top: 0; }
-        .form-container { flex: 2; background: white; padding: 30px 40px 40px 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .form-container { flex: 1; background: white; padding: 30px 40px 40px 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .form-container h2 { color: #2e7d32; text-align: center; margin-bottom: 40px; font-size: 2.2em; letter-spacing: 1px; }
         form { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px 30px; }
         .form-group { margin-bottom: 0; }
@@ -72,16 +67,7 @@
         <p>Application provided by AgriConnect Hub - Enter your farm's details to get an AI-powered crop planner with comprehensive growing guidelines.</p>
     </div>
     <div class="main-content">
-        <div class="sidebar">
-            <h3>Quick Tips</h3>
-            <ul>
-                <li>Provide accurate soil, weather, and farming details for the best recommendations.</li>
-                <li>Choose the appropriate season and irrigation method for your region.</li>
-                <li>Consider market demand and pest issues to optimize your farming plan.</li>
-                <li>Use this tool to plan sustainable and profitable crop cultivation.</li>
-            </ul>
-        </div>
-        <div class="form-container">
+        <div class="form-container" style="flex: 1; margin: 0 auto; max-width: 900px;">
             <h2>Enter Your Parameters</h2>
             <form id="crop-form">
                 <div class="form-group">

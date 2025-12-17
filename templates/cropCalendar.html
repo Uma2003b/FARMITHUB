@@ -4,11 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crop Calendar - AgriConnectHub</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="main.css" />
-  <link rel="stylesheet" href="theme.css" />
-  <link rel="stylesheet" href="cropCalendar.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../cropCalendar.css">
   <style>
     .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
     .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
@@ -22,8 +19,7 @@
   </style>
 </head>
 <body>
-
-<div class="header-nav-wrapper">
+  <div class="header-nav-wrapper">
     <header class="uniform-header">
       <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
       <div class="header-buttons">
@@ -37,25 +33,88 @@
         </button>
       </div>
     </header>
-</div>
+  </div>
 
-<main>
-    <div id="calendar"></div>
-</main>
+  <main>
+    <div class="controls-container">
+      <div class="filter-container">
+        <label for="locationSelect">📍 Region:</label>
+        <select id="locationSelect">
+          <option value="north">North India</option>
+          <option value="south">South India</option>
+          <option value="east">East India</option>
+          <option value="west">West India</option>
+        </select>
 
-<footer class="site-footer">
-  <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-</footer>
+        <label for="cropSelect">🌾 Crop:</label>
+        <select id="cropSelect">
+          <option value="all">All Crops</option>
+          <option value="Wheat">Wheat</option>
+          <option value="Rice">Rice</option>
+          <option value="Maize">Maize</option>
+          <option value="Barley">Barley</option>
+          <option value="Sugarcane">Sugarcane</option>
+          <option value="Cotton">Cotton</option>
+          <option value="Groundnut">Groundnut</option>
+          <option value="Soybean">Soybean</option>
+          <option value="Pulses">Pulses</option>
+          <option value="Mustard">Mustard</option>
+          <option value="Sunflower">Sunflower</option>
+          <option value="Jute">Jute</option>
+        </select>
 
-<script src="croCalendar.js"></script>
-<script src="nav.js"></script>
-<script src="auth.js"></script>
-<script src="theme.js"></script>
-<script>
-  function showLogoutConfirmation() {
-    alert('Logout functionality');
-  }
-</script>
+        <div class="search-container">
+          <input type="text" id="cropSearch" placeholder="Search crops..." />
+          <i class="fas fa-search search-icon"></i>
+        </div>
 
+        <button class="reset-btn" id="resetBtn">
+          <i class="fas fa-redo"></i> Reset
+        </button>
+      </div>
+    </div>
+
+    <div class="legend-container">
+      <h3>📋 Legend</h3>
+      <div class="legend-items">
+        <div class="legend-item">
+          <span class="legend-emoji">🌱</span>
+          <span>Sowing Season</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-emoji">🟩</span>
+          <span>Growing Period</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-emoji">🌾</span>
+          <span>Harvesting Season</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calendar" id="calendar"></div>
+  </main>
+
+  <div id="cropModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  </footer>
+
+  <script src="../croCalendar.js"></script>
+  <script>
+    function showLogoutConfirmation() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = '/login.html';
+      }
+    }
+  </script>
 </body>
 </html>
