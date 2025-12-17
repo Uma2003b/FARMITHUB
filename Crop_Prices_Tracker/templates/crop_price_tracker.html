@@ -1,34 +1,94 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
-    <meta name="description" content="AgriConnectHub- Empowering Agriculture Through Technology."/>
-    <title>Crop Price Tracker - AgriConnectHub</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Crop Price Tracker - Real-time market prices" />
+  <title>Crop Price Tracker - AgriConnectHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; background: #f9fafb; color: #333; }
     
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../style.css" />
-    <link rel="stylesheet" href="../../main.css" />
-    <link rel="stylesheet" href="../../theme.css" />
-    <link rel="stylesheet" href="{{ url_for('crop_price_tracker.static', filename='styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-      .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
-      .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
-      .header-buttons { display: flex; gap: 1rem; align-items: center; }
-      .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
-      .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
-      .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
-      .site-footer p { margin: 0; text-align: center; }
-      .site-footer a { color: #fff; text-decoration: none; }
-      .site-footer a:hover { text-decoration: underline; }
-    </style>
-  </head>
-
-  <body>
+    .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
+    .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
+    .header-buttons { display: flex; gap: 1rem; align-items: center; }
+    .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
+    .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    
+    .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
+    .site-footer p { margin: 0; text-align: center; }
+    .site-footer a { color: #fff; text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+    
+    .hero { background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; padding: 60px 20px; text-align: center; margin-bottom: 20px; }
+    .hero h2 { font-size: 2.5em; margin: 0 0 10px 0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+    .hero p { font-size: 1.2em; margin: 0; opacity: 0.9; }
+    
+    .form-container { background: white; padding: 30px 40px 40px 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); max-width: 700px; margin: 40px auto; }
+    .form-container h2 { color: #2e7d32; text-align: center; margin-bottom: 40px; font-size: 2.2em; letter-spacing: 1px; }
+    
+    form { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px 30px; }
+    .form-group { margin-bottom: 0; }
+    .form-group.full-width { grid-column: span 2; }
+    
+    label { display: block; font-weight: 600; color: #444; margin-bottom: 8px; letter-spacing: 0.03em; }
+    select { width: 100%; padding: 14px 15px; border: 2px solid #ccc; border-radius: 10px; box-sizing: border-box; font-size: 1.1em; transition: all 0.4s ease; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+    select:focus { outline: none; border-color: #2e7d32; box-shadow: 0 0 10px rgba(46, 125, 50, 0.5); transform: scale(1.05); }
+    select:disabled { background: #f3f4f6; cursor: not-allowed; }
+    
+    button { grid-column: span 2; background: linear-gradient(135deg, #2e7d32, #4caf50); color: white; border: none; padding: 20px; font-size: 1.4em; font-weight: 700; border-radius: 12px; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4); }
+    button:hover:not(:disabled) { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6); }
+    button:active { transform: translateY(-2px); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .results-container { background: white; padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); max-width: 900px; margin: 40px auto; }
+    .results-container h2 { color: #2e7d32; margin-bottom: 30px; font-size: 2em; }
+    
+    .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .price-card { background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 20px; border-radius: 10px; border-left: 4px solid #2e7d32; }
+    .price-card h3 { color: #2e7d32; font-size: 1.2em; margin-bottom: 10px; }
+    .price-amount { font-size: 2em; font-weight: 700; color: #2e7d32; margin: 10px 0; }
+    .price-unit { color: #666; font-size: 0.95em; }
+    .price-details { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(46, 125, 50, 0.2); }
+    .price-detail-item { display: flex; justify-content: space-between; margin: 8px 0; font-size: 0.9em; color: #666; }
+    
+    .alert { padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 10px; }
+    .alert-error { background: #fee2e2; border-left: 4px solid #dc2626; color: #991b1b; }
+    
+    .empty-state { text-align: center; color: #999; padding: 40px 20px; }
+    .empty-state i { font-size: 3em; margin-bottom: 15px; }
+    
+    @media (max-width: 768px) {
+      .form-container { padding: 20px 25px; margin: 20px auto; }
+      .form-container h2 { font-size: 1.6em; margin-bottom: 25px; }
+      form { grid-template-columns: 1fr; gap: 15px; }
+      .form-group.full-width { grid-column: span 1; }
+      button { grid-column: span 1; padding: 15px; font-size: 1.1em; }
+      .results-container { padding: 20px 25px; margin: 20px auto; }
+      .price-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    }
+    
+    @media (max-width: 480px) {
+      .uniform-header { padding: 0.8rem 1rem; height: 70px; }
+      .brand h2 { font-size: 1.2rem; }
+      .header-buttons a { display: none; }
+      .header-buttons a:first-child, .header-buttons a:last-child { display: inline-block; }
+      .hero { padding: 40px 15px; }
+      .hero h2 { font-size: 1.8em; }
+      .hero p { font-size: 1em; }
+      .form-container { padding: 15px 20px; margin: 15px auto; }
+      .form-container h2 { font-size: 1.4em; margin-bottom: 20px; }
+      .results-container { padding: 15px 20px; margin: 15px auto; }
+      .price-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
       <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
@@ -44,309 +104,169 @@
       </div>
     </header>
   </div>
-    <div class="hero">
-      <div class="hero-content">
-        <div class="hero-icon">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <h2>Crop Price Tracker</h2>
-        <p>Get real-time market prices for crops across India with advanced analytics</p>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number">500+</span>
-            <span class="stat-label">Markets</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">100+</span>
-            <span class="stat-label">Crops</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">Live</span>
-            <span class="stat-label">Updates</span>
-          </div>
-        </div>
+
+  <div class="hero">
+    <h2>💰 Crop Price Tracker</h2>
+    <p>Get real-time market prices for crops across India</p>
+  </div>
+
+  <div class="form-container">
+    <h2>Find Market Prices</h2>
+    <form method="POST" id="priceForm">
+      <div class="form-group">
+        <label for="crop">Select Crop</label>
+        <select name="crop" id="crop" required>
+          <option value="">Choose your crop...</option>
+          {% for crop in crops %}
+          <option value="{{ crop }}">{{ crop }}</option>
+          {% endfor %}
+        </select>
       </div>
-    </div>
-    
-    <style>
-      .hero {
-        padding: 0.5rem 1rem !important;
-        height: auto !important;
-        min-height: auto !important;
-      }
-      
-      .hero-content {
-        max-width: 300px !important;
-        margin: 0 auto;
-      }
-      
-      .hero h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.3rem !important;
-      }
-      
-      .hero p {
-        font-size: 0.8rem !important;
-        margin-bottom: 0.8rem !important;
-      }
-      
-      .hero-stats {
-        gap: 0.8rem !important;
-        margin-top: 0.5rem !important;
-      }
-      
-      .hero-icon {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.3rem !important;
-      }
-    </style>
-    
-    <div class="main-container">
-      <div class="search-section">
-        <div class="search-header">
-          <h3><i class="fas fa-search"></i> Find Market Prices</h3>
-          <p>Select your crop, state, and market to get the latest pricing information</p>
-        </div>
-        
-        <form method="POST" id="priceForm" class="price-form">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="crop" class="form-label">
-                <i class="fas fa-seedling"></i>
-                <span>Select Crop</span>
-              </label>
-              <div class="select-wrapper">
-                <select name="crop" id="crop" required class="form-select">
-                  <option value="">Choose your crop...</option>
-                  {% for crop in crops %}
-                  <option value="{{ crop }}">{{ crop }}</option>
-                  {% endfor %}
-                </select>
-                <i class="fas fa-chevron-down select-arrow"></i>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label for="state" class="form-label">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Select State</span>
-              </label>
-              <div class="select-wrapper">
-                <select name="state" id="state" required disabled class="form-select">
-                  <option value="">First select a crop...</option>
-                </select>
-                <i class="fas fa-chevron-down select-arrow"></i>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="market" class="form-label">
-                <i class="fas fa-store"></i>
-                <span>Select Market</span>
-              </label>
-              <div class="select-wrapper">
-                <select name="market" id="market" required disabled class="form-select">
-                  <option value="">First select a state...</option>
-                </select>
-                <i class="fas fa-chevron-down select-arrow"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
-              <i class="fas fa-chart-line"></i>
-              <span>Track Prices</span>
-              <div class="btn-loader"></div>
-            </button>
-            <button type="button" class="btn btn-secondary" id="clearBtn">
-              <i class="fas fa-refresh"></i>
-              <span>Clear All</span>
-            </button>
-          </div>
-        </form>
+      <div class="form-group">
+        <label for="state">Select State</label>
+        <select name="state" id="state" required disabled>
+          <option value="">First select a crop...</option>
+        </select>
       </div>
-    </div>
 
-    {% if error %}
+      <div class="form-group">
+        <label for="market">Select Market</label>
+        <select name="market" id="market" required disabled>
+          <option value="">First select a state...</option>
+        </select>
+      </div>
+
+      <button type="submit" id="submitBtn" disabled>Track Prices</button>
+    </form>
+  </div>
+
+  {% if error %}
+  <div class="results-container">
     <div class="alert alert-error">
-      <div class="alert-icon">
-        <i class="fas fa-exclamation-triangle"></i>
-      </div>
-      <div class="alert-content">
-        <strong>Error</strong>
-        <p>{{ error }}</p>
-      </div>
+      <i class="fas fa-exclamation-triangle"></i>
+      <div>{{ error }}</div>
     </div>
-    {% endif %}
-    
-    {% if result %}
-    <div class="results-section">
-      <div class="results-header">
-        <h3><i class="fas fa-chart-bar"></i> Latest Market Prices</h3>
-        <div class="results-count">{{ result|length }} records found</div>
-      </div>
-      
-      <div class="price-grid">
-        {% for row in result %}
-        <div class="price-card">
-          <div class="price-card-header">
-            <div class="price-date">
-              <i class="fas fa-calendar-alt"></i>
-              {{ row['arrival_date'] }}
-            </div>
-            <div class="price-trend">
-              <i class="fas fa-arrow-up trend-up"></i>
-            </div>
+  </div>
+  {% endif %}
+  
+  {% if result %}
+  <div class="results-container">
+    <h2>Latest Market Prices ({{ result|length }} records)</h2>
+    <div class="price-grid">
+      {% for row in result %}
+      <div class="price-card">
+        <h3>{{ row['market'] }}</h3>
+        <div class="price-amount">₹{{ row['modal_price'] }}</div>
+        <div class="price-unit">per quintal</div>
+        <div class="price-details">
+          <div class="price-detail-item">
+            <span>📍 Location:</span>
+            <span>{{ row['state'] }}</span>
           </div>
-          
-          <div class="price-main">
-            <div class="price-amount">₹{{ row['modal_price'] }}</div>
-            <div class="price-unit">per quintal</div>
+          <div class="price-detail-item">
+            <span>📅 Date:</span>
+            <span>{{ row['arrival_date'] }}</span>
           </div>
-          
-          <div class="price-details">
-            <div class="price-location">
-              <i class="fas fa-map-marker-alt"></i>
-              {{ row['market'] }}, {{ row['state'] }}
-            </div>
-            {% if row.get('min_price') and row.get('max_price') %}
-            <div class="price-range">
-              <span class="range-label">Range:</span>
-              <span class="range-values">₹{{ row['min_price'] }} - ₹{{ row['max_price'] }}</span>
-            </div>
-            {% endif %}
+          {% if row.get('min_price') and row.get('max_price') %}
+          <div class="price-detail-item">
+            <span>📊 Range:</span>
+            <span>₹{{ row['min_price'] }} - ₹{{ row['max_price'] }}</span>
           </div>
+          {% endif %}
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
-    {% endif %}
+  </div>
+  {% else %}
+  <div class="results-container">
+    <div class="empty-state">
+      <i class="fas fa-chart-line"></i>
+      <p>Select crop, state & market to view prices</p>
+    </div>
+  </div>
+  {% endif %}
 
-    <footer class="site-footer">
-      <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-    </footer>
+  <footer class="site-footer">
+    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+  </footer>
 
-    <script>
-      const cropSelect = document.getElementById("crop");
-      const stateSelect = document.getElementById("state");
-      const marketSelect = document.getElementById("market");
-      const submitBtn = document.getElementById("submitBtn");
+  <script>
+    const cropSelect = document.getElementById("crop");
+    const stateSelect = document.getElementById("state");
+    const marketSelect = document.getElementById("market");
+    const submitBtn = document.getElementById("submitBtn");
 
-      function updateSubmitButton() {
-        const isFormComplete =
-          cropSelect.value && stateSelect.value && marketSelect.value;
-        submitBtn.disabled = !isFormComplete;
-      }
+    function updateSubmitButton() {
+      submitBtn.disabled = !(cropSelect.value && stateSelect.value && marketSelect.value);
+    }
 
-      cropSelect.addEventListener("change", function () {
-        const loadingText = "Loading states...";
-        stateSelect.innerHTML = `<option value="">${loadingText}</option>`;
-        stateSelect.disabled = true;
-        stateSelect.classList.add("loading");
+    cropSelect.addEventListener("change", function () {
+      stateSelect.innerHTML = '<option value="">Loading states...</option>';
+      stateSelect.disabled = true;
 
-        fetch("/crop_price_tracker/get_states?crop=" + this.value)
+      fetch("/crop_price_tracker/get_states?crop=" + this.value)
+        .then((res) => res.json())
+        .then((states) => {
+          stateSelect.innerHTML = '<option value="">-- Select State --</option>';
+          states.forEach((state) => {
+            stateSelect.innerHTML += `<option value="${state}">${state}</option>`;
+          });
+          stateSelect.disabled = false;
+          marketSelect.innerHTML = '<option value="">-- First select a state --</option>';
+          marketSelect.disabled = true;
+          updateSubmitButton();
+        })
+        .catch((error) => {
+          console.error("Error fetching states:", error);
+          stateSelect.innerHTML = '<option value="">-- Error loading states --</option>';
+        });
+    });
+
+    stateSelect.addEventListener("change", function () {
+      const crop = cropSelect.value;
+      const state = this.value;
+
+      if (state) {
+        marketSelect.innerHTML = '<option value="">Loading markets...</option>';
+        marketSelect.disabled = true;
+
+        fetch(`/crop_price_tracker/get_markets?crop=${crop}&state=${state}`)
           .then((res) => res.json())
-          .then((states) => {
-            stateSelect.innerHTML =
-              '<option value="">-- Select State --</option>';
-            states.forEach((state) => {
-              stateSelect.innerHTML += `<option value="${state}">${state}</option>`;
+          .then((markets) => {
+            marketSelect.innerHTML = '<option value="">-- Select Market --</option>';
+            markets.forEach((market) => {
+              marketSelect.innerHTML += `<option value="${market}">${market}</option>`;
             });
-            stateSelect.disabled = false;
-            stateSelect.classList.remove("loading");
-
-            marketSelect.innerHTML =
-              '<option value="">-- First select a state --</option>';
-            marketSelect.disabled = true;
+            marketSelect.disabled = false;
             updateSubmitButton();
           })
           .catch((error) => {
-            console.error("Error fetching states:", error);
-            stateSelect.innerHTML =
-              '<option value="">-- Error loading states --</option>';
-            stateSelect.classList.remove("loading");
+            console.error("Error fetching markets:", error);
+            marketSelect.innerHTML = '<option value="">-- Error loading markets --</option>';
           });
-      });
-
-      stateSelect.addEventListener("change", function () {
-        const crop = cropSelect.value;
-        const state = this.value;
-
-        if (state) {
-          const loadingText = "Loading markets...";
-          marketSelect.innerHTML = `<option value="">${loadingText}</option>`;
-          marketSelect.disabled = true;
-          marketSelect.classList.add("loading");
-
-          fetch(`/crop_price_tracker/get_markets?crop=${crop}&state=${state}`)
-            .then((res) => res.json())
-            .then((markets) => {
-              marketSelect.innerHTML =
-                '<option value="">-- Select Market --</option>';
-              markets.forEach((market) => {
-                marketSelect.innerHTML += `<option value="${market}">${market}</option>`;
-              });
-              marketSelect.disabled = false;
-              marketSelect.classList.remove("loading");
-              updateSubmitButton();
-            })
-            .catch((error) => {
-              console.error("Error fetching markets:", error);
-              marketSelect.innerHTML =
-                '<option value="">-- Error loading markets --</option>';
-              marketSelect.classList.remove("loading");
-            });
-        } else {
-          marketSelect.innerHTML =
-            '<option value="">-- First select a state --</option>';
-          marketSelect.disabled = true;
-          updateSubmitButton();
-        }
-      });
-
-      marketSelect.addEventListener("change", updateSubmitButton);
-
-      document.getElementById('clearBtn').addEventListener('click', function() {
-        cropSelect.value = '';
-        stateSelect.innerHTML = '<option value="">First select a crop...</option>';
-        stateSelect.disabled = true;
-        marketSelect.innerHTML = '<option value="">First select a state...</option>';
+      } else {
+        marketSelect.innerHTML = '<option value="">-- First select a state --</option>';
         marketSelect.disabled = true;
         updateSubmitButton();
-      });
-
-      document.getElementById("priceForm").addEventListener("submit", function () {
-        submitBtn.classList.add("loading");
-        const btnText = submitBtn.querySelector('span');
-        const btnIcon = submitBtn.querySelector('i');
-        btnText.textContent = "Fetching Prices...";
-        btnIcon.className = "fas fa-spinner fa-spin";
-      });
-
-      updateSubmitButton();
-    </script>
-    <script src="../../nav.js"></script>
-    <script src="../../theme.js"></script>
-    
-    <script>
-      function showLogoutConfirmation() {
-        Swal.fire({
-          title: 'Confirm Logout',
-          text: 'Are you sure you want to logout?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#d33',
-          cancelButtonColor: '#3085d6',
-          confirmButtonText: 'Yes, logout',
-          cancelButtonText: 'Cancel'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            localStorage.removeItem('currentUser');
-            window.location.href = '/';
-          }
-        });
       }
-    </script>
+    });
+
+    marketSelect.addEventListener("change", updateSubmitButton);
+
+    document.getElementById("priceForm").addEventListener("submit", function () {
+      submitBtn.disabled = true;
+    });
+
+    updateSubmitButton();
+
+    function showLogoutConfirmation() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUser');
+        window.location.href = '/';
+      }
+    }
+  </script>
 </body>
 </html>
