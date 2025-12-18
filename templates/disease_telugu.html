@@ -1,38 +1,38 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="te">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>పంట రోగాల గుర్తింపు - AI ఆధారిత నిర్ధారణ</title>
+    <title>à°ªà°‚à°Ÿ à°°à±‹à°—à°¾à°² à°—à±à°°à±à°¤à°¿à°‚à°ªà± - AI à°†à°§à°¾à°°à°¿à°¤ à°¨à°¿à°°à±à°§à°¾à°°à°£</title>
     <link rel="stylesheet" href="disease.css" />
     <link rel="stylesheet" href="theme.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-  </head>
+  <style>.apps-dropdown{position:relative}.apps-btn{background:rgba(255,255,255,.15);color:#fff;padding:.6rem 1.2rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.5rem;transition:all .3s;font-weight:500}.apps-btn:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}.dropdown-menu{position:fixed;top:85px;right:2rem;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:300px;max-height:450px;overflow-y:auto;z-index:1005;display:none}.dropdown-menu.show{display:block}.dropdown-menu a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;color:#333;text-decoration:none;transition:all .2s;border-bottom:1px solid #f0f0f0}.dropdown-menu a:hover{background:#f5f5f5;padding-left:1.2rem}.dropdown-menu a span{font-size:1.2rem;min-width:1.5rem}.dropdown-category{padding:.8rem 1rem;font-weight:600;font-size:.8rem;color:#666;text-transform:uppercase;background:#f9f9f9;border-bottom:1px solid #e0e0e0}</style></head>
   <body>
     <div class="full-width-wrapper">
       <div class="header-nav-wrapper">
         <header class="uniform-header">
           <div class="brand">
-            <h2>AgriConnectHub కు స్వాగతం</h2>
+            <h2>AgriConnectHub à°•à± à°¸à±à°µà°¾à°—à°¤à°‚</h2>
           </div>
-          <div class="header-buttons">
-            <a href="cropCalendar.html" class="calendar-button" title="పంట క్యాలెండర్">
-              <span class="calendar-icon">📅</span>
-              క్యాలెండర్
+          <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
+            <a href="cropCalendar.html" class="calendar-button" title="à°ªà°‚à°Ÿ à°•à±à°¯à°¾à°²à±†à°‚à°¡à°°à±">
+              <span class="calendar-icon">ðŸ“…</span>
+              à°•à±à°¯à°¾à°²à±†à°‚à°¡à°°à±
             </a>
-            <a href="feed-back.html" class="feedback-button">ఫీడ్‌బ్యాక్</a>
-            <a href="#" class="logout-button" onclick="showLogoutConfirmation()">లాగ్ అవుట్</a>
+            <a href="feed-back.html" class="feedback-button">à°«à±€à°¡à±â€Œà°¬à±à°¯à°¾à°•à±</a>
+            <a href="#" class="logout-button" onclick="showLogoutConfirmation()">à°²à°¾à°—à± à°…à°µà±à°Ÿà±</a>
             <select id="languageSelector" onchange="changeLanguage()">
-              <option value="te" selected>తెలుగు</option>
+              <option value="te" selected>à°¤à±†à°²à±à°—à±</option>
               <option value="en">English</option>
             </select>
-            <button class="theme-toggle" aria-label="డార్క్/లైట్ మోడ్ మార్చు">
+            <button class="theme-toggle" aria-label="à°¡à°¾à°°à±à°•à±/à°²à±ˆà°Ÿà± à°®à±‹à°¡à± à°®à°¾à°°à±à°šà±">
               <i class="fas fa-sun sun-icon"></i>
               <i class="fas fa-moon moon-icon"></i>
-              <span class="theme-text">లైట్</span>
+              <span class="theme-text">à°²à±ˆà°Ÿà±</span>
             </button>
           </div>
         </header>
@@ -42,20 +42,20 @@
     </div>
     <div class="full-width-section">
       <div class="full-width-header">
-        <h1>🔬 AI రోగ విశ్లేషణ</h1>
+        <h1>ðŸ”¬ AI à°°à±‹à°— à°µà°¿à°¶à±à°²à±‡à°·à°£</h1>
       </div>
       <div class="analysis-section" style="max-width:none; border-radius: 0; margin: 0; box-shadow: none; background: #f9f9f9; padding: 1rem 1.5rem;">
         <div id="modelStatus" class="status-indicator status-success" style="text-align: center; font-weight: bold; margin-bottom: 1rem;">
-          ✅ AI మోడల్ సిద్ధంగా ఉంది - విశ్లేషణ ప్రారంభించడానికి చిత్రం అప్లోడ్ చేయండి
+          âœ… AI à°®à±‹à°¡à°²à± à°¸à°¿à°¦à±à°§à°‚à°—à°¾ à°‰à°‚à°¦à°¿ - à°µà°¿à°¶à±à°²à±‡à°·à°£ à°ªà±à°°à°¾à°°à°‚à°­à°¿à°‚à°šà°¡à°¾à°¨à°¿à°•à°¿ à°šà°¿à°¤à±à°°à°‚ à°…à°ªà±à°²à±‹à°¡à± à°šà±‡à°¯à°‚à°¡à°¿
         </div>
 
         <div class="upload-container" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center;">
-          <div class="upload-zone" tabindex="0" role="button" aria-label="మీ మొక్క చిత్రం ఇక్కడ అప్లోడ్ చేయండి లేదా డ్రాప్ చేయండి" id="uploadArea" style="flex: 1 1 250px; border: 2px dashed #4caf50; border-radius: 8px; padding: 1rem; cursor: pointer; text-align: center;">
-            <div class="upload-icon" style="font-size: 3rem;">📸</div>
+          <div class="upload-zone" tabindex="0" role="button" aria-label="à°®à±€ à°®à±Šà°•à±à°• à°šà°¿à°¤à±à°°à°‚ à°‡à°•à±à°•à°¡ à°…à°ªà±à°²à±‹à°¡à± à°šà±‡à°¯à°‚à°¡à°¿ à°²à±‡à°¦à°¾ à°¡à±à°°à°¾à°ªà± à°šà±‡à°¯à°‚à°¡à°¿" id="uploadArea" style="flex: 1 1 250px; border: 2px dashed #4caf50; border-radius: 8px; padding: 1rem; cursor: pointer; text-align: center;">
+            <div class="upload-icon" style="font-size: 3rem;">ðŸ“¸</div>
             <div class="upload-text" style="font-size: 1rem;">
-              <strong>మీ మొక్క చిత్రం ఇక్కడ డ్రాప్ చేయండి</strong><br />
-              లేదా ఫైళ్లను బ్రౌజ్ చేయడానికి క్లిక్ చేయండి<br />
-              <small style="opacity: 0.7;">JPG, PNG, WebP ఫార్మాట్లను మద్దతు ఇస్తుంది</small>
+              <strong>à°®à±€ à°®à±Šà°•à±à°• à°šà°¿à°¤à±à°°à°‚ à°‡à°•à±à°•à°¡ à°¡à±à°°à°¾à°ªà± à°šà±‡à°¯à°‚à°¡à°¿</strong><br />
+              à°²à±‡à°¦à°¾ à°«à±ˆà°³à±à°²à°¨à± à°¬à±à°°à±Œà°œà± à°šà±‡à°¯à°¡à°¾à°¨à°¿à°•à°¿ à°•à±à°²à°¿à°•à± à°šà±‡à°¯à°‚à°¡à°¿<br />
+              <small style="opacity: 0.7;">JPG, PNG, WebP à°«à°¾à°°à±à°®à°¾à°Ÿà±à°²à°¨à± à°®à°¦à±à°¦à°¤à± à°‡à°¸à±à°¤à±à°‚à°¦à°¿</small>
             </div>
           </div>
           <input
@@ -63,27 +63,27 @@
             id="fileInput"
             class="file-input"
             accept="image/*"
-            aria-label="మొక్క చిత్రం అప్లోడ్ చేయండి"
+            aria-label="à°®à±Šà°•à±à°• à°šà°¿à°¤à±à°°à°‚ à°…à°ªà±à°²à±‹à°¡à± à°šà±‡à°¯à°‚à°¡à°¿"
             style="display: none;"
           />
           <div style="flex: 1 1 250px; text-align: center;">
-            <button class="btn" id="analyzeBtn" disabled aria-disabled="true" aria-label="మొక్క ఆరోగ్యాన్ని విశ్లేషించండి" style="padding: 0.75rem 1.5rem; font-size: 1.1rem; background-color: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer;">
-              🔍 మొక్క ఆరోగ్యాన్ని విశ్లేషించండి
+            <button class="btn" id="analyzeBtn" disabled aria-disabled="true" aria-label="à°®à±Šà°•à±à°• à°†à°°à±‹à°—à±à°¯à°¾à°¨à±à°¨à°¿ à°µà°¿à°¶à±à°²à±‡à°·à°¿à°‚à°šà°‚à°¡à°¿" style="padding: 0.75rem 1.5rem; font-size: 1.1rem; background-color: #4caf50; color: white; border: none; border-radius: 6px; cursor: pointer;">
+              ðŸ” à°®à±Šà°•à±à°• à°†à°°à±‹à°—à±à°¯à°¾à°¨à±à°¨à°¿ à°µà°¿à°¶à±à°²à±‡à°·à°¿à°‚à°šà°‚à°¡à°¿
             </button>
           </div>
         </div>
 
         <div class="results-zone" aria-live="polite" aria-atomic="true" style="margin-top: 1rem;">
-          <div class="preview-container" id="previewContainer" aria-label="చిత్ర ప్రివ్యూ" style="text-align: center; min-height: 150px; border: 1px solid #ddd; border-radius: 6px; padding: 1rem;">
-            <div class="no-results" style="font-size: 1.2rem;">📷 ప్రారంభించడానికి చిత్రం అప్లోడ్ చేయండి</div>
+          <div class="preview-container" id="previewContainer" aria-label="à°šà°¿à°¤à±à°° à°ªà±à°°à°¿à°µà±à°¯à±‚" style="text-align: center; min-height: 150px; border: 1px solid #ddd; border-radius: 6px; padding: 1rem;">
+            <div class="no-results" style="font-size: 1.2rem;">ðŸ“· à°ªà±à°°à°¾à°°à°‚à°­à°¿à°‚à°šà°¡à°¾à°¨à°¿à°•à°¿ à°šà°¿à°¤à±à°°à°‚ à°…à°ªà±à°²à±‹à°¡à± à°šà±‡à°¯à°‚à°¡à°¿</div>
           </div>
 
-          <div class="loading" id="loading" role="status" aria-live="assertive" aria-label="AI మీ మొక్కను విశ్లేషిస్తోంది" style="display: none; text-align: center; margin-top: 1rem;">
+          <div class="loading" id="loading" role="status" aria-live="assertive" aria-label="AI à°®à±€ à°®à±Šà°•à±à°•à°¨à± à°µà°¿à°¶à±à°²à±‡à°·à°¿à°¸à±à°¤à±‹à°‚à°¦à°¿" style="display: none; text-align: center; margin-top: 1rem;">
             <div class="spinner" style="margin: 0 auto 0.5rem; width: 40px; height: 40px; border: 4px solid #ccc; border-top-color: #4caf50; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-            <p>🧠 AI మీ మొక్కను విశ్లేషిస్తోంది...</p>
+            <p>ðŸ§  AI à°®à±€ à°®à±Šà°•à±à°•à°¨à± à°µà°¿à°¶à±à°²à±‡à°·à°¿à°¸à±à°¤à±‹à°‚à°¦à°¿...</p>
           </div>
 
-          <div id="results" aria-label="విశ్లేషణ ఫలితాలు" style="margin-top: 1rem;"></div>
+          <div id="results" aria-label="à°µà°¿à°¶à±à°²à±‡à°·à°£ à°«à°²à°¿à°¤à°¾à°²à±" style="margin-top: 1rem;"></div>
         </div>
       </div>
     </div>
@@ -153,7 +153,7 @@
             }
           </style>
           <footer class="site-footer">
-            <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+
           </footer>
         `;
         
@@ -161,6 +161,11 @@
         document.body.insertAdjacentHTML('beforeend', footerHTML);
       }
     });
-  </script>^</body>
+  </script>^<script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script></body>
 </html>
+
+
+
+
+
 

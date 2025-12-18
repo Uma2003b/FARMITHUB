@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -20,18 +20,21 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: var(--bg-secondary, #0f4d0f);
-      color: var(--text-primary, #333);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg-secondary, #0f4d0f); color: var(--text-primary, #333); transition: background-color 0.3s ease, color 0.3s ease; }
     .uniform-header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.25); display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; height: 80px; }
     .brand h2 { color: white; margin: 0; font-size: 1.6rem; }
     .header-buttons { display: flex; gap: 1rem; align-items: center; }
     .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; text-decoration: none; font-weight: 500; }
     .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .apps-dropdown { position: relative; }
+    .apps-btn { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s; font-weight: 500; }
+    .apps-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .dropdown-menu { position: fixed; top: 85px; right: 2rem; background: white; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); min-width: 300px; max-height: 450px; overflow-y: auto; z-index: 1005; display: none; }
+    .dropdown-menu.show { display: block; }
+    .dropdown-menu a { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; color: #333; text-decoration: none; transition: all 0.2s; border-bottom: 1px solid #f0f0f0; }
+    .dropdown-menu a:hover { background: #f5f5f5; padding-left: 1.2rem; }
+    .dropdown-menu a span { font-size: 1.2rem; min-width: 1.5rem; }
+    .dropdown-category { padding: 0.8rem 1rem; font-weight: 600; font-size: 0.8rem; color: #666; text-transform: uppercase; background: #f9f9f9; border-bottom: 1px solid #e0e0e0; }
     .site-footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: #fff; margin-top: auto; padding: 1.5rem; text-align: center; font-size: 0.9rem; width: 100%; display: flex; justify-content: center; align-items: center; }
     .site-footer p { margin: 0; text-align: center; }
     .site-footer a { color: #fff; text-decoration: none; }
@@ -73,11 +76,32 @@
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
-      <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-        <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
+      <div class="brand"><h2>ðŸŒ¾ AgriConnectHub Dashboard</h2></div>
+      <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
+        <div class="apps-dropdown">
+          <button class="apps-btn" id="appsBtn">ðŸ“± Apps</button>
+          <div class="dropdown-menu" id="appsMenu">
+            <div class="dropdown-category">ðŸŒ¾ Farming Tools</div>
+            <a href="/crop_recommendation/"><span>ðŸŒ±</span> Crop Recommendation</a>
+            <a href="/crop_yield/"><span>ðŸ“Š</span> Yield Prediction</a>
+            <a href="disease.html"><span>ðŸ”¬</span> Disease Detection</a>
+            <a href="weather.html"><span>â›…</span> Weather Check</a>
+            <a href="/crop_planning/"><span>ðŸ“…</span> Crop Planning</a>
+            <a href="organic.html"><span>ðŸŒ¿</span> Organic Farming</a>
+            <a href="plantation.html"><span>ðŸŒ³</span> Plantation Guide</a>
+            <div class="dropdown-category">ðŸ’¼ Market & Trade</div>
+            <a href="/crop_price_tracker/crop_price_tracker"><span>ðŸ’°</span> Price Tracker</a>
+            <a href="farmer.html"><span>ðŸ‘¥</span> Farmer Network</a>
+            <a href="shopkeeper.html"><span>ðŸª</span> Shop Listings</a>
+            <div class="dropdown-category">ðŸ“¢ Community</div>
+            <a href="chat.html"><span>ðŸ¤–</span> AI Assistant</a>
+            <a href="Forum/forum.html"><span>ðŸ’¬</span> Farmer Forum</a>
+            <a href="./Labour_Alerts/templates/labour.html"><span>âš ï¸</span> Labour Alerts</a>
+          </div>
+        </div>
+        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">ðŸ“…</span>Calendar</a>
+        <a href="feed-back.html" class="feedback-button">ðŸ’¬ Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">ðŸšª Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
@@ -89,7 +113,7 @@
 
   <div class="weather-hero">
     <div class="weather-hero-content">
-      <h1 class="weather-title">🌤️ Weather Insights</h1>
+      <h1 class="weather-title">ðŸŒ¤ï¸ Weather Insights</h1>
       <p class="weather-subtitle">Get accurate weather forecasts for better farming decisions</p>
     </div>
   </div>
@@ -117,11 +141,11 @@
               <span id="region">Region</span>, <span id="country">Country</span>
             </p>
           </div>
-          <div class="weather-icon-large" id="weatherIconLarge">☀️</div>
+          <div class="weather-icon-large" id="weatherIconLarge">â˜€ï¸</div>
         </div>
         
         <div class="temperature-display">
-          <span id="temperature" class="temp-value">--°</span>
+          <span id="temperature" class="temp-value">--Â°</span>
           <div class="weather-description">
             <p id="description">Loading weather...</p>
           </div>
@@ -146,7 +170,7 @@
           <div class="detail-item">
             <i class="fas fa-thermometer-half"></i>
             <span>Feels like</span>
-            <span id="feelsLike">--°</span>
+            <span id="feelsLike">--Â°</span>
           </div>
         </div>
       </div>
@@ -169,9 +193,7 @@
     </div>
   </div>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
-  </footer>
+  <footer class="site-footer"></footer>
 
   <script src="main.js"></script>
   <script src="theme.js"></script>
@@ -179,6 +201,14 @@
   <script src="nav.js"></script>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const appsBtn = document.getElementById('appsBtn');
+      const appsMenu = document.getElementById('appsMenu');
+      appsBtn.onclick = (e) => { e.stopPropagation(); appsMenu.classList.toggle('show'); };
+      appsMenu.querySelectorAll('a').forEach(a => a.onclick = () => appsMenu.classList.remove('show'));
+      document.onclick = () => appsMenu.classList.remove('show');
+    });
+
     function showLogoutConfirmation() {
       Swal.fire({
         title: 'Confirm Logout',
@@ -200,3 +230,4 @@
   </script>
 </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -37,16 +37,16 @@
     .site-footer a { color: #fff; text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
   </style>
-</head>
+<style>.apps-dropdown{position:relative}.apps-btn{background:rgba(255,255,255,.15);color:#fff;padding:.6rem 1.2rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.5rem;transition:all .3s;font-weight:500}.apps-btn:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}.dropdown-menu{position:fixed;top:85px;right:2rem;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:300px;max-height:450px;overflow-y:auto;z-index:1005;display:none}.dropdown-menu.show{display:block}.dropdown-menu a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;color:#333;text-decoration:none;transition:all .2s;border-bottom:1px solid #f0f0f0}.dropdown-menu a:hover{background:#f5f5f5;padding-left:1.2rem}.dropdown-menu a span{font-size:1.2rem;min-width:1.5rem}.dropdown-category{padding:.8rem 1rem;font-weight:600;font-size:.8rem;color:#666;text-transform:uppercase;background:#f9f9f9;border-bottom:1px solid #e0e0e0}</style></head>
 
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <div class="brand"><h2>🌾 AgriConnectHub Dashboard</h2></div>
-      <div class="header-buttons">
-        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-        <a href="feed-back.html" class="feedback-button">💬 Feedback</a>
-        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
+      <div class="brand"><h2>ðŸŒ¾ AgriConnectHub Dashboard</h2></div>
+      <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
+        <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">ðŸ“…</span>Calendar</a>
+        <a href="feed-back.html" class="feedback-button">ðŸ’¬ Feedback</a>
+        <a href="#" class="logout-button" onclick="showLogoutConfirmation()">ðŸšª Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
@@ -125,7 +125,7 @@
     <section class="section" id="pesticide-sellers" data-category="pesticide">
       <div class="section-header">
         <h2 class="section-title">
-          <span class="section-icon">🐛</span>
+          <span class="section-icon">ðŸ›</span>
           Pesticide & Insecticide Sellers
         </h2>
       </div>
@@ -134,7 +134,7 @@
     <section class="section" id="tractor-dealers" data-category="tractor">
       <div class="section-header">
         <h2 class="section-title">
-          <span class="section-icon">🚜</span>
+          <span class="section-icon">ðŸšœ</span>
           Tractor Leasing & Dealers
         </h2>
       </div>
@@ -143,7 +143,7 @@
     <section class="section" id="harvester-dealers" data-category="harvester">
       <div class="section-header">
         <h2 class="section-title">
-          <span class="section-icon">🌾</span>
+          <span class="section-icon">ðŸŒ¾</span>
           Harvester Leasing & Dealers
         </h2>
       </div>
@@ -175,7 +175,7 @@
   </div>
 
   <footer class="site-footer">
-    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+
   </footer>
 
   <script src="main.js"></script>
@@ -256,5 +256,10 @@
       document.getElementById('crop-recommendation').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
-</body>
+<script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script></body>
 </html>
+
+
+
+
+

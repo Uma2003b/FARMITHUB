@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -29,6 +29,17 @@
     [data-theme="dark"] .sun-icon { display: none; }
     [data-theme="dark"] .moon-icon { display: inline; }
     
+    .apps-dropdown { position: relative; }
+    .apps-btn { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s; }
+    .apps-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .dropdown-menu { position: fixed; top: 75px; right: 1.5rem; background: white; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); min-width: 300px; max-height: 450px; overflow-y: auto; z-index: 1005; display: none; }
+    .dropdown-menu.show { display: block; }
+    .dropdown-menu a { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; color: #333; text-decoration: none; transition: all 0.2s; border-bottom: 1px solid #f0f0f0; }
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover { background: #f5f5f5; padding-left: 1.2rem; }
+    .dropdown-menu a span { font-size: 1.2rem; min-width: 1.5rem; }
+    .dropdown-category { padding: 0.8rem 1rem; font-weight: 600; font-size: 0.8rem; color: #666; text-transform: uppercase; background: #f9f9f9; border-bottom: 1px solid #e0e0e0; }
+    
     main { margin-top: 70px; margin-left: 0; flex: 1; padding: 1.5rem; }
     .sidebar { width: 320px; background: linear-gradient(135deg, #1b5e20, #2e7d32); padding: 1.5rem 0; position: fixed; top: 70px; left: -320px; height: calc(100vh - 70px); overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1); z-index: 1000; transition: left 0.3s ease; }
     .sidebar.open { left: 0; }
@@ -55,6 +66,7 @@
       .sidebar { width: 280px; left: -280px; top: 60px; height: calc(100vh - 60px); }
       main { margin-left: 0; margin-top: 60px; padding: 1rem; }
       .grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+      .dropdown-menu { top: 65px; right: 1rem; min-width: 250px; }
     }
     
     @media (max-width: 480px) {
@@ -68,18 +80,42 @@
       .card h3 { font-size: 1rem; }
       .card p { font-size: 0.85rem; }
       main { padding: 0.8rem; }
+      .dropdown-menu { top: 60px; right: 0.5rem; min-width: 220px; }
     }
   </style>
 </head>
 <body>
   <div class="header-nav-wrapper">
     <header class="uniform-header">
-      <button class="menu-toggle" id="btn">☰</button>
-      <div class="brand"><h2><a href="/main" style="color: white; text-decoration: none;">🌾 AgriConnectHub</a></h2></div>
+      <button class="menu-toggle" id="btn">â˜°</button>
+      <div class="brand"><h2><a href="/main" style="color: white; text-decoration: none;">ðŸŒ¾ AgriConnectHub</a></h2></div>
       <div class="header-buttons">
-        <a href="cropCalendar.html" title="Crop Calendar">📅 Calendar</a>
-        <a href="feed-back.html" title="Feedback">💬 Feedback</a>
-        <a href="#" onclick="showLogoutConfirmation()" title="Logout">🚪 Logout</a>
+        <div class="apps-dropdown">
+          <button class="apps-btn" id="appsBtn">ðŸ“± Apps</button>
+          <div class="dropdown-menu" id="appsMenu">
+            <div class="dropdown-category">ðŸŒ¾ Farming Tools</div>
+            <a href="/crop_recommendation/"><span>ðŸŒ±</span> Crop Recommendation</a>
+            <a href="/crop_yield/"><span>ðŸ“Š</span> Yield Prediction</a>
+            <a href="disease.html"><span>ðŸ”¬</span> Disease Detection</a>
+            <a href="weather.html"><span>â›…</span> Weather Check</a>
+            <a href="/crop_planning/"><span>ðŸ“…</span> Crop Planning</a>
+            <a href="organic.html"><span>ðŸŒ¿</span> Organic Farming</a>
+            <a href="plantation.html"><span>ðŸŒ³</span> Plantation Guide</a>
+            
+            <div class="dropdown-category">ðŸ’¼ Market & Trade</div>
+            <a href="/crop_price_tracker/crop_price_tracker"><span>ðŸ’°</span> Price Tracker</a>
+            <a href="farmer.html"><span>ðŸ‘¥</span> Farmer Network</a>
+            <a href="shopkeeper.html"><span>ðŸª</span> Shop Listings</a>
+            
+            <div class="dropdown-category">ðŸ“¢ Community</div>
+            <a href="chat.html"><span>ðŸ¤–</span> AI Assistant</a>
+            <a href="Forum/forum.html"><span>ðŸ’¬</span> Farmer Forum</a>
+            <a href="./Labour_Alerts/templates/labour.html"><span>âš ï¸</span> Labour Alerts</a>
+          </div>
+        </div>
+        <a href="cropCalendar.html" title="Crop Calendar">ðŸ“… Calendar</a>
+        <a href="feed-back.html" title="Feedback">ðŸ’¬ Feedback</a>
+        <a href="#" onclick="showLogoutConfirmation()" title="Logout">ðŸšª Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
           <i class="fas fa-moon moon-icon"></i>
@@ -90,51 +126,51 @@
 
   <aside class="sidebar" id="nav">
     <nav>
-      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 0.5rem;">🌾 Farming Tools</div>
-      <a href="/crop_recommendation/"><span>🌱</span> Crop Recommendation</a>
-      <a href="/crop_yield/"><span>📊</span> Yield Prediction</a>
-      <a href="disease.html"><span>🔬</span> Disease Detection</a>
-      <a href="weather.html"><span>⛅</span> Weather Check</a>
-      <a href="/crop_planning/"><span>📅</span> Crop Planning</a>
-      <a href="organic.html"><span>🌿</span> Organic Farming</a>
-      <a href="plantation.html"><span>🌳</span> Plantation Guide</a>
+      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 0.5rem;">ðŸŒ¾ Farming Tools</div>
+      <a href="/crop_recommendation/"><span>ðŸŒ±</span> Crop Recommendation</a>
+      <a href="/crop_yield/"><span>ðŸ“Š</span> Yield Prediction</a>
+      <a href="disease.html"><span>ðŸ”¬</span> Disease Detection</a>
+      <a href="weather.html"><span>â›…</span> Weather Check</a>
+      <a href="/crop_planning/"><span>ðŸ“…</span> Crop Planning</a>
+      <a href="organic.html"><span>ðŸŒ¿</span> Organic Farming</a>
+      <a href="plantation.html"><span>ðŸŒ³</span> Plantation Guide</a>
       
-      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 1rem;">💼 Market & Trade</div>
-      <a href="/crop_price_tracker/crop_price_tracker"><span>💰</span> Price Tracker</a>
-      <a href="farmer.html"><span>👥</span> Farmer Network</a>
-      <a href="shopkeeper.html"><span>🏪</span> Shop Listings</a>
+      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 1rem;">ðŸ’¼ Market & Trade</div>
+      <a href="/crop_price_tracker/crop_price_tracker"><span>ðŸ’°</span> Price Tracker</a>
+      <a href="farmer.html"><span>ðŸ‘¥</span> Farmer Network</a>
+      <a href="shopkeeper.html"><span>ðŸª</span> Shop Listings</a>
       
-      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 1rem;">📢 Community</div>
-      <a href="chat.html"><span>🤖</span> AI Assistant</a>
-      <a href="Forum/forum.html"><span>💬</span> Farmer Forum</a>
-      <a href="./Labour_Alerts/templates/labour.html"><span>⚠️</span> Labour Alerts</a>
+      <div style="padding: 0.5rem 1rem; color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-top: 1rem;">ðŸ“¢ Community</div>
+      <a href="chat.html"><span>ðŸ¤–</span> AI Assistant</a>
+      <a href="Forum/forum.html"><span>ðŸ’¬</span> Farmer Forum</a>
+      <a href="./Labour_Alerts/templates/labour.html"><span>âš ï¸</span> Labour Alerts</a>
     </nav>
   </aside>
 
   <main>
-    <h2 style="color: #16a34a; margin: 0 0 1rem 0; font-size: 1.3rem; font-weight: 600;">🌾 Farming Tools</h2>
+    <h2 style="color: #16a34a; margin: 0 0 1rem 0; font-size: 1.3rem; font-weight: 600;">ðŸŒ¾ Farming Tools</h2>
     <div class="grid">
-      <a href="/crop_recommendation/" class="card"><div class="card-icon">🌱</div><h3>Crop Recommendation</h3><p>AI-powered crop suggestions</p></a>
-      <a href="/crop_yield/" class="card"><div class="card-icon">📊</div><h3>Yield Prediction</h3><p>Predict crop yield</p></a>
-      <a href="disease.html" class="card"><div class="card-icon">🔬</div><h3>Disease Detection</h3><p>Plant disease identification</p></a>
-      <a href="weather.html" class="card"><div class="card-icon">⛅</div><h3>Weather Check</h3><p>Real-time weather updates</p></a>
-      <a href="/crop_planning/" class="card"><div class="card-icon">📅</div><h3>Crop Planning</h3><p>Farm planning tools</p></a>
-      <a href="organic.html" class="card"><div class="card-icon">🌿</div><h3>Organic Farming</h3><p>Sustainable practices</p></a>
-      <a href="plantation.html" class="card"><div class="card-icon">🌳</div><h3>Plantation Guide</h3><p>Planting techniques</p></a>
+      <a href="/crop_recommendation/" class="card"><div class="card-icon">ðŸŒ±</div><h3>Crop Recommendation</h3><p>AI-powered crop suggestions</p></a>
+      <a href="/crop_yield/" class="card"><div class="card-icon">ðŸ“Š</div><h3>Yield Prediction</h3><p>Predict crop yield</p></a>
+      <a href="disease.html" class="card"><div class="card-icon">ðŸ”¬</div><h3>Disease Detection</h3><p>Plant disease identification</p></a>
+      <a href="weather.html" class="card"><div class="card-icon">â›…</div><h3>Weather Check</h3><p>Real-time weather updates</p></a>
+      <a href="/crop_planning/" class="card"><div class="card-icon">ðŸ“…</div><h3>Crop Planning</h3><p>Farm planning tools</p></a>
+      <a href="organic.html" class="card"><div class="card-icon">ðŸŒ¿</div><h3>Organic Farming</h3><p>Sustainable practices</p></a>
+      <a href="plantation.html" class="card"><div class="card-icon">ðŸŒ³</div><h3>Plantation Guide</h3><p>Planting techniques</p></a>
     </div>
 
-    <h2 style="color: #16a34a; margin: 2rem 0 1rem 0; font-size: 1.3rem; font-weight: 600;">💼 Market & Trade</h2>
+    <h2 style="color: #16a34a; margin: 2rem 0 1rem 0; font-size: 1.3rem; font-weight: 600;">ðŸ’¼ Market & Trade</h2>
     <div class="grid">
-      <a href="/crop_price_tracker/crop_price_tracker" class="card"><div class="card-icon">💰</div><h3>Price Tracker</h3><p>Live market prices</p></a>
-      <a href="farmer.html" class="card"><div class="card-icon">👥</div><h3>Farmer Network</h3><p>Connect with farmers</p></a>
-      <a href="shopkeeper.html" class="card"><div class="card-icon">🏪</div><h3>Shop Listings</h3><p>Find suppliers</p></a>
+      <a href="/crop_price_tracker/crop_price_tracker" class="card"><div class="card-icon">ðŸ’°</div><h3>Price Tracker</h3><p>Live market prices</p></a>
+      <a href="farmer.html" class="card"><div class="card-icon">ðŸ‘¥</div><h3>Farmer Network</h3><p>Connect with farmers</p></a>
+      <a href="shopkeeper.html" class="card"><div class="card-icon">ðŸª</div><h3>Shop Listings</h3><p>Find suppliers</p></a>
     </div>
 
-    <h2 style="color: #16a34a; margin: 2rem 0 1rem 0; font-size: 1.3rem; font-weight: 600;">📢 Community</h2>
+    <h2 style="color: #16a34a; margin: 2rem 0 1rem 0; font-size: 1.3rem; font-weight: 600;">ðŸ“¢ Community</h2>
     <div class="grid">
-      <a href="chat.html" class="card"><div class="card-icon">🤖</div><h3>AI Assistant</h3><p>24/7 chatbot support</p></a>
-      <a href="Forum/forum.html" class="card"><div class="card-icon">💬</div><h3>Farmer Forum</h3><p>Community discussions</p></a>
-      <a href="./Labour_Alerts/templates/labour.html" class="card"><div class="card-icon">⚠️</div><h3>Labour Alerts</h3><p>Weather & subsidy updates</p></a>
+      <a href="chat.html" class="card"><div class="card-icon">ðŸ¤–</div><h3>AI Assistant</h3><p>24/7 chatbot support</p></a>
+      <a href="Forum/forum.html" class="card"><div class="card-icon">ðŸ’¬</div><h3>Farmer Forum</h3><p>Community discussions</p></a>
+      <a href="./Labour_Alerts/templates/labour.html" class="card"><div class="card-icon">âš ï¸</div><h3>Labour Alerts</h3><p>Weather & subsidy updates</p></a>
     </div>
   </main>
 
@@ -143,6 +179,12 @@
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('btn').onclick = () => document.getElementById('nav').classList.toggle('open');
       document.getElementById('nav').querySelectorAll('a').forEach(a => a.onclick = () => document.getElementById('nav').classList.remove('open'));
+      
+      const appsBtn = document.getElementById('appsBtn');
+      const appsMenu = document.getElementById('appsMenu');
+      appsBtn.onclick = (e) => { e.stopPropagation(); appsMenu.classList.toggle('show'); };
+      appsMenu.querySelectorAll('a').forEach(a => a.onclick = () => appsMenu.classList.remove('show'));
+      document.onclick = () => appsMenu.classList.remove('show');
     });
 
     function showLogoutConfirmation() {

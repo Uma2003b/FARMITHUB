@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -66,20 +66,20 @@
       .suggestions { grid-template-columns: 1fr; }
     }
   </style>
-</head>
+<style>.apps-dropdown{position:relative}.apps-btn{background:rgba(255,255,255,.15);color:#fff;padding:.6rem 1.2rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.5rem;transition:all .3s;font-weight:500}.apps-btn:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}.dropdown-menu{position:fixed;top:85px;right:2rem;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:300px;max-height:450px;overflow-y:auto;z-index:1005;display:none}.dropdown-menu.show{display:block}.dropdown-menu a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;color:#333;text-decoration:none;transition:all .2s;border-bottom:1px solid #f0f0f0}.dropdown-menu a:hover{background:#f5f5f5;padding-left:1.2rem}.dropdown-menu a span{font-size:1.2rem;min-width:1.5rem}.dropdown-category{padding:.8rem 1rem;font-weight:600;font-size:.8rem;color:#666;text-transform:uppercase;background:#f9f9f9;border-bottom:1px solid #e0e0e0}</style></head>
 <body>
   <header class="header">
-    <a href="#" class="logo">🌾 AgriConnectHub</a>
-    <div class="header-buttons">
-      <a href="cropCalendar.html">📅 Calendar</a>
-      <a href="feed-back.html">💬 Feedback</a>
-      <a href="#" onclick="logout()">🚪 Logout</a>
+    <a href="#" class="logo">ðŸŒ¾ AgriConnectHub</a>
+    <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
+      <a href="cropCalendar.html">ðŸ“… Calendar</a>
+      <a href="feed-back.html">ðŸ’¬ Feedback</a>
+      <a href="#" onclick="logout()">ðŸšª Logout</a>
     </div>
   </header>
 
   <div class="container">
     <div class="chat-header">
-      <h1>🤖 AI Farming Assistant</h1>
+      <h1>ðŸ¤– AI Farming Assistant</h1>
       <p>Ask about crops, farming techniques, weather, and more!</p>
     </div>
 
@@ -88,7 +88,7 @@
         <div class="message bot-message">
           <i class="fas fa-robot message-icon"></i>
           <div class="content">
-            <strong>Welcome! 👋</strong><br>
+            <strong>Welcome! ðŸ‘‹</strong><br>
             I'm your AI farming assistant. Ask me anything about:
             <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
               <li>Crop recommendations</li>
@@ -102,12 +102,12 @@
       </div>
 
       <div class="suggestions" id="suggestions">
-        <button class="suggestion-btn" onclick="sendMessage('How do I use crop recommendation?')">📱 How to use crop recommendation?</button>
-        <button class="suggestion-btn" onclick="sendMessage('Best crops for monsoon season')">🌾 Best crops for monsoon?</button>
-        <button class="suggestion-btn" onclick="sendMessage('How to control pests naturally')">🐛 Natural pest control</button>
-        <button class="suggestion-btn" onclick="sendMessage('Water conservation techniques')">💧 Water conservation</button>
-        <button class="suggestion-btn" onclick="sendMessage('How to improve soil health')">🌱 Improve soil health</button>
-        <button class="suggestion-btn" onclick="sendMessage('Organic farming benefits')">🌿 Organic farming</button>
+        <button class="suggestion-btn" onclick="sendMessage('How do I use crop recommendation?')">ðŸ“± How to use crop recommendation?</button>
+        <button class="suggestion-btn" onclick="sendMessage('Best crops for monsoon season')">ðŸŒ¾ Best crops for monsoon?</button>
+        <button class="suggestion-btn" onclick="sendMessage('How to control pests naturally')">ðŸ› Natural pest control</button>
+        <button class="suggestion-btn" onclick="sendMessage('Water conservation techniques')">ðŸ’§ Water conservation</button>
+        <button class="suggestion-btn" onclick="sendMessage('How to improve soil health')">ðŸŒ± Improve soil health</button>
+        <button class="suggestion-btn" onclick="sendMessage('Organic farming benefits')">ðŸŒ¿ Organic farming</button>
       </div>
 
       <div class="input-area">
@@ -118,7 +118,7 @@
   </div>
 
   <footer class="footer">
-    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+
   </footer>
 
   <script>
@@ -158,9 +158,9 @@
       'selling crops': 'Sell through: Farmer Network marketplace, local markets, cooperatives, or directly to buyers. Organic crops fetch 20-40% premium prices.',
       
       // General
-      'hello': 'Hello! 👋 I\'m your AI farming assistant. How can I help you today? Ask about crops, farming techniques, or AgriConnectHub features.',
+      'hello': 'Hello! ðŸ‘‹ I\'m your AI farming assistant. How can I help you today? Ask about crops, farming techniques, or AgriConnectHub features.',
       'help': 'I can help with: Crop recommendations, farming techniques, pest control, irrigation, soil health, organic farming, and AgriConnectHub features. What would you like to know?',
-      'thank you': 'You\'re welcome! 😊 Feel free to ask more questions anytime. Happy farming!',
+      'thank you': 'You\'re welcome! ðŸ˜Š Feel free to ask more questions anytime. Happy farming!',
     };
 
     function findAnswer(question) {
@@ -172,7 +172,7 @@
         }
       }
       
-      return 'I\'m not sure about that. Try asking about: crop recommendations, farming techniques, pest control, irrigation, soil health, organic farming, or AgriConnectHub features. 🌾';
+      return 'I\'m not sure about that. Try asking about: crop recommendations, farming techniques, pest control, irrigation, soil health, organic farming, or AgriConnectHub features. ðŸŒ¾';
     }
 
     function sendMessage(text = null) {
@@ -197,7 +197,7 @@
       const messageEl = document.createElement('div');
       messageEl.className = `message ${sender}-message`;
       
-      const icon = sender === 'bot' ? '🤖' : '👤';
+      const icon = sender === 'bot' ? 'ðŸ¤–' : 'ðŸ‘¤';
       messageEl.innerHTML = `
         <i class="fas fa-${sender === 'bot' ? 'robot' : 'user'} message-icon"></i>
         <div class="content">${text}</div>
@@ -222,5 +222,10 @@
       }
     }
   </script>
-</body>
+<script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script></body>
 </html>
+
+
+
+
+

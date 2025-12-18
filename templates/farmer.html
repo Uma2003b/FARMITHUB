@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -91,19 +91,19 @@
       .product-grid { grid-template-columns: 1fr; }
     }
   </style>
-</head>
+<style>.apps-dropdown{position:relative}.apps-btn{background:rgba(255,255,255,.15);color:#fff;padding:.6rem 1.2rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.5rem;transition:all .3s;font-weight:500}.apps-btn:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}.dropdown-menu{position:fixed;top:85px;right:2rem;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:300px;max-height:450px;overflow-y:auto;z-index:1005;display:none}.dropdown-menu.show{display:block}.dropdown-menu a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;color:#333;text-decoration:none;transition:all .2s;border-bottom:1px solid #f0f0f0}.dropdown-menu a:hover{background:#f5f5f5;padding-left:1.2rem}.dropdown-menu a span{font-size:1.2rem;min-width:1.5rem}.dropdown-category{padding:.8rem 1rem;font-weight:600;font-size:.8rem;color:#666;text-transform:uppercase;background:#f9f9f9;border-bottom:1px solid #e0e0e0}</style></head>
 <body>
   <header class="header">
-    <a href="#" class="logo">🌾 AgriConnectHub</a>
-    <div class="header-buttons">
-      <a href="cropCalendar.html">📅 Calendar</a>
-      <a href="feed-back.html">💬 Feedback</a>
-      <a href="#" onclick="logout()">🚪 Logout</a>
+    <a href="#" class="logo">ðŸŒ¾ AgriConnectHub</a>
+    <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
+      <a href="cropCalendar.html">ðŸ“… Calendar</a>
+      <a href="feed-back.html">ðŸ’¬ Feedback</a>
+      <a href="#" onclick="logout()">ðŸšª Logout</a>
     </div>
   </header>
 
   <div class="hero">
-    <h1>🛒 Farmer Marketplace</h1>
+    <h1>ðŸ›’ Farmer Marketplace</h1>
     <p>Buy and sell agricultural products directly with farmers</p>
   </div>
 
@@ -121,7 +121,7 @@
     <div id="sell" class="tab-content active">
       <div class="marketplace-grid">
         <div class="form-section">
-          <h2>📦 List Your Product</h2>
+          <h2>ðŸ“¦ List Your Product</h2>
           <form id="sellForm">
             <div class="form-group">
               <label>Your Name</label>
@@ -139,13 +139,13 @@
               <label>Category</label>
               <select id="productCategory" required>
                 <option value="">Select category...</option>
-                <option value="Vegetables">🥬 Vegetables</option>
-                <option value="Fruits">🍎 Fruits</option>
-                <option value="Grains">🌾 Grains</option>
-                <option value="Pulses">🫘 Pulses</option>
-                <option value="Dairy">🥛 Dairy</option>
-                <option value="Seeds">🌱 Seeds</option>
-                <option value="Tools">🔧 Tools & Equipment</option>
+                <option value="Vegetables">ðŸ¥¬ Vegetables</option>
+                <option value="Fruits">ðŸŽ Fruits</option>
+                <option value="Grains">ðŸŒ¾ Grains</option>
+                <option value="Pulses">ðŸ«˜ Pulses</option>
+                <option value="Dairy">ðŸ¥› Dairy</option>
+                <option value="Seeds">ðŸŒ± Seeds</option>
+                <option value="Tools">ðŸ”§ Tools & Equipment</option>
               </select>
             </div>
             <div class="form-group">
@@ -154,7 +154,7 @@
             </div>
             <div class="form-group">
               <label>Price per Unit</label>
-              <input type="text" id="productPrice" placeholder="e.g., ₹50/kg" required />
+              <input type="text" id="productPrice" placeholder="e.g., â‚¹50/kg" required />
             </div>
             <div class="form-group">
               <label>Description</label>
@@ -168,7 +168,7 @@
 
         <div class="products-section">
           <div class="products-header">
-            <h2>📋 Your Listings</h2>
+            <h2>ðŸ“‹ Your Listings</h2>
             <span id="sellCount" style="background: #f0fdf4; color: #16a34a; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">0 Products</span>
           </div>
           <div id="sellProducts" class="product-grid">
@@ -185,7 +185,7 @@
     <div id="buy" class="tab-content">
       <div class="marketplace-grid">
         <div class="form-section">
-          <h2>🔍 Find Products</h2>
+          <h2>ðŸ” Find Products</h2>
           <form id="buyForm">
             <div class="form-group">
               <label>Your Name</label>
@@ -203,13 +203,13 @@
               <label>Category</label>
               <select id="buyCategory">
                 <option value="">All Categories</option>
-                <option value="Vegetables">🥬 Vegetables</option>
-                <option value="Fruits">🍎 Fruits</option>
-                <option value="Grains">🌾 Grains</option>
-                <option value="Pulses">🫘 Pulses</option>
-                <option value="Dairy">🥛 Dairy</option>
-                <option value="Seeds">🌱 Seeds</option>
-                <option value="Tools">🔧 Tools & Equipment</option>
+                <option value="Vegetables">ðŸ¥¬ Vegetables</option>
+                <option value="Fruits">ðŸŽ Fruits</option>
+                <option value="Grains">ðŸŒ¾ Grains</option>
+                <option value="Pulses">ðŸ«˜ Pulses</option>
+                <option value="Dairy">ðŸ¥› Dairy</option>
+                <option value="Seeds">ðŸŒ± Seeds</option>
+                <option value="Tools">ðŸ”§ Tools & Equipment</option>
               </select>
             </div>
             <div class="form-group">
@@ -224,7 +224,7 @@
 
         <div class="products-section">
           <div class="products-header">
-            <h2>🛍️ Available Products</h2>
+            <h2>ðŸ›ï¸ Available Products</h2>
             <span id="buyCount" style="background: #f0fdf4; color: #16a34a; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">0 Products</span>
           </div>
           <div id="buyProducts" class="product-grid">
@@ -239,7 +239,7 @@
   </div>
 
   <footer class="footer">
-    <p>&copy; 2025 Rural-IT-Hub. All rights reserved. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+
   </footer>
 
   <script>
@@ -290,11 +290,11 @@
           <div class="product-card">
             <div class="product-header">
               <div class="product-name">${p.name}</div>
-              <div class="product-seller">👨‍🌾 ${p.seller}</div>
+              <div class="product-seller">ðŸ‘¨â€ðŸŒ¾ ${p.seller}</div>
             </div>
             <div class="product-body">
               <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
-              <div class="product-quantity">📦 ${p.qty}</div>
+              <div class="product-quantity">ðŸ“¦ ${p.qty}</div>
               <div class="product-price">${p.price}</div>
               <div class="product-contact">
                 <i class="fas fa-phone"></i> ${p.phone}
@@ -320,11 +320,11 @@
           <div class="product-card">
             <div class="product-header">
               <div class="product-name">${p.name}</div>
-              <div class="product-seller">👨‍🌾 ${p.seller}</div>
+              <div class="product-seller">ðŸ‘¨â€ðŸŒ¾ ${p.seller}</div>
             </div>
             <div class="product-body">
               <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
-              <div class="product-quantity">📦 ${p.qty}</div>
+              <div class="product-quantity">ðŸ“¦ ${p.qty}</div>
               <div class="product-price">${p.price}</div>
               <div class="product-contact">
                 <i class="fas fa-phone"></i> ${p.phone}
@@ -358,5 +358,10 @@
 
     displayProducts();
   </script>
-</body>
+<script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script></body>
 </html>
+
+
+
+
+
