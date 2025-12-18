@@ -161,6 +161,7 @@
     </form>
   </div>
 
+  <script src="session.js"></script>
   <script>
     function handleLogin(event) {
       event.preventDefault();
@@ -178,11 +179,18 @@
         
         localStorage.setItem('currentUser', JSON.stringify(userData));
         sessionStorage.setItem('sessionActive', 'true');
-        window.location.href = '/main';
+        window.preventBackAfterLogin();
+        window.location.replace('/main');
       } else {
         alert('Please enter both email and password');
       }
     }
+
+    window.addEventListener('load', function() {
+      if (localStorage.getItem('currentUser')) {
+        window.location.replace('/main');
+      }
+    });
   </script>
 </body>
 </html>

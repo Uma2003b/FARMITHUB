@@ -174,8 +174,13 @@
     </div>
   </main>
 
+  <script src="session.js"></script>
   <script>
-    if (!localStorage.getItem('currentUser')) window.location.href = '/login.html';
+    if (!localStorage.getItem('currentUser')) {
+      window.location.replace('/login.html');
+    } else {
+      window.preventBackAfterLogin();
+    }
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('btn').onclick = () => document.getElementById('nav').classList.toggle('open');
       document.getElementById('nav').querySelectorAll('a').forEach(a => a.onclick = () => document.getElementById('nav').classList.remove('open'));
@@ -196,18 +201,12 @@
         confirmButtonText: 'Yes, logout'
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.removeItem('currentUser');
-          sessionStorage.removeItem('sessionActive');
-          window.location.href = '/login.html';
+          window.logout();
         }
       });
     }
 
-    window.history.pushState(null, null, window.location.href);
-    window.onpopstate = function() {
-      window.history.pushState(null, null, window.location.href);
-      showLogoutConfirmation();
-    };
+    window.preventBackAfterLogin();
   </script>
 </body>
 </html>
