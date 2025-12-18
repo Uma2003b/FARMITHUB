@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       </style>
       <footer class="site-footer">
-        <p>&copy; 2025 Rural-IT-Hub. All rights reserved. powered by technoble.solutions. Email: <a href="mailto:admin@ruralithub.net">admin@ruralithub.net</a></p>
+
       </footer>
     `;
     
