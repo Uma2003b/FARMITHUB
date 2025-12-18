@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="te">
   <head>
     <link rel="icon" type="image/png" href="images/logo.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgriConnectHub - డీలర్లు డైరెక్టరీ</title>
+    <title>AgriConnectHub - à°¡à±€à°²à°°à±à°²à± à°¡à±ˆà°°à±†à°•à±à°Ÿà°°à±€</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -23,23 +23,23 @@
     <div class="header-nav-wrapper">
       <header class="uniform-header">
         <div class="brand">
-          <h2>AgriConnectHub కు స్వాగతం</h2>
+          <h2>AgriConnectHub à°•à± à°¸à±à°µà°¾à°—à°¤à°‚</h2>
         </div>
         <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
-          <a href="cropCalendar.html" class="calendar-button" title="పంట క్యాలెండర్">
-            <span class="calendar-icon">📅</span>
-            క్యాలెండర్
+          <a href="cropCalendar.html" class="calendar-button" title="à°ªà°‚à°Ÿ à°•à±à°¯à°¾à°²à±†à°‚à°¡à°°à±">
+            <span class="calendar-icon">ðŸ“…</span>
+            à°•à±à°¯à°¾à°²à±†à°‚à°¡à°°à±
           </a>
-          <a href="feed-back.html" class="feedback-button">ఫీడ్‌బ్యాక్</a>
-          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">లాగ్ అవుట్</a>
+          <a href="feed-back.html" class="feedback-button">à°«à±€à°¡à±â€Œà°¬à±à°¯à°¾à°•à±</a>
+          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">à°²à°¾à°—à± à°…à°µà±à°Ÿà±</a>
           <select id="languageSelector" onchange="changeLanguage()">
-            <option value="te" selected>తెలుగు</option>
+            <option value="te" selected>à°¤à±†à°²à±à°—à±</option>
             <option value="en">English</option>
           </select>
-          <button class="theme-toggle" aria-label="డార్క్/లైట్ మోడ్ మార్చు">
+          <button class="theme-toggle" aria-label="à°¡à°¾à°°à±à°•à±/à°²à±ˆà°Ÿà± à°®à±‹à°¡à± à°®à°¾à°°à±à°šà±">
             <i class="fas fa-sun sun-icon"></i>
             <i class="fas fa-moon moon-icon"></i>
-            <span class="theme-text">లైట్</span>
+            <span class="theme-text">à°²à±ˆà°Ÿà±</span>
           </button>
         </div>
       </header>
@@ -56,7 +56,7 @@
             <input
               type="text"
               class="search-input"
-              placeholder="డీలర్లు, ప్రాంతాలు లేదా సేవలను వెతకండి..."
+              placeholder="à°¡à±€à°²à°°à±à°²à±, à°ªà±à°°à°¾à°‚à°¤à°¾à°²à± à°²à±‡à°¦à°¾ à°¸à±‡à°µà°²à°¨à± à°µà±†à°¤à°•à°‚à°¡à°¿..."
               id="searchInput"
             />
             <button class="clear-search" id="clearSearch" style="display: none;">
@@ -68,56 +68,56 @@
         <!-- Filter Controls -->
         <div class="filter-controls">
           <div class="filter-group">
-            <label for="categoryFilter">వర్గం:</label>
+            <label for="categoryFilter">à°µà°°à±à°—à°‚:</label>
             <select id="categoryFilter" class="filter-select">
-              <option value="all">అన్ని వర్గాలు</option>
-              <option value="pesticide">పెస్టిసైడ్ & ఇన్సెక్టిసైడ్</option>
-              <option value="tractor">ట్రాక్టర్ లీజింగ్</option>
-              <option value="harvester">హార్వెస్టర్ లీజింగ్</option>
-              <option value="equipment">ఇతర పరికరాలు</option>
+              <option value="all">à°…à°¨à±à°¨à°¿ à°µà°°à±à°—à°¾à°²à±</option>
+              <option value="pesticide">à°ªà±†à°¸à±à°Ÿà°¿à°¸à±ˆà°¡à± & à°‡à°¨à±à°¸à±†à°•à±à°Ÿà°¿à°¸à±ˆà°¡à±</option>
+              <option value="tractor">à°Ÿà±à°°à°¾à°•à±à°Ÿà°°à± à°²à±€à°œà°¿à°‚à°—à±</option>
+              <option value="harvester">à°¹à°¾à°°à±à°µà±†à°¸à±à°Ÿà°°à± à°²à±€à°œà°¿à°‚à°—à±</option>
+              <option value="equipment">à°‡à°¤à°° à°ªà°°à°¿à°•à°°à°¾à°²à±</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="locationFilter">ప్రాంతం:</label>
+            <label for="locationFilter">à°ªà±à°°à°¾à°‚à°¤à°‚:</label>
             <select id="locationFilter" class="filter-select">
-              <option value="all">అన్ని ప్రాంతాలు</option>
-              <option value="visakhapatnam">విశాఖపట్నం</option>
-              <option value="vijayawada">విజయవాడ</option>
-              <option value="guntur">గుంటూరు</option>
-              <option value="tirupati">తిరుపతి</option>
-              <option value="nellore">నెల్లూరు</option>
-              <option value="anantapur">అనంతపురం</option>
-              <option value="chittoor">చిత్తూరు</option>
-              <option value="kurnool">కర్నూలు</option>
-              <option value="kadapa">కడప</option>
-              <option value="srikakulam">శ్రీకాకుళం</option>
-              <option value="vizianagaram">విజయనగరం</option>
-              <option value="prakasam">ప్రకాశం</option>
-              <option value="westgodavari">వెస్ట్ గోదావరి</option>
-              <option value="eastgodavari">ఈస్ట్ గోదావరి</option>
-              <option value="krishna">కృష్ణ</option>
+              <option value="all">à°…à°¨à±à°¨à°¿ à°ªà±à°°à°¾à°‚à°¤à°¾à°²à±</option>
+              <option value="visakhapatnam">à°µà°¿à°¶à°¾à°–à°ªà°Ÿà±à°¨à°‚</option>
+              <option value="vijayawada">à°µà°¿à°œà°¯à°µà°¾à°¡</option>
+              <option value="guntur">à°—à±à°‚à°Ÿà±‚à°°à±</option>
+              <option value="tirupati">à°¤à°¿à°°à±à°ªà°¤à°¿</option>
+              <option value="nellore">à°¨à±†à°²à±à°²à±‚à°°à±</option>
+              <option value="anantapur">à°…à°¨à°‚à°¤à°ªà±à°°à°‚</option>
+              <option value="chittoor">à°šà°¿à°¤à±à°¤à±‚à°°à±</option>
+              <option value="kurnool">à°•à°°à±à°¨à±‚à°²à±</option>
+              <option value="kadapa">à°•à°¡à°ª</option>
+              <option value="srikakulam">à°¶à±à°°à±€à°•à°¾à°•à±à°³à°‚</option>
+              <option value="vizianagaram">à°µà°¿à°œà°¯à°¨à°—à°°à°‚</option>
+              <option value="prakasam">à°ªà±à°°à°•à°¾à°¶à°‚</option>
+              <option value="westgodavari">à°µà±†à°¸à±à°Ÿà± à°—à±‹à°¦à°¾à°µà°°à°¿</option>
+              <option value="eastgodavari">à°ˆà°¸à±à°Ÿà± à°—à±‹à°¦à°¾à°µà°°à°¿</option>
+              <option value="krishna">à°•à±ƒà°·à±à°£</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="sortBy">వర్గీకరణ:</label>
+            <label for="sortBy">à°µà°°à±à°—à±€à°•à°°à°£:</label>
             <select id="sortBy" class="filter-select">
-              <option value="name">పేరు (A-Z)</option>
-              <option value="name-desc">పేరు (Z-A)</option>
-              <option value="location">ప్రాంతం</option>
+              <option value="name">à°ªà±‡à°°à± (A-Z)</option>
+              <option value="name-desc">à°ªà±‡à°°à± (Z-A)</option>
+              <option value="location">à°ªà±à°°à°¾à°‚à°¤à°‚</option>
             </select>
           </div>
 
           <button class="reset-filters" id="resetFilters">
             <i class="fas fa-undo"></i>
-            రీసెట్
+            à°°à±€à°¸à±†à°Ÿà±
           </button>
         </div>
 
         <!-- Results Summary -->
         <div class="results-summary" id="resultsSummary">
-          <span id="resultsCount">0</span> డీలర్లు కనుగొనబడ్డాయి
+          <span id="resultsCount">0</span> à°¡à±€à°²à°°à±à°²à± à°•à°¨à±à°—à±Šà°¨à°¬à°¡à±à°¡à°¾à°¯à°¿
         </div>
       </div>
 
@@ -125,8 +125,8 @@
       <section class="section" id="pesticide-sellers" data-category="pesticide">
         <div class="section-header">
           <h2 class="section-title">
-            <span class="section-icon">🐛</span>
-            పెస్టిసైడ్ & ఇన్సెక్టిసైడ్ విక్రేతలు
+            <span class="section-icon">ðŸ›</span>
+            à°ªà±†à°¸à±à°Ÿà°¿à°¸à±ˆà°¡à± & à°‡à°¨à±à°¸à±†à°•à±à°Ÿà°¿à°¸à±ˆà°¡à± à°µà°¿à°•à±à°°à±‡à°¤à°²à±
           </h2>
         </div>
       </section>
@@ -135,8 +135,8 @@
       <section class="section" id="tractor-dealers" data-category="tractor">
         <div class="section-header">
           <h2 class="section-title">
-            <span class="section-icon">🚜</span>
-            ట్రాక్టర్ లీజింగ్ & డీలర్లు
+            <span class="section-icon">ðŸšœ</span>
+            à°Ÿà±à°°à°¾à°•à±à°Ÿà°°à± à°²à±€à°œà°¿à°‚à°—à± & à°¡à±€à°²à°°à±à°²à±
           </h2>
         </div>
       </section>
@@ -145,8 +145,8 @@
       <section class="section" id="harvester-dealers" data-category="harvester">
         <div class="section-header">
           <h2 class="section-title">
-            <span class="section-icon">🌾</span>
-            హార్వెస్టర్ లీజింగ్ & డీలర్లు
+            <span class="section-icon">ðŸŒ¾</span>
+            à°¹à°¾à°°à±à°µà±†à°¸à±à°Ÿà°°à± à°²à±€à°œà°¿à°‚à°—à± & à°¡à±€à°²à°°à±à°²à±
           </h2>
         </div>
       </section>
@@ -154,11 +154,11 @@
       <div class="no-results" id="noResults" style="display: none;">
         <div class="no-results-content">
           <i class="fas fa-search"></i>
-          <h3>డీలర్లు కనుగొనబడలేదు</h3>
-          <p>మీ శోధన ప్రమాణాలు లేదా ఫిల్టర్లను సర్దుబాటు చేయండి</p>
+          <h3>à°¡à±€à°²à°°à±à°²à± à°•à°¨à±à°—à±Šà°¨à°¬à°¡à°²à±‡à°¦à±</h3>
+          <p>à°®à±€ à°¶à±‹à°§à°¨ à°ªà±à°°à°®à°¾à°£à°¾à°²à± à°²à±‡à°¦à°¾ à°«à°¿à°²à±à°Ÿà°°à±à°²à°¨à± à°¸à°°à±à°¦à±à°¬à°¾à°Ÿà± à°šà±‡à°¯à°‚à°¡à°¿</p>
           <button class="reset-filters-btn" onclick="resetAllFilters()">
             <i class="fas fa-undo"></i>
-            రీసెట్ ఫిల్టర్లు
+            à°°à±€à°¸à±†à°Ÿà± à°«à°¿à°²à±à°Ÿà°°à±à°²à±
           </button>
         </div>
       </div>
@@ -168,7 +168,7 @@
     <div class="modal" id="dealerModal">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 id="modalDealerName">డీలర్ వివరాలు</h3>
+          <h3 id="modalDealerName">à°¡à±€à°²à°°à± à°µà°¿à°µà°°à°¾à°²à±</h3>
           <button class="modal-close" onclick="closeDealerModal()">
             <i class="fas fa-times"></i>
           </button>
