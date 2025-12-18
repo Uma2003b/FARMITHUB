@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -22,21 +22,17 @@
     
     .hero { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 2rem; text-align: center; }
     .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    .hero p { font-size: 1rem; opacity: 0.95; }
     
     .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
     
     .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #e5e7eb; }
     .tab-btn { background: none; border: none; padding: 1rem 1.5rem; font-size: 1rem; font-weight: 600; color: #999; cursor: pointer; transition: all 0.3s; border-bottom: 3px solid transparent; }
     .tab-btn.active { color: #16a34a; border-bottom-color: #16a34a; }
-    .tab-btn:hover { color: #16a34a; }
     
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     
-    .marketplace-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
-    
-    .form-section { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: fit-content; }
+    .form-section { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
     .form-section h2 { color: #16a34a; font-size: 1.3rem; margin-bottom: 1.5rem; }
     
     .form-group { margin-bottom: 1.2rem; }
@@ -47,12 +43,6 @@
     .btn-submit { width: 100%; padding: 1rem; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
     .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3); }
     
-    .products-section { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-    .products-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-    .products-header h2 { color: #16a34a; font-size: 1.3rem; }
-    .filter-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
-    .filter-bar input { flex: 1; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; }
-    
     .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
     .product-card { background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 10px; overflow: hidden; transition: all 0.3s; }
     .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-color: #16a34a; }
@@ -62,48 +52,26 @@
     .product-seller { font-size: 0.85rem; color: #666; }
     
     .product-body { padding: 1rem; }
-    .product-quantity { color: #666; font-size: 0.9rem; margin-bottom: 0.5rem; }
     .product-price { font-size: 1.5rem; font-weight: 700; color: #16a34a; margin-bottom: 1rem; }
-    .product-contact { display: flex; gap: 0.5rem; align-items: center; color: #666; font-size: 0.9rem; }
     
     .btn-contact { width: 100%; padding: 0.8rem; background: #16a34a; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem; transition: all 0.3s; }
     .btn-contact:hover { background: #22c55e; }
     
-    .empty-state { text-align: center; padding: 3rem 1rem; color: #999; }
-    .empty-state i { font-size: 3rem; margin-bottom: 1rem; }
-    
     .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; font-size: 0.9rem; }
-    .footer a { color: white; text-decoration: none; }
-    
-    @media (max-width: 768px) {
-      .marketplace-grid { grid-template-columns: 1fr; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero h1 { font-size: 1.5rem; }
-      .tabs { flex-wrap: wrap; }
-    }
-    
-    @media (max-width: 480px) {
-      .header { padding: 0.8rem 1rem; }
-      .header .logo { font-size: 1.2rem; }
-      .header-buttons a { display: none; }
-      .header-buttons a:first-child, .header-buttons a:last-child { display: inline-block; }
-      .container { padding: 1rem; }
-      .product-grid { grid-template-columns: 1fr; }
-    }
   </style>
-<style>.apps-dropdown{position:relative}.apps-btn{background:rgba(255,255,255,.15);color:#fff;padding:.6rem 1.2rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.5rem;transition:all .3s;font-weight:500}.apps-btn:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}.dropdown-menu{position:fixed;top:85px;right:2rem;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:300px;max-height:450px;overflow-y:auto;z-index:1005;display:none}.dropdown-menu.show{display:block}.dropdown-menu a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;color:#333;text-decoration:none;transition:all .2s;border-bottom:1px solid #f0f0f0}.dropdown-menu a:hover{background:#f5f5f5;padding-left:1.2rem}.dropdown-menu a span{font-size:1.2rem;min-width:1.5rem}.dropdown-category{padding:.8rem 1rem;font-weight:600;font-size:.8rem;color:#666;text-transform:uppercase;background:#f9f9f9;border-bottom:1px solid #e0e0e0}</style></head>
+</head>
 <body>
   <header class="header">
-    <a href="#" class="logo">ðŸŒ¾ AgriConnectHub</a>
-    <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
-      <a href="cropCalendar.html">ðŸ“… Calendar</a>
-      <a href="feed-back.html">ðŸ’¬ Feedback</a>
-      <a href="#" onclick="logout()">ðŸšª Logout</a>
+    <a href="#" class="logo">🌾 AgriConnectHub</a>
+    <div class="header-buttons">
+      <a href="cropCalendar.html">📅 Calendar</a>
+      <a href="feed-back.html">💬 Feedback</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
     </div>
   </header>
 
   <div class="hero">
-    <h1>ðŸ›’ Farmer Marketplace</h1>
+    <h1>🛍️ Farmer Marketplace</h1>
     <p>Buy and sell agricultural products directly with farmers</p>
   </div>
 
@@ -117,130 +85,95 @@
       </button>
     </div>
 
-    <!-- SELL TAB -->
     <div id="sell" class="tab-content active">
-      <div class="marketplace-grid">
-        <div class="form-section">
-          <h2>ðŸ“¦ List Your Product</h2>
-          <form id="sellForm">
-            <div class="form-group">
-              <label>Your Name</label>
-              <input type="text" id="sellerName" required />
-            </div>
-            <div class="form-group">
-              <label>Contact Number</label>
-              <input type="tel" id="sellerPhone" required />
-            </div>
-            <div class="form-group">
-              <label>Product Name</label>
-              <input type="text" id="productName" placeholder="e.g., Organic Tomatoes" required />
-            </div>
-            <div class="form-group">
-              <label>Category</label>
-              <select id="productCategory" required>
-                <option value="">Select category...</option>
-                <option value="Vegetables">ðŸ¥¬ Vegetables</option>
-                <option value="Fruits">ðŸŽ Fruits</option>
-                <option value="Grains">ðŸŒ¾ Grains</option>
-                <option value="Pulses">ðŸ«˜ Pulses</option>
-                <option value="Dairy">ðŸ¥› Dairy</option>
-                <option value="Seeds">ðŸŒ± Seeds</option>
-                <option value="Tools">ðŸ”§ Tools & Equipment</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Quantity Available</label>
-              <input type="text" id="productQty" placeholder="e.g., 500 kg" required />
-            </div>
-            <div class="form-group">
-              <label>Price per Unit</label>
-              <input type="text" id="productPrice" placeholder="e.g., â‚¹50/kg" required />
-            </div>
-            <div class="form-group">
-              <label>Description</label>
-              <textarea id="productDesc" rows="3" placeholder="Describe your product..."></textarea>
-            </div>
-            <button type="submit" class="btn-submit">
-              <i class="fas fa-plus"></i> List Product
-            </button>
-          </form>
-        </div>
-
-        <div class="products-section">
-          <div class="products-header">
-            <h2>ðŸ“‹ Your Listings</h2>
-            <span id="sellCount" style="background: #f0fdf4; color: #16a34a; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">0 Products</span>
+      <div class="form-section">
+        <h2>📦 List Your Product</h2>
+        <form id="sellForm">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="sellerName" required />
           </div>
-          <div id="sellProducts" class="product-grid">
-            <div class="empty-state">
-              <i class="fas fa-inbox"></i>
-              <p>No products listed yet</p>
-            </div>
+          <div class="form-group">
+            <label>Contact Number</label>
+            <input type="tel" id="sellerPhone" required />
+          </div>
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" id="productName" placeholder="e.g., Organic Tomatoes" required />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="productCategory" required>
+              <option value="">Select category...</option>
+              <option value="Vegetables">🥬 Vegetables</option>
+              <option value="Fruits">🍎 Fruits</option>
+              <option value="Grains">🌾 Grains</option>
+              <option value="Pulses">🫘 Pulses</option>
+              <option value="Dairy">🥛 Dairy</option>
+              <option value="Seeds">🌱 Seeds</option>
+              <option value="Tools">🔧 Tools & Equipment</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Quantity Available</label>
+            <input type="text" id="productQty" placeholder="e.g., 500 kg" required />
+          </div>
+          <div class="form-group">
+            <label>Price per Unit</label>
+            <input type="text" id="productPrice" placeholder="e.g., ₹50/kg" required />
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-plus"></i> List Product
+          </button>
+        </form>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <h2 style="color: #16a34a; margin-bottom: 1.5rem;">📋 Your Listings</h2>
+        <div id="sellProducts" class="product-grid">
+          <div style="text-align: center; padding: 3rem 1rem; color: #999;">
+            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>No products listed yet</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- BUY TAB -->
     <div id="buy" class="tab-content">
-      <div class="marketplace-grid">
-        <div class="form-section">
-          <h2>ðŸ” Find Products</h2>
-          <form id="buyForm">
-            <div class="form-group">
-              <label>Your Name</label>
-              <input type="text" id="buyerName" required />
-            </div>
-            <div class="form-group">
-              <label>Contact Number</label>
-              <input type="tel" id="buyerPhone" required />
-            </div>
-            <div class="form-group">
-              <label>Looking For</label>
-              <input type="text" id="searchProduct" placeholder="e.g., Fresh Wheat" />
-            </div>
-            <div class="form-group">
-              <label>Category</label>
-              <select id="buyCategory">
-                <option value="">All Categories</option>
-                <option value="Vegetables">ðŸ¥¬ Vegetables</option>
-                <option value="Fruits">ðŸŽ Fruits</option>
-                <option value="Grains">ðŸŒ¾ Grains</option>
-                <option value="Pulses">ðŸ«˜ Pulses</option>
-                <option value="Dairy">ðŸ¥› Dairy</option>
-                <option value="Seeds">ðŸŒ± Seeds</option>
-                <option value="Tools">ðŸ”§ Tools & Equipment</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Quantity Needed</label>
-              <input type="text" id="buyQty" placeholder="e.g., 1000 kg" />
-            </div>
-            <button type="submit" class="btn-submit">
-              <i class="fas fa-search"></i> Search Products
-            </button>
-          </form>
-        </div>
-
-        <div class="products-section">
-          <div class="products-header">
-            <h2>ðŸ›ï¸ Available Products</h2>
-            <span id="buyCount" style="background: #f0fdf4; color: #16a34a; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">0 Products</span>
+      <div class="form-section">
+        <h2>🔍 Find Products</h2>
+        <form id="buyForm">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="buyerName" required />
           </div>
-          <div id="buyProducts" class="product-grid">
-            <div class="empty-state">
-              <i class="fas fa-shopping-bag"></i>
-              <p>No products available yet</p>
-            </div>
+          <div class="form-group">
+            <label>Contact Number</label>
+            <input type="tel" id="buyerPhone" required />
+          </div>
+          <div class="form-group">
+            <label>Looking For</label>
+            <input type="text" id="searchProduct" placeholder="e.g., Fresh Wheat" />
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-search"></i> Search Products
+          </button>
+        </form>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <h2 style="color: #16a34a; margin-bottom: 1.5rem;">🛒 Available Products</h2>
+        <div id="buyProducts" class="product-grid">
+          <div style="text-align: center; padding: 3rem 1rem; color: #999;">
+            <i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>No products available yet</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="footer">
-
-  </footer>
+  <footer class="footer"></footer>
 
   <script>
     let sellProducts = JSON.parse(localStorage.getItem('sellProducts')) || [];
@@ -262,8 +195,7 @@
         phone: document.getElementById('sellerPhone').value,
         category: document.getElementById('productCategory').value,
         qty: document.getElementById('productQty').value,
-        price: document.getElementById('productPrice').value,
-        desc: document.getElementById('productDesc').value
+        price: document.getElementById('productPrice').value
       };
       sellProducts.push(product);
       buyProducts.push(product);
@@ -281,60 +213,47 @@
 
     function displayProducts() {
       const sellDiv = document.getElementById('sellProducts');
-      const buyDiv = document.getElementById('buyProducts');
-      
       if (sellProducts.length === 0) {
-        sellDiv.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No products listed yet</p></div>';
+        sellDiv.innerHTML = '<div style="text-align: center; padding: 3rem 1rem; color: #999;"><i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>No products listed yet</p></div>';
       } else {
         sellDiv.innerHTML = sellProducts.map(p => `
           <div class="product-card">
             <div class="product-header">
               <div class="product-name">${p.name}</div>
-              <div class="product-seller">ðŸ‘¨â€ðŸŒ¾ ${p.seller}</div>
+              <div class="product-seller">👨‍🌾 ${p.seller}</div>
             </div>
             <div class="product-body">
               <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
-              <div class="product-quantity">ðŸ“¦ ${p.qty}</div>
+              <div style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">📦 ${p.qty}</div>
               <div class="product-price">${p.price}</div>
-              <div class="product-contact">
-                <i class="fas fa-phone"></i> ${p.phone}
-              </div>
               <button class="btn-contact" onclick="contactSeller('${p.seller}', '${p.phone}')">Contact Seller</button>
             </div>
           </div>
         `).join('');
       }
-      document.getElementById('sellCount').textContent = `${sellProducts.length} Products`;
 
+      const buyDiv = document.getElementById('buyProducts');
       const search = document.getElementById('searchProduct').value.toLowerCase();
-      const category = document.getElementById('buyCategory').value;
-      const filtered = buyProducts.filter(p => 
-        (!search || p.name.toLowerCase().includes(search)) &&
-        (!category || p.category === category)
-      );
+      const filtered = buyProducts.filter(p => !search || p.name.toLowerCase().includes(search));
 
       if (filtered.length === 0) {
-        buyDiv.innerHTML = '<div class="empty-state"><i class="fas fa-shopping-bag"></i><p>No products found</p></div>';
+        buyDiv.innerHTML = '<div style="text-align: center; padding: 3rem 1rem; color: #999;"><i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>No products found</p></div>';
       } else {
         buyDiv.innerHTML = filtered.map(p => `
           <div class="product-card">
             <div class="product-header">
               <div class="product-name">${p.name}</div>
-              <div class="product-seller">ðŸ‘¨â€ðŸŒ¾ ${p.seller}</div>
+              <div class="product-seller">👨‍🌾 ${p.seller}</div>
             </div>
             <div class="product-body">
               <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
-              <div class="product-quantity">ðŸ“¦ ${p.qty}</div>
+              <div style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">📦 ${p.qty}</div>
               <div class="product-price">${p.price}</div>
-              <div class="product-contact">
-                <i class="fas fa-phone"></i> ${p.phone}
-              </div>
               <button class="btn-contact" onclick="contactSeller('${p.seller}', '${p.phone}')">Contact Seller</button>
             </div>
           </div>
         `).join('');
       }
-      document.getElementById('buyCount').textContent = `${filtered.length} Products`;
     }
 
     function contactSeller(name, phone) {
@@ -358,10 +277,5 @@
 
     displayProducts();
   </script>
-<script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script></body>
+</body>
 </html>
-
-
-
-
-

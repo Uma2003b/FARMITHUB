@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,55 +14,7 @@
   <link href="style.css" rel="stylesheet" />
   <script src="global-translate.js"></script>
   <style>
-    .hero-gradient {
-      background: linear-gradient(135deg, #16a34a 0%, #22c55e 50%, #4ade80 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-gradient::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-    }
-    .hero-gradient::after {
-      content: '';
-      position: absolute;
-      bottom: -30%;
-      left: -5%;
-      width: 400px;
-      height: 400px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(30px); }
-    }
-    .feature-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-    .feature-card:hover {
-      border-color: #16a34a;
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(22, 163, 74, 0.15);
-    }
-    .feature-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
+    .feature-icon { font-size: 3rem; margin-bottom: 1rem; display: inline-block; }
   </style>
 </head>
 
@@ -75,7 +27,7 @@
       <div class="nav-buttons">
         <select id="languageSelector" class="language-select" onchange="changeLanguage()">
           <option value="en" selected>English</option>
-          <option value="te">à°¤à±†à°²à±à°—à±</option>
+          <option value="te">తెలుగు</option>
         </select>
         <button class="theme-toggle btn" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
@@ -88,8 +40,7 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-gradient" style="padding: 6rem 2rem; text-align: center; color: white; position: relative; z-index: 1;">
+  <section class="hero-gradient" style="padding: 6rem 2rem; text-align: center; color: white; position: relative; z-index: 1; background: linear-gradient(135deg, #16a34a 0%, #22c55e 50%, #4ade80 100%);">
     <div style="max-width: 900px; margin: 0 auto;">
       <h1 style="font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;">
         Revolutionizing <span style="color: #fff; text-shadow: 0 0 30px rgba(255,255,255,0.3);">Agriculture</span> with AI
@@ -104,58 +55,52 @@
     </div>
   </section>
 
-  <!-- Mission Section -->
   <section style="padding: 4rem 2rem; background: white;">
     <div style="max-width: 900px; margin: 0 auto; text-align: center;">
       <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; color: #1f2937;">Our Mission</h2>
       <p style="font-size: 1.2rem; color: #6b7280; line-height: 1.8; margin-bottom: 2rem;">
-        We're on a mission to transform Indian agriculture by connecting farmers directly with buyers and providing AI-powered insights that help them make better farming decisions. We believe every farmer deserves access to modern technology, real-time market data, and fair pricing opportunities.
-      </p>
-      <p style="font-size: 1.1rem; color: #6b7280; line-height: 1.8;">
-        <strong>We're early, we're growing, and we're committed to building the future of farming together with you.</strong>
+        We're on a mission to transform Indian agriculture by connecting farmers directly with buyers and providing AI-powered insights that help them make better farming decisions.
       </p>
     </div>
   </section>
 
-  <!-- Features Section -->
   <section id="features" style="padding: 5rem 2rem; background: #f9fafb;">
     <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="text-align: center; font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; color: #1f2937;">Powerful Features Built for You</h2>
-      <p style="text-align: center; font-size: 1.1rem; color: #6b7280; margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;">Everything you need to succeed in modern farming</p>
+      <h2 style="text-align: center; font-size: 2.8rem; font-weight: 700; margin-bottom: 4rem; color: #1f2937;">Powerful Features Built for You</h2>
       
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-        <div class="feature-card">
-          <div class="feature-icon">ðŸŒ¾</div>
+        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+          <div class="feature-icon">🌾</div>
           <h3 style="color: #16a34a; font-size: 1.3rem; margin-bottom: 0.8rem;">Smart Crop Recommendations</h3>
           <p style="color: #6b7280; line-height: 1.7;">AI analyzes soil, weather, and market trends to suggest the most profitable crops for your farm</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">ðŸ“Š</div>
+        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+          <div class="feature-icon">📊</div>
           <h3 style="color: #16a34a; font-size: 1.3rem; margin-bottom: 0.8rem;">Yield Predictions</h3>
           <p style="color: #6b7280; line-height: 1.7;">Predict your harvest with precision farming insights. Plan better, waste less, earn more</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">ðŸ’°</div>
+        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+          <div class="feature-icon">💰</div>
           <h3 style="color: #16a34a; font-size: 1.3rem; margin-bottom: 0.8rem;">Live Market Prices</h3>
           <p style="color: #6b7280; line-height: 1.7;">Real-time pricing from multiple buyers. Sell when prices are highest and maximize your income</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">ðŸ¤</div>
+        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+          <div class="feature-icon">🤝</div>
           <h3 style="color: #16a34a; font-size: 1.3rem; margin-bottom: 0.8rem;">Direct Buyer Network</h3>
           <p style="color: #6b7280; line-height: 1.7;">Connect with verified buyers, packinghouses, and cooperatives. No middlemen, fair prices</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">ðŸŒ¤ï¸</div>
+        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+          <div class="feature-icon">🌤️</div>
           <h3 style="color: #16a34a; font-size: 1.3rem; margin-bottom: 0.8rem;">Weather Intelligence</h3>
           <p style="color: #6b7280; line-height: 1.7;">Get alerts before storms, frost, or drought. Protect your crops and plan ahead</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">ðŸ“±</div>
+        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+          <div class="feature-icon">📱</div>
           <h3 style="color: #16a34a; font-size: 1.3rem; margin-bottom: 0.8rem;">Mobile First</h3>
           <p style="color: #6b7280; line-height: 1.7;">Manage everything from your phone. Works offline, syncs when connected</p>
         </div>
@@ -163,83 +108,51 @@
     </div>
   </section>
 
-  <!-- Why AgriConnectHub Section -->
   <section style="padding: 5rem 2rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
     <div style="max-width: 1200px; margin: 0 auto;">
       <h2 style="text-align: center; font-size: 2.8rem; font-weight: 700; margin-bottom: 4rem; color: #1f2937;">Why Farmers Choose AgriConnectHub</h2>
       
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
         <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 1rem;">ðŸŽ¯</div>
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
           <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;">Farmer-Centric Design</h3>
           <p style="color: #6b7280;">Built by farmers who understand your challenges and needs</p>
         </div>
 
         <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 1rem;">ðŸš€</div>
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
           <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;">AI-Powered Insights</h3>
           <p style="color: #6b7280;">Machine learning that learns from your farm and improves over time</p>
         </div>
 
         <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 1rem;">ðŸ’¯</div>
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">💯</div>
           <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;">100% Free Forever</h3>
           <p style="color: #6b7280;">No hidden charges, no subscriptions. Always free for farmers</p>
         </div>
 
         <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 1rem;">ðŸ”’</div>
-          <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;\">Your Data, Your Control</h3>
-          <p style="color: #6b7280;\">Bank-level security. Your information is never shared without permission</p>
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔒</div>
+          <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;">Your Data, Your Control</h3>
+          <p style="color: #6b7280;">Bank-level security. Your information is never shared without permission</p>
         </div>
 
         <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 1rem;\">âš¡</div>
-          <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;\">Instant Results</h3>
-          <p style="color: #6b7280;\">See improvements in your farming decisions within weeks</p>
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+          <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;">Instant Results</h3>
+          <p style="color: #6b7280;">See improvements in your farming decisions within weeks</p>
         </div>
 
         <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 1rem;\">ðŸŒ±</div>
-          <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;\">Early & Growing</h3>
-          <p style="color: #6b7280;\">Join us at the beginning of an agricultural revolution</p>
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌱</div>
+          <h3 style="color: #16a34a; margin-bottom: 0.8rem; font-size: 1.2rem;">Early & Growing</h3>
+          <p style="color: #6b7280;">Join us at the beginning of an agricultural revolution</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Impact Section -->
-  <section style="padding: 5rem 2rem; background: white;">
-    <div style="max-width: 1000px; margin: 0 auto;">
-      <h2 style="text-align: center; font-size: 2.8rem; font-weight: 700; margin-bottom: 4rem; color: #1f2937;\">Early Success Stories</h2>
-      
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-        <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 2rem; border-radius: 15px; border-left: 4px solid #16a34a;">
-          <p style="font-size: 1.1rem; color: #1f2937; margin-bottom: 1rem; line-height: 1.7;">
-            <strong>"AgriConnectHub helped me understand market prices better. I'm already making smarter selling decisions."</strong>
-          </p>
-          <p style="color: #6b7280; font-weight: 500;">- Tomato Farmer, Karnataka</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 2rem; border-radius: 15px; border-left: 4px solid #16a34a;">
-          <p style="font-size: 1.1rem; color: #1f2937; margin-bottom: 1rem; line-height: 1.7;">
-            <strong>"The crop recommendations are helping me plan better. I'm excited about what's coming next."</strong>
-          </p>
-          <p style="color: #6b7280; font-weight: 500;">- Vegetable Farmer, Telangana</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 2rem; border-radius: 15px; border-left: 4px solid #16a34a;">
-          <p style="font-size: 1.1rem; color: #1f2937; margin-bottom: 1rem; line-height: 1.7;">
-            <strong>"Weather alerts are already proving useful. This is exactly what farmers need."</strong>
-          </p>
-          <p style="color: #6b7280; font-weight: 500;">- Wheat Farmer, Punjab</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="hero-gradient" style="padding: 5rem 2rem; text-align: center; color: white; position: relative; z-index: 1;">
+  <section style="padding: 5rem 2rem; text-align: center; color: white; background: linear-gradient(135deg, #16a34a, #22c55e);">
     <div style="max-width: 800px; margin: 0 auto;">
       <h2 style="font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem;">Be Part of the Agricultural Revolution</h2>
       <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Join us early and help shape the future of farming in India</p>
@@ -247,85 +160,20 @@
     </div>
   </section>
 
-  <button class="scroll-to-top" id="scrollToTop" title="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+  <footer style="background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; font-size: 0.9rem;"></footer>
 
   <script>
     const themeToggle = document.querySelector('.theme-toggle');
-    const themeText = document.querySelector('.theme-text');
-
     const currentTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);
-    themeText.textContent = currentTheme === 'dark' ? 'Dark' : 'Light';
 
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
+      const theme = document.documentElement.getAttribute('data-theme');
+      const newTheme = theme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
-      themeText.textContent = newTheme === 'dark' ? 'Dark' : 'Light';
-    });
-
-    const scrollToTopBtn = document.getElementById("scrollToTop");
-
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add("visible");
-      } else {
-        scrollToTopBtn.classList.remove("visible");
-      }
-    });
-
-    scrollToTopBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    });
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (!document.querySelector('.site-footer')) {
-        const footerHTML = `
-          <style>
-            .site-footer {
-              background: linear-gradient(135deg, #2e7d32, #66bb6a);
-              color: #fff;
-              margin-top: auto;
-              padding: 1.5rem;
-              text-align: center;
-              font-size: 0.9rem;
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .site-footer p {
-              margin: 0;
-              text-align: center;
-            }
-            .site-footer a {
-              color: #fff;
-              text-decoration: none;
-            }
-            .site-footer a:hover {
-              text-decoration: underline;
-            }
-          </style>
-          <footer class="site-footer">
-
-          </footer>
-        `;
-        
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-      }
     });
   </script>
 </body>
 
 </html>
-
-
