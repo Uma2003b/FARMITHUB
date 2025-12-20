@@ -84,19 +84,19 @@
             <div class="dropdown-category">🌾 Farming Tools</div>
             <a href="/crop_recommendation/"><span>🌱</span> Crop Recommendation</a>
             <a href="/crop_yield/"><span>📊</span> Yield Prediction</a>
-            <a href="disease.html"><span>🔬</span> Disease Detection</a>
-            <a href="weather.html"><span>⛅</span> Weather Check</a>
+            <a href="/disease.html"><span>🔬</span> Disease Detection</a>
+            <a href="/weather.html"><span>⛅</span> Weather Check</a>
             <a href="/crop_planning/"><span>📅</span> Crop Planning</a>
-            <a href="organic.html"><span>🌿</span> Organic Farming</a>
-            <a href="plantation.html"><span>🌳</span> Plantation Guide</a>
+            <a href="/organic.html"><span>🌿</span> Organic Farming</a>
+            <a href="/plantation.html"><span>🌳</span> Plantation Guide</a>
             <div class="dropdown-category">💼 Market & Trade</div>
             <a href="/crop_price_tracker/crop_price_tracker"><span>💰</span> Price Tracker</a>
-            <a href="farmer.html"><span>👥</span> Farmer Network</a>
-            <a href="shopkeeper.html"><span>🪑</span> Shop Listings</a>
+            <a href="/farmer.html"><span>👥</span> Farmer Network</a>
+            <a href="/shopkeeper.html"><span>🪑</span> Shop Listings</a>
             <div class="dropdown-category">📢 Community</div>
-            <a href="chat.html"><span>🤖</span> AI Assistant</a>
-            <a href="Forum/forum.html"><span>💬</span> Farmer Forum</a>
-            <a href="./Labour_Alerts/templates/labour.html"><span>⚠️</span> Labour Alerts</a>
+            <a href="/chat.html"><span>🤖</span> AI Assistant</a>
+            <a href="/forum_loan/"><span>💬</span> Farmer Forum</a>
+            <a href="/labour_alerts/"><span>⚠️</span> Labour Alerts</a>
           </div>
         </div>
         <a href="cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
@@ -199,26 +199,15 @@
   <script src="theme.js"></script>
   <script src="weather.js"></script>
   <script src="nav.js"></script>
-
+  <script src="script.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const appsBtn = document.getElementById('appsBtn');
-      const appsMenu = document.getElementById('appsMenu');
-      appsBtn.onclick = (e) => { e.stopPropagation(); appsMenu.classList.toggle('show'); };
-      appsMenu.querySelectorAll('a').forEach(a => a.onclick = () => appsMenu.classList.remove('show'));
-      document.onclick = () => appsMenu.classList.remove('show');
-    });
-
     function showLogoutConfirmation() {
       Swal.fire({
         title: 'Confirm Logout',
         text: 'Are you sure you want to logout?',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, logout',
-        cancelButtonText: 'Cancel'
+        confirmButtonText: 'Yes, logout'
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.removeItem('currentUser');

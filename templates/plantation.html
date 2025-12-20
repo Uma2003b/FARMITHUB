@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -49,6 +49,16 @@
     .footer a { color: white; text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
     
+    .apps-dropdown { position: relative; }
+    .apps-btn { background: rgba(255,255,255,0.15); color: white; padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s; font-weight: 500; }
+    .apps-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .dropdown-menu { position: fixed; top: 85px; right: 2rem; background: white; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); min-width: 300px; max-height: 450px; overflow-y: auto; z-index: 1005; display: none; }
+    .dropdown-menu.show { display: block; }
+    .dropdown-menu a { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; color: #333; text-decoration: none; transition: all 0.2s; border-bottom: 1px solid #f0f0f0; }
+    .dropdown-menu a:hover { background: #f5f5f5; padding-left: 1.2rem; }
+    .dropdown-menu a span { font-size: 1.2rem; min-width: 1.5rem; }
+    .dropdown-category { padding: 0.8rem 1rem; font-weight: 600; font-size: 0.8rem; color: #666; text-transform: uppercase; background: #f9f9f9; border-bottom: 1px solid #e0e0e0; }
+    
     @media (max-width: 768px) {
       .header { padding: 0.8rem 1rem; }
       .header .logo { font-size: 1.2rem; }
@@ -58,20 +68,41 @@
       .section { padding: 1.5rem; }
     }
   </style>
-<style>.apps-dropdown{position:relative}.apps-btn{background:rgba(255,255,255,.15);color:#fff;padding:.6rem 1.2rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.5rem;transition:all .3s;font-weight:500}.apps-btn:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}.dropdown-menu{position:fixed;top:85px;right:2rem;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.2);min-width:300px;max-height:450px;overflow-y:auto;z-index:1005;display:none}.dropdown-menu.show{display:block}.dropdown-menu a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;color:#333;text-decoration:none;transition:all .2s;border-bottom:1px solid #f0f0f0}.dropdown-menu a:hover{background:#f5f5f5;padding-left:1.2rem}.dropdown-menu a span{font-size:1.2rem;min-width:1.5rem}.dropdown-category{padding:.8rem 1rem;font-weight:600;font-size:.8rem;color:#666;text-transform:uppercase;background:#f9f9f9;border-bottom:1px solid #e0e0e0}</style></head>
+</head>
 <body>
   <header class="header">
-    <a href="#" class="logo">ðŸŒ¾ AgriConnectHub</a>
-    <div class="header-buttons"><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div><div class="apps-dropdown"><button class="apps-btn" id="appsBtn">?? Apps</button><div class="dropdown-menu" id="appsMenu"><div class="dropdown-category">?? Farming Tools</div><a href="/crop_recommendation/"><span>??</span> Crop Recommendation</a><a href="/crop_yield/"><span>??</span> Yield Prediction</a><a href="disease.html"><span>??</span> Disease Detection</a><a href="weather.html"><span>?</span> Weather Check</a><a href="/crop_planning/"><span>??</span> Crop Planning</a><a href="organic.html"><span>??</span> Organic Farming</a><a href="plantation.html"><span>??</span> Plantation Guide</a><div class="dropdown-category">?? Market & Trade</div><a href="/crop_price_tracker/crop_price_tracker"><span>??</span> Price Tracker</a><a href="farmer.html"><span>??</span> Farmer Network</a><a href="shopkeeper.html"><span>??</span> Shop Listings</a><div class="dropdown-category">?? Community</div><a href="chat.html"><span>??</span> AI Assistant</a><a href="Forum/forum.html"><span>??</span> Farmer Forum</a><a href="./Labour_Alerts/templates/labour.html"><span>??</span> Labour Alerts</a></div></div>
-      <a href="cropCalendar.html">ðŸ“… Calendar</a>
-      <a href="feed-back.html">ðŸ’¬ Feedback</a>
-      <a href="#" onclick="logout()">ðŸšª Logout</a>
+    <a href="#" class="logo">🌾 AgriConnectHub</a>
+    <div class="header-buttons">
+      <div class="apps-dropdown">
+        <button class="apps-btn" id="appsBtn">📱 Apps</button>
+        <div class="dropdown-menu" id="appsMenu">
+          <div class="dropdown-category">🌾 Farming Tools</div>
+          <a href="/crop_recommendation/"><span>🌱</span> Crop Recommendation</a>
+          <a href="/crop_yield/"><span>📊</span> Yield Prediction</a>
+          <a href="/disease.html"><span>🔬</span> Disease Detection</a>
+          <a href="/weather.html"><span>⛅</span> Weather Check</a>
+          <a href="/crop_planning/"><span>📅</span> Crop Planning</a>
+          <a href="/organic.html"><span>🌿</span> Organic Farming</a>
+          <a href="/plantation.html"><span>🌳</span> Plantation Guide</a>
+          <div class="dropdown-category">📈 Market & Trade</div>
+          <a href="/crop_price_tracker/crop_price_tracker"><span>💰</span> Price Tracker</a>
+          <a href="/farmer.html"><span>👥</span> Farmer Network</a>
+          <a href="/shopkeeper.html"><span>🏪</span> Shop Listings</a>
+          <div class="dropdown-category">📢 Community</div>
+          <a href="/chat.html"><span>🤖</span> AI Assistant</a>
+          <a href="/forum_loan/"><span>💬</span> Farmer Forum</a>
+          <a href="/labour_alerts/"><span>⚠️</span> Labour Alerts</a>
+        </div>
+      </div>
+      <a href="/cropCalendar.html">📅 Calendar</a>
+      <a href="/feed-back.html">💬 Feedback</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
     </div>
   </header>
 
   <div class="container">
     <div class="hero">
-      <h1>ðŸŒ³ Plantation Guide</h1>
+      <h1>🌳 Plantation Guide</h1>
       <p>Master the art of proper planting techniques for maximum crop success</p>
     </div>
 
@@ -79,7 +110,7 @@
       <h2>Step-by-Step Planting Process</h2>
       <div class="steps-grid">
         <div class="step-card">
-          <h3>1ï¸âƒ£ Soil Preparation</h3>
+          <h3>1️⃣ Soil Preparation</h3>
           <ul>
             <li>Test soil pH and nutrients</li>
             <li>Remove weeds and rocks</li>
@@ -89,7 +120,7 @@
           </ul>
         </div>
         <div class="step-card">
-          <h3>2ï¸âƒ£ Seed Selection</h3>
+          <h3>2️⃣ Seed Selection</h3>
           <ul>
             <li>Choose certified seeds</li>
             <li>Check germination rate</li>
@@ -99,43 +130,13 @@
           </ul>
         </div>
         <div class="step-card">
-          <h3>3ï¸âƒ£ Seed Treatment</h3>
+          <h3>3️⃣ Seed Treatment</h3>
           <ul>
             <li>Soak seeds in water (12 hrs)</li>
             <li>Apply fungicide if needed</li>
             <li>Use biofertilizers</li>
             <li>Dry seeds before sowing</li>
             <li>Store in cool place</li>
-          </ul>
-        </div>
-        <div class="step-card">
-          <h3>4ï¸âƒ£ Sowing Methods</h3>
-          <ul>
-            <li>Broadcasting - scatter seeds</li>
-            <li>Drilling - place in rows</li>
-            <li>Transplanting - seedlings</li>
-            <li>Dibbling - individual holes</li>
-            <li>Spacing - follow crop guide</li>
-          </ul>
-        </div>
-        <div class="step-card">
-          <h3>5ï¸âƒ£ Depth & Spacing</h3>
-          <ul>
-            <li>Sow at 2-3x seed depth</li>
-            <li>Row spacing: 30-60 cm</li>
-            <li>Plant spacing: 15-45 cm</li>
-            <li>Follow crop requirements</li>
-            <li>Maintain uniform distance</li>
-          </ul>
-        </div>
-        <div class="step-card">
-          <h3>6ï¸âƒ£ Initial Care</h3>
-          <ul>
-            <li>Water immediately after sowing</li>
-            <li>Keep soil moist (not wet)</li>
-            <li>Mulch to retain moisture</li>
-            <li>Protect from birds/pests</li>
-            <li>Monitor germination</li>
           </ul>
         </div>
       </div>
@@ -145,117 +146,16 @@
       <h2>Crop-Specific Planting Guide</h2>
       <div class="crop-grid">
         <div class="crop-card">
-          <h4>ðŸš Rice</h4>
-          <p><strong>Depth:</strong> 2-3 cm | <strong>Spacing:</strong> 20x15 cm | <strong>Season:</strong> June-July | <strong>Days to harvest:</strong> 120-150</p>
+          <h4>🍚 Rice</h4>
+          <p><strong>Depth:</strong> 2-3 cm | <strong>Spacing:</strong> 20x15 cm | <strong>Season:</strong> June-July</p>
         </div>
         <div class="crop-card">
-          <h4>ðŸŒ¾ Wheat</h4>
-          <p><strong>Depth:</strong> 5-7 cm | <strong>Spacing:</strong> 22 cm rows | <strong>Season:</strong> Oct-Nov | <strong>Days to harvest:</strong> 120-140</p>
+          <h4>🌾 Wheat</h4>
+          <p><strong>Depth:</strong> 5-7 cm | <strong>Spacing:</strong> 22 cm rows | <strong>Season:</strong> Oct-Nov</p>
         </div>
         <div class="crop-card">
-          <h4>ðŸ«˜ Pulses</h4>
-          <p><strong>Depth:</strong> 5-8 cm | <strong>Spacing:</strong> 30x10 cm | <strong>Season:</strong> Oct-Nov | <strong>Days to harvest:</strong> 90-120</p>
-        </div>
-        <div class="crop-card">
-          <h4>ðŸ¥¬ Vegetables</h4>
-          <p><strong>Depth:</strong> 1-2 cm | <strong>Spacing:</strong> 30-45 cm | <strong>Season:</strong> Year-round | <strong>Days to harvest:</strong> 45-90</p>
-        </div>
-        <div class="crop-card">
-          <h4>ðŸŒ½ Maize</h4>
-          <p><strong>Depth:</strong> 5 cm | <strong>Spacing:</strong> 60x20 cm | <strong>Season:</strong> June-July | <strong>Days to harvest:</strong> 100-120</p>
-        </div>
-        <div class="crop-card">
-          <h4>ðŸ§µ Cotton</h4>
-          <p><strong>Depth:</strong> 2-3 cm | <strong>Spacing:</strong> 90x60 cm | <strong>Season:</strong> May-June | <strong>Days to harvest:</strong> 160-180</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Irrigation After Planting</h2>
-      <div class="tips-box">
-        <h4>ðŸ’§ Watering Schedule</h4>
-        <ul>
-          <li><strong>First watering:</strong> Immediately after sowing (light spray)</li>
-          <li><strong>Germination phase:</strong> Keep soil moist for 7-10 days</li>
-          <li><strong>Seedling stage:</strong> Water every 2-3 days</li>
-          <li><strong>Growth stage:</strong> Water based on rainfall and soil moisture</li>
-          <li><strong>Flowering:</strong> Increase watering frequency</li>
-          <li><strong>Fruiting:</strong> Maintain consistent moisture</li>
-        </ul>
-      </div>
-      <div class="tips-box">
-        <h4>ðŸš° Irrigation Methods</h4>
-        <ul>
-          <li><strong>Flood irrigation:</strong> Traditional, uses more water</li>
-          <li><strong>Drip irrigation:</strong> Efficient, saves 40-60% water</li>
-          <li><strong>Sprinkler:</strong> Good for vegetables and pulses</li>
-          <li><strong>Furrow:</strong> Suitable for row crops</li>
-          <li><strong>Rainfed:</strong> Rely on natural rainfall</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Fertilization After Planting</h2>
-      <div class="tips-box">
-        <h4>ðŸŒ± Nutrient Management</h4>
-        <ul>
-          <li><strong>Basal dose:</strong> Apply at sowing time (compost + NPK)</li>
-          <li><strong>Top dressing:</strong> Apply nitrogen at 30-45 days</li>
-          <li><strong>Foliar spray:</strong> Micronutrients at critical stages</li>
-          <li><strong>Organic:</strong> Use vermicompost and biofertilizers</li>
-          <li><strong>Timing:</strong> Apply after rain or irrigation</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Common Planting Mistakes to Avoid</h2>
-      <div class="tips-box">
-        <h4>âš ï¸ Don't Make These Mistakes</h4>
-        <ul>
-          <li>âŒ Sowing too deep - seeds won't germinate</li>
-          <li>âŒ Overcrowding - poor air circulation, disease</li>
-          <li>âŒ Poor soil preparation - weak plant growth</li>
-          <li>âŒ Wrong season - crop failure</li>
-          <li>âŒ Overwatering - root rot and fungal diseases</li>
-          <li>âŒ Using old/low-quality seeds - poor germination</li>
-          <li>âŒ Ignoring soil testing - nutrient deficiencies</li>
-          <li>âŒ Planting in compacted soil - stunted growth</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Post-Planting Care</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <h3>ðŸŒ± Germination (0-14 days)</h3>
-          <ul>
-            <li>Keep soil consistently moist</li>
-            <li>Protect from birds</li>
-            <li>Monitor for pests</li>
-            <li>Avoid heavy rain</li>
-          </ul>
-        </div>
-        <div class="step-card">
-          <h3>ðŸ“ˆ Growth (15-45 days)</h3>
-          <ul>
-            <li>Thin seedlings if needed</li>
-            <li>Remove weeds regularly</li>
-            <li>Apply first fertilizer dose</li>
-            <li>Watch for diseases</li>
-          </ul>
-        </div>
-        <div class="step-card">
-          <h3>ðŸŒ¿ Development (45+ days)</h3>
-          <ul>
-            <li>Continue weeding</li>
-            <li>Apply second fertilizer</li>
-            <li>Manage pests actively</li>
-            <li>Ensure adequate water</li>
-          </ul>
+          <h4>🫘 Pulses</h4>
+          <p><strong>Depth:</strong> 5-8 cm | <strong>Spacing:</strong> 30x10 cm | <strong>Season:</strong> Oct-Nov</p>
         </div>
       </div>
     </div>
@@ -263,25 +163,20 @@
     <div class="section">
       <h2>Quick Tips for Success</h2>
       <div class="tips-box">
-        <h4>ðŸ’¡ Pro Tips</h4>
+        <h4>💡 Pro Tips</h4>
         <ul>
-          <li>âœ… Always test soil before planting</li>
-          <li>âœ… Use certified, high-quality seeds</li>
-          <li>âœ… Follow recommended spacing for your crop</li>
-          <li>âœ… Plant at the right time for your region</li>
-          <li>âœ… Water immediately after sowing</li>
-          <li>âœ… Keep detailed records of planting dates</li>
-          <li>âœ… Monitor weather forecasts</li>
-          <li>âœ… Start with small area to learn</li>
-          <li>âœ… Join farmer groups for support</li>
-          <li>âœ… Use organic methods when possible</li>
+          <li>✅ Always test soil before planting</li>
+          <li>✅ Use certified, high-quality seeds</li>
+          <li>✅ Follow recommended spacing for your crop</li>
+          <li>✅ Plant at the right time for your region</li>
+          <li>✅ Water immediately after sowing</li>
         </ul>
       </div>
     </div>
   </div>
 
   <footer class="footer">
-
+    <p>&copy; 2025 AgriConnectHub. All rights reserved.</p>
   </footer>
 
   <script>
@@ -291,11 +186,16 @@
         window.location.href = '/login.html';
       }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const appsBtn = document.getElementById('appsBtn');
+      const appsMenu = document.getElementById('appsMenu');
+      if (appsBtn && appsMenu) {
+        appsBtn.onclick = (e) => { e.stopPropagation(); appsMenu.classList.toggle('show'); };
+        appsMenu.querySelectorAll('a').forEach(a => a.onclick = () => appsMenu.classList.remove('show'));
+        document.onclick = () => appsMenu.classList.remove('show');
+      }
+    });
   </script>
-<script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("appsBtn"),t=document.getElementById("appsMenu");e&&t&&(e.onclick=e=>{e.stopPropagation(),t.classList.toggle("show")},t.querySelectorAll("a").forEach(e=>e.onclick=()=>t.classList.remove("show")),document.onclick=()=>t.classList.remove("show"))})</script></body>
+</body>
 </html>
-
-
-
-
-

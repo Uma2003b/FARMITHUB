@@ -15,6 +15,12 @@ window.addEventListener("scroll", () => {
 
 // DOM Content Loaded
 document.addEventListener("DOMContentLoaded", function () {
+  const appsBtn = document.getElementById('appsBtn');
+  const appsMenu = document.getElementById('appsMenu');
+  if (appsBtn && appsMenu) {
+    appsBtn.onclick = (e) => { e.stopPropagation(); appsMenu.classList.toggle('show'); };
+    document.onclick = (e) => { if (!e.target.closest('.apps-dropdown')) appsMenu.classList.remove('show'); };
+  }
   const images = document.querySelectorAll('img[loading="lazy"]');
   const imageObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -127,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Add loading states for navigation
-  const navLinks = document.querySelectorAll('nav a');
+  const navLinks = document.querySelectorAll('nav a, .header-buttons a, .dropdown-menu a');
 
   const navbarLogo = document.querySelector('.navbar .logo');
   if (navbarLogo) {
@@ -137,26 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      if (!this.href.includes('#')) {
-        const loadingText = this.innerHTML;
-        this.innerHTML = '<span style="opacity: 0.7;">Loading...</span>';
-        
-        setTimeout(() => {
-          this.innerHTML = loadingText;
-        }, 3000);
-      }
-    });
-  });
 
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const header = document.querySelector('header');
-    if (header) {
-      header.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-  });
 
   const header = document.querySelector('header h1');
   const currentHour = new Date().getHours();

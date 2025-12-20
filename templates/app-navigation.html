@@ -1,0 +1,156 @@
+<style>
+  .app-nav-header {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    padding: 0.8rem 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  .app-nav-container {
+    display: flex;
+    gap: 0.5rem;
+    min-width: min-content;
+    align-items: center;
+  }
+  
+  .app-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+  }
+  
+  .app-nav-item:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .app-nav-item.active {
+    background: white;
+    color: #16a34a;
+    font-weight: 600;
+  }
+  
+  .app-nav-icon {
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .app-nav-header {
+      padding: 0.6rem 1rem;
+    }
+    
+    .app-nav-item {
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+    }
+    
+    .app-nav-icon {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .app-nav-header {
+      padding: 0.5rem 0.8rem;
+    }
+    
+    .app-nav-item {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8rem;
+    }
+    
+    .app-nav-item span:last-child {
+      display: none;
+    }
+  }
+</style>
+
+<nav class="app-nav-header">
+  <div class="app-nav-container">
+    <a href="/crop_recommendation/" class="app-nav-item" title="Crop Recommendation">
+      <span class="app-nav-icon">🌱</span>
+      <span>Crop Recommendation</span>
+    </a>
+    <a href="/crop_yield/" class="app-nav-item" title="Yield Prediction">
+      <span class="app-nav-icon">📊</span>
+      <span>Yield Prediction</span>
+    </a>
+    <a href="/disease.html" class="app-nav-item" title="Disease Prediction">
+      <span class="app-nav-icon">🔬</span>
+      <span>Disease Prediction</span>
+    </a>
+    <a href="/organic.html" class="app-nav-item" title="Organic Farming">
+      <span class="app-nav-icon">🌿</span>
+      <span>Organic Farming</span>
+    </a>
+    <a href="/farmer.html" class="app-nav-item" title="Farmer Network">
+      <span class="app-nav-icon">👥</span>
+      <span>Farmer Network</span>
+    </a>
+    <a href="/weather.html" class="app-nav-item" title="Weather Check">
+      <span class="app-nav-icon">⛅</span>
+      <span>Weather Check</span>
+    </a>
+    <a href="/shopkeeper.html" class="app-nav-item" title="Shopkeeper Listings">
+      <span class="app-nav-icon">🏪</span>
+      <span>Shopkeeper Listings</span>
+    </a>
+    <a href="/chat.html" class="app-nav-item" title="ChatBot">
+      <span class="app-nav-icon">🤖</span>
+      <span>ChatBot</span>
+    </a>
+    <a href="/plantation.html" class="app-nav-item" title="Plantation">
+      <span class="app-nav-icon">🌳</span>
+      <span>Plantation</span>
+    </a>
+    <a href="/crop_planning/" class="app-nav-item" title="Crop Planning">
+      <span class="app-nav-icon">📅</span>
+      <span>Crop Planning</span>
+    </a>
+    <a href="/labour_alerts/" class="app-nav-item" title="Labour Alerts">
+      <span class="app-nav-icon">⚠️</span>
+      <span>Labour Alerts</span>
+    </a>
+    <a href="/sugarcane_frp/" class="app-nav-item" title="Sugarcane FRP">
+      <span class="app-nav-icon">🍯</span>
+      <span>Sugarcane FRP</span>
+    </a>
+    <a href="/district_procurement/" class="app-nav-item" title="District Procurement">
+      <span class="app-nav-icon">📦</span>
+      <span>District Procurement</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+  function initAppNav() {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.app-nav-item').forEach(item => {
+      const href = item.getAttribute('href');
+      if (currentPath === href || currentPath.startsWith(href)) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAppNav);
+  } else {
+    initAppNav();
+  }
+</script>
