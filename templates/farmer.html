@@ -3,32 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Farmer Marketplace - Buy and Sell Agricultural Products" />
   <title>Farmer Marketplace - AgriConnectHub</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Open Sans', sans-serif; background: #f9fafb; color: #333; }
     
-    .header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: relative; }
     .header .logo { color: white; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
     .header-buttons { display: flex; gap: 1rem; align-items: center; }
     .header-buttons a, .header-buttons button { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
     .header-buttons a:hover, .header-buttons button:hover { background: rgba(255,255,255,0.3); }
     
     .apps-dropdown { position: relative; }
-    .apps-btn { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s; font-weight: 500; }
-    .apps-btn:hover { background: rgba(255,255,255,0.3); }
-    .dropdown-menu { position: fixed; top: 85px; right: 2rem; background: white; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); min-width: 300px; max-height: 450px; overflow-y: auto; z-index: 10000; display: none; }
-    .dropdown-menu.show { display: block !important; }
-    .dropdown-menu a { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; color: #333; text-decoration: none; transition: all 0.2s; border-bottom: 1px solid #f0f0f0; }
-    .dropdown-menu a:hover { background: #f5f5f5; padding-left: 1.2rem; }
-    .dropdown-menu a span { font-size: 1.2rem; min-width: 1.5rem; }
-    .dropdown-category { padding: 0.8rem 1rem; font-weight: 600; font-size: 0.8rem; color: #666; text-transform: uppercase; background: #f9f9f9; border-bottom: 1px solid #e0e0e0; }
+    .apps-btn { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+    .dropdown-menu { position: absolute; top: 100%; right: 0; background: white; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); min-width: 300px; max-height: 450px; overflow-y: auto; z-index: 10000; display: none; margin-top: 0.5rem; }
+    .dropdown-menu.show { display: block; }
+    .dropdown-menu a { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; color: #333; text-decoration: none; border-bottom: 1px solid #f0f0f0; }
+    .dropdown-menu a:hover { background: #f5f5f5; }
+    .dropdown-category { padding: 0.8rem 1rem; font-weight: 600; font-size: 0.8rem; color: #666; text-transform: uppercase; background: #f9f9f9; }
     
     .hero { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 2rem; text-align: center; }
     .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
@@ -36,7 +30,7 @@
     .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
     
     .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #e5e7eb; }
-    .tab-btn { background: none; border: none; padding: 1rem 1.5rem; font-size: 1rem; font-weight: 600; color: #999; cursor: pointer; transition: all 0.3s; border-bottom: 3px solid transparent; }
+    .tab-btn { background: none; border: none; padding: 1rem 1.5rem; font-size: 1rem; font-weight: 600; color: #999; cursor: pointer; border-bottom: 3px solid transparent; }
     .tab-btn.active { color: #16a34a; border-bottom-color: #16a34a; }
     
     .tab-content { display: none; }
@@ -47,15 +41,15 @@
     
     .form-group { margin-bottom: 1.2rem; }
     .form-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; color: #1f2937; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 0.95rem; transition: all 0.3s; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); }
+    .form-group input, .form-group select { width: 100%; padding: 0.8rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 0.95rem; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #16a34a; }
     
-    .btn-submit { width: 100%; padding: 1rem; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3); }
+    .btn-submit { width: 100%; padding: 1rem; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    .btn-submit:hover { transform: translateY(-2px); }
     
     .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
-    .product-card { background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 10px; overflow: hidden; transition: all 0.3s; }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-color: #16a34a; }
+    .product-card { background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 10px; overflow: hidden; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
     
     .product-header { background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 1rem; }
     .product-name { font-weight: 700; color: #16a34a; font-size: 1.1rem; margin-bottom: 0.3rem; }
@@ -64,10 +58,10 @@
     .product-body { padding: 1rem; }
     .product-price { font-size: 1.5rem; font-weight: 700; color: #16a34a; margin-bottom: 1rem; }
     
-    .btn-contact { width: 100%; padding: 0.8rem; background: #16a34a; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem; transition: all 0.3s; }
+    .btn-contact { width: 100%; padding: 0.8rem; background: #16a34a; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 1rem; }
     .btn-contact:hover { background: #22c55e; }
     
-    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; font-size: 0.9rem; }
+    .footer { background: linear-gradient(135deg, #2e7d32, #66bb6a); color: white; padding: 1.5rem; text-align: center; }
   </style>
 </head>
 <body>
@@ -80,19 +74,19 @@
           <div class="dropdown-category">🌾 Farming Tools</div>
           <a href="/crop_recommendation/"><span>🌱</span> Crop Recommendation</a>
           <a href="/crop_yield/"><span>📊</span> Yield Prediction</a>
-          <a href="/disease.html"><span>🔬</span> Disease Detection</a>
-          <a href="/weather.html"><span>⛅</span> Weather Check</a>
+          <a href="disease.html"><span>🔬</span> Disease Detection</a>
+          <a href="weather.html"><span>⛅</span> Weather Check</a>
           <a href="/crop_planning/"><span>📅</span> Crop Planning</a>
-          <a href="/organic.html"><span>🌿</span> Organic Farming</a>
-          <a href="/plantation.html"><span>🌳</span> Plantation Guide</a>
+          <a href="organic.html"><span>🌿</span> Organic Farming</a>
+          <a href="plantation.html"><span>🌳</span> Plantation Guide</a>
           <div class="dropdown-category">📈 Market & Trade</div>
           <a href="/crop_price_tracker/crop_price_tracker"><span>💰</span> Price Tracker</a>
-          <a href="/farmer.html"><span>👥</span> Farmer Network</a>
-          <a href="/shopkeeper.html"><span>🪑</span> Shop Listings</a>
+          <a href="farmer.html"><span>👥</span> Farmer Network</a>
+          <a href="shopkeeper.html"><span>🪑</span> Shop Listings</a>
           <div class="dropdown-category">📢 Community</div>
-          <a href="/chat.html"><span>🤖</span> AI Assistant</a>
-          <a href="/forum_loan/"><span>💬</span> Farmer Forum</a>
-          <a href="/labour_alerts/"><span>⚠️</span> Labour Alerts</a>
+          <a href="chat.html"><span>🤖</span> AI Assistant</a>
+          <a href="Forum/forum.html"><span>💬</span> Farmer Forum</a>
+          <a href="./Labour_Alerts/templates/labour.html"><span>⚠️</span> Labour Alerts</a>
         </div>
       </div>
       <a href="/cropCalendar.html">📅 Calendar</a>
@@ -108,12 +102,8 @@
 
   <div class="container">
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('sell')">
-        <i class="fas fa-store"></i> Sell Products
-      </button>
-      <button class="tab-btn" onclick="switchTab('buy')">
-        <i class="fas fa-shopping-cart"></i> Buy Products
-      </button>
+      <button class="tab-btn active" data-tab="sell"><i class="fas fa-store"></i> Sell Products</button>
+      <button class="tab-btn" data-tab="buy"><i class="fas fa-shopping-cart"></i> Buy Products</button>
     </div>
 
     <div id="sell" class="tab-content active">
@@ -153,9 +143,7 @@
             <label>Price per Unit</label>
             <input type="text" id="productPrice" placeholder="e.g., ₹50/kg" required />
           </div>
-          <button type="submit" class="btn-submit">
-            <i class="fas fa-plus"></i> List Product
-          </button>
+          <button type="submit" class="btn-submit"><i class="fas fa-plus"></i> List Product</button>
         </form>
       </div>
 
@@ -186,9 +174,7 @@
             <label>Looking For</label>
             <input type="text" id="searchProduct" placeholder="e.g., Fresh Wheat" />
           </div>
-          <button type="submit" class="btn-submit">
-            <i class="fas fa-search"></i> Search Products
-          </button>
+          <button type="submit" class="btn-submit"><i class="fas fa-search"></i> Search Products</button>
         </form>
       </div>
 
@@ -206,15 +192,70 @@
 
   <footer class="footer"></footer>
 
+  <script src="session.js"></script>
   <script>
     let sellProducts = JSON.parse(localStorage.getItem('sellProducts')) || [];
     let buyProducts = JSON.parse(localStorage.getItem('buyProducts')) || [];
 
-    function switchTab(tab) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById(tab).classList.add('active');
-      event.target.classList.add('active');
+    function displayProducts() {
+      const sellDiv = document.getElementById('sellProducts');
+      if (sellProducts.length === 0) {
+        sellDiv.innerHTML = '<div style="text-align: center; padding: 3rem 1rem; color: #999;"><i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>No products listed yet</p></div>';
+      } else {
+        sellDiv.innerHTML = sellProducts.map(p => `
+          <div class="product-card">
+            <div class="product-header">
+              <div class="product-name">${p.name}</div>
+              <div class="product-seller">👨🌾 ${p.seller}</div>
+            </div>
+            <div class="product-body">
+              <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
+              <div style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">📦 ${p.qty}</div>
+              <div class="product-price">${p.price}</div>
+              <button class="btn-contact" type="button" onclick="showContact('${p.seller}', '${p.phone}')">Contact Seller</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const buyDiv = document.getElementById('buyProducts');
+      const search = document.getElementById('searchProduct').value.toLowerCase();
+      const filtered = buyProducts.filter(p => !search || p.name.toLowerCase().includes(search));
+
+      if (filtered.length === 0) {
+        buyDiv.innerHTML = '<div style="text-align: center; padding: 3rem 1rem; color: #999;"><i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>No products found</p></div>';
+      } else {
+        buyDiv.innerHTML = filtered.map(p => `
+          <div class="product-card">
+            <div class="product-header">
+              <div class="product-name">${p.name}</div>
+              <div class="product-seller">👨🌾 ${p.seller}</div>
+            </div>
+            <div class="product-body">
+              <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
+              <div style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">📦 ${p.qty}</div>
+              <div class="product-price">${p.price}</div>
+              <button class="btn-contact" type="button" onclick="showContact('${p.seller}', '${p.phone}')">Contact Seller</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function showContact(name, phone) {
+      Swal.fire({
+        title: 'Contact ' + name,
+        text: 'Phone: ' + phone,
+        icon: 'info',
+        confirmButtonText: 'Copy Number'
+      }).then(() => {
+        navigator.clipboard.writeText(phone);
+        Swal.fire('Copied!', 'Phone number copied', 'success');
+      });
+    }
+
+    function logout() {
+      window.logout();
     }
 
     document.getElementById('sellForm').addEventListener('submit', (e) => {
@@ -242,78 +283,37 @@
       displayProducts();
     });
 
-    function displayProducts() {
-      const sellDiv = document.getElementById('sellProducts');
-      if (sellProducts.length === 0) {
-        sellDiv.innerHTML = '<div style="text-align: center; padding: 3rem 1rem; color: #999;"><i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>No products listed yet</p></div>';
-      } else {
-        sellDiv.innerHTML = sellProducts.map(p => `
-          <div class="product-card">
-            <div class="product-header">
-              <div class="product-name">${p.name}</div>
-              <div class="product-seller">👨🌾 ${p.seller}</div>
-            </div>
-            <div class="product-body">
-              <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
-              <div style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">📦 ${p.qty}</div>
-              <div class="product-price">${p.price}</div>
-              <button class="btn-contact" onclick="contactSeller('${p.seller}', '${p.phone}')">Contact Seller</button>
-            </div>
-          </div>
-        `).join('');
-      }
+    document.getElementById('searchProduct').addEventListener('input', () => {
+      displayProducts();
+    });
 
-      const buyDiv = document.getElementById('buyProducts');
-      const search = document.getElementById('searchProduct').value.toLowerCase();
-      const filtered = buyProducts.filter(p => !search || p.name.toLowerCase().includes(search));
-
-      if (filtered.length === 0) {
-        buyDiv.innerHTML = '<div style="text-align: center; padding: 3rem 1rem; color: #999;"><i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 1rem;"></i><p>No products found</p></div>';
-      } else {
-        buyDiv.innerHTML = filtered.map(p => `
-          <div class="product-card">
-            <div class="product-header">
-              <div class="product-name">${p.name}</div>
-              <div class="product-seller">👨🌾 ${p.seller}</div>
-            </div>
-            <div class="product-body">
-              <div style="color: #999; font-size: 0.85rem; margin-bottom: 0.5rem;">${p.category}</div>
-              <div style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">📦 ${p.qty}</div>
-              <div class="product-price">${p.price}</div>
-              <button class="btn-contact" onclick="contactSeller('${p.seller}', '${p.phone}')">Contact Seller</button>
-            </div>
-          </div>
-        `).join('');
-      }
-    }
-
-    function contactSeller(name, phone) {
-      Swal.fire({
-        title: `Contact ${name}`,
-        text: `Phone: ${phone}`,
-        icon: 'info',
-        confirmButtonText: 'Copy Number'
-      }).then(() => {
-        navigator.clipboard.writeText(phone);
-        Swal.fire('Copied!', 'Phone number copied to clipboard', 'success');
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
       });
-    }
+    });
 
-    function logout() {
-      if (confirm('Are you sure you want to logout?')) {
-        localStorage.removeItem('currentUser');
-        window.location.href = '/login.html';
-      }
-    }
-    
     document.addEventListener('DOMContentLoaded', () => {
+      displayProducts();
+      
       const appsBtn = document.getElementById('appsBtn');
       const appsMenu = document.getElementById('appsMenu');
-      if (appsBtn && appsMenu) {
-        appsBtn.onclick = (e) => { e.stopPropagation(); appsMenu.classList.toggle('show'); };
-        appsMenu.querySelectorAll('a').forEach(a => a.onclick = () => appsMenu.classList.remove('show'));
-        document.onclick = () => appsMenu.classList.remove('show');
-      }
+      appsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        appsMenu.classList.toggle('show');
+      });
+      appsMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => appsMenu.classList.remove('show'));
+      });
+      document.addEventListener('click', (e) => {
+        if (e.target !== appsBtn && !appsMenu.contains(e.target)) {
+          appsMenu.classList.remove('show');
+        }
+      });
     });
-    
-    displayProducts();
+  </script>
+</body>
+</html>

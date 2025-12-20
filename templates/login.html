@@ -168,10 +168,10 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       
-      if (email && password) {
+      if (email === 'demo@agriconnect.com' && password === 'demo123') {
         const userData = {
           email: email,
-          fullname: email.split('@')[0] || 'User',
+          fullname: 'Demo User',
           isLoggedIn: true,
           sessionToken: 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
           loginTime: new Date().toISOString()
@@ -179,18 +179,11 @@
         
         localStorage.setItem('currentUser', JSON.stringify(userData));
         sessionStorage.setItem('sessionActive', 'true');
-        window.preventBackAfterLogin();
         window.location.replace('/main');
       } else {
-        alert('Please enter both email and password');
+        alert('Invalid credentials. Use demo@agriconnect.com / demo123');
       }
     }
-
-    window.addEventListener('load', function() {
-      if (localStorage.getItem('currentUser')) {
-        window.location.replace('/main');
-      }
-    });
   </script>
 </body>
 </html>

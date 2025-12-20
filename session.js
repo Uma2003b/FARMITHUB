@@ -10,38 +10,14 @@
     return !!localStorage.getItem('currentUser');
   }
 
-  function redirectToIndex() {
-    window.history.pushState(null, null, window.location.href);
-    window.location.replace('/index.html');
+  function redirectToLogin() {
+    window.location.replace('/login.html');
   }
 
-  // Check session on page load
+  // Check session on page load - redirect to login if not logged in and not on public page
   window.addEventListener('load', function() {
-    if (!isLoggedIn() && !isPublicPage()) {
-      redirectToIndex();
-    }
-  });
-
-  // Prevent back navigation to protected pages
-  window.addEventListener('popstate', function() {
-    if (!isLoggedIn() && !isPublicPage()) {
-      redirectToIndex();
-    }
-  });
-
-  // Handle browser back button
-  window.addEventListener('pageshow', function(event) {
-    if (event.persisted) {
-      if (!isLoggedIn() && !isPublicPage()) {
-        redirectToIndex();
-      }
-    }
-  });
-
-  // Prevent forward navigation to protected pages
-  window.addEventListener('pagehide', function() {
-    if (!isLoggedIn() && !isPublicPage()) {
-      window.history.pushState(null, null, window.location.href);
+    if (!isLoggedIn() && !isPublicPage() && window.location.pathname.includes('/main')) {
+      redirectToLogin();
     }
   });
 
@@ -49,15 +25,25 @@
   window.logout = function() {
     localStorage.removeItem('currentUser');
     sessionStorage.clear();
+    window.onpopstate = null;
+    window.history.pushState(null, null, window.location.href);
     window.history.pushState(null, null, window.location.href);
     window.location.replace('/index.html');
   };
 
-  // Prevent back on login page after successful login
-  window.preventBackAfterLogin = function() {
+  // Block back on index page
+  window.blockBackOnIndex = function() {
     window.history.pushState(null, null, window.location.href);
     window.onpopstate = function() {
       window.history.pushState(null, null, window.location.href);
+    };
+  };
+
+  // Block back button on main.html - redirect to logout
+  window.blockBackOnMain = function() {
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function() {
+      window.logout();
     };
   };
 })();

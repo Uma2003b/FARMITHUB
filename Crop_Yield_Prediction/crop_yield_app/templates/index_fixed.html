@@ -54,23 +54,23 @@
             <div class="dropdown-category">🌾 Farming Tools</div>
             <a href="/crop_recommendation/"><span>🌱</span> Crop Recommendation</a>
             <a href="/crop_yield/"><span>📊</span> Yield Prediction</a>
-            <a href="../../templates/disease.html"><span>🔬</span> Disease Detection</a>
-            <a href="../../templates/weather.html"><span>⛅</span> Weather Check</a>
+            <a href="/disease.html"><span>🔬</span> Disease Detection</a>
+            <a href="/weather.html"><span>⛅</span> Weather Check</a>
             <a href="/crop_planning/"><span>📅</span> Crop Planning</a>
-            <a href="../../templates/organic.html"><span>🌿</span> Organic Farming</a>
-            <a href="../../templates/plantation.html"><span>🌳</span> Plantation Guide</a>
+            <a href="/organic.html"><span>🌿</span> Organic Farming</a>
+            <a href="/plantation.html"><span>🌳</span> Plantation Guide</a>
             <div class="dropdown-category">📈 Market & Trade</div>
             <a href="/crop_price_tracker/crop_price_tracker"><span>💰</span> Price Tracker</a>
-            <a href="../../templates/farmer.html"><span>👥</span> Farmer Network</a>
-            <a href="../../templates/shopkeeper.html"><span>🏪</span> Shop Listings</a>
+            <a href="/farmer.html"><span>👥</span> Farmer Network</a>
+            <a href="/shopkeeper.html"><span>🏪</span> Shop Listings</a>
             <div class="dropdown-category">💬 Community</div>
-            <a href="../../templates/chat.html"><span>🤖</span> AI Assistant</a>
-            <a href="../../templates/Forum/forum.html"><span>💬</span> Farmer Forum</a>
-            <a href="../../Labour_Alerts/templates/labour.html"><span>⚠️</span> Labour Alerts</a>
+            <a href="/chat.html"><span>🤖</span> AI Assistant</a>
+            <a href="/forum_loan/"><span>💬</span> Farmer Forum</a>
+            <a href="/labour_alerts/"><span>⚠️</span> Labour Alerts</a>
           </div>
         </div>
-        <a href="../../cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
-        <a href="../../feed-back.html" class="feedback-button">💬 Feedback</a>
+        <a href="/cropCalendar.html" class="calendar-button" title="Crop Calendar"><span class="calendar-icon">📅</span>Calendar</a>
+        <a href="/feed-back.html" class="feedback-button">💬 Feedback</a>
         <a href="#" class="logout-button" onclick="showLogoutConfirmation()">🚪 Logout</a>
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
           <i class="fas fa-sun sun-icon"></i>
@@ -141,14 +141,7 @@
         </form>
     </div>
 
-
-
-    <script src="../../apps-dropdown.js"></script>
-    <script src="../../main.js"></script>
-    <script src="../../nav.js"></script>
-    <script src="../../theme.js"></script>
-    <script src="../../script.js"></script>
-
+    <script src="/session.js"></script>
     <script>
       function showLogoutConfirmation() {
         Swal.fire({
@@ -162,8 +155,20 @@
           cancelButtonText: 'Cancel'
         }).then((result) => {
           if (result.isConfirmed) {
-            localStorage.removeItem('currentUser');
-            window.location.href = '/';
+            window.logout();
           }
         });
       }
+      document.getElementById('appsBtn').addEventListener('click', function() {
+        const menu = document.getElementById('appsMenu');
+        menu.classList.toggle('show');
+      });
+      document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.apps-dropdown');
+        if (!dropdown.contains(event.target)) {
+          document.getElementById('appsMenu').classList.remove('show');
+        }
+      });
+    </script>
+</body>
+</html>

@@ -186,6 +186,10 @@
 
   <script src="session.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      window.blockBackOnIndex();
+    });
+    
     const themeToggle = document.querySelector('.theme-toggle');
     const currentTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', currentTheme);

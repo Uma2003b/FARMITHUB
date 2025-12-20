@@ -176,12 +176,13 @@
 
   <script src="session.js"></script>
   <script>
-    if (!localStorage.getItem('currentUser')) {
-      window.location.replace('/login.html');
-    } else {
-      window.preventBackAfterLogin();
-    }
     document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('currentUser')) {
+        window.location.replace('/login.html');
+      } else {
+        window.blockBackOnMain();
+      }
+      
       document.getElementById('btn').onclick = () => document.getElementById('nav').classList.toggle('open');
       document.getElementById('nav').querySelectorAll('a').forEach(a => a.onclick = () => document.getElementById('nav').classList.remove('open'));
       
@@ -205,8 +206,6 @@
         }
       });
     }
-
-    window.preventBackAfterLogin();
   </script>
 </body>
 </html>
